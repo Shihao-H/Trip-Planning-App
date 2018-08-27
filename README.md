@@ -3,6 +3,7 @@
 # Member Information
 Member Name | CSU eName | GitHub Username | e mail Address | Nickname
 ----------- | --------- | --------------- | -------------- | --------
+Minjie Shen | mjshen | MinjieSh | mjshen@rams.colostate.edu | Minjie /min'dʒiː/ or /min'dʒæ/
 Lacey Willmann | lwillman | lwillman | lwillman@rams.colostate.edu | Negative, Ghost Rider
 
 ### Lacey Willmann
