@@ -8,6 +8,17 @@ Lacey Willmann | lwillman | lwillman | lwillman@rams.colostate.edu | Negative, G
 Josh Keahey | jpkeahey | Nightsphere | nightsphere88@gmail.com | Nada, Nothing, Zip
 Shihao Huang | ahsh | Shihao-H | ahsh@rams.colostate.edu | null..
 
+### Minjie Shen
+
+This is Minjie. I am a senior Computer Science student, minoring in Maths.
+
+I am a transfer student, this is my third year in Colorado State University. 
+I studied in East China Normal University, China for two years and then transferred to CSU. 
+I was an Electrical Engineering student and I have studied EE for 4 years. I tried to study both EE and CS at a time, but I just failed because it was so challenging to me. I realized that I preferred CS to EE, so I kept my CS major and got rid of the EE major.
+
+I am so glad to work with all of you. I hope we could get everything done perfectly.
+
+
 ### Lacey Willmann
     First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am
 switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++.
