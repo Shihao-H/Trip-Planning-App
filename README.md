@@ -32,9 +32,9 @@ I am currently a senior in CS, and I finished my math minor last semester. I hav
 me a long time to figure out what I wanted to do with my life. After working some... not super exciting jobs for a while, I moved to 
 China for 6 months in 2013. The trip changed my life, and helped me decide to come back and try to get a job in the gaming industry.
 This major has not always been the easiest for me, but it has undoubtedly been rewarding and fun. In other walks of life, I love 
-running, music, board games, making people laugh, and (it should go without saying) video games. Also, if there some piece of 
-random knowledge or pop culture reference, there is a high chance I will know it. I have so much utterly pointless information in
-my head.
+running, music, board games, making people laugh, and (it should go without saying) video games. Also, if there is some piece 
+of random knowledge or pop culture reference, there is a high chance I will know it. I have so much utterly pointless 
+information in my head.
     
 # Manifesto
 
