@@ -41,6 +41,13 @@ information in my head.
 ### Inclusion
 Members of WOPR value cooperative, merit based decision making over hierarchical leadership. Every member will have input on the development process. Every member will be able to contribute to the project. WOPR embraces a true collaborative environment that respects open communication. Every idea or proposal brought to the table during a meeting will be considered. Team members will evaluate the idea. They will discuss what will work and things that may need to be addressed before the proposal can move forward. The team will make a decision based on the merit of every idea brought to the table. Every member of WOPR has the right to contribute. Every member of WOPR has the right to feel that their contributions are treated equally and with respect. WOPR is dedicated to fostering a respectful, open, and inclusive environment. 
 
+### Quality
+Our team values quality over speed. We accomplish our tasks step by step, carefully. We won't blindly seek speed.
+That also means we won't procrastinate and do everything before the deadlines. We know that if we move ahead quickly without deliberateness, we will end up with a mess. Every team member's work should be approved by the others and merged to the master by the others. 
+We will try our best to achieve better quality.
+
+
+
 # Expectations
 
 ### GitHub Etiquette
