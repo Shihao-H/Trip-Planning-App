@@ -12,7 +12,6 @@ Josh Keahey | jpkeahey | Nightsphere | nightsphere88@gmail.com | Nada, Nothing, 
 Shihao Huang | ahsh | Shihao-H | ahsh@rams.colostate.edu | null..
 
 ### Minjie Shen
-
 This is Minjie. I am a senior Computer Science student, minoring in Maths.
 I am a transfer student, this is my third year in Colorado State University. 
 I studied in East China Normal University, China for two years and then transferred to CSU. 
@@ -20,7 +19,7 @@ I was an Electrical Engineering student and I have studied EE for 4 years. I tri
 I am so glad to work with all of you. I hope we could get everything done perfectly.
 
 ### Lacey Willmann
-   First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++. Sadomasochistic? Maybe. I enjoy challenging assignments. I work well under pressure, but, again, I am old, so I would much rather not stress myself. I am at the halfway mark for average life expectancy and my kids are almost 18. Why speed up the process and lose the enjoyable years? I have worked in team environments since I started working. That was probably before most of this class was born. I have worked in supervisory roles from 1999 until I retired in 2013.
+First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++. Sadomasochistic? Maybe. I enjoy challenging assignments. I work well under pressure, but, again, I am old, so I would much rather not stress myself. I am at the halfway mark for average life expectancy and my kids are almost 18. Why speed up the process and lose the enjoyable years? I have worked in team environments since I started working. That was probably before most of this class was born. I have worked in supervisory roles from 1999 until I retired in 2013.
 
 ### Shihao Huang
 I am a senior in both CS and Stat. Don't worry about prouncing my name wrong, I am really fine with that. As a Chinese students, the reason why I am here is quite unexpected, when I was preparing my university entrance exam in high school, CSU and my high school they just formed a partnership program then I joined it and started my college career here.
@@ -71,14 +70,18 @@ Immediately | 5
 
 The acceptable response time will depend on the task and the request. It is up to the member requesting action from a teammate to rate their request using the appropriate label option. Team members will respond to all comments/requests that they are assigned to with, either a comment or an action (marking an item as reviewed, completing a merge, editing a file, etc.). Members are expected to comment on a GitHub request that is assigned to them if they will not be able to appropriately respond to the request within an acceptable time frame. In such cases, the initiator of the request will re-assign it to another teammate. If an action is assigned to more than one team member, all members who handle the request must comment on the issue/request with what actions they took.
 
+### Punctuality
+Members are expected to be punctual. First, all team members are expected to accomplish their tasks by the deadlines, which are decided by the team. Team deadlines maybe different from the deadlines required by Dave. If a team member has an emergency and cannot complete the tasks assigned to him/her, he/she must inform the other team members as soon as possible. That way the others can deal with that task and deadlines won't be missed. Second, all team members should attend the weekly team meetings on time. 
+Though we value quality over speed, this does not mean we won't pay attention to the deadlines. We should follow the schedule  strictly and get all things done.
+
 ### Clarity
 Clarity of goals and objectives is essential for success. It allows the team to focus on what's important, which increases their effectiveness and helps them make progress. Team members are expected to know their goals, destination of their jobs, how their jobs interacted with other people's work, how their work fits in the whole project. If not, team members are expected to question to clarify their job.  
 
 ### Communication
-  
 Associates of WOPR will hold each other accountable for great communication. This includes team meetings, in class 
 discussions, and application based platforms such as slack, email, etc. Making sure everyone on the team is on the same page 
 as often as possible will considerably cut down on time, increasing productivity. We expect members to ask questions if they 
 are confused, and the rest of the team will try to help out. In special circumstances such as 'crunch' times near due
 dates or Github emergencies, communicating with the team will be a high priority for each member so that the best possible 
 product can be developed and finished on time.
+
