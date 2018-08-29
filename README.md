@@ -39,7 +39,13 @@ information in my head.
 # Manifesto
 
 ### Inclusion
-Members of WOPR value cooperative, merit based decision making over hierarchical leadership. Every member will have input on the development process. Every member will be able to contribute to the project. WOPR embraces a true collaborative environment that respects open communication. Every idea or proposal brought to the table during a meeting will be considered. Team members will evaluate the idea. They will discuss what will work and things that may need to be addressed before the proposal can move forward. The team will make a decision based on the merit of every idea brought to the table. Every member of WOPR has the right to contribute. Every member of WOPR has the right to feel that their contributions are treated equally and with respect. WOPR is dedicated to fostering a respectful, open, and inclusive environment. 
+Members of WOPR value cooperative, merit based decision making over hierarchical leadership. Every member will have input on the development process. Every member will be able to contribute to the project. WOPR embraces a true collaborative environment that respects open communication. Every idea or proposal brought to the table during a meeting will be considered. Team members will evaluate the idea. They will discuss what will work and things that may need to be addressed before the proposal can move forward. The team will make a decision based on the merit of every idea brought to the table. Every member of WOPR has the right to contribute. Every member of WOPR has the right to feel that their contributions are treated equally and with respect. WOPR is dedicated to fostering a respectful, open, and inclusive environment.
+
+### Knowledge Sharing
+In WOPR, no team member is better than the other, whether it's coding skills, Github knowledge, or any other trait. If some 
+new piece of knowledge is acquired by a team member that would benefit the group, that knowledge will be shared. We value the 
+fact that comprehension and understanding throughout the group will lead to working as a cohesive unit. With the sharing of 
+knowledge, the team can help make each other better individuals, which in turn will make a better WOPR.
 
 ### Quality
 Our team values quality over speed. We accomplish our tasks step by step, carefully. We won't blindly seek speed.
