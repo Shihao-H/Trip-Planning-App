@@ -12,7 +12,6 @@ Josh Keahey | jpkeahey | Nightsphere | nightsphere88@gmail.com | Nada, Nothing, 
 Shihao Huang | ahsh | Shihao-H | ahsh@rams.colostate.edu | null..
 
 ### Minjie Shen
-
 This is Minjie. I am a senior Computer Science student, minoring in Maths.
 I am a transfer student, this is my third year in Colorado State University. 
 I studied in East China Normal University, China for two years and then transferred to CSU. 
@@ -20,7 +19,7 @@ I was an Electrical Engineering student and I have studied EE for 4 years. I tri
 I am so glad to work with all of you. I hope we could get everything done perfectly.
 
 ### Lacey Willmann
-   First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++. Sadomasochistic? Maybe. I enjoy challenging assignments. I work well under pressure, but, again, I am old, so I would much rather not stress myself. I am at the halfway mark for average life expectancy and my kids are almost 18. Why speed up the process and lose the enjoyable years? I have worked in team environments since I started working. That was probably before most of this class was born. I have worked in supervisory roles from 1999 until I retired in 2013.
+First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++. Sadomasochistic? Maybe. I enjoy challenging assignments. I work well under pressure, but, again, I am old, so I would much rather not stress myself. I am at the halfway mark for average life expectancy and my kids are almost 18. Why speed up the process and lose the enjoyable years? I have worked in team environments since I started working. That was probably before most of this class was born. I have worked in supervisory roles from 1999 until I retired in 2013.
 
 ### Shihao Huang
 I am a senior in both CS and Stat. Don't worry about prouncing my name wrong, I am really fine with that. As a Chinese students, the reason why I am here is quite unexpected, when I was preparing my university entrance exam in high school, CSU and my high school they just formed a partnership program then I joined it and started my college career here.
@@ -39,7 +38,22 @@ information in my head.
 # Manifesto
 
 ### Inclusion
-Members of WOPR value cooperative, merit based decision making over hierarchical leadership. Every member will have input on the development process. Every member will be able to contribute to the project. WOPR embraces a true collaborative environment that respects open communication. Every idea or proposal brought to the table during a meeting will be considered. Team members will evaluate the idea. They will discuss what will work and things that may need to be addressed before the proposal can move forward. The team will make a decision based on the merit of every idea brought to the table. Every member of WOPR has the right to contribute. Every member of WOPR has the right to feel that their contributions are treated equally and with respect. WOPR is dedicated to fostering a respectful, open, and inclusive environment. 
+Members of WOPR value cooperative, merit based decision making over hierarchical leadership. Every member will have input on the development process. Every member will be able to contribute to the project. WOPR embraces a true collaborative environment that respects open communication. Every idea or proposal brought to the table during a meeting will be considered. Team members will evaluate the idea. They will discuss what will work and things that may need to be addressed before the proposal can move forward. The team will make a decision based on the merit of every idea brought to the table. Every member of WOPR has the right to contribute. Every member of WOPR has the right to feel that their contributions are treated equally and with respect. WOPR is dedicated to fostering a respectful, open, and inclusive environment.
+
+### Knowledge Sharing
+In WOPR, no team member is better than the other, whether it's coding skills, Github knowledge, or any other trait. If some 
+new piece of knowledge is acquired by a team member that would benefit the group, that knowledge will be shared. We value the 
+fact that comprehension and understanding throughout the group will lead to working as a cohesive unit. With the sharing of 
+knowledge, the team can help make each other better individuals, which in turn will make a better WOPR.
+
+### Quality
+Our team values quality over speed. We accomplish our tasks step by step, carefully. We won't blindly seek speed.
+That also means we won't procrastinate and do everything before the deadlines. We know that if we move ahead quickly without deliberateness, we will end up with a mess. Every team member's work should be approved by the others and merged to the master by the others. 
+We will try our best to achieve better quality.
+
+
+### Responsibility
+Members of WOPR will be responsible for their tasks. Assignees and reviewers will go over other people's work carefully. When members are in trouble, it is their responsibility to bring difficulties with their task to the table so other people can help with solving the problem. Every member will not only be responsible to the course-related assignment but also be responsible for the good values and orders we all recognized in Manifesto and Expectation.  
 
 # Expectations
 
@@ -59,3 +73,15 @@ The acceptable response time will depend on the task and the request. It is up t
 ### Punctuality
 Members are expected to be punctual. First, all team members are expected to accomplish their tasks by the deadlines, which are decided by the team. Team deadlines maybe different from the deadlines required by Dave. If a team member has an emergency and cannot complete the tasks assigned to him/her, he/she must inform the other team members as soon as possible. That way the others can deal with that task and deadlines won't be missed. Second, all team members should attend the weekly team meetings on time. 
 Though we value quality over speed, this does not mean we won't pay attention to the deadlines. We should follow the schedule  strictly and get all things done.
+
+### Clarity
+Clarity of goals and objectives is essential for success. It allows the team to focus on what's important, which increases their effectiveness and helps them make progress. Team members are expected to know their goals, destination of their jobs, how their jobs interacted with other people's work, how their work fits in the whole project. If not, team members are expected to question to clarify their job.  
+
+### Communication
+Associates of WOPR will hold each other accountable for great communication. This includes team meetings, in class 
+discussions, and application based platforms such as slack, email, etc. Making sure everyone on the team is on the same page 
+as often as possible will considerably cut down on time, increasing productivity. We expect members to ask questions if they 
+are confused, and the rest of the team will try to help out. In special circumstances such as 'crunch' times near due
+dates or Github emergencies, communicating with the team will be a high priority for each member so that the best possible 
+product can be developed and finished on time.
+
