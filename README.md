@@ -19,7 +19,6 @@ I studied in East China Normal University, China for two years and then transfer
 I was an Electrical Engineering student and I have studied EE for 4 years. I tried to study both EE and CS at a time, but I just failed because it was so challenging to me. I realized that I preferred CS to EE, so I kept my CS major and got rid of the EE major.
 I am so glad to work with all of you. I hope we could get everything done perfectly.
 
-
 ### Lacey Willmann
    First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++. Sadomasochistic? Maybe. I enjoy challenging assignments. I work well under pressure, but, again, I am old, so I would much rather not stress myself. I am at the halfway mark for average life expectancy and my kids are almost 18. Why speed up the process and lose the enjoyable years? I have worked in team environments since I started working. That was probably before most of this class was born. I have worked in supervisory roles from 1999 until I retired in 2013.
 
@@ -42,6 +41,17 @@ information in my head.
 ### Inclusion
 Members of WOPR value cooperative, merit based decision making over hierarchical leadership. Every member will have input on the development process. Every member will be able to contribute to the project. WOPR embraces a true collaborative environment that respects open communication. Every idea or proposal brought to the table during a meeting will be considered. Team members will evaluate the idea. They will discuss what will work and things that may need to be addressed before the proposal can move forward. The team will make a decision based on the merit of every idea brought to the table. Every member of WOPR has the right to contribute. Every member of WOPR has the right to feel that their contributions are treated equally and with respect. WOPR is dedicated to fostering a respectful, open, and inclusive environment. 
 
-
 # Expectations
 
+### GitHub Etiquette
+Members are expected to check GitHub daily for active requests assigned to them. Members are expected to have notifications turned on for GitHub and Slack. WOPR has guidelines for acceptable response times for GitHub.
+
+Acceptable Response Time | Urgency Rating 
+-------------------------|----------------
+Within 24 hours | 1 
+Within 12 hours | 2 
+Within 2-3 hours | 3 
+Within an hour | 4 
+Immediately | 5 
+
+The acceptable response time will depend on the task and the request. It is up to the member requesting action from a teammate to rate their request using the appropriate label option. Team members will respond to all comments/requests that they are assigned to with, either a comment or an action (marking an item as reviewed, completing a merge, editing a file, etc.). Members are expected to comment on a GitHub request that is assigned to them if they will not be able to appropriately respond to the request within an acceptable time frame. In such cases, the initiator of the request will re-assign it to another teammate. If an action is assigned to more than one team member, all members who handle the request must comment on the issue/request with what actions they took.
