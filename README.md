@@ -19,8 +19,9 @@ I studied in East China Normal University, China for two years and then transfer
 I was an Electrical Engineering student and I have studied EE for 4 years. I tried to study both EE and CS at a time, but I just failed because it was so challenging to me. I realized that I preferred CS to EE, so I kept my CS major and got rid of the EE major.
 I am so glad to work with all of you. I hope we could get everything done perfectly.
 
+
 ### Lacey Willmann
-   First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++. Sado Masochistic? Maybe. I enjoy challenging assignments. I work well under pressure, but, again, I am old, so I would much rather not stress myself. I am at the halfway mark for average life expectancy and my kids are almost 18. Why speed up the process and lose the enjoyable years? I have worked in team environments since I started working. That was probably before most of this class was born. I have worked in supervisory roles from 1999 until I retired in 2013.
+   First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++. Sadomasochistic? Maybe. I enjoy challenging assignments. I work well under pressure, but, again, I am old, so I would much rather not stress myself. I am at the halfway mark for average life expectancy and my kids are almost 18. Why speed up the process and lose the enjoyable years? I have worked in team environments since I started working. That was probably before most of this class was born. I have worked in supervisory roles from 1999 until I retired in 2013.
 
 ### Shihao Huang
 I am a senior in both CS and Stat. Don't worry about prouncing my name wrong, I am really fine with that. As a Chinese students, the reason why I am here is quite unexpected, when I was preparing my university entrance exam in high school, CSU and my high school they just formed a partnership program then I joined it and started my college career here.
@@ -38,10 +39,9 @@ information in my head.
     
 # Manifesto
 
-
+### Inclusion
+Members of WOPR value cooperative, merit based decision making over hierarchical leadership. Every member will have input on the development process. Every member will be able to contribute to the project. WOPR embraces a true collaborative environment that respects open communication. Every idea or proposal brought to the table during a meeting will be considered. Team members will evaluate the idea. They will discuss what will work and things that may need to be addressed before the proposal can move forward. The team will make a decision based on the merit of every idea brought to the table. Every member of WOPR has the right to contribute. Every member of WOPR has the right to feel that their contributions are treated equally and with respect. WOPR is dedicated to fostering a respectful, open, and inclusive environment. 
 
 
 # Expectations
 
-### Inclusion
-Members of WOPR value cooperative, merit based decision making over hierarchical leadership. Every member will have input on the development process. Every member will be able to contribute to the project. WOPR embraces a true collaborative environment that respects open communication. Every idea or proposal brought to the table during a meeting will be considered. Team members will evaluate the idea. They will discuss what will work and things that may need to be addressed before the proposal can move forward. The team will make a decision based on the merit of every idea brought to the table. Every member of WOPR has the right to contribute. Every member of WOPR has the right to feel that their contributions are treated equally and with respect. WOPR is dedicated to fostering a respectful, open, and inclusive environment. 
