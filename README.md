@@ -69,6 +69,9 @@ Immediately | 5
 
 The acceptable response time will depend on the task and the request. It is up to the member requesting action from a teammate to rate their request using the appropriate label option. Team members will respond to all comments/requests that they are assigned to with, either a comment or an action (marking an item as reviewed, completing a merge, editing a file, etc.). Members are expected to comment on a GitHub request that is assigned to them if they will not be able to appropriately respond to the request within an acceptable time frame. In such cases, the initiator of the request will re-assign it to another teammate. If an action is assigned to more than one team member, all members who handle the request must comment on the issue/request with what actions they took.
 
+### Clarity
+Clarity of goals and objectives is essential for success. It allows the team to focus on what's important, which increases their effectiveness and helps them make progress. Team members are expected to know their goals, destination of their jobs, how their jobs interacted with other people's work, how their work fits in the whole project. If not, team members are expected to question to clarify their job.  
+
 ### Communication
   
 Associates of WOPR will hold each other accountable for great communication. This includes team meetings, in class 
