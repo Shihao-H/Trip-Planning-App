@@ -1,5 +1,8 @@
 # t03 - WOPR
 
+![Team Picture](/images/Team.jpg)
+t03-WOPR: Josh Keahey, Minjie Shen, Shihao Huang and Lacey Willmann
+
 # Member Information
 Member Name | CSU eName | GitHub Username | e mail Address | Nickname
 ----------- | --------- | --------------- | -------------- | --------
