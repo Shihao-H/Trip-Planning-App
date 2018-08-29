@@ -53,6 +53,8 @@ That also means we won't procrastinate and do everything before the deadlines. W
 We will try our best to achieve better quality.
 
 
+### Responsibility
+Members of WOPR will be responsible for their tasks. Assignees and reviewers will go over other people's work carefully. When members are in trouble, it is their responsibility to bring difficulties with their task to the table so other people can help with solving the problem. Every member will not only be responsible to the course-related assignment but also be responsible for the good values and orders we all recognized in Manifesto and Expectation.  
 
 # Expectations
 
