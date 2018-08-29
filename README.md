@@ -68,3 +68,12 @@ Within an hour | 4
 Immediately | 5 
 
 The acceptable response time will depend on the task and the request. It is up to the member requesting action from a teammate to rate their request using the appropriate label option. Team members will respond to all comments/requests that they are assigned to with, either a comment or an action (marking an item as reviewed, completing a merge, editing a file, etc.). Members are expected to comment on a GitHub request that is assigned to them if they will not be able to appropriately respond to the request within an acceptable time frame. In such cases, the initiator of the request will re-assign it to another teammate. If an action is assigned to more than one team member, all members who handle the request must comment on the issue/request with what actions they took.
+
+### Communication
+  
+Associates of WOPR will hold each other accountable for great communication. This includes team meetings, in class 
+discussions, and application based platforms such as slack, email, etc. Making sure everyone on the team is on the same page 
+as often as possible will considerably cut down on time, increasing productivity. We expect members to ask questions if they 
+are confused, and the rest of the team will try to help out. In special circumstances such as 'crunch' times near due
+dates or Github emergencies, communicating with the team will be a high priority for each member so that the best possible 
+product can be developed and finished on time.
