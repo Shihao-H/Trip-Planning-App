@@ -30,9 +30,12 @@ public class Distance {
                     destinationLongitude = Double.parseDouble(destination.get(1)),
                     originLongitude = Double.parseDouble(origin.get(1)),
                     numerator, denominator, deltaSigma;
+            
             numerator = Math.pow((Math.cos(destinationLatitude) * Math.sin(deltaLongitude)), 2.0);
+            
             double rightSide = Math.pow(((Math.cos(originLatitude) * Math.sin(destinationLatitude)) -
                     (Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude))), 2.0);
+            
             numerator = Math.sqrt(numerator + rightSide);
 
             denominator = Math.sin(originLatitude) * Math.sin(destinationLatitude) +
@@ -46,6 +49,4 @@ public class Distance {
             distance.add(0, "-1");
         }
     }
-
-   
 }
