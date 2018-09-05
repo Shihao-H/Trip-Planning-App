@@ -10,4 +10,19 @@ public class Place {
   public String latitude;
   public String longitude;
 
+  public Place(){
+    id = null;
+    name = null;
+    latitude = null;
+    longitude = null;
+  }
+
+  public Place(String id, String name, String latitude, String longitude){
+    this.id = id;
+    this.name = name;
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
+
+  
 }
