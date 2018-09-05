@@ -11,7 +11,7 @@ public class Distance {
     private short version = 1;
     private String type = "distance";
 
- private Place origin;
+    private Place origin;
     private Place destination;
     private ArrayList<String> units;
     private ArrayList<String> distance;
@@ -59,7 +59,7 @@ public class Distance {
     }
 
     private void vincentyCalculation(){
-        if (u.equals("miles")) {
+        if (units.equals("miles")) {
             distance.add(String.format("%.2f", (3959 * getDeltaSigma())));
         }else {
             distance.add("-1");         
