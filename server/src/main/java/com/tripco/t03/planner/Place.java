@@ -23,6 +23,7 @@ public class Place {
     this.latitude = latitude;
     this.longitude = longitude;
   }
+
   public String getId(){
     return this.id;
   }
@@ -54,5 +55,4 @@ public class Place {
   public void setLongitude(String longitude){
     this.longitude = longitude;
   }
-
 }
