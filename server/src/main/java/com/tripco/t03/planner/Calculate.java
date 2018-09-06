@@ -38,7 +38,7 @@ public class Calculate {
     distance.calculationDistance();
 
     // log something.
-    System.out.println(distance.calcDistance);
+    System.out.println(distance.toString());
   }
 
   /** Handles the response for a Distance object.
