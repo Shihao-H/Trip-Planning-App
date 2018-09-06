@@ -32,6 +32,10 @@ public class Distance {
 
     }
 
+    public int getDist(){
+        return this.calcDistance;
+    }
+
     static String getDistance() {
         Distance dist = new Distance();
         Gson gson = new Gson();
