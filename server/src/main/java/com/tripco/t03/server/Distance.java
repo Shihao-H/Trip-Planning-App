@@ -11,21 +11,25 @@ public class Distance {
 
     private Place origin;
     private Place destination;
-    private ArrayList<String> units;
-    private ArrayList<String> distanceArray;
+
+    private String units;
+    private int calcDistance;
+
 
     public Distance(){
         origin = new Place();
         destination = new Place();
-        units = new ArrayList<String>();
-        distanceArray = new ArrayList<String>();
+
+
     }
 
-    public Distance(Place orig, Place dest, ArrayList<String> units){
+    public Distance(Place orig, Place dest, String units){
         origin = orig;
         destination = dest;
         this.units = units;
-        distanceArray = new ArrayList<String>();
+
+        calcDistance = -1;
+
     }
 
     static String getDistance() {
@@ -35,9 +39,11 @@ public class Distance {
     }
 
     private double getDeltaSigma() {
-        double deltaLongitude = Math.toRadians((Double.parseDouble(destination.getLongitude()) - Double.parseDouble(origin.getLongitude()))),
-                destinationLatitude = Math.toRadians(Double.parseDouble(destination.getLatitude())),
-                originLatitude = Math.toRadians(Double.parseDouble(origin.getLatitude())),
+
+        double deltaLongitude = Math.toRadians(destination.getLongitude() - origin.getLongitude()),
+                destinationLatitude = Math.toRadians(destination.getLatitude()),
+                originLatitude = Math.toRadians(origin.getLatitude()),
+
                 numerator, denominator;
 
 
@@ -49,16 +55,21 @@ public class Distance {
                 Math.cos(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude);
 
         return Math.atan2(numerator, denominator);
+
     }
 
     public void calculationDistance(){
-        for(String u: units) {
-            switch(u) {
-                case "miles":distanceArray.add(String.format("%d", Math.round((3959 * getDeltaSigma())))); break;
-                case "kilometers":distanceArray.add(String.format("%d", Math.round((6371 * getDeltaSigma())))); break;
-                case "nautical miles": distanceArray.add(String.format("%d", Math.round((3440 * getDeltaSigma())))); break;
-                default: distanceArray.add("-1");
-            }
+        switch(units) {
+            case "miles":calcDistance = (int)Math.round((3959 * getDeltaSigma())); break;
+            case "kilometers":calcDistance = (int) Math.round((6371 * getDeltaSigma())); break;
+            case "nautical miles": calcDistance = (int) Math.round((3440 * getDeltaSigma())); break;
         }
+    }
+
+    public String toString(){
+        return String.format("Origin: latitude: %f, longitude: %f, name: %s, Destination: latitude: %f, longitude: %f, name: %s, Units: %s, Distance: %d",
+                origin.getLatitude(), origin.getLongitude(), origin.getName(), destination.getLatitude(), destination.getLongitude(), destination.getName(),
+                this.units, this.calcDistance);
+
     }
 }
