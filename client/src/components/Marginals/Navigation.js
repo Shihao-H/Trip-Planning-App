@@ -79,7 +79,7 @@ class Navigation extends Component {
       <div className="application-width">
         {sidebar}
         <Navbar className="nav_bar">
-            <NavbarBrand className="nav_title" href="/">
+            <NavbarBrand className="nav_title" href="https://youtu.be/iRsycWRQrc8">
               CS 314 t03 WOPR
             </NavbarBrand>
             <div>
