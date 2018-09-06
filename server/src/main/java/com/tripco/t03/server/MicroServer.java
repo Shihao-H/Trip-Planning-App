@@ -1,5 +1,5 @@
 package com.tripco.t03.server;
-
+import com.tripco.t03.planner.Calculate;
 import com.tripco.t03.planner.Plan;
 
 import spark.Request;
@@ -45,6 +45,7 @@ public class MicroServer {
     // client is sending data, so a HTTP POST is used instead of a GET
     get("/config", this::config);
     post("/plan", this::plan);
+    post("/distance", this::distance);
 
     System.out.println("\n\nServer running on port: " + this.port + "\n\n");
   }
@@ -116,7 +117,7 @@ public class MicroServer {
     response.type("application/json");
     response.header("Access-Control-Allow-Origin", "*");
 
-    return "{}";
+    return new Plan(request).getTrip();
   }
 
   /** A REST API that returns the team information associated with the server.
@@ -132,4 +133,19 @@ public class MicroServer {
 
     return name;
   }
+  
+    /** A REST API for distance.
+   *
+   * @param request
+   * @param response
+   * @return
+   */
+  private String distance(Request request, Response response) {
+
+    response.type("application/json");
+    response.header("Access-Control-Allow-Origin", "*");
+
+    return new Calculate(request).getDistance();
+  }
+  
 }
