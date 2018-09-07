@@ -40,7 +40,6 @@ the remainder of the sprint.*
 
 #### Incomplete epics in Sprint Backlog 
 * *None*: *All were completed*
-*
 
 #### What went well
 * *All team members adjusted quickly to the IntelliJ IDE*
@@ -56,7 +55,9 @@ issues were due to confusion about the specifications given by Dave or a lack of
 the technology being used. The team went over the specifications, sharing individual knowledge with 
 each other, and worked together to become more apt with the programs and processes being used.
 Since that meeting, things have been going much more smoothly.*
-*
+* *Learning the ins and outs of Intellij took the team time to understand towards the beginning of
+the sprint, especially Github integration. Each member did a great job of following our values and
+shared with others what they had learned to help the team succeed.*
 
 ## Retrospective
 
@@ -72,6 +73,8 @@ to talk through it and refraining from jumping to conclusions.*
 #### Potential improvements
 * *The team made considerable improvements on the wait time from review request to merge. I would 
 like to see the wait time improve more for the next sprint.*
+* *The team discovered quite a lot about using Intellij. I think we could learn even more in the 
+future to help along with the updating of each others code.*
 
 #### What we will change next time
 * *Each member will improve their response time to review/merge requests.*
