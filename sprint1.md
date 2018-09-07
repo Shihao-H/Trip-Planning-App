@@ -43,11 +43,9 @@ the remainder of the sprint.*
 *
 
 #### What went well
-* *First and foremost, the team completed the issues and the epics for sprint 1 ahead of time!*
-* *The team valued meeting time and did not allow outside distractions to interfere*
-* *Every member attended every meeting and actively participated*
-* *Every member of the team contributed to the project in a meaningful and respectful way*
-* **
+* *All team members adjusted quickly to the IntelliJ IDE*
+* *Our code worked!!*
+* *Our individual parts did not require a lot of debugging once they were merged together*
 
 #### Problems encountered and resolutions
 * *Initially, the team had trouble communicating with each other. Pull requests were waiting for 
@@ -63,9 +61,13 @@ Since that meeting, things have been going much more smoothly.*
 ## Retrospective
 
 #### What went well
+* *First and foremost, the team completed the issues and the epics for sprint 1 ahead of time!*
 * *All team members did a great job in remaining open to and respectful of others. Each member
 played a part in keeping the initial issues from blowing up into something bigger by being willing
 to talk through it and refraining from jumping to conclusions.*
+* *The team valued meeting time and did not allow outside distractions to interfere*
+* *Every member attended every meeting and actively participated*
+* *Every member of the team contributed to the project in a meaningful and respectful way*
 
 #### Potential improvements
 * *The team made considerable improvements on the wait time from review request to merge. I would 
