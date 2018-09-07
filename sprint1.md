@@ -56,8 +56,7 @@ the technology being used. The team went over the specifications, sharing indivi
 each other, and worked together to become more apt with the programs and processes being used.
 Since that meeting, things have been going much more smoothly.*
 * *Learning the ins and outs of Intellij took the team time to understand towards the beginning of
-the sprint, especially Github integration. Each member did a great job of following our values and
-shared with others what they had learned to help the team succeed.*
+the sprint, especially Github integration.*
 
 ## Retrospective
 
@@ -69,6 +68,7 @@ to talk through it and refraining from jumping to conclusions.*
 * *The team valued meeting time and did not allow outside distractions to interfere*
 * *Every member attended every meeting and actively participated*
 * *Every member of the team contributed to the project in a meaningful and respectful way*
+* *Each member did a great job of following our values and shared with others what they had learned to help the team succeed.*
 
 #### Potential improvements
 * *The team made considerable improvements on the wait time from review request to merge. I would 
