@@ -19,7 +19,24 @@ I was an Electrical Engineering student and I have studied EE for 4 years. I tri
 I am so glad to work with all of you. I hope we could get everything done perfectly.
 
 ### Lacey Willmann
-First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++. Sadomasochistic? Maybe. I enjoy challenging assignments. I work well under pressure, but, again, I am old, so I would much rather not stress myself. I am at the halfway mark for average life expectancy and my kids are almost 18. Why speed up the process and lose the enjoyable years? I have worked in team environments since I started working. That was probably before most of this class was born. I have worked in supervisory roles from 1999 until I retired in 2013.
+[*Now this is a story all about how Lacey’s life got flipped turned upside down
+And we’d like to take a minute, just sit right there, We’ll tell you how she became a student in this thing called CS
+In Lower Alabama born and raised, Avoiding talks of religion and politics is how she spent most of her days
+Chilling out, maxing, relaxing all cool And all climbing the federal ladder after dropping school
+When a couple of disks began to decline, Started making trouble in her lower spine
+She felt a little pain and her boss got scared And said "You’re not fit for duty, it’s time to disappear.”
+Lacey begged and pleaded, she wanted to stay But he clocked her out and sent Lacey on her way
+HR wished her luck, gave her a FERS packet, But on SSDI, Lacey knew she couldn’t hack it
+Early retirement, yo, this is bad, Two years without income, no money for gas
+Is this what the people of age 65 living like? Hmmm, this might be right
+But wait, aren’t they crocheting, playing bingo, and all that, She thought, “Is that the type of life for this young metal cat?”
+Her future was grim, so she started to prepare, She applied to CSU and hired a good lawyer
+Well, uh, her lawyer came through and Lacey soon found out She had been accepted to CSU and her disability had to pay out
+She had some transfer cred and needed two more years, Lacey wanted a bachelors, but she had some fears
+She researched her choices and it soon became clear, Getting any degree in CS would not be in err
+“Returning to school at this age will be a nightmare”, She thought “Nah, I got this, I just need something besides PJ’s to wear!”
+Lacey left for college about seven or eight, And she yelled to her kiddos "Yo fams, smell ya later"
+Looked at her schedule, she was finally there, To earn her throne as a Queen of software*](https://www.youtube.com/watch?v=EspZ4t2FAuE)
 
 ### Shihao Huang
 I am a senior in both CS and Stat. Don't worry about prouncing my name wrong, I am really fine with that. As a Chinese students, the reason why I am here is quite unexpected, when I was preparing my university entrance exam in high school, CSU and my high school they just formed a partnership program then I joined it and started my college career here.
