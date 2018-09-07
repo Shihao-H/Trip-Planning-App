@@ -3,7 +3,7 @@
 ## Goal
 
 ### Distance Calculator!
-### Sprint Leader: *firstname lastname*
+### Sprint Leader: *Josh Keahey*
 
 ## Definition of Done
 
