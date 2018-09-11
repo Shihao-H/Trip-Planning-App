@@ -12,11 +12,11 @@ Josh Keahey | jpkeahey | Nightsphere | nightsphere88@gmail.com | Nada, Nothing, 
 Shihao Huang | ahsh | Shihao-H | ahsh@rams.colostate.edu | null..
 
 ### Minjie Shen
-This is Minjie. I am a senior Computer Science student, minoring in Maths.
-I am a transfer student, this is my third year in Colorado State University. 
-I studied in East China Normal University, China for two years and then transferred to CSU. 
-I was an Electrical Engineering student and I have studied EE for 4 years. I tried to study both EE and CS at a time, but I just failed because it was so challenging to me. I realized that I preferred CS to EE, so I kept my CS major and got rid of the EE major.
-I am so glad to work with all of you. I hope we could get everything done perfectly.
+Minjie is a senior Computer Science student, minoring in Maths.
+She is a transfer student, this is her third year in Colorado State University. 
+She has studied in East China Normal University, China for two years and then transferred to CSU. 
+She was an Electrical Engineering student and she has studied EE for 4 years. She tried to study both EE and CS at a time, but she just failed because it was so challenging to her. She realized that she preferred CS to EE, so she kept her CS major and got rid of the EE major.
+She is so glad to work with all of the other WOPRers. She hopes WOPR could get everything done perfectly.
 
 ### Lacey Willmann
 First and foremost, I really hate writing about myself. I am old. I am a senior in the CS program. I am switching careers after retiring with a disability. I had no programming experience before starting school at CSU. I enjoy C and C ++. Sadomasochistic? Maybe. I enjoy challenging assignments. I work well under pressure, but, again, I am old, so I would much rather not stress myself. I am at the halfway mark for average life expectancy and my kids are almost 18. Why speed up the process and lose the enjoyable years? I have worked in team environments since I started working. That was probably before most of this class was born. I have worked in supervisory roles from 1999 until I retired in 2013.
