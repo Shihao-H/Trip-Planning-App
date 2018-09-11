@@ -25,8 +25,8 @@ import Options from '../src/components/Application/Options'
  * component on construction.
  */
 const startProps = {
-  'config': { 'units': ['miles', 'kilometers'] },
-  'options': { 'unit': 'miles' }
+  'config': { 'units': ['miles', 'kilometers', 'nautical miles'] },
+  'options': { 'unit': ['miles', 'kilometers', 'nautical miles'] }
 };
 
 /* Test example using a pre-defined function */
