@@ -19,7 +19,6 @@ I was an Electrical Engineering student and I have studied EE for 4 years. I tri
 I am so glad to work with all of you. I hope we could get everything done perfectly.
 
 ### Lacey Willmann
-
 Lacey is a senior in the CS program. She decided to switch careers after retiring with a disability. Lacey had no programming experience before starting school at CSU. So far, she enjoys C and C ++, so she’s probably a little sadomasochistic? She is definitely diagnosable on some scale somewhere. Lacey has worked in team environments since she began working. That was probably before most of this class was born. I’m not even sure if electricity was around then. She has also worked in supervisory roles from 1999 until 2013. You could say she’s been around the block a few times!! She always asks for the more challenging assignments and works well under pressure. However, Lacey is old. We aren’t just saying that to be mean. We mean she is REALLY old. Due to her age, we prefer to not stress her. She is at the halfway mark for average life expectancy already and we can’t have her kicking the bucket at one of our team meetings. We have deadlines to  meet and we don’t want extra work!! When she gets too cantankerous, we put on a rerun of “The Golden Girls”. Calms her right down. Chocolate works, too. She forgets what she was upset about after a minute or two, so there are never any hard feelings. 
 
 ### Shihao Huang
