@@ -12,7 +12,7 @@ Josh Keahey | jpkeahey | Nightsphere | nightsphere88@gmail.com | Nada, Nothing, 
 Shihao Huang | ahsh | Shihao-H | ahsh@rams.colostate.edu | null..
 
 ### Minjie Shen
-Minjie is a senior Computer Science student, minoring in Maths.
+Minjie is a senior Computer Science student, minoring in Math.
 She is a transfer student, this is her third year in Colorado State University. 
 She has studied in East China Normal University, China for two years and then transferred to CSU. 
 She was an Electrical Engineering student and she has studied EE for 4 years. She tried to study both EE and CS at a time, but she just failed because it was so challenging to her. She realized that she preferred CS to EE, so she kept her CS major and got rid of the EE major.
