@@ -23,8 +23,8 @@ First and foremost, I really hate writing about myself. I am old. I am a senior 
 
 ### Shihao Huang
 He is a senior in both CS and Stat. Don't worry about prouncing his name wrong, He is really fine with that. 
-His English is good most of time but when it comes to some new concepts, local adage or sayings he doesn't konw, he still need to use my phone dictionary. If some day you find him suddenly being silent when communicating with you, he may just need to organize his language.
-He considers himself an independent and self-displined person, he has procrastination but usually he will set himself a deadline before the true deadline. He have two siblings, they are the most invaluable gifts that him received from his parents. Travelling and communicating with people from different background fasinate him. It is too young for him to write a bio(LOL), but as a materilist, he hopes he can earn it every single day of his life.
+His English is good most of time but when it comes to some new concepts, local adage or sayings he doesn't know, he still needs to use his phone dictionary. If some day you find him suddenly being silent when communicating with you, he may just need to organize his language.
+He considers himself an independent and self-displined person, he has procrastination but usually he will set himself a deadline before the true deadline. He has two siblings, they are the most invaluable gifts that he received from his parents. Travelling and communicating with people from different background fasinate him. It is too young for him to write a bio(LOL), but as a materilist, he hopes he can earn it every single day of his life.
 
 ### Josh Keahey
 I am currently a senior in CS, and I finished my math minor last semester. I have been going to school for a while now, as it took 
