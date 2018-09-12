@@ -27,13 +27,13 @@ I would say my English is good most of time but when it comes to some new concep
 I consider myself an independent and self-displined person, I have procrastination but usually I will set myself a deadline before the true deadline. I have two siblings, they are the most invaluable gift that I received from my parents. Travelling and communicating with people from different background fasinate me. It is too young for me to write a bio(LOL), but as a materilist, I hope I can earn it every single day.
 
 ### Josh Keahey
-I am currently a senior in CS, and I finished my math minor last semester. I have been going to school for a while now, as it took 
-me a long time to figure out what I wanted to do with my life. After working some... not super exciting jobs for a while, I moved to 
-China for 6 months in 2013. The trip changed my life, and helped me decide to come back and try to get a job in the gaming industry.
-This major has not always been the easiest for me, but it has undoubtedly been rewarding and fun. In other walks of life, I love 
+Josh is currently a senior in CS, and finished his math minor last semester. He has been going to school for a while now, as it took 
+him a long time to figure out what he wanted to do with his life. After working some... not super exciting jobs for a while, he decided to moved to 
+China for 6 months in 2013. The trip changed his life, and helped him decide to come back to the states and try to get a job in the gaming industry.
+This major has not always been the easiest for Josh, but it has undoubtedly been a rewarding and fun experience for him. In other walks of life, he loves 
 running, music, board games, making people laugh, and (it should go without saying) video games. Also, if there is some piece 
-of random knowledge or pop culture reference, there is a high chance I will know it. I have so much utterly pointless 
-information in my head.
+of random knowledge or pop culture reference, there is a high chance that he will know it. The amount of utterly pointless 
+information in his head is impressive, if not a little sad.
     
 # Manifesto
 
