@@ -61,20 +61,23 @@ the sprint, especially Github integration.*
 ## Retrospective
 
 #### What went well
-* *First and foremost, the team completed the issues and the epics for sprint 1 ahead of time!*
-* *All team members did a great job in remaining open to and respectful of others. Each member
-played a part in keeping the initial issues from blowing up into something bigger by being willing
-to talk through it and refraining from jumping to conclusions.*
-* *The team valued meeting time and did not allow outside distractions to interfere*
-* *Every member attended every meeting and actively participated*
-* *Every member of the team contributed to the project in a meaningful and respectful way*
-* *Each member did a great job of following our values and shared with others what they had learned to help the team succeed.*
+*First and foremost, the team completed the issues and the epics for sprint 1 ahead of time! All of
+the team members did a great job in remaining open to and respectful of others. Each member played a
+part in keeping the initial issues from blowing up into something bigger by being willing to talk
+through it and refraining from jumping to conclusions.* The team valued meeting time and did not allow
+outside distractions to interfere with the progress of the sprint.
+
+*Every member attended every meeting, following our value of puncuality from the manifesto,
+and actively participated. Each WOPR member contributed to the project in a meaningful and respectful way.
+Even though it's only been a few weeks, the chemistry of the team was was high, and it's expected to grow
+for the next sprint. Each member did a great job of following our values and shared with others what they
+had learned to help the team succeed.*
 
 #### Potential improvements
-* *The team made considerable improvements on the wait time from review request to merge. I would 
-like to see the wait time improve more for the next sprint.*
-* *The team discovered quite a lot about using Intellij. I think we could learn even more in the 
-future to help along with the updating of each others code.*
+*The team made considerable improvements on the wait time with reviews or requests to merge. I would like to see
+the wait time improve more for the next sprint. The team also discovered quite a lot about using Intellij. I think
+we could learn even more in the future to help along with the updating of each others code.*
 
 #### What we will change next time
-* *Each member will improve their response time to review/merge requests.*
+*As a team, our members will improve their response time for reviews, pull and merge requests, and anything that
+is time sensitive.*

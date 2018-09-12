@@ -12,45 +12,28 @@ Josh Keahey | jpkeahey | Nightsphere | nightsphere88@gmail.com | Nada, Nothing, 
 Shihao Huang | ahsh | Shihao-H | ahsh@rams.colostate.edu | null..
 
 ### Minjie Shen
-This is Minjie. I am a senior Computer Science student, minoring in Maths.
-I am a transfer student, this is my third year in Colorado State University. 
-I studied in East China Normal University, China for two years and then transferred to CSU. 
-I was an Electrical Engineering student and I have studied EE for 4 years. I tried to study both EE and CS at a time, but I just failed because it was so challenging to me. I realized that I preferred CS to EE, so I kept my CS major and got rid of the EE major.
-I am so glad to work with all of you. I hope we could get everything done perfectly.
+Minjie is a senior Computer Science student, minoring in Math.
+She is a transfer student, this is her third year in Colorado State University. 
+She has studied in East China Normal University, China for two years and then transferred to CSU. 
+She was an Electrical Engineering student and she has studied EE for 4 years. She tried to study both EE and CS at a time, but she just failed because it was so challenging to her. She realized that she preferred CS to EE, so she kept her CS major and got rid of the EE major.
+She is so glad to work with all of the other WOPRers. She hopes WOPR could get everything done perfectly.
 
 ### Lacey Willmann
-[*Now this is a story all about how Lacey’s life got flipped turned upside down
-And we’d like to take a minute, just sit right there, We’ll tell you how she became a student in this thing called CS
-In Lower Alabama born and raised, Avoiding talks of religion and politics is how she spent most of her days
-Chilling out, maxing, relaxing all cool And all climbing the federal ladder after dropping school
-When a couple of disks began to decline, Started making trouble in her lower spine
-She felt a little pain and her boss got scared And said "You’re not fit for duty, it’s time to disappear.”
-Lacey begged and pleaded, she wanted to stay But he clocked her out and sent Lacey on her way
-HR wished her luck, gave her a FERS packet, But on SSDI, Lacey knew she couldn’t hack it
-Early retirement, yo, this is bad, Two years without income, no money for gas
-Is this what the people of age 65 living like? Hmmm, this might be right
-But wait, aren’t they crocheting, playing bingo, and all that, She thought, “Is that the type of life for this young metal cat?”
-Her future was grim, so she started to prepare, She applied to CSU and hired a good lawyer
-Well, uh, her lawyer came through and Lacey soon found out She had been accepted to CSU and her disability had to pay out
-She had some transfer cred and needed two more years, Lacey wanted a bachelors, but she had some fears
-She researched her choices and it soon became clear, Getting any degree in CS would not be in err
-“Returning to school at this age will be a nightmare”, She thought “Nah, I got this, I just need something besides PJ’s to wear!”
-Lacey left for college about seven or eight, And she yelled to her kiddos "Yo fams, smell ya later"
-Looked at her schedule, she was finally there, To earn her throne as a Queen of software*](https://www.youtube.com/watch?v=EspZ4t2FAuE)
+Lacey is a senior in the CS program. She decided to switch careers after retiring with a disability. Lacey had no programming experience before starting school at CSU. So far, she enjoys C and C ++, so she’s probably a little sadomasochistic? She is definitely diagnosable on some scale somewhere. Lacey has worked in team environments since she began working. That was probably before most of this class was born. I’m not even sure if electricity was around then. She has also worked in supervisory roles from 1999 until 2013. You could say she’s been around the block a few times!! She always asks for the more challenging assignments and works well under pressure. However, Lacey is old. We aren’t just saying that to be mean. We mean she is REALLY old. Due to her age, we prefer to not stress her. She is at the halfway mark for average life expectancy already and we can’t have her kicking the bucket at one of our team meetings. We have deadlines to  meet and we don’t want extra work!! When she gets too cantankerous, we put on a rerun of “The Golden Girls”. Calms her right down. Chocolate works, too. She forgets what she was upset about after a minute or two, so there are never any hard feelings. 
 
 ### Shihao Huang
-I am a senior in both CS and Stat. Don't worry about prouncing my name wrong, I am really fine with that. As a Chinese students, the reason why I am here is quite unexpected, when I was preparing my university entrance exam in high school, CSU and my high school they just formed a partnership program then I joined it and started my college career here.
-I would say my English is good most of time but when it comes to some new concepts, local adage or sayings I don't konw, I still need to use my phone dictionary. If some day you find me suddenly being silent when communicating with you, I may just need to organize my language.
-I consider myself an independent and self-displined person, I have procrastination but usually I will set myself a deadline before the true deadline. I have two siblings, they are the most invaluable gift that I received from my parents. Travelling and communicating with people from different background fasinate me. It is too young for me to write a bio(LOL), but as a materilist, I hope I can earn it every single day.
+He is a senior in both CS and Stat. Don't worry about prouncing his name wrong, He is really fine with that. 
+His English is good most of time but when it comes to some new concepts, local adage or sayings he doesn't know, he still needs to use his phone dictionary. If some day you find him suddenly being silent when communicating with you, he may just need to organize his language.
+He considers himself an independent and self-displined person, he has procrastination but usually he will set himself a deadline before the true deadline. He has two siblings, they are the most invaluable gifts that he received from his parents. Travelling and communicating with people from different background fasinate him. It is too young for him to write a bio(LOL), but as a materilist, he hopes he can earn it every single day of his life.
 
 ### Josh Keahey
-I am currently a senior in CS, and I finished my math minor last semester. I have been going to school for a while now, as it took 
-me a long time to figure out what I wanted to do with my life. After working some... not super exciting jobs for a while, I moved to 
-China for 6 months in 2013. The trip changed my life, and helped me decide to come back and try to get a job in the gaming industry.
-This major has not always been the easiest for me, but it has undoubtedly been rewarding and fun. In other walks of life, I love 
+Josh is currently a senior in CS, and finished his math minor last semester. He has been going to school for a while now, as it took 
+him a long time to figure out what he wanted to do with his life. After working some... not super exciting jobs for a while, he decided to moved to 
+China for 6 months in 2013. The trip changed his life, and helped him decide to come back to the states and try to get a job in the gaming industry.
+This major has not always been the easiest for Josh, but it has undoubtedly been a rewarding and fun experience for him. In other walks of life, he loves 
 running, music, board games, making people laugh, and (it should go without saying) video games. Also, if there is some piece 
-of random knowledge or pop culture reference, there is a high chance I will know it. I have so much utterly pointless 
-information in my head.
+of random knowledge or pop culture reference, there is a high chance that he will know it. The amount of utterly pointless 
+information in his head is impressive, if not a little sad.
     
 # Manifesto
 
