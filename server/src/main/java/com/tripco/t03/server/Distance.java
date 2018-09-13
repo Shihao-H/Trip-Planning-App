@@ -13,7 +13,7 @@ public class Distance {
     private Place destination;
 
     private String units;
-    private int calcDistance;
+    private int distance;
 
 
     public Distance(){
@@ -28,12 +28,10 @@ public class Distance {
         destination = dest;
         this.units = units;
 
-        calcDistance = -1;
-
     }
 
     public int getDist(){
-        return this.calcDistance;
+        return this.distance;
     }
 
     static String getDistance() {
@@ -64,16 +62,16 @@ public class Distance {
 
     public void calculationDistance(){
         switch(units) {
-            case "miles":calcDistance = (int)Math.round((3959 * getDeltaSigma())); break;
-            case "kilometers":calcDistance = (int) Math.round((6371 * getDeltaSigma())); break;
-            case "nautical miles": calcDistance = (int) Math.round((3440 * getDeltaSigma())); break;
+            case "miles":distance = (int)Math.round((3959 * getDeltaSigma())); break;
+            case "kilometers":distance = (int) Math.round((6371 * getDeltaSigma())); break;
+            case "nautical miles": distance = (int) Math.round((3440 * getDeltaSigma())); break;
         }
     }
 
     public String toString(){
         return String.format("Origin: latitude: %f, longitude: %f, name: %s, Destination: latitude: %f, longitude: %f, name: %s, Units: %s, Distance: %d",
                 origin.getLatitude(), origin.getLongitude(), origin.getName(), destination.getLatitude(), destination.getLongitude(), destination.getName(),
-                this.units, this.calcDistance);
+                this.units, this.distance);
 
     }
 }
