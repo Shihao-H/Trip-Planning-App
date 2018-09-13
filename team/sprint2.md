@@ -1,9 +1,9 @@
-# Sprint 2 - *your team number* - *your team name*
+# Sprint 2 - *t03* - *WOPR*
 
 ## Goal
 
 ### A mobile, responsive map and itinerary!
-### Sprint Leader: *firstname lastname*
+### Sprint Leader: *Shihao Huang*
 
 ## Definition of Done
 
