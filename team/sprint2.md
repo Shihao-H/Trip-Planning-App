@@ -62,7 +62,7 @@ each team member was going to contribute to the sprint2.md*
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
 | Epics | *5* | *0* |
-| Tasks |  *13*   | *0* | 
+| Tasks |  *12*   | *0* | 
 | Story Points |  *25*  | *0* | 
 
 *Enter the `# Planned` at the beginning of the sprint, `# Completed` at the end of the sprint.*
