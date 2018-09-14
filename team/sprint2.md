@@ -35,8 +35,11 @@
 
 *An introductory paragraph describing what you expect to accomplish this sprint with a list of epics that will achieve the goal.*
 
-* *## epic title: description*
-*
+* *110 User: I want to supply my own units for the distances : The solution enables the users to define an arbitrary unit of measure to use in the itinerary.*
+* *111 User:I want a map and itinerary for my trip : The solution shows a map and itinerary for the round trip in the state of Colorado in the file to the users.*
+* *112 TripCo: All clients and servers must interoperate : This requires an adherence to the TFFI specification. Each client must include a configuration option to change to server:port used for RESTful services.*
+* *114 TripCo: All code shall be clean : Adhere to the Google style guide for Java and JavaScript. Write maintainable code.*
+* *113 TripCo: The solution must be responsive for mobile devices : The solution should be designed/optimized for a mobile environment, but still work well in a desktop environment.*
 
 *Include a discussion of planning decisions.*
 
