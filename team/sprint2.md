@@ -33,7 +33,11 @@
 
 ## Plan
 
-*An introductory paragraph describing what you expect to accomplish this sprint with a list of epics that will achieve the goal.*
+*For Sprint2, team WOPR expects to build a TFFI that will handle a map and itenerary for a trip that the client requests. If
+another unit is given that is different than the original three, we will be able to calculate it correctly as well. We
+expect the site to work well on mobile devices, as well as computer monitors, with code that is clean and easily readable. 
+When giving other teams our TFFI object, their server will respond correctly, and if we are given their TFFI object, ours 
+will respond accordingly as well. We have 5 epics that we think will achieve this for us*
 
 * *## epic title: description*
 *
