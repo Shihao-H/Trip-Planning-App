@@ -39,8 +39,11 @@ expect the site to work well on mobile devices, as well as computer monitors, wi
 When giving other teams our TFFI object, their server will respond correctly, and if we are given their TFFI object, ours 
 will respond accordingly as well. We have 5 epics that we think will achieve this for us*
 
-* *## epic title: description*
-*
+* *110 User: I want to supply my own units for the distances : The solution enables the users to define an arbitrary unit of measure to use in the itinerary.*
+* *111 User:I want a map and itinerary for my trip : The solution shows a map and itinerary for the round trip in the state of Colorado in the file to the users.*
+* *112 TripCo: All clients and servers must interoperate : This requires an adherence to the TFFI specification. Each client must include a configuration option to change to server:port used for RESTful services.*
+* *114 TripCo: All code shall be clean : Adhere to the Google style guide for Java and JavaScript. Write maintainable code.*
+* *113 TripCo: The solution must be responsive for mobile devices : The solution should be designed/optimized for a mobile environment, but still work well in a desktop environment.*
 
 *During the planning meeting we began by deciding on who would be the team leader for this sprint. Afterwards, we 
 discussed the epics and looked at the new version of the TFFI document from the client. From those items, we decided on 
