@@ -42,7 +42,16 @@ will respond accordingly as well. We have 5 epics that we think will achieve thi
 * *## epic title: description*
 *
 
-*Include a discussion of planning decisions.*
+*During the planning meeting we began by deciding on who would be the team leader for this sprint. Afterwards, we 
+discussed the epics and looked at the new version of the TFFI document from the client. From those items, we decided on 
+which new components would be a part of which epic and made tasks for creating them. We also discussed alterations that 
+may have to be made to our existing application because of the additions and created tasks for those, as well. Once we 
+had a basic plan together with the epics and tasks, we discussed how much work and time would be required for each task.
+From this discussion, we decided to break up a few of the original tasks into smaller ones. We agreed on time estimates 
+and assigned them to each task. We then discussed the priority of each task and all agreed on a final priority order. 
+Finally, we set the ground rules on how the team was going to work together on this sprint to accomplish our goal. We 
+agreed to treat the backlog as a priority que and pull the next available task when we finished one. We also agreed that 
+each team member was going to contribute to the sprint2.md*
 
 
 ## Metrics
