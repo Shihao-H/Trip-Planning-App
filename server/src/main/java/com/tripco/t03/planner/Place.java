@@ -5,10 +5,10 @@ package com.tripco.t03.planner;
  * There may be other attributes of a place, but these are required to plan a trip.
  */
 public class Place {
-  public String id;
-  public String name;
-  public double latitude;
-  public double longitude;
+  private String id;
+  private String name;
+  private double latitude;
+  private double longitude;
 
   /**
    * Default constructor
