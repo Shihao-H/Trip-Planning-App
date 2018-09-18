@@ -73,7 +73,8 @@ each team member was going to contribute to the sprint2.md*
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
 | *09/14/2018* | *131, 132, 133, 134, 135, 136, 137, 138* | *117, 123, 129, 130* | *Dave forgetting to publish canvas assignments; Learning curve* | 
-| *date* | *#task* | *#task* | *"", ...* |
+| *09/17/2018* | *130, 140* | *117, 123, 129* | *"Headaches from trying to learn ReactJS"* |
+| *09/19/2018* | ** | ** | *""* |
 
 *Add a new row for each scrum session.*
 
