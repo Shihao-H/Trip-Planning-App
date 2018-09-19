@@ -6,16 +6,19 @@ import com.tripco.t03.planner.Place;
 import java.util.ArrayList;
 
 public class Distance {
-    private short version = 1;
-    private String type = "distance";
+    public short version = 1;
+    public String type = "distance";
 
-    private Place origin;
-    private Place destination;
+    public Place origin;
+    public Place destination;
 
-    private String units;
-    private int distance;
+    public String units;
+    public int distance;
 
-
+    /**Create a default distance object
+     * Declares and initializes default Place objects for destination and origin
+     * No params
+     */
     public Distance(){
         origin = new Place();
         destination = new Place();
@@ -23,6 +26,12 @@ public class Distance {
 
     }
 
+    /**
+     * @param orig trip origin Place object
+     * @param dest trip destination Place object
+     * @param units String designation of unit type
+     *              Creates a distance object with data
+     */
     public Distance(Place orig, Place dest, String units){
         origin = orig;
         destination = dest;
@@ -30,16 +39,17 @@ public class Distance {
 
     }
 
+    /**
+     * @return returns the distance value
+     */
     public int getDist(){
         return this.distance;
     }
 
-    static String getDistance() {
-        Distance dist = new Distance();
-        Gson gson = new Gson();
-        return gson.toJson(dist);
-    }
-
+    /**
+     *
+     * @return returns the delta sigma value for the designated units
+     */
     private double getDeltaSigma() {
 
         double deltaLongitude = Math.toRadians(destination.getLongitude() - origin.getLongitude()),
@@ -60,6 +70,10 @@ public class Distance {
 
     }
 
+    /**
+     * Calls getDeltaSigma() and uses that value to determine the distance between two lat/long coordinates
+     * Assigns that value to the distance variable
+     */
     public void calculationDistance(){
         switch(units) {
             case "miles":distance = (int)Math.round((3959 * getDeltaSigma())); break;
@@ -68,9 +82,13 @@ public class Distance {
         }
     }
 
+    /**
+     * @return returns the string format for a distance variable
+     */
     public String toString(){
         return String.format("Origin: latitude: %f, longitude: %f, name: %s, Destination: latitude: %f, longitude: %f, name: %s, Units: %s, Distance: %d",
                 origin.getLatitude(), origin.getLongitude(), origin.getName(), destination.getLatitude(), destination.getLongitude(), destination.getName(),
                 this.units, this.distance);
+
     }
 }

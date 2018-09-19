@@ -10,39 +10,48 @@ public class Place {
   public double latitude;
   public double longitude;
 
-  public Place(){
-    name = null;
-    latitude = -1.0;
-    longitude = -1.0;
-  }
+    /**
+     * Default constructor
+     */
+    public Place(){
+        id = null;
+        name = null;
+        latitude = -1.0;
+        longitude = -1.0;
+    }
 
-  public Place(String name, double latitude, double longitude){
-    this.name = name;
-    this.latitude = latitude;
-    this.longitude = longitude;
-  }
+    /**
+     * @param id identifier given by user
+     * @param name name of the place string
+     * @param latitude latitude coordinates double
+     * @param longitude longitude coordinates double
+     *                  constructs an instance of Place for the desired place
+     */
+    public Place(String id, String name, double latitude, double longitude){
+        this.id = id;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
-  public String getName(){
-    return this.name;
-  }
+    /**
+     * @return name of place object
+     */
+    public String getName(){
+        return this.name;
+    }
 
-  public double getLatitude(){
-    return this.latitude;
-  }
+    /**
+     * @return latitude of place object
+     */
+    public double getLatitude(){
+        return this.latitude;
+    }
 
-  public double getLongitude(){
-    return this.longitude;
-  }
-
-  public void setName(String name){
-    this.name = name;
-  }
-
-  public void setLatitude(double latitude){
-    this.latitude = latitude;
-  }
-
-  public void setLongitude(double longitude){
-    this.longitude = longitude;
-  }
+    /**
+     * @return longitude of place object
+     */
+    public double getLongitude(){
+        return this.longitude;
+    }
 }

@@ -50,101 +50,144 @@ public class MicroServer {
     System.out.println("\n\nServer running on port: " + this.port + "\n\n");
   }
 
-  /** A REST API that describes the server.
-   *
-   * @param request
-   * @param response
-   * @return
-   */
-  private String about(Request request, Response response) {
+    /** A REST API that describes the server.
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    private String about(Request request, Response response) {
+        String result;
+        response.type("text/html");
+        response.header("Access-Control-Allow-Origin", "*");
+        try{
+            result = "<html><head></head><body><h1>"+name+" Micro-server on port "+port+"</h1></body></html>";
+        }catch(Exception e){
+            result = "{}";
+            getErrorMessage(e);
+        }
+        return result;
+    }
 
-    response.type("text/html");
-    response.header("Access-Control-Allow-Origin", "*");
+    /** A REST API that returns the current server configuration
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    private String config(Request request, Response response) {
+        String result;
+        response.type("application/json");
+        response.header("Access-Control-Allow-Origin", "*");
+        try{
+            result = Config.getConfig();
+        }catch(Exception e){
+            result = "{}";
+            getErrorMessage(e);
+        }
+        return result;
+    }
 
-    return "<html><head></head><body><h1>"+name+" Micro-server on port "+port+"</h1></body></html>";
-  }
+    /** A REST API that echos the client request.
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    private String echo(Request request, Response response) {
+        String result;
+        response.type("application/json");
+        response.header("Access-Control-Allow-Origin", "*");
+        try{
+            result = HTTP.echoRequest(request);
+        }catch(Exception e){
+            result = "{}";
+            getErrorMessage(e);
+        }
+        return result;
+    }
 
-  /** A REST API that returns the current server configuration
-   *
-   * @param request
-   * @param response
-   * @return
-   */
-  private String config(Request request, Response response) {
-    response.type("application/json");
-    response.header("Access-Control-Allow-Origin", "*");
+    /** A REST API demonstrating the use of a parameter.
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    private String hello(Request request, Response response) {
+        String result;
+        response.type("text/html");
+        response.header("Access-Control-Allow-Origin", "*");
+        try{
+            result =Greeting.html(request.params(":name"));
+        }catch(Exception e){
+            result = "{}";
+            getErrorMessage(e);
+        }
+        return result;
+    }
 
-    return Config.getConfig();
-  }
+    /** A REST API to support trip planning.
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    private String plan(Request request, Response response) {
+        String result;
+        response.type("application/json");
+        response.header("Access-Control-Allow-Origin", "*");
+        try{
+            result = new Plan(request).getTrip();
+        }catch(Exception e){
+            result = "{}";
+            getErrorMessage(e);
+        }
+        return result;
+    }
 
-  /** A REST API that echos the client request.
-   *
-   * @param request
-   * @param response
-   * @return
-   */
-  private String echo(Request request, Response response) {
+    /** A REST API that returns the team information associated with the server.
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    private String team(Request request, Response response) {
+        String result;
+        response.type("text/plain");
+        response.header("Access-Control-Allow-Origin", "*");
+        try{
+            result = name;
+        }catch(Exception e){
+            result = "{}";
+            getErrorMessage(e);
+        }
+        return result;
+    }
 
-    response.type("application/json");
-    response.header("Access-Control-Allow-Origin", "*");
-
-    return HTTP.echoRequest(request);
-  }
-
-  /** A REST API demonstrating the use of a parameter.
-   *
-   * @param request
-   * @param response
-   * @return
-   */
-  private String hello(Request request, Response response) {
-
-    response.type("text/html");
-    response.header("Access-Control-Allow-Origin", "*");
-
-    return Greeting.html(request.params(":name"));
-  }
-
-  /** A REST API to support trip planning.
-   *
-   * @param request
-   * @param response
-   * @return
-   */
-  private String plan(Request request, Response response) {
-
-    response.type("application/json");
-    response.header("Access-Control-Allow-Origin", "*");
-
-    return new Plan(request).getTrip();
-  }
-
-  /** A REST API that returns the team information associated with the server.
-   *
-   * @param request
-   * @param response
-   * @return
-   */
-  private String team(Request request, Response response) {
-
-    response.type("text/plain");
-    response.header("Access-Control-Allow-Origin", "*");
-
-    return name;
-  }
-  
     /** A REST API for distance.
-   *
-   * @param request
-   * @param response
-   * @return
-   */
-  private String distance(Request request, Response response) {
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    private String distance(Request request, Response response) {
+        String result;
+        response.type("application/json");
+        response.header("Access-Control-Allow-Origin", "*");
+        try{
+            result = new Calculate(request).getDistance();
+        }catch(Exception e){
+            result = "{}";
+            getErrorMessage(e);
+        }
+        return result;
+    }
 
-    response.type("application/json");
-    response.header("Access-Control-Allow-Origin", "*");
+    private void getErrorMessage(Exception e){
+        System.out.println(e.getClass());
+        System.out.println(e.getCause());
+        System.out.println(e.getMessage());
+        System.out.println(e.getStackTrace());
+    }
 
-    return new Calculate(request).getDistance();
-  }
-  
 }
