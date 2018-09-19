@@ -9,6 +9,8 @@ import static org.junit.Assert.*;
 public class TestDistance {
     private Distance dist;
     private Gson gson;
+    
+    //Code in this file is from in class example of TestDistance by Dave Matthews
 
     private String buildJsonRequest(double origin[], double dest[], String units){
         String orig = String.format("\"origin\": {\"latitude\":%f, \"longitude\":%f, \"name\": \"orig\"}", origin[0], origin[1]);
