@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.util.ArrayList;
-import java.util.Collections;
 
 import static org.junit.Assert.*;
 
@@ -25,7 +23,7 @@ public class TestPlace {
     place.name="Denver";
   }
 
-  @Test 
+  @Test
   public void testPlace() {
     String id = "dnvr";
     String name = "Denver";

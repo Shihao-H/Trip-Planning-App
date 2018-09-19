@@ -47,14 +47,18 @@ public class Distance {
     }
 
     /**
-     *
-     * @return returns the delta sigma value for the designated units
+     * @param oLat double origin latitude
+     * @param oLong double origin longitude
+     * @param dLat double destination latitude
+     * @param dLong double destination longitude
+     *              calculates delta sigma for circle distance using Vincenty formula
+     * @return returns floating point delta sigma value for the designated units
      */
-    private double getDeltaSigma() {
+    private static double getDeltaSigma(double oLat, double oLong, double dLat, double dLong) {
 
-        double deltaLongitude = Math.toRadians(destination.getLongitude() - origin.getLongitude()),
-                destinationLatitude = Math.toRadians(destination.getLatitude()),
-                originLatitude = Math.toRadians(origin.getLatitude()),
+        double deltaLongitude = Math.toRadians(dLong - oLong),
+                destinationLatitude = Math.toRadians(dLat),
+                originLatitude = Math.toRadians(oLat),
 
                 numerator, denominator;
 
@@ -71,15 +75,32 @@ public class Distance {
     }
 
     /**
+     * @param lat1 origin latitude
+     * @param long1 origin longitude
+     * @param lat2 destination latitude
+     * @param long2 destination longitude
+     * @param units units for radius
+     * @return integer value of distance between origin and destination; -1 if invalid.
      * Calls getDeltaSigma() and uses that value to determine the distance between two lat/long coordinates
      * Assigns that value to the distance variable
      */
-    public void calculationDistance(){
-        switch(units) {
-            case "miles":distance = (int)Math.round((3959 * getDeltaSigma())); break;
-            case "kilometers":distance = (int) Math.round((6371 * getDeltaSigma())); break;
-            case "nautical miles": distance = (int) Math.round((3440 * getDeltaSigma())); break;
+    public static int calcDistance(double lat1, double long1, double  lat2, double long2, String units){
+        if(units.equals("miles")) {
+            return (int) Math.round((3959 * getDeltaSigma(lat1, long1, lat2, long2)));
+        }else if(units.equals("kilometers")) {
+            return (int) Math.round((6371 * getDeltaSigma(lat1, long1, lat2, long2)));
+        }else if(units.equals("nautical miles")){
+            return (int) Math.round((3440 * getDeltaSigma(lat1, long1, lat2, long2)));
+        }else {
+            return -1;
         }
+    }
+
+    /**
+     * Sets distance element to circle distance between origin and destination by calling calcDistance
+     */
+    public void setDistance(){
+            this.distance = calcDistance(this.origin.latitude, this.origin.longitude, this.destination.latitude, this.destination.longitude, this.units);
     }
 
     /**

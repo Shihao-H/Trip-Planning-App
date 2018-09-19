@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestTrip {
+
   Trip trip;
 
   // Setup to be done before every test in TestPlan
@@ -26,13 +27,13 @@ public class TestTrip {
   @Test
   public void testTrue() {
     // assertTrue checks if a statement is true
-    assertTrue(true == true);
+    assertTrue(true);
   }
 
   @Test
   public void testDistances() {
     trip.plan();
-    ArrayList<Integer> expectedDistances = new ArrayList<Integer>();
+    ArrayList<Integer> expectedDistances = new ArrayList<>();
     Collections.addAll(expectedDistances, 12, 23, 34, 45, 65, 19);
     // Call the equals() method of the first object on the second object.
     assertEquals(expectedDistances, trip.distances);
