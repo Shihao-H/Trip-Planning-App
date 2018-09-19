@@ -6,14 +6,14 @@ import com.tripco.t03.planner.Place;
 import java.util.ArrayList;
 
 public class Distance {
-    private short version = 1;
-    private String type = "distance";
+    public short version = 1;
+    public String type = "distance";
 
-    private Place origin;
-    private Place destination;
+    public Place origin;
+    public Place destination;
 
-    private String units;
-    private int distance;
+    public String units;
+    public int distance;
 
     /**Create a default distance object
      * Declares and initializes default Place objects for destination and origin
@@ -44,16 +44,6 @@ public class Distance {
      */
     public int getDist(){
         return this.distance;
-    }
-
-    /**
-     *
-     * @return returns the distance object as a Json object
-     */
-    static String getDistance() {
-        Distance dist = new Distance();
-        Gson gson = new Gson();
-        return gson.toJson(dist);
     }
 
     /**

@@ -14,18 +14,21 @@ public class Place {
      * Default constructor
      */
     public Place(){
+        id = null;
         name = null;
         latitude = -1.0;
         longitude = -1.0;
     }
 
     /**
+     * @param id identifier given by user
      * @param name name of the place string
      * @param latitude latitude coordinates double
      * @param longitude longitude coordinates double
      *                  constructs an instance of Place for the desired place
      */
-    public Place(String name, double latitude, double longitude){
+    public Place(String id, String name, double latitude, double longitude){
+        this.id = id;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
