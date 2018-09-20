@@ -100,7 +100,7 @@ public class Distance {
      * Sets distance element to circle distance between origin and destination by calling calcDistance
      */
     public void setDistance(){
-          this.distance = calcDistance(this.origin.latitude, this.origin.longitude, this.destination.latitude, this.destination.longitude, this.units);
+            this.distance = calcDistance(this.origin.latitude, this.origin.longitude, this.destination.latitude, this.destination.longitude, this.units);
     }
 
     /**
