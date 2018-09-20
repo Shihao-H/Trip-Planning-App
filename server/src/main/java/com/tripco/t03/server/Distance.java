@@ -6,24 +6,32 @@ import com.tripco.t03.planner.Place;
 import java.util.ArrayList;
 
 public class Distance {
-    private short version = 1;
-    private String type = "distance";
+    public short version = 1;
+    public String type = "distance";
 
-    private Place origin;
-    private Place destination;
+    public Place origin;
+    public Place destination;
 
-    private String units;
-    private int distance;
+    public String units;
+    public int distance;
 
-
+    /**Create a default distance object
+     * Declares and initializes default Place objects for destination and origin
+     * No params
+     */
     public Distance(){
         origin = new Place();
         destination = new Place();
 
 
-
     }
 
+    /**
+     * @param orig trip origin Place object
+     * @param dest trip destination Place object
+     * @param units String designation of unit type
+     *              Creates a distance object with data
+     */
     public Distance(Place orig, Place dest, String units){
         origin = orig;
         destination = dest;
@@ -31,23 +39,26 @@ public class Distance {
 
     }
 
-    //EDIT HERE!!!!!!
-    public int getDist() throws Exception{
-        //throw new Exception("This is a test");
+    /**
+     * @return returns the distance value
+     */
+    public int getDist(){
         return this.distance;
     }
 
-    static String getDistance() {
-        Distance dist = new Distance();
-        Gson gson = new Gson();
-        return gson.toJson(dist);
-    }
+    /**
+     * @param oLat double origin latitude
+     * @param oLong double origin longitude
+     * @param dLat double destination latitude
+     * @param dLong double destination longitude
+     *              calculates delta sigma for circle distance using Vincenty formula
+     * @return returns floating point delta sigma value for the designated units
+     */
+    private static double getDeltaSigma(double oLat, double oLong, double dLat, double dLong) {
 
-    private double getDeltaSigma() {
-
-        double deltaLongitude = Math.toRadians(destination.getLongitude() - origin.getLongitude()),
-                destinationLatitude = Math.toRadians(destination.getLatitude()),
-                originLatitude = Math.toRadians(origin.getLatitude()),
+        double deltaLongitude = Math.toRadians(dLong - oLong),
+                destinationLatitude = Math.toRadians(dLat),
+                originLatitude = Math.toRadians(oLat),
 
                 numerator, denominator;
 
@@ -63,14 +74,38 @@ public class Distance {
 
     }
 
-    public void calculationDistance(){
-        switch(units) {
-            case "miles":distance = (int)Math.round((3959 * getDeltaSigma())); break;
-            case "kilometers":distance = (int) Math.round((6371 * getDeltaSigma())); break;
-            case "nautical miles": distance = (int) Math.round((3440 * getDeltaSigma())); break;
+    /**
+     * @param lat1 origin latitude
+     * @param long1 origin longitude
+     * @param lat2 destination latitude
+     * @param long2 destination longitude
+     * @param units units for radius
+     * @return integer value of distance between origin and destination; -1 if invalid.
+     * Calls getDeltaSigma() and uses that value to determine the distance between two lat/long coordinates
+     * Assigns that value to the distance variable
+     */
+    public static int calcDistance(double lat1, double long1, double  lat2, double long2, String units){
+        if(units.equals("miles")) {
+            return (int) Math.round((3959 * getDeltaSigma(lat1, long1, lat2, long2)));
+        }else if(units.equals("kilometers")) {
+            return (int) Math.round((6371 * getDeltaSigma(lat1, long1, lat2, long2)));
+        }else if(units.equals("nautical miles")){
+            return (int) Math.round((3440 * getDeltaSigma(lat1, long1, lat2, long2)));
+        }else {
+            return -1;
         }
     }
 
+    /**
+     * Sets distance element to circle distance between origin and destination by calling calcDistance
+     */
+    public void setDistance(){
+        this.distance = calcDistance(this.origin.latitude, this.origin.longitude, this.destination.latitude, this.destination.longitude, this.units);
+    }
+
+    /**
+     * @return returns the string format for a distance variable
+     */
     public String toString(){
         return String.format("Origin: latitude: %f, longitude: %f, name: %s, Destination: latitude: %f, longitude: %f, name: %s, Units: %s, Distance: %d",
                 origin.getLatitude(), origin.getLongitude(), origin.getName(), destination.getLatitude(), destination.getLongitude(), destination.getName(),
