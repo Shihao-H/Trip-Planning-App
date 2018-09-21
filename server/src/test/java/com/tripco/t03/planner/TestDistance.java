@@ -1,4 +1,4 @@
-package com.tripco.t03.server;
+package com.tripco.t03.planner;
 
 import com.google.gson.Gson;
 import com.tripco.t03.planner.Place;
