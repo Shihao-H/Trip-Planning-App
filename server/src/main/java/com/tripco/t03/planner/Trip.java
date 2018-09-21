@@ -49,15 +49,17 @@ public class Trip {
   private ArrayList<Integer> legDistances() {
 
     ArrayList<Integer> dist = new ArrayList<Integer>();
+    
+    for (int counter = 0; counter < places.size()-1; counter++) {
+      Distance distance = new Distance(places.get(counter), places.get(counter+1), options);
+      distance.setDistance();
+      dist.add(distance.getDist());
+    }
 
-    // hardcoded example
-    dist.add(12);
-    dist.add(23);
-    dist.add(34);
-    dist.add(45);
-    dist.add(65);
-    dist.add(19);
-
+    Distance distance = new Distance(places.get(places.size()-1), places.get(0), options);
+    distance.setDistance();
+    dist.add(distance.getDist());
+    
     return dist;
   }
 
