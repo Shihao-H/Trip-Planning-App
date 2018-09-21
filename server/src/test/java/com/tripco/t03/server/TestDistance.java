@@ -30,7 +30,7 @@ public class TestDistance {
         double lat1 = 41.00055556, lon1 = -109.05;
         double lat2 = 41.00055556, lon2 = -102.05166667;
 
-        assertEquals(366, Distance.calcDistance(lat1, lon1, lat2, lon2, "miles"));
+        assertEquals(366, Distance.calcDistance(lat1, lon1, lat2, lon2, "miles"), 1);
     }
 
     @Test
