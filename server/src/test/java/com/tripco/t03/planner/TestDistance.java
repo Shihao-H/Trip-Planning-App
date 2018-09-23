@@ -1,73 +1,107 @@
 package com.tripco.t03.planner;
 
+import static java.lang.System.*;
 import com.google.gson.Gson;
-import com.tripco.t03.planner.Place;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class TestDistance {
     private Distance dist;
-    private Gson gson;
-    
+
     //Code in this file is from in class example of TestDistance by Dave Matthews
 
-    private String buildJsonRequest(double origin[], double dest[], String units){
-        String orig = String.format("\"origin\": {\"latitude\":%f, \"longitude\":%f, \"name\": \"orig\"}", origin[0], origin[1]);
-        String destin = String.format("\"destination\": {\"latitude\":%f, \"longitude\":%f, \"name\": \"dest\"}", dest[0], dest[1]);
-        return String.format("{" + "\"version\": 2," + "\"type\": \"distance\"," + "%s," + "%s,"
-                +"\"distance\": 0," + "\"units\": \"%s\"}", orig, destin, units);
-    }
-
-    @Before
-    public void setup(){
-        gson = new Gson();
-    }
-
-
     @Test
-    public void testStaticCalculate(){
-        /*double lat1 = 41.00055556, lon1 = -109.05;
-        double lat2 = 41.00055556, lon2 = -102.05166667;
+    public void testDistanceMiles(){
+        Place origin = new Place("orig", "origin",41.000155556, -109.05);
+        Place destination = new Place("dest", "destination", 41.00055556, -102.05166667);
+        dist = new Distance(origin, destination, "miles");
 
-        assertEquals(366, Distance.calcDistance(lat1, lon1, lat2, lon2, "miles"), 1);
-        */
+        assertTrue(dist.origin.equals(origin) && dist.destination.equals(destination) && dist.units.equalsIgnoreCase("miles"));
     }
 
     @Test
-    public void testDistance(){
-        /*String id = "dnvr", name = "Denver", units = "miles";
-        double[] origin = {41.000155556, -109.05};
-        double[] destination = {41.00055556, -102.05166667};
-        String testRequest = buildJsonRequest(origin, destination, "miles");
+    public void testDistanceKM(){
+        Place origin = new Place("orig", "origin",41.000155556, -109.05);
+        Place destination = new Place("dest", "destination", 41.00055556, -102.05166667);
+        dist = new Distance(origin, destination, "kilometers");
 
-        dist = gson.fromJson(testRequest, Distance.class);
+        assertTrue(dist.origin.equals(origin) && dist.destination.equals(destination) && dist.units.equalsIgnoreCase("kilometers"));
+    }
+
+    @Test
+    public void testDistanceNM(){
+        Place origin = new Place("orig", "origin",41.000155556, -109.05);
+        Place destination = new Place("dest", "destination", 41.00055556, -102.05166667);
+        dist = new Distance(origin, destination, "nautical miles");
+
+        assertTrue(dist.origin.equals(origin) && dist.destination.equals(destination) && dist.units.equalsIgnoreCase("nautical miles"));
+    }
+
+    @Test
+    public void testDistanceUD(){
+        Place origin = new Place("orig", "origin",41.000155556, -109.05);
+        Place destination = new Place("dest", "destination", 41.00055556, -102.05166667);
+        dist = new Distance(origin, destination, "user defined", "some", 70.0);
+
+        assertTrue(dist.origin.equals(origin) && dist.destination.equals(destination) && dist.units.equalsIgnoreCase("user defined")
+                && dist.unitName.equalsIgnoreCase("some") && dist.unitRadius == 70.0);
+    }
+
+    @Test
+    public void testMiles(){
+        Place origin = new Place("orig", "origin",41.000155556, -109.05);
+        Place destination = new Place("dest", "destination", 41.00055556, -102.05166667);
+        dist = new Distance(origin, destination, "miles");
 
         dist.setDistance();
         assertEquals(366, dist.distance, 1);
-        */
+
     }
 
-    public void testKilo(){
-        double[] origin = {18, -104};
-        double[] destin = {39, 116};
-        String testRequest = buildJsonRequest(origin, destin, "kilometers");
+    @Test
+    public void testMiles2(){
+        Place origin = new Place("orig", "origin",18, -104);
+        Place destination = new Place("dest", "destination", 39, 116);
+        dist = new Distance(origin, destination, "miles");
 
-        dist = gson.fromJson(testRequest, Distance.class);
+        dist.setDistance();
+        assertEquals(7726, dist.distance, 1);
+
+    }
+
+    @Test
+    public void testKilo(){
+        Place origin = new Place("orig", "origin",18, -104);
+        Place destination = new Place("dest", "destination", 39, 116);
+        dist = new Distance(origin, destination, "kilometers");
+
         dist.setDistance();
 
         assertEquals(12434, dist.distance, 1);
     }
 
+    @Test
     public void testNM(){
-        double[] origin = {18, -104};
-        double[] destin = {39, 116};
-        String testRequest = buildJsonRequest(origin, destin, "nautical miles");
+        Place origin = new Place("orig", "origin",18, -104);
+        Place destination = new Place("dest", "destination", 39, 116);
+        dist = new Distance(origin, destination, "nautical miles");
 
-        dist = gson.fromJson(testRequest, Distance.class);
         dist.setDistance();
 
         assertEquals(6713, dist.distance, 1);
+    }
+
+    @Test
+    public void testUD(){
+        Place origin = new Place("orig", "origin",18, 104);
+        Place destination = new Place("dest", "destination", 25, -105);
+        dist = new Distance(origin, destination, "user defined", "some", 42.0);
+
+        dist.setDistance();
+
+        assertEquals(94, dist.distance, 3);
     }
 
 }
