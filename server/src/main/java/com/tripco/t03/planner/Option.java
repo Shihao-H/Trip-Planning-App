@@ -10,21 +10,53 @@ public class Option {
   public String unitName;
   public double unitRadius;
 
+  /**
+   * Default constructor.
+   */
   public Option(){
     units = null;
     unitName = null;
   }
 
+  /**
+   * @param units String unit type
+   * Constructor for Options that are not user defined.
+   */
   public Option(String units){
     this.units = units;
+    this.unitName = null;
+    this.unitRadius = '\0';
   }
 
+  /**
+   * @param units String unit type.
+   * @param unitName String name of user defined units.
+   * @param unitRadius double radius of Earth in user defined units.
+   * Constructor for user defined units.
+   */
   public Option(String units, String unitName, double unitRadius){
     this.units  = units;
     this.unitName = unitName;
     this.unitRadius = unitRadius;
   }
 
+  /**
+   * @param option Option object.
+   * @return boolean true is equal, false if not equal.
+   * Compares one Option object to another Option object.
+   */
+  public boolean equals(Option option){
+      if((this.unitName!=null) && (this.unitRadius!='\0')) {
+          System.out.format("unitName: %b, unitRad: %b, units: %b\n", this.unitName.equalsIgnoreCase(option.unitName), this.unitRadius == option.unitRadius, this.units.equalsIgnoreCase(option.units));
+          return this.unitName.equalsIgnoreCase(option.unitName) && this.unitRadius == option.unitRadius && this.units.equalsIgnoreCase(option.units);
+      }else{
+          return this.units.equalsIgnoreCase(option.units);
+      }
+  }
+
+  /**
+   * @return Option object in string form.
+   */
   public String toString(){
     String out = String.format("Option: units: %s", units);
     if(unitName != null){
