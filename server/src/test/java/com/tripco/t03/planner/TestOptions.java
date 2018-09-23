@@ -13,7 +13,7 @@ public class TestOptions {
     private Gson gson;
 
     private String buildJsonRequest(String units){
-        return String.format("\"units\": \"%s\"}", units);
+        return String.format("{\"units\": \"%s\"}", units);
     }
 
     private String buildJsonRequest2(String units, String unitName, double radius){
