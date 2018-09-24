@@ -5,11 +5,9 @@ package com.tripco.t03.planner;
  * At this point we are only using the values provided.
  */
 public class Option {
-
   public String units;
   public String unitName;
   public String unitRadius;
-
   /**
    * Default constructor.
    */
