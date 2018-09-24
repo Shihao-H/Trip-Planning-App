@@ -1,14 +1,19 @@
 package com.tripco.t03.planner;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.tripco.t03.server.HTTP;
+import spark.Request;
 /**
  * Describes the places to visit in a trip in TFFI format.
  * There may be other attributes of a place, but these are required to plan a trip.
  */
 public class Place {
-  public String id;
-  public String name;
-  public double latitude;
-  public double longitude;
+    public String id;
+    public String name;
+    public double latitude;
+    public double longitude;
 
     /**
      * Default constructor
@@ -16,8 +21,8 @@ public class Place {
     public Place(){
         id = null;
         name = null;
-        latitude = -1.0;
-        longitude = -1.0;
+        latitude = '\0';
+        longitude = '\0';
     }
 
     /**
@@ -53,5 +58,18 @@ public class Place {
      */
     public double getLongitude(){
         return this.longitude;
+    }
+
+    /**
+     * @param place Place object.
+     * @return true if equal, false if not equal.
+     * Compares two Place objects for equality.
+     */
+    public boolean equals(Place place){
+        return (this.longitude == place.longitude) && (this.latitude == place.latitude) && (this.name.equalsIgnoreCase(place.name)) && (this.id.equalsIgnoreCase(place.id));
+    }
+
+    public String toString(){
+        return String.format("Id: %s, Name: %s, Latitude: %f, Longitude: %f", this.id, this.name, this.latitude, this.longitude);
     }
 }
