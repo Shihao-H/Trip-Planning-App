@@ -8,7 +8,7 @@ public class Option {
 
   public String units;
   public String unitName;
-  public double unitRadius;
+  public String unitRadius;
 
   /**
    * Default constructor.
@@ -25,7 +25,8 @@ public class Option {
   public Option(String units){
     this.units = units;
     this.unitName = null;
-    this.unitRadius = '\0';
+    this.unitRadius = "";
+
   }
 
   /**
@@ -34,7 +35,7 @@ public class Option {
    * @param unitRadius double radius of Earth in user defined units.
    * Constructor for user defined units.
    */
-  public Option(String units, String unitName, double unitRadius){
+  public Option(String units, String unitName, String unitRadius){
     this.units  = units;
     this.unitName = unitName;
     this.unitRadius = unitRadius;
@@ -46,9 +47,9 @@ public class Option {
    * Compares one Option object to another Option object.
    */
   public boolean equals(Option option){
-      if((this.unitName!=null) && (this.unitRadius!='\0')) {
-          System.out.format("unitName: %b, unitRad: %b, units: %b\n", this.unitName.equalsIgnoreCase(option.unitName), this.unitRadius == option.unitRadius, this.units.equalsIgnoreCase(option.units));
-          return this.unitName.equalsIgnoreCase(option.unitName) && this.unitRadius == option.unitRadius && this.units.equalsIgnoreCase(option.units);
+      if((this.unitName != null) && (!this.unitRadius.equals(""))) {
+          System.out.format("unitName: %b, unitRad: %b, units: %b\n", this.unitName.equalsIgnoreCase(option.unitName), this.unitRadius.equals(option.unitRadius), this.units.equalsIgnoreCase(option.units));
+          return this.unitName.equalsIgnoreCase(option.unitName) && this.unitRadius.equals(option.unitRadius) && this.units.equalsIgnoreCase(option.units);
       }else{
           return this.units.equalsIgnoreCase(option.units);
       }
@@ -60,7 +61,7 @@ public class Option {
   public String toString(){
     String out = String.format("Option: units: %s", units);
     if(unitName != null){
-      out += String.format(", Unit name: %s, Unit Radius of Earth: %f\n", this.unitName, this.unitRadius);
+      out += String.format(", Unit name: %s, Unit Radius of Earth: %s\n", this.unitName, this.unitRadius);
     }
     return out;
   }
