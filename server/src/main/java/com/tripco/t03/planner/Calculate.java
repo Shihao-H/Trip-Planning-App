@@ -67,8 +67,8 @@ public class Calculate {
     double cosLatSinLongSqr = (Math.cos(destinationLatitude) * Math.sin(deltaLongitude));
     cosLatSinLongSqr = cosLatSinLongSqr * cosLatSinLongSqr; 
 
-    double cosLatSinLatMnsSinLatCosLatCosLongSqr = (Math.cos(originLatitude) * Math.sin(destinationLatitude) -
-            Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude));
+    double cosLatSinLatMnsSinLatCosLatCosLongSqr = (Math.cos(originLatitude) * Math.sin(destinationLatitude) 
+            - Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude));
     cosLatSinLatMnsSinLatCosLatCosLongSqr = cosLatSinLatMnsSinLatCosLatCosLongSqr * cosLatSinLatMnsSinLatCosLatCosLongSqr;
 
       numerator = Math.sqrt(cosLatSinLongSqr + cosLatSinLatMnsSinLatCosLatCosLongSqr);
