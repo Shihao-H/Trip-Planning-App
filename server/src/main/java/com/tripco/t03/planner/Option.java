@@ -5,9 +5,11 @@ package com.tripco.t03.planner;
  * At this point we are only using the values provided.
  */
 public class Option {
+
   public String units;
   public String unitName;
-  public String unitRadius;
+  public Double unitRadius;
+
   /**
    * Default constructor.
    */
@@ -23,7 +25,7 @@ public class Option {
   public Option(String units){
     this.units = units;
     this.unitName = null;
-    this.unitRadius = "";
+    this.unitRadius = 0.0;
 
   }
 
@@ -33,7 +35,7 @@ public class Option {
    * @param unitRadius double radius of Earth in user defined units.
    * Constructor for user defined units.
    */
-  public Option(String units, String unitName, String unitRadius){
+  public Option(String units, String unitName, Double unitRadius){
     this.units  = units;
     this.unitName = unitName;
     this.unitRadius = unitRadius;
@@ -45,9 +47,9 @@ public class Option {
    * Compares one Option object to another Option object.
    */
   public boolean equals(Option option){
-      if((this.unitName != null) && (!this.unitRadius.equals(""))) {
-          System.out.format("unitName: %b, unitRad: %b, units: %b\n", this.unitName.equalsIgnoreCase(option.unitName), this.unitRadius.equals(option.unitRadius), this.units.equalsIgnoreCase(option.units));
-          return this.unitName.equalsIgnoreCase(option.unitName) && this.unitRadius.equals(option.unitRadius) && this.units.equalsIgnoreCase(option.units);
+      if((this.unitName != null) && (this.unitRadius!=0.0)) {
+          System.out.format("unitName: %b, unitRad: %b, units: %b\n", this.unitName.equalsIgnoreCase(option.unitName), this.unitRadius==option.unitRadius, this.units.equalsIgnoreCase(option.units));
+          return this.unitName.equalsIgnoreCase(option.unitName) && this.unitRadius==option.unitRadius && this.units.equalsIgnoreCase(option.units);
       }else{
           return this.units.equalsIgnoreCase(option.units);
       }
@@ -64,3 +66,4 @@ public class Option {
     return out;
   }
 }
+
