@@ -88,11 +88,11 @@ public class Trip {
 
     if(this.options.units.equals("user defined")){
       for (int counter = 0; counter < places.size() - 1; counter++) {
-        Distance distance = new Distance(places.get(counter), places.get(counter + 1), options.units, options.unitName, Double.parseDouble(options.unitRadius));
+        Distance distance = new Distance(places.get(counter), places.get(counter + 1), options.units, options.unitName, options.unitRadius);
         distance.setDistance();
         dist.add(distance.distance);
       }
-      Distance distance = new Distance(places.get(places.size() - 1), places.get(0), options.units, options.unitName, Double.parseDouble(options.unitRadius));
+      Distance distance = new Distance(places.get(places.size() - 1), places.get(0), options.units, options.unitName, options.unitRadius);
       distance.setDistance();
       dist.add(distance.distance);
     }else {
