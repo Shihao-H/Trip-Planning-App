@@ -58,19 +58,18 @@ public class Calculate {
    */
   private static double getDeltaSigma(double oLat, double oLong, double dLat, double dLong) {
 
-    double  deltaLongitude = Math.abs(Math.toRadians(oLong - dLong)),
-            destinationLatitude = Math.toRadians(dLat),
-            originLatitude = Math.toRadians(oLat),
-            numerator, denominator;
+    double  deltaLongitude = Math.abs(Math.toRadians(oLong - dLong));
+    double  destinationLatitude = Math.toRadians(dLat);
+    double  originLatitude = Math.toRadians(oLat);
+    double  numerator;
+    double  denominator;
 
-    double cosLatSinLongSqr = (Math.cos(destinationLatitude) * Math.sin(deltaLongitude)) *
-            (Math.cos(destinationLatitude) * Math.sin(deltaLongitude));
+    double cosLatSinLongSqr = (Math.cos(destinationLatitude) * Math.sin(deltaLongitude));
+    cosLatSinLongSqr = cosLatSinLongSqr * cosLatSinLongSqr; 
 
     double cosLatSinLatMnsSinLatCosLatCosLongSqr = ((Math.cos(originLatitude) * Math.sin(destinationLatitude) -
-            Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude)) *
-            ((Math.cos(originLatitude) * Math.sin(destinationLatitude) -
-                    Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude))));
-
+            Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude));
+    cosLatSinLatMnsSinLatCosLatCosLongSqr = cosLatSinLatMnsSinLatCosLatCosLongSqr * cosLatSinLatMnsSinLatCosLatCosLongSqr;
 
       numerator = Math.sqrt(cosLatSinLongSqr + cosLatSinLatMnsSinLatCosLatCosLongSqr);
             denominator = Math.sin(originLatitude) * Math.sin(destinationLatitude) +
