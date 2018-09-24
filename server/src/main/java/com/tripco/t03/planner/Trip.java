@@ -21,13 +21,34 @@ public class Trip {
   public ArrayList<Integer> distances;
   public String map;
 
+  /**
+   * Default constructor.
+   */
   public Trip(){
-    this.type = null;
+    this.title = null;
     this.options = new Option();
     this.places = null;
     this.distances = null;
     this.map = null;
   }
+
+  /**
+   * @param options Option Object.
+   * @param places ArrayList of Place.
+   * Constructor without title.
+   */
+  public Trip(Option options, ArrayList<Place> places){
+    this.title = null;
+    this.options = options;
+    this.places = places;
+  }
+
+  /**
+   * @param title String user defined title for trip.
+   * @param options Option Object.
+   * @param places ArrayList of Place objects.
+   * Constructor with title.
+   */
   public Trip(String title, Option options, ArrayList<Place> places){
     this.title=title;
     this.options = options;
@@ -41,8 +62,6 @@ public class Trip {
    */
   public void plan() {
 
-
-
     this.map = svg();
     this.distances = legDistances();
 
@@ -50,7 +69,7 @@ public class Trip {
 
   /**
    * Returns an SVG containing the background and the legs of the trip.
-   * @return
+   * @return String.
    */
   private String svg() {
 
@@ -61,7 +80,7 @@ public class Trip {
   /**
    * Returns the distances between consecutive places,
    * including the return to the starting point to make a round trip.
-   * @return
+   * @return ArrayList of integers.
    */
   private ArrayList<Integer> legDistances() {
 

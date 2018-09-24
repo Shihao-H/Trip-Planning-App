@@ -57,17 +57,27 @@ public class Calculate {
    * @return returns floating point delta sigma value for the designated units
    */
   private static double getDeltaSigma(double oLat, double oLong, double dLat, double dLong) {
-    double deltaLongitude = Math.toRadians(dLong - oLong),
-            destinationLatitude = Math.toRadians(dLat),
-            originLatitude = Math.toRadians(oLat),
-            numerator, denominator;
-    numerator = Math.sqrt(Math.pow((Math.cos(destinationLatitude) * Math.sin(deltaLongitude)), 2.0) +
-            Math.pow((Math.cos(originLatitude) * Math.sin(destinationLatitude) -
-                    Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude)), 2.0));
-    denominator = Math.sin(originLatitude) * Math.sin(destinationLatitude) +
+
+    double  deltaLongitude = Math.abs(Math.toRadians(oLong - dLong));
+    double  destinationLatitude = Math.toRadians(dLat);
+    double  originLatitude = Math.toRadians(oLat);
+    double  numerator;
+    double  denominator;
+
+    double cosLatSinLongSqr = (Math.cos(destinationLatitude) * Math.sin(deltaLongitude));
+    cosLatSinLongSqr = cosLatSinLongSqr * cosLatSinLongSqr; 
+
+    double cosLatSinLatMnsSinLatCosLatCosLongSqr = (Math.cos(originLatitude) * Math.sin(destinationLatitude) 
+            - Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude));
+    cosLatSinLatMnsSinLatCosLatCosLongSqr = cosLatSinLatMnsSinLatCosLatCosLongSqr * cosLatSinLatMnsSinLatCosLatCosLongSqr;
+
+      numerator = Math.sqrt(cosLatSinLongSqr + cosLatSinLatMnsSinLatCosLatCosLongSqr);
+            denominator = Math.sin(originLatitude) * Math.sin(destinationLatitude) +
             Math.cos(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude);
     return Math.atan2(numerator, denominator);
   }
+
+
   public static int circleDistance(double radius, double deltaSigma){
     return (int)Math.round((radius*deltaSigma));
   }
@@ -88,6 +98,6 @@ public class Calculate {
     }else if(distance.units.equalsIgnoreCase("user defined")) {
       radius = distance.unitRadius;
     }
-    return circleDistance(radius, getDeltaSigma(distance.origin.latitude,distance.origin.longitude,distance.destination.latitude, distance.destination.longitude));
+   return circleDistance(radius, getDeltaSigma(distance.origin.latitude,distance.origin.longitude,distance.destination.latitude, distance.destination.longitude));
   }
 }
