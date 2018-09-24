@@ -17,38 +17,38 @@ import static spark.Spark.*;
  */
 public class MicroServer {
 
-  private int    port;
-  private String name;
-  private String path = "/public/";
+    private int    port;
+    private String name;
+    private String path = "/public/";
 
-  /** Creates a micro-server to load static files and provide REST APIs.
-   *
-   * @param port Which port to start the server on
-   * @param name Name of the server
-   */
-  MicroServer(int port, String name) {
-    this.port = port;
-    this.name = name;
+    /** Creates a micro-server to load static files and provide REST APIs.
+     *
+     * @param port Which port to start the server on
+     * @param name Name of the server
+     */
+    MicroServer(int port, String name) {
+        this.port = port;
+        this.name = name;
 
-    port(port);
+        port(port);
 
-    // serve the static files: index.html and bundle.js
-    Spark.staticFileLocation(this.path);
-    get("/", (req, res) -> {res.redirect("index.html"); return null;});
+        // serve the static files: index.html and bundle.js
+        Spark.staticFileLocation(this.path);
+        get("/", (req, res) -> {res.redirect("index.html"); return null;});
 
-    // register all micro-services and the function that services them.
-    // start with HTTP GET
-    get("/about", this::about);
-    get("/echo", this::echo);
-    get("/hello/:name", this::hello);
-    get("/team", this::team);
-    // client is sending data, so a HTTP POST is used instead of a GET
-    get("/config", this::config);
-    post("/plan", this::plan);
-    post("/distance", this::distance);
+        // register all micro-services and the function that services them.
+        // start with HTTP GET
+        get("/about", this::about);
+        get("/echo", this::echo);
+        get("/hello/:name", this::hello);
+        get("/team", this::team);
+        // client is sending data, so a HTTP POST is used instead of a GET
+        get("/config", this::config);
+        post("/plan", this::plan);
+        post("/distance", this::distance);
 
-    System.out.println("\n\nServer running on port: " + this.port + "\n\n");
-  }
+        System.out.println("\n\nServer running on port: " + this.port + "\n\n");
+    }
 
     /** A REST API that describes the server.
      *
