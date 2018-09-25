@@ -58,7 +58,7 @@ class Options extends Component{
         className='btn-outline-dark unit-button'
         active={this.props.options.unit === unit}
         value={unit}
-        onClick={(event) => this.props.updateOptions('unit', event.target.value)}
+        onClick={this.clickUserDefinedButton}
       >
         {unit.charAt(0).toUpperCase() + unit.slice(1)}
       </Button>
