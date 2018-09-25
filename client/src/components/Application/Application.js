@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Container } from 'reactstrap';
 import Info from './Info'
 import Options from './Options';
+import Upload from './Upload';
 
 import { get_config } from '../../api/api';
 
@@ -17,9 +18,9 @@ class Application extends Component {
         type: "trip",
         title: "",
         options : {
-          unit: ["miles", 'kilometers', 'nautical miles', 'user defined'],
-          unitName: "",
-          unitRadius: 0.00
+          unit: ["miles", 'kilometers', 'nautical miles', 'user defined'], 
+           unitName: "",
+           unitRadius: 0.00
         },
         places: [],
         distances: [],
@@ -29,6 +30,7 @@ class Application extends Component {
     this.updateTrip = this.updateTrip.bind(this);
     this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
     this.updateOptions = this.updateOptions.bind(this);
+    this.updateUpload = this.updateUpload.bind(this);
   }
 
   componentWillMount() {
@@ -57,6 +59,12 @@ class Application extends Component {
     this.setState(trip);
   }
 
+  updateUpload(option, value){
+    let trip = this.state.trip;
+    trip.upload[option] = value;
+    this.setState(trip);
+  }
+
   render() {
     if(!this.state.config) { return <div/> }
 
@@ -64,6 +72,7 @@ class Application extends Component {
       <Container id="Application">
         <Info/>
         <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions}/>
+          <Upload upload={this.state.trip.upload} config={this.state.config} updateUpload={this.updateUpload}/>
       </Container>
     )
   }
