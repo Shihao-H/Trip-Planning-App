@@ -1,17 +1,56 @@
 import React, {Component} from 'react'
 import { Card, CardHeader, CardBody } from 'reactstrap'
 import { ButtonGroup, Button } from 'reactstrap'
+import { FormGroup, Form, Label, Input } from 'reactstrap'
 
 /* Options allows the user to change the parameters for planning
  * and rendering the trip map and itinerary.
  * The options reside in the parent object so they may be shared with the Trip object.
  * Allows the user to set the options used by the application via a set of buttons.
  */
+
+function DisplayUnitDefinedInputFields(props){
+    if(!props.ifDisplay){
+        return null;
+    }
+
+    return(
+        <form>
+            <FormGroup>
+                <comtrolLabel>Unit Name: </comtrolLabel>
+                <input type="text"
+                       placeholder="Enter unit name"
+                       onChange={(event) => this.props.updateOptions('unitName', event.target.value)}
+                />
+            </FormGroup>
+            <FormGroup>
+                <comtrolLabel>Unit Radius: </comtrolLabel>
+                <input type="text"
+                       placeholder="Enter unit radius"
+                       onChange={(event) => this.props.updateOptions('unitRadius', event.target.value)}
+                />
+            </FormGroup>
+        </form>
+    );
+}
+
 class Options extends Component{
   constructor(props) {
     super(props);
+    this.state = {ifDisplayUserDefinedInputFields: false};
+    this.clickUserDefinedButton = this.clickUserDefinedButton.bind(this);
   }
 
+  clickUserDefinedButton(event){
+      this.props.updateOptions('unit', event.target.value);
+
+      if(event.target.value === 'user defined'){
+            this.setState({ifDisplayUserDefinedInputFields: true});
+      } else {
+            this.setState({ifDisplayUserDefinedInputFields: false});
+      }
+  }
+  
   render() {
     const buttons = this.props.config.units.map((unit) =>
       <Button
@@ -32,6 +71,8 @@ class Options extends Component{
           <ButtonGroup>
             {buttons}
           </ButtonGroup>
+          <p>{' '}</p>
+          <DisplayUnitDefinedInputFields ifDisplay={this.state.ifDisplayUserDefinedInputFields} />
         </CardBody>
       </Card>
     )
