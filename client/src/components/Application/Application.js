@@ -19,8 +19,8 @@ class Application extends Component {
         title: "",
         options : {
           unit: ["miles", 'kilometers', 'nautical miles', 'user defined'], 
-           unitName: "",
-           unitRadius: 0.00
+          unitName: "",
+          unitRadius: 0.00
         },
         places: [],
         distances: [],
@@ -43,7 +43,7 @@ class Application extends Component {
     );
   }
 
-  updateTrip(field, value){
+  updateTrip(field, value) {
     let trip = this.state.trip;
     trip[field] = value;
     this.setState(trip);
