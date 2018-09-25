@@ -17,14 +17,14 @@ function DisplayUnitDefinedInputFields(props){
     return(
         <form>
             <FormGroup>
-                <comtrolLabel>Unit Name: </comtrolLabel>
+                <label>Unit Name: </label>
                 <input type="text"
                        placeholder="Enter unit name"
                        onChange={(event) => this.props.updateOptions('unitName', event.target.value)}
                 />
             </FormGroup>
             <FormGroup>
-                <comtrolLabel>Unit Radius: </comtrolLabel>
+                <label>Unit Radius: </label>
                 <input type="text"
                        placeholder="Enter unit radius"
                        onChange={(event) => this.props.updateOptions('unitRadius', event.target.value)}
