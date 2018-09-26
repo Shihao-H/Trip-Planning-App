@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import { Card, CardHeader, CardBody } from 'reactstrap'
+import { Card, CardBody } from 'reactstrap'
 import { ButtonGroup, Button } from 'reactstrap'
-import { FormGroup, Form, Label, Input } from 'reactstrap'
+import { FormGroup } from 'reactstrap'
 
 /* Options allows the user to change the parameters for planning
  * and rendering the trip map and itinerary.
@@ -20,14 +20,14 @@ function DisplayUnitDefinedInputFields(props){
                 <label>Unit Name: </label>
                 <input type="text"
                        placeholder="Enter unit name"
-                       onChange={(event) => this.props.updateOptions('unitName', event.target.value)}
+                       onChange={props.updateUnitName}
                 />
             </FormGroup>
             <FormGroup>
                 <label>Unit Radius: </label>
                 <input type="text"
                        placeholder="Enter unit radius"
-                       onChange={(event) => this.props.updateOptions('unitRadius', event.target.value)}
+                       onChange={props.updateUnitRadius}
                 />
             </FormGroup>
         </form>
@@ -39,6 +39,8 @@ class Options extends Component{
     super(props);
     this.state = {ifDisplayUserDefinedInputFields: false};
     this.clickUserDefinedButton = this.clickUserDefinedButton.bind(this);
+    this.updateUnitName = this.updateUnitName.bind(this);
+    this.updateUnitRadius = this.updateUnitRadius.bind(this);
   }
 
   clickUserDefinedButton(event){
@@ -50,7 +52,15 @@ class Options extends Component{
             this.setState({ifDisplayUserDefinedInputFields: false});
       }
   }
-  
+
+  updateUnitName(event){
+      this.props.updateOptions('unitName', event.target.value);
+  }
+
+  updateUnitRadius(event){
+      this.props.updateOptions('unitRadius', event.target.value);
+  }
+
   render() {
     const buttons = this.props.config.units.map((unit) =>
       <Button
@@ -75,7 +85,7 @@ class Options extends Component{
           <DisplayUnitDefinedInputFields ifDisplay={this.state.ifDisplayUserDefinedInputFields} />
         </CardBody>
       </Card>
-    )
+    );
   }
 }
 
