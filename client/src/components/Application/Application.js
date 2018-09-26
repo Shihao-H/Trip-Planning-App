@@ -3,6 +3,8 @@ import { Container } from 'reactstrap';
 import Info from './Info'
 import Options from './Options';
 import Upload from './Upload';
+import {Map} from './Map';
+
 
 import { get_config } from '../../api/api';
 
@@ -73,6 +75,7 @@ class Application extends Component {
         <Info/>
         <Options options={this.state.trip.options} config={this.state.config} updateOptions={this.updateOptions}/>
           <Upload upload={this.state.trip.upload} config={this.state.config} updateUpload={this.updateUpload}/>
+          <Map/>
       </Container>
     )
   }
