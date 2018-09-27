@@ -8,34 +8,37 @@ class Upload extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.LoadFile=this.LoadFile.bind(this);
         this.fileInput = React.createRef();
     }
 
     LoadFile(event) {
         let file=event.target.files[0];
-        let fileReader = new FileReader();;
-        fileReader.readAsText(file)
+        let fileReader = new FileReader();
+        fileReader.readAsText(file);
         fileReader.onload = (event) =>{
-            console.log("file data", event.target.result);
             let obj=JSON.parse(event.target.result);
-            console.log("Try and error ",obj);
+            //this.props.trip=obj;
+            this.props.updateTrip('title',obj.title);
+            this.props.updateOptions('units',obj.options.units);
+            // this.props.updateOptions('unitRadius',obj.options.unitName);
+            this.props.updateTrip('places',obj.places);
+            this.props.updateTrip('distances',obj.distances);
+            this.props.updateTrip('map',obj.map);
         }
+
     }
 
     handleSubmit(event) {
-        // event.preventDefault();
-        alert(
-            `Selected file - ${
-                this.fileInput.current.files[0].name
-                }`);
-        let obj=this.props.handleSubmitHelper();
-        // console.log(typeof this.props.state.trip);
-        request(obj,'plan').then((FinalTrip)=>
+        let obj=this.props.trip;
+        request(obj,'plan').then((Fi)=>
         {
-            console.log(typeof FinalTrip);
-            console.log(FinalTrip);
+            this.props.updateTrip('title',Fi.title);
+            this.props.updateOptions('units',Fi.options.units);
+            this.props.updateTrip('places',Fi.places);
+            this.props.updateTrip('distances',Fi.distances);
+            this.props.updateTrip('map',Fi.map);
         });
-        // this.props.updateTrip()
     }
 
     render() {
@@ -46,13 +49,13 @@ class Upload extends Component {
                         <label>
                             Submit your trip!
                             <br/><br/>
-                            <input type="file" ref={this.fileInput} onChange={(event)=>this.props.updateTrip("file",this.LoadFile(event))}/>
+                            <input type="file" ref={this.fileInput} onChange={this.LoadFile}/>
                             <small className="form-text text-muted">
                                 Upload a file that contains a Trip object in the TFFI format.
                             </small>
                         </label>
                         <br/>
-                        <Button className='btn-outline-dark' type="submit">Submit</Button>
+                        <Button className='btn-outline-dark' type="submit">Plan</Button>
                     </form>
                 </CardBody>
             </div>
@@ -62,3 +65,6 @@ class Upload extends Component {
 }
 
 export default Upload;
+
+
+// onChange={(event)=>this.props.updateTrip("file",this.LoadFile(event))}

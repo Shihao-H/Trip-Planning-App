@@ -19,11 +19,11 @@ class Application extends Component {
                 type: "trip",
                 title: "",
                 options: {
-                    unit: ["miles", 'kilometers', 'nautical miles']
+                    units: ["miles", 'kilometers', 'nautical miles']
                 },
                 places: [],
                 distances: [],
-                map: '<svg width="1920" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
+                map: '<svg width="1920" height="20" x mlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
             }
         };
         this.updateTrip = this.updateTrip.bind(this);
@@ -84,7 +84,7 @@ class Application extends Component {
             return (
                 <Container id="Application">
                     <Info/>
-                    <Upload file={this.state.trip} config={this.state.config} updateTrip={this.updateTrip}/>
+                    <Upload trip={this.state.trip} config={this.state.config} updateTrip={this.updateTrip}  updateOptions={this.updateOptions}/>
                     <Options options={this.state.trip.options} config={this.state.config}
                              updateOptions={this.updateOptions}/>
                 </Container>
