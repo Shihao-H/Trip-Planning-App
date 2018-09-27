@@ -6,34 +6,36 @@ import {request} from '../../api/api';
 import Upload from './Upload';
 import {Map} from './Map';
 import { get_config } from '../../api/api';
-import Upload from './Upload';
+
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
  */
 class Application extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            config: null,
-            trip: {
-                type: "trip",
-                title: "",
-                options: {
-                    units: ["miles", 'kilometers', 'nautical miles']
-                },
-                places: [],
-                distances: [],
-                map: '<svg width="1920" height="20" x mlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
-            }
-        };
-        this.updateTrip = this.updateTrip.bind(this);
-        this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
-        this.updateOptions = this.updateOptions.bind(this);
-        this.updateUpload = this.updateUpload.bind(this);
-        this.handleSubmitHelper = this.handleSubmitHelper.bind(this);
-
-    }
+  constructor(props){
+    super(props);
+    this.state = {
+      config: null,
+      trip: {
+        type: "trip",
+        title: "",
+        options : {
+          units: ["miles", 'kilometers', 'nautical miles', 'user defined'], 
+          unitName: "",
+          unitRadius: 0.00
+        },
+        places: [],
+        distances: [],
+        map: '<svg width="1920" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
+      }
+    };
+    this.updateTrip = this.updateTrip.bind(this);
+    this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
+    this.updateOptions = this.updateOptions.bind(this);
+    this.updateUpload = this.updateUpload.bind(this);
+  }
+       
+    
         componentWillMount()
         {
             get_config().then(
