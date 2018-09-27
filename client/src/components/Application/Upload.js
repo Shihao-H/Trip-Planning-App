@@ -1,46 +1,70 @@
 import React, {Component} from 'react'
 import {Button} from "reactstrap";
 import { Card, CardHeader, CardBody } from 'reactstrap'
+import { request } from '../../api/api';
+
 //import ReactDOM from 'react-dom'
-
-
-
-class Upload extends Component{
+class Upload extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.LoadFile=this.LoadFile.bind(this);
         this.fileInput = React.createRef();
     }
+
+    LoadFile(event) {
+        let file=event.target.files[0];
+        let fileReader = new FileReader();
+        fileReader.readAsText(file);
+        fileReader.onload = (event) =>{
+            let obj=JSON.parse(event.target.result);
+            //this.props.trip=obj;
+            this.props.updateTrip('title',obj.title);
+            this.props.updateOptions('units',obj.options.units);
+            // this.props.updateOptions('unitRadius',obj.options.unitName);
+            this.props.updateTrip('places',obj.places);
+            this.props.updateTrip('distances',obj.distances);
+            this.props.updateTrip('map',obj.map);
+        }
+
+    }
+
     handleSubmit(event) {
-        event.preventDefault();
-        alert(
-            `Selected file - ${
-                this.fileInput.current.files[0].name
-                }`
-        );
+        let obj=this.props.trip;
+        request(obj,'plan').then((Fi)=>
+        {
+            this.props.updateTrip('title',Fi.title);
+            this.props.updateOptions('units',Fi.options.units);
+            this.props.updateTrip('places',Fi.places);
+            this.props.updateTrip('distances',Fi.distances);
+            this.props.updateTrip('map',Fi.map);
+        });
     }
 
     render() {
-        // highlight-range{5}
         return (
             <div className="card">
                 <CardBody>
                     <form onSubmit={this.handleSubmit}>
                         <label>
                             Submit your trip!
-                            <br /><br />
-                            <input type="file" ref={this.fileInput} />
-                            <small className="form-text text-muted">Upload a file that contains a Trip object in the TFFI format.</small>
+                            <br/><br/>
+                            <input type="file" ref={this.fileInput} onChange={this.LoadFile}/>
+                            <small className="form-text text-muted">
+                                Upload a file that contains a Trip object in the TFFI format.
+                            </small>
                         </label>
-                        <br />
-                        <Button className='btn-outline-dark' type="submit">Submit</Button>
+                        <br/>
+                        <Button className='btn-outline-dark' type="submit">Plan</Button>
                     </form>
                 </CardBody>
             </div>
         );
     }
 
-//ReactDOM.render(<FileInput />,document.getElementById('root'));
- }
+}
 
 export default Upload;
+
+
+// onChange={(event)=>this.props.updateTrip("file",this.LoadFile(event))}
