@@ -17,14 +17,20 @@ class Upload extends Component {
         let fileReader = new FileReader();
         fileReader.readAsText(file);
         fileReader.onload = (event) =>{
+
             let obj=JSON.parse(event.target.result);
             //this.props.trip=obj;
-            this.props.updateTrip('title',obj.title);
-            this.props.updateOptions('units',obj.options.units);
-            // this.props.updateOptions('unitRadius',obj.options.unitName);
-            this.props.updateTrip('places',obj.places);
-            this.props.updateTrip('distances',obj.distances);
-            this.props.updateTrip('map',obj.map);
+                this.props.updateTrip('title', obj.title);
+                this.props.updateOptions('units', obj.options.units);
+                if(obj.options.units==="user defined")
+                {
+                    this.props.updateOptions('unitRadius',obj.options.unitRadius);
+                    this.props.updateOptions('unitName',obj.options.unitName);
+                }
+                this.props.updateTrip('places', obj.places);
+                this.props.updateTrip('distances', obj.distances);
+                this.props.updateTrip('map', obj.map);
+
         }
 
     }
@@ -33,11 +39,7 @@ class Upload extends Component {
         let obj=this.props.trip;
         request(obj,'plan').then((Fi)=>
         {
-            this.props.updateTrip('title',Fi.title);
-            this.props.updateOptions('units',Fi.options.units);
-            this.props.updateTrip('places',Fi.places);
             this.props.updateTrip('distances',Fi.distances);
-            this.props.updateTrip('map',Fi.map);
         });
     }
 
