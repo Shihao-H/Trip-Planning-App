@@ -1,9 +1,10 @@
-
 import React, {Component} from 'react';
 import { Container } from 'reactstrap';
 import Info from './Info'
 import Options from './Options';
 import {request} from '../../api/api';
+import Upload from './Upload';
+import {Map} from './Map';
 import { get_config } from '../../api/api';
 import Upload from './Upload';
 
@@ -70,12 +71,6 @@ class Application extends Component {
             this.setState(trip);
         }
 
-        handleSubmitHelper()
-        {
-            let trip = this.state.trip;
-            return trip;
-        }
-
         render()
         {
             if (!this.state.config) {
@@ -87,9 +82,9 @@ class Application extends Component {
                     <Upload trip={this.state.trip} config={this.state.config} updateTrip={this.updateTrip}  updateOptions={this.updateOptions}/>
                     <Options options={this.state.trip.options} config={this.state.config}
                              updateOptions={this.updateOptions}/>
+                    <Map/>
                 </Container>
             )
         }
-
 }
     export default Application;
