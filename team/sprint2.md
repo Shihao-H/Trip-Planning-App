@@ -74,7 +74,12 @@ each team member was going to contribute to the sprint2.md*
 | :--- | :--- | :--- | :--- |
 | *09/14/2018* | *131, 132, 133, 134, 135, 136, 137, 138* | *117, 123, 129, 130* | *Dave forgetting to publish canvas assignments; Learning curve* | 
 | *09/17/2018* | *130, 140* | *117, 123, 129* | *"Headaches from trying to learn ReactJS"* |
-| *09/19/2018* | ** | ** | *""* |
+| *09/19/2018* | *144, 146, 149, 150* | *165, 160* | *""* |
+| *09/20/2018* | *165, 160* | *170* | *""* |
+| *09/21/2018* | *170* | *176, 185* | *""* |
+| *09/23/2018* | *176, 185* | *174, 179, 180, 186, 189, 190, 193* | *""* |
+| *09/24/2018* | *174, 179, 180, 186, 189, 190, 193* | *183, 184* | *""* |
+| *09/26/2018* | *183, 184* | *""* | *""* |
 
 *Add a new row for each scrum session.*
 
@@ -86,15 +91,16 @@ each team member was going to contribute to the sprint2.md*
 
 *Describe the solution based on the completed epics and list the epics below.*
 
-* *## epic title: comments*
-* 
+* *110 User: I want to supply my own units for the distances : All related issues were completed; our solution enables users to use their user-defined units.*
+* *111 User:I want a map and itinerary for my trip : The map and the table of itinerary are displayed.*
+* *112 TripCo: All clients and servers must interoperate : We strictly adhered to the TFFI specification.*
+* *114 TripCo: All code shall be clean : We wrote maintainable code; All our code is clean.*
 
 #### Incomplete epics in Sprint Backlog 
 
 *Describe capabilities not included in the release and list the epics below with an explanation.*
 
-* *## epic title: explanation*
-*
+* *113 TripCo: The solution must be responsive for mobile devices : We don't have enough time to deal with that.*
 
 #### What went well
 
