@@ -68,5 +68,3 @@ class Upload extends Component {
 
 export default Upload;
 
-
-// onChange={(event)=>this.props.updateTrip("file",this.LoadFile(event))}
