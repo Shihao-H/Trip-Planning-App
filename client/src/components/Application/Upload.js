@@ -57,7 +57,7 @@ class Upload extends Component {
                             </small>
                         </label>
                         <br/>
-                        <Button className='btn-outline-dark' type="submit">Plan</Button>
+                        <Button className='btn-outline-dark' size="lg" type="submit" >Plan</Button>
                     </form>
                 </CardBody>
             </div>
