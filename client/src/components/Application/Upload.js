@@ -28,7 +28,7 @@ class Upload extends Component {
                     this.props.updateOptions('unitName',obj.options.unitName);
                 }
                 this.props.updateTrip('places', obj.places);
-                this.props.updateTrip('distances', obj.distances);
+                //this.props.updateTrip('distances', obj.distances);
                 this.props.updateTrip('map', obj.map);
 
         }
