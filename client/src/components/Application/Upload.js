@@ -10,7 +10,7 @@ class Upload extends Component {
         this.LoadFile=this.LoadFile.bind(this);
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
         this.fileInput = React.createRef();
-        this.state = {otherTeams: null};
+        this.state = {otherTeams: 31403};
     }
 
     updateOtherTeams(event) {
