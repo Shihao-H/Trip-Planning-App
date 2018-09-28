@@ -74,7 +74,7 @@ each team member was going to contribute to the sprint2.md*
 | :--- | :--- | :--- | :--- |
 | *09/14/2018* | *131, 132, 133, 134, 135, 136, 137, 138* | *117, 123, 129, 130* | *Dave forgetting to publish canvas assignments; Learning curve* | 
 | *09/17/2018* | *130, 140* | *117, 123, 129* | *"Headaches from trying to learn ReactJS"* |
-| *09/19/2018* | *144, 146, 149, 150* | *165, 160* | *""* |
+| *09/19/2018* | *144, 146, 149, 150* | *165, 160* | *"Headaches from trying to learn Big Data"* |
 | *09/20/2018* | *165, 160* | *170* | *""* |
 | *09/21/2018* | *170* | *176, 185* | *""* |
 | *09/23/2018* | *176, 185* | *174, 179, 180, 186, 189, 190, 193* | *""* |
@@ -106,14 +106,16 @@ each team member was going to contribute to the sprint2.md*
 
 *Describe what went well during the sprint in general terms followed by a more detailed list.*
 
-* *something*
-*
+* *Our itinerary works and is dynamic*
+* *The option tab successfully takes a file, loads it, and renders the trip on the website*
 
 #### Problems encountered and resolutions
 
 *Describe what problems occurred during the sprint in general terms followed by a more detailed list.*
 
-* *something*
+* *Learning React was still the most difficult and time consuming for the team. Spending time and sharing knowledge about it
+was the key for success. After syntax was discovered, it was told to the other teammates, which helped understanding
+and sped up development time*
 *
 
 ## Retrospective
@@ -126,12 +128,18 @@ each team member was going to contribute to the sprint2.md*
 
 #### What we did well
 
-*Articulate what went well at the end of the sprint.*
+*We worked well as a team, making sure that if a WOPR member needed help with their task, help was given. Overall the
+team did a good job of meeting up at school to figure out where each person was on their task, and to brainstorm about
+ways to conquer the next task*
 
 #### What we need to work on
 
-*Articulate things you could improve at the end of the sprint.*
+*The team overestimated the learning curve for React, and spent many hours in the last week fighting with the front-end
+related tasks. This was due to not devoting more time earlier on in the sprint for figuring out what exactly was happening
+in the .js files. More time needs to be devoted earlier on in Sprint3 for it to be even better than Sprint2.*
 
 #### What we will change next sprint 
 
-*Articulate at the end of the sprint.  Focus on one of things you need to work on.*
+*For Sprint3, the whole team will try to spread out their time on the project more evenly, so as to better deal with any 
+problems that creep up later on in the sprint. The better time management will help the team finish tasks quicker, and will
+ease pressure during the last week before deployment*
