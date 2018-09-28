@@ -1,15 +1,21 @@
 import React, {Component} from 'react'
 import {Button} from "reactstrap";
-import { Card, CardHeader, CardBody } from 'reactstrap'
-import { request } from '../../api/api';
+import {CardBody} from 'reactstrap'
+import {request} from '../../api/api';
 
-//import ReactDOM from 'react-dom'
 class Upload extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.LoadFile=this.LoadFile.bind(this);
+        this.updateOtherTeams=this.updateOtherTeams.bind(this);
         this.fileInput = React.createRef();
+        this.state = {otherTeams: null};
+    }
+
+    updateOtherTeams(event) {
+            this.setState({otherTeams: event.target.value});
+
     }
 
     LoadFile(event) {
@@ -19,17 +25,15 @@ class Upload extends Component {
         fileReader.onload = (event) =>{
 
             let obj=JSON.parse(event.target.result);
-            //this.props.trip=obj;
-                this.props.updateTrip('title', obj.title);
-                this.props.updateOptions('units', obj.options.units);
-                if(obj.options.units==="user defined")
-                {
-                    this.props.updateOptions('unitRadius',obj.options.unitRadius);
-                    this.props.updateOptions('unitName',obj.options.unitName);
-                }
-                this.props.updateTrip('places', obj.places);
-                //this.props.updateTrip('distances', obj.distances);
-                this.props.updateTrip('map', obj.map);
+            this.props.updateTrip('title', obj.title);
+            this.props.updateOptions('units', obj.options.units);
+            if(obj.options.units==="user defined")
+            {
+                this.props.updateOptions('unitRadius',obj.options.unitRadius);
+                this.props.updateOptions('unitName',obj.options.unitName);
+            }
+            this.props.updateTrip('places', obj.places);
+            this.props.updateTrip('map', obj.map);
 
         }
 
@@ -37,7 +41,7 @@ class Upload extends Component {
 
     handleSubmit(event) {
         let obj=this.props.trip;
-        request(obj,'plan').then((Fi)=>
+        request(obj,'plan', this.state.otherTeams, 'black-bottle.cs.colostate.edu').then((Fi)=>
         {
             this.props.updateTrip('distances',Fi.distances);
         });
@@ -57,14 +61,20 @@ class Upload extends Component {
                             </small>
                         </label>
                         <br/>
-                        <Button className='btn-outline-dark' size="lg" type="submit" >Plan</Button>
+                        <Button className='btn-outline-dark' size='lg' type="submit">Plan</Button>
+                        <br/><br/>
+                        REST API Server Address Port:
+                        <br/>
+                        <input type="text"
+                               placeholder="http://black-bottle.cs.colostate.edu:"
+                               style={{width: 300}}
+                               onChange={this.updateOtherTeams}
+                        />
                     </form>
                 </CardBody>
             </div>
         );
     }
-
 }
 
 export default Upload;
-
