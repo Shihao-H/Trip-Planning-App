@@ -4,8 +4,9 @@ import Info from './Info'
 import Options from './Options';
 import {request} from '../../api/api';
 import Upload from './Upload';
-import {Map} from './Map';
+import { Map } from './Map';
 import { get_config } from '../../api/api';
+import Itinerary from './Itinerary'
 
 
 /* Renders the application.
@@ -81,10 +82,11 @@ class Application extends Component {
             return (
                 <Container id="Application">
                     <Info/>
-                    <Upload trip={this.state.trip} config={this.state.config} updateTrip={this.updateTrip}  updateOptions={this.updateOptions}/>
                     <Options options={this.state.trip.options} config={this.state.config}
                              updateOptions={this.updateOptions}/>
+                    <Upload trip={this.state.trip} config={this.state.config} updateTrip={this.updateTrip}  updateOptions={this.updateOptions}/>
                     <Map/>
+                    <Itinerary trip={this.state.trip}/>
                 </Container>
             )
         }
