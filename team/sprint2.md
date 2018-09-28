@@ -65,8 +65,6 @@ each team member was going to contribute to the sprint2.md*
 | Tasks |  *12*   | *52* | 
 | Story Points |  *25*  | *62* | 
 
-*Enter the `# Planned` at the beginning of the sprint, `# Completed` at the end of the sprint.*
-
 
 ## Scrums
 
@@ -82,15 +80,12 @@ each team member was going to contribute to the sprint2.md*
 | *09/26/2018* | *183, 184* | *119, 124, 125, 214* | *Headaches from trying to parse the file* |
 | *09/27/2018* | *119, 124, 125, 214* | *182* | *Headaches from trying to display the Itinerary table* |
 
-*Add a new row for each scrum session.*
-
 ## Review
 
-*An introductory paragraph describing the overall results of the sprint.*
+Overall the team pulled most everything together and got more done than we thought we would!
 
 #### Completed epics in Sprint Backlog 
 
-*Describe the solution based on the completed epics and list the epics below.*
 
 * *110 User: I want to supply my own units for the distances : All related issues were completed; our solution enables users to use their user-defined units.*
 * *111 User:I want a map and itinerary for my trip : The map and the table of itinerary are displayed.*
@@ -99,28 +94,20 @@ each team member was going to contribute to the sprint2.md*
 
 #### Incomplete epics in Sprint Backlog 
 
-*Describe capabilities not included in the release and list the epics below with an explanation.*
-
 * *113 TripCo: The solution must be responsive for mobile devices : We don't have enough time to deal with that.*
 
 #### What went well
-
-*Describe what went well during the sprint in general terms followed by a more detailed list.*
 
 * *Our itinerary works and is dynamic*
 * *The option tab successfully takes a file, loads it, and renders the trip on the website*
 
 #### Problems encountered and resolutions
 
-*Describe what problems occurred during the sprint in general terms followed by a more detailed list.*
-
 * *Learning React was still the most difficult and time consuming for the team. Spending time and sharing knowledge about it
 was the key for success. After syntax was discovered, it was told to the other teammates, which helped understanding
 and sped up development time*
 
 ## Retrospective
-
-*An introductory paragraph for your retrospective.*
 
 #### What we changed this sprint
 
