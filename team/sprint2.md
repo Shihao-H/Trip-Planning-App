@@ -117,7 +117,6 @@ each team member was going to contribute to the sprint2.md*
 * *Learning React was still the most difficult and time consuming for the team. Spending time and sharing knowledge about it
 was the key for success. After syntax was discovered, it was told to the other teammates, which helped understanding
 and sped up development time*
-*
 
 ## Retrospective
 
