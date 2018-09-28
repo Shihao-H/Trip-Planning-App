@@ -61,9 +61,9 @@ each team member was going to contribute to the sprint2.md*
 
 | Statistic | # Planned | # Completed |
 | --- | ---: | ---: |
-| Epics | *5* | *0* |
-| Tasks |  *12*   | *0* | 
-| Story Points |  *25*  | *0* | 
+| Epics | *5* | *5* |
+| Tasks |  *12*   | *52* | 
+| Story Points |  *25*  | *62* | 
 
 *Enter the `# Planned` at the beginning of the sprint, `# Completed` at the end of the sprint.*
 
@@ -73,13 +73,14 @@ each team member was going to contribute to the sprint2.md*
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
 | *09/14/2018* | *131, 132, 133, 134, 135, 136, 137, 138* | *117, 123, 129, 130* | *Dave forgetting to publish canvas assignments; Learning curve* | 
-| *09/17/2018* | *130, 140* | *117, 123, 129* | *"Headaches from trying to learn ReactJS"* |
-| *09/19/2018* | *144, 146, 149, 150* | *165, 160* | *"Headaches from trying to learn Big Data"* |
-| *09/20/2018* | *165, 160* | *170* | *""* |
-| *09/21/2018* | *170* | *176, 185* | *""* |
-| *09/23/2018* | *176, 185* | *174, 179, 180, 186, 189, 190, 193* | *""* |
-| *09/24/2018* | *174, 179, 180, 186, 189, 190, 193* | *183, 184* | *""* |
-| *09/26/2018* | *183, 184* | *""* | *""* |
+| *09/17/2018* | *130, 140* | *117, 123, 129* | *Headaches from trying to learn ReactJS* |
+| *09/19/2018* | *118, 144, 146, 149, 150* | *165, 160* | *Headaches from trying to learn Big Data* |
+| *09/20/2018* | *116, 123, 165, 160* | *170* | *Headaches from trying to learn ReactJS* |
+| *09/21/2018* | *170* | *176, 185* | *Headaches from trying to learn ReactJS* |
+| *09/23/2018* | *117, 176, 185* | *174, 179, 180, 186, 189, 190, 193* | *Headaches from trying to learn ReactJS* |
+| *09/24/2018* | *129, 174, 179, 180, 186, 189, 190, 193* | *183, 184* | *Headaches from trying to learn ReactJS* |
+| *09/26/2018* | *183, 184* | *119, 124, 125, 214* | *Headaches from trying to parse the file* |
+| *09/27/2018* | *119, 124, 125, 214* | *182* | *Headaches from trying to display the Itinerary table* |
 
 *Add a new row for each scrum session.*
 
@@ -124,7 +125,7 @@ and sped up development time*
 
 #### What we changed this sprint
 
-*Articulate specifically what you will do differently based on the retrospective from the previous sprint before the sprint starts.*
+*We spent far more time on this sprint than the previous sprint and went to Dave's office hour.*
 
 #### What we did well
 
