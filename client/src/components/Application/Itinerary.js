@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Card, CardBody} from "reactstrap";
+import { Table } from 'reactstrap';
 
 
 class Itinerary extends Component {
@@ -64,11 +65,11 @@ class Itinerary extends Component {
             <Card>
                 <CardBody>
                     <form className="Form">
-                        <table className="Table">
+                        <Table className="Table" responsive>
                             <tbody className="Body">
-                                {this.createTable()}
+                            {this.createTable()}
                             </tbody>
-                        </table>
+                        </Table>
                     </form>
                 </CardBody>
             </Card>);
