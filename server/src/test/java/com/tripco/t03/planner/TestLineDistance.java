@@ -50,8 +50,6 @@ public class TestLineDistance {
         ld = new LineDistance(places);
         ArrayList<Double> result = ld.getCoordinates();
 
-        System.out.println(result + " , \n\n" + expectedXY);
-
         Assert.assertTrue(equals(result));
     }
 }
