@@ -10,44 +10,44 @@ import { FormGroup } from 'reactstrap'
  */
 
 class Options extends Component{
-  constructor(props) {
-    super(props);
-    this.state = {ifDisplayUserDefinedInputFields: false};
-    this.clickUserDefinedButton = this.clickUserDefinedButton.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {ifDisplayUserDefinedInputFields: false};
+        this.clickUserDefinedButton = this.clickUserDefinedButton.bind(this);
+    }
 
-  clickUserDefinedButton(event){
-      this.props.updateOptions('units', event.target.value);
+    clickUserDefinedButton(event){
+        this.props.updateOptions('units', event.target.value);
 
-      if(event.target.value === 'user defined'){
+        if(event.target.value === 'user defined'){
             this.setState({ifDisplayUserDefinedInputFields: true});
-      } else {
+        } else {
             this.setState({ifDisplayUserDefinedInputFields: false});
-      }
-  }
+        }
+    }
 
-  render() {
-    const buttons = this.props.config.units.map((unit) =>
-      <Button
-        key={'distance_button_' + unit}
-        className='btn-outline-dark unit-button'
-        active={this.props.options.unit === unit}
-        value={unit}
-        onClick={this.clickUserDefinedButton}
-      >
-        {unit.charAt(0).toUpperCase() + unit.slice(1)}
-      </Button>
-    );
+    render() {
+        const buttons = this.props.config.units.map((unit) =>
+            <Button
+                key={'distance_button_' + unit}
+                className='btn-outline-dark unit-button'
+                active={this.props.options.unit === unit}
+                value={unit}
+                onClick={this.clickUserDefinedButton}
+            >
+                {unit.charAt(0).toUpperCase() + unit.slice(1)}
+            </Button>
+        );
 
-    return(
-      <Card>
-        <CardBody>
-          <p>Select the options you wish to use.</p>
-          <ButtonGroup size="lg" vertical>
-            {buttons}
-          </ButtonGroup>
-          <p>{' '}</p>
-           {this.state.ifDisplayUserDefinedInputFields && (<form>
+        return(
+            <Card>
+                <CardBody>
+                    <p>Select the options you wish to use.</p>
+                    <ButtonGroup size="lg" vertical>
+                        {buttons}
+                    </ButtonGroup>
+                    <p>{' '}</p>
+                    {this.state.ifDisplayUserDefinedInputFields && (<form>
                         <FormGroup>
                             <label>Unit Name: </label>
                             <input type="text"
@@ -63,10 +63,10 @@ class Options extends Component{
                             />
                         </FormGroup>
                     </form>) }
-        </CardBody>
-      </Card>
-    );
-  }
+                </CardBody>
+            </Card>
+        );
+    }
 }
 
 export default Options;
