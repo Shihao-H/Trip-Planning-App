@@ -9,6 +9,7 @@ class Upload extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.LoadFile=this.LoadFile.bind(this);
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
+        this.SaveTFFI=this.SaveTFFI.bind(this);
         this.fileInput = React.createRef();
         this.state = {otherTeams: 31403};
     }
@@ -16,6 +17,22 @@ class Upload extends Component {
     updateOtherTeams(event) {
             this.setState({otherTeams: event.target.value});
 
+    }
+    SaveTFFI()
+    {
+        let title = this.props.trip.title;
+        let TFFI = JSON.stringify(this.props.trip);
+        if(!title.endsWith(".json"))
+        {
+            title += ".json";
+        }
+
+        let ele = document.createElement('a');
+        ele.setAttribute('href','data:text/plain;charset=ytf-8,' + encodeURIComponent(TFFI));
+        ele.setAttribute('download',title);
+        document.body.appendChild(ele);
+        ele.click();
+        document.body.removeChild(ele);
     }
 
     LoadFile(event) {
@@ -70,6 +87,9 @@ class Upload extends Component {
                                style={{width: 300}}
                                onChange={this.updateOtherTeams}
                         />
+                        <br/>
+                        <Button className="btn-save" size='lg' onClick={this.SaveTFFI} type="button">Save</Button>
+                        <br/>
                     </form>
                 </CardBody>
             </div>
