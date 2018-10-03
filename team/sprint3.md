@@ -49,6 +49,11 @@ Epics planned for this sprint.
 * *235 User: I want to choose what information is displayed in the itinerary and map: allow additional attribut/evalue pairs to be captured for destinations whether they are entered manually or obtained from a database; allow the user to select attributes to display in the itinerary, including the latitude and longitude.*
 * *240 User: I'd like even shorter trips: Use 2-opt to improve the nearest neighbor tours.*
 
+Below is the design diagram for Search class (Server):
+![Backend Search](/images/Search Backend.jpg)
+Below is the design diagram for Search class (User Interface):
+![Frontend Search](/images/Search User Interface.jpg)
+
 ## Metrics
 
 | Statistic | # Planned | # Completed |
@@ -57,7 +62,7 @@ Epics planned for this sprint.
 | Tasks |  *28*   | *value* | 
 | Story Points |  *48*  | *value* | 
 
-*Enter the `# Planned` at the beginning of the sprint.  Include a discussion of planning decisions based on the planned number of story points versus how many were completed in previous sprints.*
+*At the begining of the previous sprint, we planned 12 tasks and 25 stoy points, however we ended up with 52 tasks and 62 stoy points. So in this sprint, we breaked the large tasks down and created more tasks than the previous sprint and we allocated 48 stroy points for this sprint.*
 
 *Enter the `# Completed` at the end of the sprint.  Include a discussion about any difference in the number planned versus completed tasks and story points.*
 
