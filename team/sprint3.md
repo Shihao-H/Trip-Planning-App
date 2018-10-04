@@ -48,8 +48,6 @@ that the third and last epic can be finished by adding the nearest neighbor algo
 for shorter trips. With all of this in mind, the team came to the conclusion that Sprint 3 can be successful if these tasks relating to
 the epics listed above are met.
 
-*Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.) with a short paragraph or each.
-
 ![Our Page Layout Diagram For Home Page](../images/pageLayout1.png)
 
 This is the home page of our sprint 3 layout. This is where the initial selections will take place. Some of the selections will be different due to clarifications we received since drawing this diagram. The components will all be the same though. 
@@ -67,17 +65,17 @@ This is the layout for the Build Your Own Trip form. There will be a dropdown bu
 This is the response page. There will be an itinerary with information fields that can be hidden if the user does not want to see them. It will offer a save option for the trip. It will also display the map with the trip's route as an overlay. 
 Epics planned for this sprint.
 
+Below is the design diagram for Search class (Server):
+![Backend Search](../images/SearchBackend.jpg)
+Below is the design diagram for Search class (User Interface):
+![Frontend Search](../images/SearchUserInterface.jpg)
+
 * *234 TripCo: All code must be tested: minimum 50% coverage, preferred 70% coverage.*
 * *236 User: I want to design a trip from scratch so I can stop using the other tool: Create an empty itinerary.*
 * *232 User: I want to make and save changes to the trip: Enable the users to add or remove destinations; choose a different starting location; reverse the order of the trip; find possible destinations so that the users can add them; save the changes made to the trip.*
 * *233 User: I want my trips to be shorter: Use nearest neighbor to build a shorter trip.*
 * *235 User: I want to choose what information is displayed in the itinerary and map: allow additional attribut/evalue pairs to be captured for destinations whether they are entered manually or obtained from a database; allow the user to select attributes to display in the itinerary, including the latitude and longitude.*
 * *240 User: I'd like even shorter trips: Use 2-opt to improve the nearest neighbor tours.*
-
-Below is the design diagram for Search class (Server):
-![Backend Search](/images/Search Backend.jpg)
-Below is the design diagram for Search class (User Interface):
-![Frontend Search](/images/Search User Interface.jpg)
 
 ## Metrics
 
