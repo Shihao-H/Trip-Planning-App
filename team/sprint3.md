@@ -62,7 +62,7 @@ Below is the design diagram for Search class (User Interface):
 | Tasks |  *28*   | *value* | 
 | Story Points |  *48*  | *value* | 
 
-*At the begining of the previous sprint, we planned 12 tasks and 25 story points, however we ended up with 52 tasks and 62 story points. So in this sprint, we broke the large tasks down and created more tasks than the previous sprint and we allocated 48 story points for this sprint.*
+*At the beginning of the previous sprint, we planned 12 tasks and 25 story points, however we ended up with 52 tasks and 62 story points. So in this sprint, we broke the large tasks down and created more tasks than the previous sprint and we allocated 48 story points for this sprint.*
 
 *Enter the `# Completed` at the end of the sprint.  Include a discussion about any difference in the number planned versus completed tasks and story points.*
 
