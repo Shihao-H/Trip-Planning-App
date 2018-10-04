@@ -60,17 +60,17 @@ the epics listed above are met.
 
 Epics planned for this sprint.
 
+Below is the design diagram for Search class (Server):
+![Backend Search](../images/SearchBackend.jpg)
+Below is the design diagram for Search class (User Interface):
+![Frontend Search](../images/SearchUserInterface.jpg)
+
 * *234 TripCo: All code must be tested: minimum 50% coverage, preferred 70% coverage.*
 * *236 User: I want to design a trip from scratch so I can stop using the other tool: Create an empty itinerary.*
 * *232 User: I want to make and save changes to the trip: Enable the users to add or remove destinations; choose a different starting location; reverse the order of the trip; find possible destinations so that the users can add them; save the changes made to the trip.*
 * *233 User: I want my trips to be shorter: Use nearest neighbor to build a shorter trip.*
 * *235 User: I want to choose what information is displayed in the itinerary and map: allow additional attribut/evalue pairs to be captured for destinations whether they are entered manually or obtained from a database; allow the user to select attributes to display in the itinerary, including the latitude and longitude.*
 * *240 User: I'd like even shorter trips: Use 2-opt to improve the nearest neighbor tours.*
-
-Below is the design diagram for Search class (Server):
-![Backend Search](/images/Search Backend.jpg)
-Below is the design diagram for Search class (User Interface):
-![Frontend Search](/images/Search User Interface.jpg)
 
 ## Metrics
 
