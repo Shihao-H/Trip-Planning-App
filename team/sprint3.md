@@ -36,7 +36,17 @@
 
 ## Plan
 
-*An introductory paragraph describing what you expect to accomplish this sprint that will achieve the goal.*
+For Sprint 3, WOPR decided to pursue 3 new epics that we feel we can knock out of the park. This is not counting older epics that
+the team considers a priority throughout the time spent in this company. These priority epics include: all code must be clean, all 
+clients and servers must interoperate, the solution must be responsive for mobile devices, and all code must be tested. The new epics
+we've focused on for this sprint are: I want to design a trip from scratch so I can stop using the other tool, I want to make and save
+changes to the trip, and I want my trips to be shorter, in order from highest to lowest priority. Creating a search class, and updating
+our config and options class on the back-end, while creating an intuitive user interface on the front-end, will allow the client to
+create a trip from scratch. We believe this will help solve our first epic. Communicating with the database for saving trips on the
+back-end and building a search area on the front-end will help users save and load their trips, taking care of our second epic. We feel
+that the third and last epic can be finished by adding the nearest neighbor algorithm to the Calculate class, and constructing a button
+for shorter trips. With all of this in mind, the team came to the conclusion that Sprint 3 can be successful if these tasks relating to
+the epics listed above are met.
 
 *Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.) with a short paragraph or each.
 
