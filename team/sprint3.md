@@ -48,27 +48,18 @@ that the third and last epic can be finished by adding the nearest neighbor algo
 for shorter trips. With all of this in mind, the team came to the conclusion that Sprint 3 can be successful if these tasks relating to
 the epics listed above are met.
 
-![Our Page Layout Diagram For Home Page](../images/pageLayout1.png)
+*Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.) with a short paragraph or each.
 
-This is the home page of our sprint 3 layout. This is where the initial selections will take place. Some of the selections will be different due to clarifications we received since drawing this diagram. The components will all be the same though. 
+| Page Diagram | Description |
+|:------------:|-------------|
+| ![Our Page Layout Diagram For Home Page](../images/pageLayout1.png) | Home page of our sprint 3 layout. This is where the initial selections will take place. Some of the selections will be different due to clarifications we received since drawing this diagram. The components will all be the same though. |
+| ![Our Page Layout Diagram For File Upload](../images/pageLayout2.png) | File upload selection. The map is the map of colorado. |
+| ![Our Page Layout Diagram For Build Your Own Trip](../images/pageLayout3.png) | Build Your Own Trip form. It has a dropdown for the desired units and optimization, when added. User defined reveals inputs for unitName and unitRadius. The insert button will eventually be replaced with drag and drop. Instructions will be provided for both. User can delete a place or add one into the trip at any location. The search button will return possible locations to add. The submit button plans the trip. The reverse button reverses the trip. A map of Colorado is displayed. Save option is omitted. |
+| ![Our Page Layout Diagram For Trip Results](../images/pageLayout4.png) | Response page. There will be an itinerary with information fields that can be hidden if the user does not want to see them. It will offer a save option for the trip. It will also display the map with the trip's route as an overlay. |
+| ![Frontend Search](../images/SearchUserInterface.jpg) | Design diagram for Search class (User Interface) |
+| ![Backend Search](../images/SearchBackend.jpg) | Hierarchy diagram for Search class (Server) |
 
-![Our Page Layout Diagram For File Upload](../images/pageLayout2.png)
-
-This is the layout for the file upload selection. The map is the map of colorado. 
-
-![Our Page Layout Diagram For Build Your Own Trip](../images/pageLayout3.png)
-
-This is the layout for the Build Your Own Trip form. There will be a dropdown button to select the desired units. If user defined is chosen, two input fields for unitName and unitRadius will become visible. Initially, the design will have a delete and insert button so the user can delete a loctaion or add one into the trip at any location. There will be a search button to look up possible locations to add to the trip. There will be a dropdown for optimization. There will also be a submit button to plan the trip. We will provide instructions on how the insert works. Once we complete our epics for this sprint, if there is still time, we will work on making the places drag and drop. If we are able to get that completed, there will only be a delete option next to each place. There will also be a save button and a reverse button. The map of Colorado is also displayed on this screen.
- 
-![Our Page Layout Diagram For Trip Results](../images/pageLayout4.png)
-   
-This is the response page. There will be an itinerary with information fields that can be hidden if the user does not want to see them. It will offer a save option for the trip. It will also display the map with the trip's route as an overlay. 
 Epics planned for this sprint.
-
-Below is the design diagram for Search class (Server):
-![Backend Search](../images/SearchBackend.jpg)
-Below is the design diagram for Search class (User Interface):
-![Frontend Search](../images/SearchUserInterface.jpg)
 
 * *234 TripCo: All code must be tested: minimum 50% coverage, preferred 70% coverage.*
 * *236 User: I want to design a trip from scratch so I can stop using the other tool: Create an empty itinerary.*
