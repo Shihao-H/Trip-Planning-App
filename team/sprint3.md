@@ -56,14 +56,10 @@ the epics listed above are met.
 | ![Our Page Layout Diagram For File Upload](../images/pageLayout2.png) | File upload selection. The map is the map of colorado. |
 | ![Our Page Layout Diagram For Build Your Own Trip](../images/pageLayout3.png) | Build Your Own Trip form. It has a dropdown for the desired units and optimization, when added. User defined reveals inputs for unitName and unitRadius. The insert button will eventually be replaced with drag and drop. Instructions will be provided for both. User can delete a place or add one into the trip at any location. The search button will return possible locations to add. The submit button plans the trip. The reverse button reverses the trip. A map of Colorado is displayed. Save option is omitted. |
 | ![Our Page Layout Diagram For Trip Results](../images/pageLayout4.png) | Response page. There will be an itinerary with information fields that can be hidden if the user does not want to see them. It will offer a save option for the trip. It will also display the map with the trip's route as an overlay. |
-
+| ![Frontend Search](../images/SearchUserInterface.jpg) | Design diagram for Search class (User Interface) |
+| ![Backend Search](../images/SearchBackend.jpg) | Hierarchy diagram for Search class (Server) |
 
 Epics planned for this sprint.
-
-Below is the design diagram for Search class (Server):
-![Backend Search](../images/SearchBackend.jpg)
-Below is the design diagram for Search class (User Interface):
-![Frontend Search](../images/SearchUserInterface.jpg)
 
 * *234 TripCo: All code must be tested: minimum 50% coverage, preferred 70% coverage.*
 * *236 User: I want to design a trip from scratch so I can stop using the other tool: Create an empty itinerary.*
