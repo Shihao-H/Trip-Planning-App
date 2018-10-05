@@ -11,11 +11,18 @@ class Upload extends Component {
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
         this.SaveTFFI=this.SaveTFFI.bind(this);
         this.fileInput = React.createRef();
-        this.state = {otherTeams: 31403};
+        this.state = {
+            otherTeams: 31403,
+            host: null
+        };
+
     }
 
     updateOtherTeams(event) {
-            this.setState({otherTeams: event.target.value});
+            var str = event.target.value;
+            var portAndHost = str.split(':');
+            this.setState({otherTeams: portAndHost[1]});
+            this.setState({host: portAndHost[0]});
 
     }
     SaveTFFI()
@@ -58,7 +65,14 @@ class Upload extends Component {
 
     handleSubmit(event) {
         let obj=this.props.trip;
-        request(obj,'plan', this.state.otherTeams, 'black-bottle.cs.colostate.edu').then((Fi)=>
+        if(this.state.host === null){
+            request(obj,'plan').then((Fi)=>
+            {
+                this.props.updateTrip('distances',Fi.distances);
+            });
+        }
+
+        request(obj,'plan', this.state.otherTeams, this.state.host).then((Fi)=>
         {
             this.props.updateTrip('distances',Fi.distances);
         });
@@ -83,8 +97,8 @@ class Upload extends Component {
                         REST API Server Address Port:
                         <br/>
                         <input type="text"
-                               placeholder="http://black-bottle.cs.colostate.edu:"
-                               style={{width: 300}}
+                               placeholder="For example: black-bottle.cs.colostate.edu:31403"
+                               style={{width: 350}}
                                onChange={this.updateOtherTeams}
                         />
                         <br/>
