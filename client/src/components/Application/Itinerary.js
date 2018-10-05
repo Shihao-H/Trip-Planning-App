@@ -71,7 +71,7 @@ class Itinerary extends Component {
     {
         return (
             <div>
-            <Button onClick={this.dropdown} className = 'btn-dark' block>Itinerary</Button>
+            <Button onClick={this.dropdown} className = 'btn-dark' size='lg'>Itinerary</Button>
                 <Collapse isOpen = {this.state.collapse}>
                     <Card>
                         <CardBody>
