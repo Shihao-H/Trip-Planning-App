@@ -1,12 +1,20 @@
 import React, {Component} from 'react'
-import {Card, CardBody} from "reactstrap";
+import {Button,Card, CardBody,Collapse} from "reactstrap";
 import { Table } from 'reactstrap';
 
 
 class Itinerary extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+          collapse: true,
+        };
+        this.dropdown = this.dropdown.bind(this);
         this.createTable = this.createTable.bind(this);
+    }
+    dropdown()
+    {
+        this.setState({collapse: !this.state.collapse})
     }
     createTable(){
         let table = [];
@@ -62,17 +70,22 @@ class Itinerary extends Component {
     render()
     {
         return (
-            <Card>
-                <CardBody>
-                    <form className="Form">
-                        <Table className="Table" responsive>
-                            <tbody className="Body">
-                            {this.createTable()}
-                            </tbody>
-                        </Table>
-                    </form>
-                </CardBody>
-            </Card>);
+            <div>
+            <Button onClick={this.dropdown} className = 'btn-dark' size='lg'>Itinerary</Button>
+                <Collapse isOpen = {this.state.collapse}>
+                    <Card>
+                        <CardBody>
+                            <Table className="Table" responsive>
+                             <tbody className="Body">
+                             {this.createTable()}
+                             </tbody>
+                            </Table>
+                        </CardBody>
+                    </Card>
+                </Collapse>
+            </div>
+    );
+
     }
 
 }
