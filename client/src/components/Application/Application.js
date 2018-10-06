@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Container } from 'reactstrap';
 import Info from './Info'
 import Options from './Options';
-import {request} from '../../api/api';
 import Upload from './Upload';
 import { Map } from './Map';
 import { get_config } from '../../api/api';
