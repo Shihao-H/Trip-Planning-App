@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Button} from "reactstrap";
 import {CardBody} from 'reactstrap'
 import {request} from '../../api/api';
+import SaveTrip from './SaveTrip';
 
 class Upload extends Component {
     constructor(props) {
@@ -9,7 +10,6 @@ class Upload extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.LoadFile=this.LoadFile.bind(this);
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
-        this.SaveTFFI=this.SaveTFFI.bind(this);
         this.fileInput = React.createRef();
         this.state = {otherTeams: null};
     }
@@ -18,22 +18,7 @@ class Upload extends Component {
         this.setState({otherTeams: event.target.value});
 
     }
-    SaveTFFI()
-    {
-        let title = this.props.trip.title;
-        let TFFI = JSON.stringify(this.props.trip);
-        if(!title.endsWith(".json"))
-        {
-            title += ".json";
-        }
 
-        let ele = document.createElement('a');
-        ele.setAttribute('href','data:text/plain;charset=ytf-8,' + encodeURIComponent(TFFI));
-        ele.setAttribute('download',title);
-        document.body.appendChild(ele);
-        ele.click();
-        document.body.removeChild(ele);
-    }
 
     LoadFile(event) {
         let file=event.target.files[0];
@@ -94,7 +79,7 @@ class Upload extends Component {
                                onChange={this.updateOtherTeams}
                         />
                         <br/>
-                        <Button className="btn-save" size='lg' onClick={this.SaveTFFI} type="button">Save</Button>
+                            <SaveTrip/>
                         <br/>
                     </form>
                 </CardBody>
