@@ -23,6 +23,7 @@ public class Distance {
         this.unitRadius = '\0';
         this.distance = 0;
     }
+
     /**
      * @param orig trip origin Place object
      * @param dest trip destination Place object
@@ -54,6 +55,21 @@ public class Distance {
         this.unitName=uName;
         this.unitRadius=rad;
         this.distance = 0;
+    }
+
+    /**
+     * @param orig trip origin Place object
+     * @param dest trip destination Place object
+     * @param units String designation of unit type
+     *Creates a distance object with data.
+            */
+    public Distance(Place orig, Place dest, String units, int distance){
+        this.origin = orig;
+        this.destination = dest;
+        this.units = units;
+        this.unitName=null;
+        this.unitRadius = '\0';
+        this.distance = distance;
     }
 
     /**
