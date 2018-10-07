@@ -8,6 +8,15 @@ public class TestCalculate {
     private Distance dist;
 
     @Test
+    public void testOptDistance(){
+        Place origin = new Place("orig", "origin",40.582778, 105.055);
+        Place destination = new Place("dest", "destination", 40.618056, 103.2125);
+        double radius = 3959.0;
+
+        assertEquals(Calculate.optDistance(origin, destination, radius), 97, 1);
+    }
+
+    @Test
     public void testMiles(){
         Place origin = new Place("orig", "origin",40.582778, 105.055);
         Place destination = new Place("dest", "destination", 40.618056, 103.2125);

@@ -7,7 +7,6 @@ import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import com.tripco.t03.planner.Option;
 import static org.junit.Assert.*;
 
 /*
