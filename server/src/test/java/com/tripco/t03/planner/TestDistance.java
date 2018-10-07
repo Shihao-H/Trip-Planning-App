@@ -1,8 +1,5 @@
 package com.tripco.t03.planner;
 
-import static java.lang.System.*;
-import com.google.gson.Gson;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
