@@ -1,6 +1,4 @@
 package com.tripco.t03.planner;
-import com.google.gson.Gson;
-import com.tripco.t03.planner.Place;
 public class Distance {
     public short version = 2;
     public String type = "distance";
@@ -23,6 +21,7 @@ public class Distance {
         this.unitRadius = '\0';
         this.distance = 0;
     }
+
     /**
      * @param orig trip origin Place object
      * @param dest trip destination Place object
@@ -57,6 +56,21 @@ public class Distance {
     }
 
     /**
+     * @param orig trip origin Place object
+     * @param dest trip destination Place object
+     * @param units String designation of unit type
+     *Creates a distance object with data.
+            */
+    public Distance(Place orig, Place dest, String units, int distance){
+        this.origin = orig;
+        this.destination = dest;
+        this.units = units;
+        this.unitName=null;
+        this.unitRadius = '\0';
+        this.distance = distance;
+    }
+
+    /**
      * Sets distance element to circle distance between origin and destination by calling calcDistance
      */
     public void setDistance(){
@@ -64,26 +78,16 @@ public class Distance {
     }
 
     /**
-     * @param distance Distance object
-     * Compares one distance object to another distance object.
-     * @return returns true if equal, false if not equal.
-     */
-    public boolean equals(Distance distance){
-        return this.destination.equals(distance.destination) && this.distance == distance.distance && this.origin.equals(distance.origin)
-                && this.type.equalsIgnoreCase(distance.type) && this.unitName.equalsIgnoreCase(distance.unitName) && this.unitRadius == distance.unitRadius
-                && this.units.equalsIgnoreCase(distance.units) && this.version == distance.version;
-    }
-    /**
      * @return returns the string format for a distance variable
      */
     public String toString(){
-        String out = String.format("Origin: latitude: %f, longitude: %f, name: %s, Destination: latitude: %f, longitude: %f, name: %s,",
-                origin.getLatitude(), origin.getLongitude(), origin.getName(), destination.getLatitude(), destination.getLongitude(), destination.getName());
-        if(this.units.equals("user defined")){
+        String out;
+        if(this.units.equals("user defined")) {
             out = String.format(" Units: %s, Unit Name: %s, Distance: %d.", this.units, this.unitName, this.distance);
-        }else {
+        } else {
             out = String.format(" Units: %s, Distance: %d.", this.units, this.distance);
         }
-        return out;
+        return String.format("Origin: latitude: %f, longitude: %f, name: %s, Destination: latitude: %f, longitude: %f, name: %s,",
+                origin.getLatitude(), origin.getLongitude(), origin.getName(), destination.getLatitude(), destination.getLongitude(), destination.getName()) + out;
     }
 }

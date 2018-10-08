@@ -10,6 +10,15 @@ public class TestDistance {
     //Code in this file is from in class example of TestDistance by Dave Matthews
 
     @Test
+    public void testDistance4(){
+        Place origin = new Place("orig", "origin",18, -104);
+        Place destination = new Place("dest", "destination", 39, 116);
+        dist = new Distance(origin, destination, "kilometers", 12434);
+
+        assertEquals(dist.distance, 12434);
+    }
+
+    @Test
     public void testDistanceMiles(){
         Place origin = new Place("orig", "origin",41.000155556, -109.05);
         Place destination = new Place("dest", "destination", 41.00055556, -102.05166667);
