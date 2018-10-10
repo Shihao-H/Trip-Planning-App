@@ -23,7 +23,7 @@ public class Search {
         this.match = null;
     }
     /**
-     * The Search class has a String variable called match which is used to identify potential 
+     * @summary The Search class has a String variable called match which is used to identify potential 
      * trip destinations for user consideration.
      */
     
