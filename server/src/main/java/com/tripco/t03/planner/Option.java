@@ -9,6 +9,7 @@ public class Option {
   public String units;
   public String unitName;
   public Double unitRadius;
+  public String optimization;
 
   /**
    * Default constructor.
@@ -26,7 +27,18 @@ public class Option {
     this.units = units;
     this.unitName = null;
     this.unitRadius = 0.0;
+    this.optimization = "none";
+  }
 
+  /**
+   * @param units String unit type.
+   * @param optimization String optimization type.
+   * Constructor for basic unit with optimization
+   */
+
+  public Option(String units, String optimization) {
+    this.units = units;
+    this.optimization = optimization;
   }
 
   /**
@@ -39,6 +51,7 @@ public class Option {
     this.units  = units;
     this.unitName = unitName;
     this.unitRadius = unitRadius;
+    this.optimization = "none";
   }
 
   /**
