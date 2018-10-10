@@ -85,9 +85,11 @@ Epics planned for this sprint.
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | *#task, ...* | *#task, ...* | *none* | 
-
-*Add a new row for the scrum session after each lecture. *
+| *10/01/2018* | *237, 238, 239* | *111, 122, 270, 272, 291* | *Trying to wrap our heads around the new plan* |
+| *10/03/2018* | *270, 272, 291* | *111, 122, 261* | *Worrying about studying for other exams* |
+| *10/05/2018* | *261, 300* | *111, 122, 302, 291* | *Worrying about studying for other exams* |
+| *10/08/2018* | *302, 291, 301* | *122, 111, 243, 245* | *Personal life issues* |
+| *10/10/2018* | *243, 245, 249, 247, 266, 265, 288* | *111, 122* | *Headaches trying to learn ReactJS, ReactStrap* |
 
 ## Review
 
