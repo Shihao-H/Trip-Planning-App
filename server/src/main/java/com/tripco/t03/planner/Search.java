@@ -22,7 +22,11 @@ public class Search {
     public Search(){
         this.match = null;
     }
-
+    /**
+     * The Search class has a String variable called match which is used to identify potential 
+     * trip destinations for user consideration.
+     */
+    
     /**
      * A constructor.
      * @param match String compare match with places' names in the database.
