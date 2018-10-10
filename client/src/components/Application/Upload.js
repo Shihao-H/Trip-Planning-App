@@ -41,7 +41,8 @@ class Upload extends Component {
 
     }
 
-    handleSubmit() {
+    handleSubmit(event) {
+        event.preventDefault();
         let obj=this.props.trip;
         if(this.state.otherTeams === null){
             request(obj,'plan').then((Fi)=>
