@@ -24,6 +24,7 @@ public class Search {
     }
 
     /**
+     * A constructor.
      * @param match String compare match with places' names in the database.
      */
     public Search(String match){
