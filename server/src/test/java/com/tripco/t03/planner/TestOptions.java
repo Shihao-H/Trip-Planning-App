@@ -58,6 +58,6 @@ public class TestOptions {
         String json = buildJsonRequest3("miles", "none");
         opt = gson.fromJson(json, Option.class);
 
-        assertNotNull(opt.unitRadius);
+        assertNotNull(opt.optimization);
     }
 }
