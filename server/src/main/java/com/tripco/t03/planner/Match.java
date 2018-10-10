@@ -19,7 +19,7 @@ public class Match {
 
     /** Handles places searching request, creating a new search object from the search request.
      * Does the conversion from Json to a Java class before searching the places.
-     * @param request
+     * @param request should be {a single string}.
      */
     public Match(Request request) {
         // first print the request
