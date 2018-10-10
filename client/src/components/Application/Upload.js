@@ -41,7 +41,7 @@ class Upload extends Component {
 
     }
 
-    handleSubmit(event) {
+    handleSubmit() {
         let obj=this.props.trip;
         if(this.state.otherTeams === null){
             request(obj,'plan').then((Fi)=>
@@ -61,7 +61,7 @@ class Upload extends Component {
         return (
             <div className="card">
                 <CardBody>
-                    <form onSubmit={this.handleSubmit}>
+                    <form>
                         <label>
                             Submit your trip!
                             <br/><br/>
@@ -71,7 +71,7 @@ class Upload extends Component {
                             </small>
                         </label>
                         <br/>
-                        <Button className='btn-outline-dark' size='lg' type="submit">Plan</Button>
+                        <Button className='btn-outline-dark' size='lg' type="submit" onClick={this.handleSubmit}>Plan</Button>
                         <br/><br/>
                         REST API Server Address Port:
                         <br/>
