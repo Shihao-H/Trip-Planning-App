@@ -58,7 +58,7 @@ public class Driver {
         int results = count.getInt(1);
         // iterate through query results and print out the airport codes
         while (query.next()) {
-            Place place = new Place(query.getString("id"),
+            final Place place = new Place(query.getString("id"),
                                     query.getString("name"),
                                     Double.parseDouble(query.getString("latitude")),
                                     Double.parseDouble(query.getString("longitude")));
