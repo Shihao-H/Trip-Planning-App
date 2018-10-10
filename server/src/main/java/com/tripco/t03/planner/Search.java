@@ -15,13 +15,15 @@ public class Search {
     public int limit = 0;
     public ArrayList<Place> places;
 
+    /**
+     * A default constructor.
+     */
     public Search(){
         this.match = null;
     }
 
     /**
      * @param match String compare match with places' names in the database.
-     *
      */
     public Search(String match){
         this.match = match;
