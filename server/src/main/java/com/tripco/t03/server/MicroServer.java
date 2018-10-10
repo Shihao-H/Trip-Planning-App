@@ -1,13 +1,11 @@
 package com.tripco.t03.server;
-import com.tripco.t03.planner.Calculate;
-import com.tripco.t03.planner.Plan;
 
+import com.tripco.t03.planner.Calculate;
+import com.tripco.t03.planner.Match;
+import com.tripco.t03.planner.Plan;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import static spark.Spark.*;
 
@@ -46,6 +44,7 @@ public class MicroServer {
         get("/config", this::config);
         post("/plan", this::plan);
         post("/distance", this::distance);
+        post("/search", this::search);
 
         System.out.println("\n\nServer running on port: " + this.port + "\n\n");
     }
@@ -176,6 +175,25 @@ public class MicroServer {
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result = new Calculate(request).getDistance();
+        }catch(Exception e){
+            result = "{}";
+            getErrorMessage(e);
+        }
+        return result;
+    }
+
+    /** A REST API for search.
+     *
+     * @param request should be {a single string}.
+     * @param response no idea what is this.
+     * @return should be a list of places.
+     */
+    private String search(Request request, Response response) {
+        String result;
+        response.type("application/json");
+        response.header("Access-Control-Allow-Origin", "*");
+        try{
+            result = new Match(request).getMatch();
         }catch(Exception e){
             result = "{}";
             getErrorMessage(e);
