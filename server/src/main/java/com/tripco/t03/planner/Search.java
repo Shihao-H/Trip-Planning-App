@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 /**
  * The Search class supports TFFI so it can easily be converted to/from Json by Gson.
- *
  */
 public class Search {
 
@@ -16,19 +15,15 @@ public class Search {
     public ArrayList<Place> places;
 
     /**
-     * A default constructor.
+     * This is a default constructor.
      * @param match String set to null as default.
      */
     public Search(){
         this.match = null;
     }
-    /**
-     * @summary The Search class has a String variable called match which is used to identify potential 
-     * trip destinations for user consideration.
-     */
     
     /**
-     * A constructor.
+     * This is a constructor.
      * @param match String compare match with places' names in the database.
      */
     public Search(String match){
