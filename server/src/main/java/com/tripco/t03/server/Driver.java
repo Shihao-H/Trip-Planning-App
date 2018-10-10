@@ -43,6 +43,10 @@ public class Driver {
         }
     }
 
+    /**
+     * This function is meant to print the JSON on the terminal/ console to log.
+     *
+     */
     private static void printJson(ResultSet count, ResultSet query, String match)
             throws SQLException {
         System.out.printf("\n{\n");

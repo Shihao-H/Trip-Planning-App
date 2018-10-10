@@ -19,10 +19,17 @@ public class Search {
         this.match = null;
     }
 
+    /**
+     * @param match String compare match with places' names in the database.
+     *
+     */
     public Search(String match){
         this.match = match;
     }
 
+    /**
+     * The top level method that does searching.
+     */
     public void match(){
         Driver driver = new Driver();
         driver.find(this.match);

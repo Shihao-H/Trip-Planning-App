@@ -17,6 +17,10 @@ public class Match {
 
     private Search search;
 
+    /** Handles places searching request, creating a new search object from the search request.
+     * Does the conversion from Json to a Java class before searching the places.
+     * @param request
+     */
     public Match(Request request) {
         // first print the request
         System.out.println(HTTP.echoRequest(request));
@@ -33,6 +37,9 @@ public class Match {
         search.match();
     }
 
+    /** Handles the response for a Search object.
+     * Does the conversion from a Java class to a Json string.*
+     */
     public String getMatch() {
         Gson gson = new Gson();
         return gson.toJson(search);
