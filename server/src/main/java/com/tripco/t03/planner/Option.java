@@ -33,9 +33,8 @@ public class Option {
   /**
    * @param units String unit type.
    * @param optimization String optimization type.
-   * Constructor for basic unit with optimization
+   * Constructor for basic unit with optimization.
    */
-
   public Option(String units, String optimization) {
     this.units = units;
     this.optimization = optimization;
