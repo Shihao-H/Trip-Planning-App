@@ -1,28 +1,32 @@
 package com.tripco.t03.server;
+
+import com.tripco.t03.planner.Place;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.tripco.t03.planner.Place;
 
 public class Driver {
     // db configuration information
-    private final static String myDriver = "com.mysql.jdbc.Driver";
-    private final static String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
-    private final static String user = "cs314-db";
-    private final static String pass = "eiK5liet1uej";
+    private static final String myDriver = "com.mysql.jdbc.Driver";
+    private static final  String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
+    private static final String user = "cs314-db";
+    private static final String pass = "eiK5liet1uej";
     // fill in SQL queries to count the number of records and to retrieve the data
     private static String count = "";
     private static String search = "";
     public static ArrayList<Place> places = new ArrayList<Place>();
 
+    /**
+     * The find method is meant to get access to the database and execute queries.
+     *
+     */
     public static void find(String match){
         count = "select count(*) from airports";
-        search =  "select id,name,municipality,latitude,longitude from airports where name like '%" +
-        match +  "%'or municipality like '%" + match + "%'order by name";
+        search =  "select id,name,municipality,latitude,longitude from airports where name like '%"
+                    + match + "%'or municipality like '%" + match + "%'order by name";
         try {
             Class.forName(myDriver);
             // connect to the database and query
@@ -32,14 +36,15 @@ public class Driver {
                  ResultSet rsCount = stCount.executeQuery(count);
                  ResultSet rsQuery = stQuery.executeQuery(search)
             ) {
-                printJSON(rsCount, rsQuery, match);
+                printJson(rsCount, rsQuery, match);
             }
         } catch (Exception e) {
             System.err.println("Exception: " + e.getMessage());
         }
     }
 
-    private static void printJSON(ResultSet count, ResultSet query, String match) throws SQLException {
+    private static void printJson(ResultSet count, ResultSet query, String match)
+            throws SQLException {
         System.out.printf("\n{\n");
         System.out.printf("\"type\": \"find\",\n");
         System.out.printf("\"title\": \"%s\",\n", match);
@@ -49,16 +54,18 @@ public class Driver {
         int results = count.getInt(1);
         // iterate through query results and print out the airport codes
         while (query.next()) {
-            Place place = new Place(query.getString("id"), query.getString("name"),
-                    Double.parseDouble(query.getString("latitude")), Double.parseDouble(query.getString("longitude")));
+            Place place = new Place(query.getString("id"),
+                                    query.getString("name"),
+                                    Double.parseDouble(query.getString("latitude")),
+                                    Double.parseDouble(query.getString("longitude")));
             System.out.printf(" {\"id\":\"%s\", ", query.getString("id"));
             System.out.printf("\"name\":\"%s\", ", query.getString("name"));
             System.out.printf("\"latitude\":\"%s\", ", query.getString("latitude"));
             System.out.printf("\"longitude\":\"%s\"}", query.getString("longitude"));
             if (--results == 0)
-                System.out.printf("\n");
+                {System.out.printf("\n");}
             else
-                System.out.printf(",\n");
+                {System.out.printf(",\n");}
             places.add(place);
         }
         System.out.printf(" ]\n}\n");

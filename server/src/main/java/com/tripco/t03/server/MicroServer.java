@@ -1,14 +1,11 @@
 package com.tripco.t03.server;
-import com.tripco.t03.planner.Calculate;
-import com.tripco.t03.planner.Plan;
-import com.tripco.t03.planner.Match;
 
+import com.tripco.t03.planner.Calculate;
+import com.tripco.t03.planner.Match;
+import com.tripco.t03.planner.Plan;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import static spark.Spark.*;
 

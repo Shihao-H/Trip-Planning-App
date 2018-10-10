@@ -1,8 +1,12 @@
 package com.tripco.t03.planner;
-import java.util.ArrayList;
 
 import com.tripco.t03.server.Driver;
+import java.util.ArrayList;
 
+/**
+ * The Search class supports TFFI so it can easily be converted to/from Json by Gson.
+ *
+ */
 public class Search {
 
     public String type = "search";

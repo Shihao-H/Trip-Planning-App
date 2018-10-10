@@ -1,15 +1,23 @@
 package com.tripco.t03.planner;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.tripco.t03.server.HTTP;
 import spark.Request;
 
+/**
+ * This class handles to the conversions of the search request/ resopnse,
+ * converting from the Json string in the request body to a Search object,
+ * searching the places, and
+ * converting the resulting Search object back to a Json string
+ * so it may returned as the response.
+ */
 public class Match {
 
     private Search search;
 
-    public Match (Request request) {
+    public Match(Request request) {
         // first print the request
         System.out.println(HTTP.echoRequest(request));
 
