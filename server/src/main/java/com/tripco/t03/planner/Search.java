@@ -20,9 +20,9 @@ public class Search {
     }
 
     public void match(){
-        //this.places = new ArrayList<Place>(Arrays.asList(new Place("dnvr", "Denver", 39.7392, -104.9903),new Place("bldr", "Boulder", 40.01499, -105.27055)));
         Driver driver = new Driver();
         driver.find(this.match);
+        this.places = (ArrayList<Place>) driver.places.clone();
     }
 
 
