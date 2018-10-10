@@ -20,6 +20,10 @@ public class TestOptions {
         return String.format("{\"units\": \"%s\", " + "\"unitName\": \"%s\", " + "\"unitRadius\":%f}", units, unitName, radius);
     }
 
+    private String buildJsonRequest3(String units, String optimization){
+        return String.format("{\"units\": \"%s\", " + "\"optimization\": \"%s\"}", units, optimization);
+    }
+
     @Before
     public void setup(){
         gson = new Gson();
@@ -47,5 +51,13 @@ public class TestOptions {
         opt = gson.fromJson(json, Option.class);
 
         assertNotNull(opt.unitRadius);
+    }
+
+    @Test
+    public void testUnitOptimization(){
+        String json = buildJsonRequest3("miles", "none");
+        opt = gson.fromJson(json, Option.class);
+
+        assertNotNull(opt.optimization);
     }
 }

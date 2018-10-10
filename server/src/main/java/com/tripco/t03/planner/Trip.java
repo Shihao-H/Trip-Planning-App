@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Trip {
   // The variables in this class should reflect TFFI.
-  public int version = 2;
+  public int version = 3;
   public String type = "trip";
   public String title;
   public Option options;
