@@ -17,6 +17,7 @@ public class Search {
 
     /**
      * A default constructor.
+     * @param match String set to null as default.
      */
     public Search(){
         this.match = null;
