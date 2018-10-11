@@ -17,7 +17,7 @@ public class Driver {
     // fill in SQL queries to count the number of records and to retrieve the data
     private static String count = "";
     private static String search = "";
-    public static ArrayList<Place> places = new ArrayList<Place>();
+    public static ArrayList<Place> places;
 
     /**
      * The find method is meant to get access to the database and execute queries.
@@ -26,7 +26,7 @@ public class Driver {
     public static void find(String match){
         count = "select count(*) from airports";
         search =  "select id,name,municipality,latitude,longitude from airports where name like '%"
-                    + match + "%'or municipality like '%" + match + "%'order by name";
+                    + match + "%'or municipality like '%" + match + "%'order by name limit 20";
         try {
             Class.forName(myDriver);
             // connect to the database and query
@@ -53,6 +53,7 @@ public class Driver {
         System.out.printf("\"type\": \"find\",\n");
         System.out.printf("\"title\": \"%s\",\n", match);
         System.out.printf("\"places\": [\n");
+        places = new ArrayList<Place>();
         // determine the number of results that match the query
         count.next();
         int results = count.getInt(1);
