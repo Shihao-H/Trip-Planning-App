@@ -26,7 +26,7 @@ public class Driver {
     public static void find(String match){
         count = "select count(*) from airports";
         search =  "select id,name,municipality,latitude,longitude from airports where name like '%"
-                    + match + "%'or municipality like '%" + match + "%'order by name";
+                    + match + "%'or municipality like '%" + match + "%'order by name limit 20";
         try {
             Class.forName(myDriver);
             // connect to the database and query
