@@ -13,11 +13,15 @@ export class SearchBox extends Component {
     handleSearch(event)
     {
         event.preventDefault();
-        let obj=this.props.search;
-        request(obj,'search').then((Fi)=>
+        this.props.updateSearch('places',[]);
+        if(this.props.search.match!=="")
         {
-            this.props.updateSearch('places',Fi.places);
-        });
+            let obj=this.props.search;
+            request(obj,'search').then((Fi)=>
+            {
+                this.props.updateSearch('places',Fi.places);
+            });
+        }
     }
 
     createTable()
@@ -29,6 +33,13 @@ export class SearchBox extends Component {
             }
             return table;
         }
+        else
+        {
+            let empty = [];
+            empty.push(<tr>{' '}</tr>);
+            return empty;
+        }
+
     }
 
     render() {
