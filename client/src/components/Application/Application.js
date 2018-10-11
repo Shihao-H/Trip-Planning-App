@@ -6,6 +6,7 @@ import Upload from './Upload';
 import { Map } from './Map';
 import { get_config } from '../../api/api';
 import Itinerary from './Itinerary'
+import {SearchBox} from "./SearchBox";
 
 
 /* Renders the application.
@@ -27,9 +28,17 @@ class Application extends Component {
         places: [],
         distances: [],
         map: '<svg width="1920" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
+      },
+      search: {
+          version   : 3,
+          type      : "search",
+          match     : "",
+          limit     : 0,
+          places    : []
       }
     };
     this.updateTrip = this.updateTrip.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
     this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
     this.updateOptions = this.updateOptions.bind(this);
     this.updateUpload = this.updateUpload.bind(this);
@@ -73,6 +82,13 @@ class Application extends Component {
             this.setState(trip);
         }
 
+        updateSearch(field, value)
+        {
+            let search = this.state.search;
+            search[field] = value;
+            this.setState(search);
+        }
+
         render()
         {
             if (!this.state.config) {
@@ -86,6 +102,7 @@ class Application extends Component {
                     <Upload trip={this.state.trip} config={this.state.config} updateTrip={this.updateTrip}  updateOptions={this.updateOptions}/>
                     <Map/>
                     <Itinerary trip={this.state.trip}/>
+                    <SearchBox search={this.state.search} updateSearch={this.updateSearch}/>
                 </Container>
             )
         }
