@@ -198,17 +198,18 @@ public class Optimize {
      * @param mid mid index.
      * @param end upper index.
      */
-    private void mergeLong(int begin, int mid, int end){
-        if((begin<mid)&&(longitude[mid].longitude < longitude[begin].longitude)){
-            Place temp = longitude[begin];
-            longitude[begin]=longitude[mid];
-            longitude[mid]=temp;
-            mergeLong(begin+1, mid, end);
-        }else if((begin==mid)&&(mid<end)){
-            mergeLong(begin, mid+1, end);
-        }else if((begin < end)){
-            mergeLong(begin+1, mid, end);
+    private void mergeLong(int begin, int mid, int end) {
+        if (begin < mid) {
+            if (longitude[mid].longitude < longitude[begin].longitude) {
+                Place temp = longitude[begin];
+                longitude[begin] = longitude[mid];
+                longitude[mid] = temp;
+                mergeLong(begin + 1, mid, end);
+            }
+        }else {
+            if (mid < end) {
+                mergeLong(begin, mid + 1, end);
+            }
         }
     }
-
 }
