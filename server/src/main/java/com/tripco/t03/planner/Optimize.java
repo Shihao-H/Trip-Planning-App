@@ -14,7 +14,7 @@ public class Optimize {
         this.longitude = new Place[trip.places.size()];
         this.optimizeArray = new Distance[trip.places.size()][trip.places.size()];
         setLong();
-        buildOptArray(0, 0);
+        buildOptArray();
         this.optTrip = nearestNeighborInit(0,0, this.optimizeArray.length-1);
 
     }
@@ -136,26 +136,22 @@ public class Optimize {
         }
         return false;
     }
+    
     /**
      * Builds the 2D array of Distances.
-     * @param i int column index.
-     * @param j int row index.
      */
-    private void buildOptArray(int i, int j){
-            if(i < longitude.length){
-                if(j < longitude.length){
-                    if(trip.options.units.equalsIgnoreCase("user defined")){
-                        optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units, trip.options.unitName, trip.options.unitRadius);
-                        optimizeArray[i][j].setDistance();
-                    }else {
-                        optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units);
-                        optimizeArray[i][j].setDistance();
-                    }
-                    buildOptArray(i, j+1);
-                }else{
-                    buildOptArray(i+1, 0);
+    private void buildOptArray(){
+        for (int i = 0; i < optimizeArray.length; i++) {
+            for (int j = 0; j < optimizeArray[i].length; j++) {
+                if (trip.options.units.equalsIgnoreCase("user defined")) {
+                    optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units, trip.options.unitName, trip.options.unitRadius);
+                    optimizeArray[i][j].setDistance();
+                } else {
+                    optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units);
+                    optimizeArray[i][j].setDistance();
                 }
             }
+        }
     }
 
     /**
