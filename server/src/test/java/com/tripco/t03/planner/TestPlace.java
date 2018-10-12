@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-
 import static org.junit.Assert.*;
 
 /*
@@ -14,6 +13,17 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestPlace {
+  
+  Place p = new Place();
+
+  @Test
+  public void testEmptyPlace() {
+    assertNull(p.id);
+    assertNull(p.name);
+    assertEquals(p.latitude, '\0', 1);
+    assertEquals(p.longitude, '\0', 1);
+  }
+  
   Place place;
 
   // Setup to be done before every test in TestPlan
@@ -28,5 +38,24 @@ public class TestPlace {
 
     assertTrue(testPlace.equals(place));
   }
+  
+  @Test
+  public void testGetName() {
+    assertEquals(place.getName(), "Denver");
+  }
 
+  @Test
+  public void testGetLat() {
+    assertEquals(place.getLatitude(), 1.0, 1);
+  }
+
+  @Test
+  public void testGetLong() {
+    assertEquals(place.getLongitude(), 0.0, 1);
+  }
+
+  @Test
+  public void testToString() {
+    assertEquals(place.toString(), "Id: dnvr, Name: Denver, Latitude: 1.000000, Longitude: 0.000000");
+  }
 }
