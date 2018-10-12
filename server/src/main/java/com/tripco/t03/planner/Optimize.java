@@ -14,7 +14,7 @@ public class Optimize {
         this.longitude = new Place[trip.places.size()];
         this.optimizeArray = new Distance[trip.places.size()][trip.places.size()];
         setLong();
-        buildOptArray(0, 0);
+        buildOptArray();
         this.optTrip = nearestNeighborInit(0,0, this.optimizeArray.length-1);
 
     }
@@ -98,28 +98,30 @@ public class Optimize {
      */
     private int nearestNeighbor(int count, int begin, int end, Distance[] check) {
         //find smallest distance such that destination is not in optTrip
-        if(end > begin) {
+        int result = 0;
+        if(begin < end) {
             int mid = (begin + end) / 2;
             int a = nearestNeighbor(count, begin, mid, check);
             int b =nearestNeighbor(count, mid+1, end, check);
             if((a == -1) || (b == -1)){
-                return Math.max(a, b);
+                result = Math.max(a, b);
             }else {
                 if(this.optimizeArray[count][a].distance < this.optimizeArray[count][b].distance){
-                    return a;
+                    result = a;
                 }else{
-                    return b;
+                    result = b;
                 }
             }
         }else{
             if(this.optimizeArray[count][begin].distance == 0) {
-                return -1;
+                result = -1;
             }else if(isUsed(check, count, begin)){
-                return -1;
+                result = -1;
             }else{
-                return begin;
+                result = begin;
             }
         }
+        return result;
     }
 
     private boolean isUsed(Distance[] dist, int column, int row){
@@ -135,26 +137,22 @@ public class Optimize {
         }
         return false;
     }
+
     /**
      * Builds the 2D array of Distances.
-     * @param i int column index.
-     * @param j int row index.
      */
-    private void buildOptArray(int i, int j){
-            if(i < longitude.length){
-                if(j < longitude.length){
-                    if(trip.options.units.equalsIgnoreCase("user defined")){
-                        optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units, trip.options.unitName, trip.options.unitRadius);
-                        optimizeArray[i][j].setDistance();
-                    }else {
-                        optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units);
-                        optimizeArray[i][j].setDistance();
-                    }
-                    buildOptArray(i, j+1);
-                }else{
-                    buildOptArray(i+1, 0);
+    private void buildOptArray(){
+        for (int i = 0; i < optimizeArray.length; i++) {
+            for (int j = 0; j < optimizeArray[i].length; j++) {
+                if (trip.options.units.equalsIgnoreCase("user defined")) {
+                    optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units, trip.options.unitName, trip.options.unitRadius);
+                    optimizeArray[i][j].setDistance();
+                } else {
+                    optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units);
+                    optimizeArray[i][j].setDistance();
                 }
             }
+        }
     }
 
     /**
