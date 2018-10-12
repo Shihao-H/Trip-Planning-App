@@ -15,9 +15,9 @@ import static org.junit.Assert.*;
 @RunWith(JUnit4.class)
 public class TestTrip {
 
-  Trip trip;
-  Option opt;
-  ArrayList<Place> places;
+  private Trip trip;
+  private Option opt;
+  private ArrayList<Place> places;
 
   // Setup to be done before every test in TestPlan
   @Before
