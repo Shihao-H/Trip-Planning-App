@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {Button, Card, CardBody, CardImg, Collapse, Table} from "reactstrap";
+import {Button, Card, CardBody, Container, Table} from "reactstrap";
 import {request} from '../../api/api';
+import Optimization from "./Optimization";
 
 
 export class SearchBox extends Component {
@@ -14,9 +15,9 @@ export class SearchBox extends Component {
     {
         event.preventDefault();
         this.props.updateSearch('places',[]);
-        if(this.props.search.match!=="")
+        let obj=this.props.search;
+        if(obj.match!=="")
         {
-            let obj=this.props.search;
             request(obj,'search').then((Fi)=>
             {
                 this.props.updateSearch('places',Fi.places);
@@ -60,6 +61,9 @@ export class SearchBox extends Component {
                                 {this.createTable()}
                                 </tbody>
                             </Table>
+                        <Container id="SearchBox"/>
+                        <Optimization trip={this.props.trip} search={this.props.search} config={this.props.config} updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
+                        <Container/>
                     </form>
                 </CardBody>
             </div>);
