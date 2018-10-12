@@ -4,11 +4,10 @@ import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class TestOptions {
-    
+
     private Option emptyOpt = new Option();
 
     @Test
@@ -68,7 +67,7 @@ public class TestOptions {
 
         assertNotNull(opt.optimization);
     }
-    
+
     Option testOpt;
 
     @Test
@@ -96,5 +95,4 @@ public class TestOptions {
         testOpt = new Option("kilometers");
         assertTrue(actualOption.equals(testOpt));
     }
-    
 }
