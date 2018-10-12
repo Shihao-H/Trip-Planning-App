@@ -34,12 +34,6 @@ public class TestOptimize {
         opt = new Optimize(trip);
         Distance[] optTrip = opt.getOptimalTrip();
 
-        for (Distance dist: optTrip
-             ) {
-            System.out.print("Origin: " + dist.origin.name + ", Destination: " + dist.destination.name + ", Distance: " + dist.distance + "\n");
-        }
-        System.out.print("Distance Total: " + opt.getTripDistance() + "\n");
-
         assertEquals(optTrip.length, trip.places.size());
     }
 }
