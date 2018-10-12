@@ -74,9 +74,6 @@ public class Optimize {
         }else{
             int optTripIndex = 0;
             int index = nearestNeighbor(count, 0, this.optimizeArray[begin].length-1, optResult);
-
-            System.out.print("::::::::::::::::::NNInit: else: count: " + count + ", index: " + index + ", optTripIndex: " + optTripIndex + ":::::::::::::::::::::::::\n");
-
             optResult[optTripIndex] = this.optimizeArray[count][index];
             optTripIndex++;
             while(optTripIndex < optResult.length-1){
