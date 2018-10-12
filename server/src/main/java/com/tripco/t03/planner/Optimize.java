@@ -98,30 +98,32 @@ public class Optimize {
      */
     private int nearestNeighbor(int count, int begin, int end, Distance[] check) {
         //find smallest distance such that destination is not in optTrip
-        if(end > begin) {
+        int result = 0;
+        if(begin < end) {
             int mid = (begin + end) / 2;
             int a = nearestNeighbor(count, begin, mid, check);
             int b =nearestNeighbor(count, mid+1, end, check);
             if((a == -1) || (b == -1)){
-                return Math.max(a, b);
+                result = Math.max(a, b);
             }else {
                 if(this.optimizeArray[count][a].distance < this.optimizeArray[count][b].distance){
-                    return a;
+                    result = a;
                 }else{
-                    return b;
+                    result = b;
                 }
             }
         }else{
             if(this.optimizeArray[count][begin].distance == 0) {
-                return -1;
+                result = -1;
             }else if(isUsed(check, count, begin)){
-                return -1;
+                result = -1;
             }else{
-                return begin;
+                result = begin;
             }
         }
+        return result;
     }
-
+    
     private boolean isUsed(Distance[] dist, int column, int row){
         String destination = this.optimizeArray[column][row].destination.name;
         String origin = this.optimizeArray[column][row].origin.name;
