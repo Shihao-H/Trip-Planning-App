@@ -8,7 +8,6 @@ import { get_config } from '../../api/api';
 import Itinerary from './Itinerary'
 import {SearchBox} from "./SearchBox";
 
-
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
  */
@@ -16,14 +15,15 @@ class Application extends Component {
   constructor(props){
     super(props);
     this.state = {
-      config: null,
+      config:null,
       trip: {
         type: "trip",
         title: "",
         options : {
           units: ["miles", 'kilometers', 'nautical miles', 'user defined'], 
           unitName: "",
-          unitRadius: 0.00
+          unitRadius: 0.00,
+            optimization:"none"
         },
         places: [],
         distances: [],
@@ -102,7 +102,7 @@ class Application extends Component {
                     <Upload trip={this.state.trip} config={this.state.config} updateTrip={this.updateTrip}  updateOptions={this.updateOptions}/>
                     <Map/>
                     <Itinerary trip={this.state.trip}/>
-                    <SearchBox search={this.state.search} updateSearch={this.updateSearch}/>
+                    <SearchBox trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateOptions={this.updateOptions}/>
                 </Container>
             )
         }
