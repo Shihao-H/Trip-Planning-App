@@ -9,11 +9,14 @@ public class Config {
 
   private short version = 3;
   private String type = "config";
+  private List<String> units;
+  private List<Optimization> optimization;
 
-  private List<String> units = Arrays.asList("miles", "kilometers", "nautical miles", "user defined");
+  public Config(){
+    units = Arrays.asList("miles", "kilometers", "nautical miles", "user defined");
+    optimization = Arrays.asList(new Optimization("none", "The trip is not optimized."), new Optimization("short", "Nearest neighbor."));
 
-  private List<Optimization> optimization = Arrays.asList(new Optimization("none", "The trip is not optimized."),
-                                                          new Optimization("short", "Nearest neighbor."));
+  }
 
   static String getConfig() {
     Config conf = new Config();
