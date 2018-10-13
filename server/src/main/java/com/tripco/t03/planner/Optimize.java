@@ -43,7 +43,7 @@ public class Optimize {
     private int getTotalDistance(Distance[] input){
         int total = 0;
         for (Distance dist: input
-             ) {
+        ) {
             total = total + dist.distance;
         }
         return total;
@@ -126,11 +126,12 @@ public class Optimize {
 
     private boolean isUsed(Distance[] dist, int column, int row){
         String destination = this.optimizeArray[column][row].destination.name;
+        String origin = this.optimizeArray[column][row].origin.name;
         for (Distance distObj: dist
-             ) {
+        ) {
             if (distObj != null){
                 if(distObj.origin.name.equalsIgnoreCase(destination)){
-                   return true;
+                    return true;
                 }
             }
 
@@ -169,7 +170,7 @@ public class Optimize {
     private void copyArray(){
         int i = 0;
         for (Place place: this.trip.places
-             ) {
+        ) {
             longitude[i] = place;
             i++;
         }
