@@ -123,9 +123,10 @@ public class Optimize {
         }
         return result;
     }
-
+    
     private boolean isUsed(Distance[] dist, int column, int row){
         String destination = this.optimizeArray[column][row].destination.name;
+        String origin = this.optimizeArray[column][row].origin.name;
         for (Distance distObj: dist
              ) {
             if (distObj != null){
@@ -137,7 +138,7 @@ public class Optimize {
         }
         return false;
     }
-
+    
     /**
      * Builds the 2D array of Distances.
      */
