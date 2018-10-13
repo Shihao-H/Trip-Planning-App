@@ -38,12 +38,18 @@ public class LineDistance {
         }
     }
 
-    public ArrayList<Double> getCoordinates(){
-        ArrayList<Double> coordinates = new ArrayList<>();
+    public String getCoordinates(){
+        String path = " d=\"M ";
         for(int i = 0; i < this.places.size(); i++) {
-            coordinates.add(533.30365 + getLongDistFromCenter(this.places.get(i).longitude, setNorth(places.get(i).latitude)));
-            coordinates.add(391.5412 - getLatDistFromCenter(this.places.get(i).latitude, setEast(places.get(i).longitude)));
+            path += String.format("%.6f", (533.30365 + getLongDistFromCenter(this.places.get(i).longitude, setNorth(places.get(i).latitude)))) +
+                    "," + String.format("%.6f", (391.5412 - getLatDistFromCenter(this.places.get(i).latitude, setEast(places.get(i).longitude))));
+            if(i != (this.places.size()-1)){
+                path += " L ";
+            }else{
+                path += " z";
+            }
         }
-        return coordinates;
+        path+="\" style=\"fill:none;fill-rule:evenodd;stroke:red;stroke-width:2.5\" ";
+        return path;
     }
 }
