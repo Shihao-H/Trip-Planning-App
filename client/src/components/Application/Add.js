@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardBody, Button} from 'reactstrap';
+import {Card, CardBody, Button, Input} from 'reactstrap';
 
 export class Add extends Component {
     constructor(props)
