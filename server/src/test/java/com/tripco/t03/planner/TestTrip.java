@@ -56,7 +56,7 @@ public class TestTrip {
       assertEquals( expTotalDist, totalDistance, 5);
   }
 
-/**  @Test
+  /**@Test
   public void testMap() {
       trip = new Trip(opt, places);
       trip.plan();
