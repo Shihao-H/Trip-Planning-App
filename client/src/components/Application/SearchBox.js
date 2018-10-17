@@ -51,11 +51,12 @@ export class SearchBox extends Component {
                         <br/>
                             <input type="text"
                             placeholder="place name"
+
                             style={{width: 300}}
                             onChange={event => {this.props.updateSearch('match', event.target.value)}}
                              />
+                            <button onClick={this.handleSearch} className = 'btn-dark' type="button">Search</button>
                         <br/>
-                        <Button onClick={this.handleSearch} className = 'btn-dark' size='lg'>Search</Button>
                             <Table className="Table" responsive>
                                 <tbody className="Body">
                                 {this.createTable()}
