@@ -6,7 +6,6 @@ export class DistanceCal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // collapse:false,
             distances: {
                 type          : "distance",
                 version       : 3,
@@ -25,14 +24,8 @@ export class DistanceCal extends Component {
         this.updateLoc = this.updateLoc.bind(this);
         this.updateDistance = this.updateDistance.bind(this);
         this.Calculate= this.Calculate.bind(this);
-        // this.updateUnit = this.updateUnit.bind(this);
 
     }
-    // updateUnit()
-    // {
-    //     let distances=this.state.distances;
-    //     let option=this.props.options
-    // }
 
     updateLoc(field,value,origin) {
         if(origin===false){
@@ -57,10 +50,6 @@ export class DistanceCal extends Component {
 
     Calculate()
     {
-        this.updateUnit();
-        // let obj=this.state.distances;
-        console.log("Origin ",this.state.distances);
-        // console.log("Destination ",this.state.distances.destination);
         request(this.state.distances,'distance').then((response)=>
         {
             console.log("LOL ",response);

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Button, Input,Col} from 'reactstrap';
-import {request} from "../../api/api";
 
 export class Add extends Component {
     constructor(props) {
         super(props);
         this.state = {
             place: {
+                title:"",
                 id: "",
                 name: "",
                 latitude: 0.00,
@@ -18,11 +18,9 @@ export class Add extends Component {
     }
 
     addPlace() {
-        // event.preventDefault();
         console.log("Before " ,this.props.trip);
         let copy={
             title:this.state.place.title,
-            unit:this.state.place.unit,
             id:this.state.place.id,
             name:this.state.place.name,
             latitude:this.state.place.latitude,
@@ -31,22 +29,6 @@ export class Add extends Component {
         let temp=this.props.trip.places;
         temp.push(copy);
         this.props.updateTrip('places',temp);
-        // this.props.updateTrip('title', "ABC");
-        // this.props.updateOptions('units', "miles");
-        // // if(obj.options.units==="user defined")
-        // // {
-        // //     this.props.updateOptions('unitRadius',obj.options.unitRadius);
-        // //     this.props.updateOptions('unitName',obj.options.unitName);
-        // // }
-        // // this.props.updateTrip('places', obj.places);
-        //this.props.updateTrip('map', '<svg width="1920" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>');
-        // request(this.props.trip,'plan').then((Fi)=>
-        // {
-        //     this.props.updateTrip('distances',Fi.distances);
-        // });
-        // console.log("LOL " ,this.props.trip);
-
-
     }
 
     updatePlaces(field,value) {
@@ -67,10 +49,8 @@ export class Add extends Component {
             <div>
                         <Col>
                             <p> Add Your Own </p>
-                            {/*<Input type="text" placeholder="title"*/}
-                                   {/*onChange={(e) => this.updatePlaces('longitude', e.target.value)}/>*/}
-                            {/*<Input type="text" placeholder="unit"*/}
-                                   {/*onChange={(e) => this.updatePlaces('longitude', e.target.value)}/>*/}
+                            <Input type="text" placeholder="title ex.lol"
+                                   onChange={(e) => this.updatePlaces('title', e.target.value)}/>
                             <Input type="text" placeholder="Id ex.lol"
                                    onChange={(e) => this.updatePlaces('id', e.target.value)}/>
                             <Input type="text" placeholder="Place ex.mariana trench"
