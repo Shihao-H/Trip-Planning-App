@@ -8,6 +8,14 @@ export class SearchBox extends Component {
     constructor(props)
     {
         super(props);
+        this.state = {
+            place: {
+                id: "",
+                name: "",
+                latitude: 0.00,
+                longitude: 0.00
+            }
+        }
         this.handleSearch = this.handleSearch.bind(this);
     }
 
@@ -25,12 +33,32 @@ export class SearchBox extends Component {
         }
     }
 
+    addPlace(i)
+    {
+        // let place = this.state.place;
+        // place.id = this.props.search.places[i].id;
+        // place.name = this.props.search.places[i].name;
+        // place.latitude=this.props.search.places[i].latitude;
+        // place.longitude=this.props.search.places[i].longitude;
+        // this.setState(place);
+        // let copy={
+        //     id:this.state.place.id,
+        //     name:this.state.place.name,
+        //     latitude:this.state.place.latitude,
+        //     longitude:this.state.place.longitude
+        // }
+        // let temp=this.props.trip.places;
+        // temp.push(copy);
+        // this.props.updateTrip('places',temp);
+
+    }
+
     createTable()
     {
         if(this.props.search.places.length !== 0){
             let table = [];
             for (let i = 0; i < this.props.search.places.length; i++) {
-                table.push(<tr>{this.props.search.places[i].name}</tr>);
+                table.push(<tr key={'LOL' + i}><button type={"button"} onClick={this.addPlace()}>+</button>{this.props.search.places[i].name}</tr>);
             }
             return table;
         }
@@ -63,7 +91,8 @@ export class SearchBox extends Component {
                                 </tbody>
                             </Table>
                         <Container id="SearchBox"/>
-                        <Optimization trip={this.props.trip} search={this.props.search} config={this.props.config} updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
+                        <Optimization trip={this.props.trip} search={this.props.search} config={this.props.config}
+                                      updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
                         <Container/>
                     </form>
                 </CardBody>

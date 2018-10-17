@@ -93,8 +93,8 @@ class Upload extends Component {
                         <br/>
                         </Col>
                         <Col md={6}>
-                            <Add trip={this.props.trip} search={this.props.search} config={this.props.config}
-                                 TripPushPlace={this.props.TripPushPlace} updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
+                            <Add trip={this.props.trip} search={this.props.search} config={this.props.config} updateTrip={this.props.updateTrip}
+                                  updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
                         </Col>
                     </Row>
                 </CardBody>
