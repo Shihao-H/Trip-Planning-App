@@ -14,8 +14,9 @@ public class TestConfig {
     @Before
     public void setUp(){
         this.config = new Config();
-        json = "{\"version\":3,\"type\":\"config\",\"units\":[\"miles\",\"kilometers\",\"nautical miles\",\"user defined\"],\"optimization\":"
-                + "[{\"label\":\"none\",\"description\":\"The trip is not optimized.\"},{\"label\":\"short\",\"description\":\"Nearest neighbor.\"}]}";
+        json = "{\"type\":\"config\",\"version\":3,\"units\":[\"miles\",\"kilometers\",\"nautical miles\",\"user defined\"],\"optimization\":"
+                + "[{\"label\":\"none\",\"description\":\"The trip is not optimized.\"},{\"label\":\"short\",\"description\":\"Nearest neighbor.\"}]," +
+                "\"attributes\":[\"name\",\"id\",\"latitude\",\"longitude\"]}";
     }
 
     @Test

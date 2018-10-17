@@ -7,7 +7,6 @@ import { Map } from './Map';
 import { get_config } from '../../api/api';
 import Itinerary from './Itinerary'
 import {SearchBox} from "./SearchBox";
-import Calculator from "./Calculator"
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -122,7 +121,6 @@ class Application extends Component {
         return (
             <Container id="Application">
                 <Info/>
-                <Calculator/>
                 <Options options={this.state.trip.options} config={this.state.config}
                          updateOptions={this.updateOptions}/>
                 <Upload trip={this.state.trip} config={this.state.config} TripPushPlace={this.TripPushPlace}
