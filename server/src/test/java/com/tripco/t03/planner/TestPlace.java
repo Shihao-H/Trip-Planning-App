@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-
 import static org.junit.Assert.*;
 
 /*
@@ -38,5 +37,25 @@ public class TestPlace {
     Place testPlace = new Place("dnvr", "Denver", 1.0, 0.0);
 
     assertTrue(testPlace.equals(place));
+  }
+  
+  @Test
+  public void testGetName() {
+    assertEquals(place.getName(), "Denver");
+  }
+
+  @Test
+  public void testGetLat() {
+    assertEquals(place.getLatitude(), 1.0, 1);
+  }
+
+  @Test
+  public void testGetLong() {
+    assertEquals(place.getLongitude(), 0.0, 1);
+  }
+
+  @Test
+  public void testToString() {
+    assertEquals(place.toString(), "Id: dnvr, Name: Denver, Latitude: 1.000000, Longitude: 0.000000");
   }
 }

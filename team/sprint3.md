@@ -90,6 +90,7 @@ Epics planned for this sprint.
 | *10/05/2018* | *261, 300* | *111, 122, 302, 291* | *Worrying about studying for other exams* |
 | *10/08/2018* | *302, 291, 301* | *122, 111, 243, 245* | *Personal life issues* |
 | *10/10/2018* | *243, 245, 249, 247, 266, 265, 288* | *111, 122* | *Headaches trying to learn ReactJS, ReactStrap* |
+| *10/12/2018* | *255, 264, 323, 327, 251, 268, 277* | *111, 122, 250, 258, 259, 263, 326, 343, 345, 347, 349* | *Nearest neighbor algorithm, front end stuff, boost the test coverage* |
 
 ## Review
 

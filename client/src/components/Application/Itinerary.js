@@ -7,7 +7,7 @@ class Itinerary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          collapse: true,
+          collapse: false,
         };
         this.dropdown = this.dropdown.bind(this);
         this.createTable = this.createTable.bind(this);
@@ -17,10 +17,7 @@ class Itinerary extends Component {
     {
         this.setState({collapse: !this.state.collapse})
     }
-    // handleDelete(i)
-    // {
-    //     this.props.trip.places.splice(i, 1);
-    // }
+  
     createTable(){
         let table = [];
         let children = [];
