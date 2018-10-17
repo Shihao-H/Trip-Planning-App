@@ -7,6 +7,7 @@ import { Map } from './Map';
 import { get_config } from '../../api/api';
 import Itinerary from './Itinerary'
 import {SearchBox} from "./SearchBox";
+import DistanceCal from "./DistanceCal";
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -38,10 +39,12 @@ class Application extends Component {
       }
     };
     this.updateTrip = this.updateTrip.bind(this);
+    this.clearConfig = this.clearConfig.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
     this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
     this.updateOptions = this.updateOptions.bind(this);
     this.updateUpload = this.updateUpload.bind(this);
+
   }
        
     
@@ -61,6 +64,11 @@ class Application extends Component {
             let trip = this.state.trip;
             trip[field] = value;
             this.setState(trip);
+        }
+
+        clearConfig()
+        {
+            this.setState({'config': null});
         }
 
         updateBasedOnResponse(value)
@@ -99,10 +107,12 @@ class Application extends Component {
                     <Info/>
                     <Options options={this.state.trip.options} config={this.state.config}
                              updateOptions={this.updateOptions}/>
-                    <Upload trip={this.state.trip} config={this.state.config} updateTrip={this.updateTrip}  updateOptions={this.updateOptions}/>
+                        <Upload trip={this.state.trip} config={this.state.config} updateOptions={this.updateOptions} clearConfig={this.clearConfig}
+                                updateSearch={this.updateSearch} updateTrip={this.updateTrip}/>
                     <Map/>
                     <Itinerary trip={this.state.trip}/>
-                    <SearchBox trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateOptions={this.updateOptions}/>
+                    <SearchBox trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
+                    <DistanceCal trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
                 </Container>
             )
         }

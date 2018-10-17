@@ -36,6 +36,14 @@ class Optimization extends Component{
                                     value={"short"}
                                     onClick={this.clickButton}
                                     >Short</Button>
+                                <Button
+                                    value={"shorter"}
+                                    onClick={this.clickButton}
+                                    >Shorter</Button>
+                                <Button
+                                    value={"shortest"}
+                                    onClick={this.clickButton}
+                                    >Shortest</Button>
                             </ButtonGroup>
                         </Card>
                     </Collapse>

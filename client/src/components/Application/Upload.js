@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
-import {Button} from "reactstrap";
+import {Button, Row, Col, Container} from "reactstrap";
 import {CardBody} from 'reactstrap'
 import {request} from '../../api/api';
 import SaveTrip from './SaveTrip';
+import Add from "./Add";
+import Clear from "./Clear";
+
 
 class Upload extends Component {
     /* This is a constructor for upload.
@@ -81,7 +84,8 @@ class Upload extends Component {
         return (
             <div className="card">
                 <CardBody>
-                    <form>
+                    <Row>
+                        <Col md={6}>
                         <label>
                             Submit your trip!
                             <br/><br/>
@@ -101,9 +105,17 @@ class Upload extends Component {
                                onChange={this.updateOtherTeams}
                         />
                         <br/>
-                            <SaveTrip/>
+                            <SaveTrip trip={this.props.trip}/>
+                            <Clear
+                                   LoadFile={this.LoadFile} trip={this.props.trip} search={this.props.search} config={this.props.config} clearConfig={this.props.clearConfig}
+                                   updateOptions={this.props.updateOptions} updateSearch={this.props.updateSearch} updateTrip={this.props.updateTrip}/>
                         <br/>
-                    </form>
+                        </Col>
+                        <Col md={6}>
+                            <Add trip={this.props.trip} search={this.props.search} config={this.props.config} updateTrip={this.props.updateTrip}
+                                  updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
+                        </Col>
+                    </Row>
                 </CardBody>
             </div>
         );

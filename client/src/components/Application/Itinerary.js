@@ -11,12 +11,13 @@ class Itinerary extends Component {
         };
         this.dropdown = this.dropdown.bind(this);
         this.createTable = this.createTable.bind(this);
+        // this.handleDelete = this.handleDelete.bind(this);
     }
     dropdown()
     {
         this.setState({collapse: !this.state.collapse})
     }
-
+  
     createTable(){
         let table = [];
         let children = [];

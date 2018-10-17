@@ -9,7 +9,7 @@ export class Map extends Component {
     {
         super(props);
         this.state = {
-            collapse: true,
+            collapse: false,
         };
         this.dropdown = this.dropdown.bind(this);
     }
