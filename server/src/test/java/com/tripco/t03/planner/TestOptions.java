@@ -4,10 +4,17 @@ import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class TestOptions {
+
+    private Option emptyOpt = new Option();
+
+    @Test
+    public void testEmptyOpt() {
+        assertNull(emptyOpt.units = null);
+        assertNull(emptyOpt.unitName = null);
+    }
 
     private Option opt;
     private Gson gson;
@@ -59,5 +66,33 @@ public class TestOptions {
         opt = gson.fromJson(json, Option.class);
 
         assertNotNull(opt.optimization);
+    }
+
+    Option testOpt;
+
+    @Test
+    public void testOptWithOpt() {
+        testOpt = new Option("miles", "none");
+
+        assertEquals(testOpt.units, "miles");
+        assertEquals(testOpt.optimization, "none");
+    }
+
+    @Test
+    public void testToString() {
+        testOpt = new Option("miles", "none");
+        assertEquals(testOpt.toString(), "Option: units: miles");
+        testOpt = new Option("user defined", "meters", 1000.0);
+        assertEquals(testOpt.toString(), "Option: units: user defined, Unit name: meters, Unit Radius of Earth: 1000.0\n");
+    }
+
+    @Test
+    public void testEquals() {
+        Option actualOption = new Option("user defined", "meters", 1000.0);
+        testOpt = new Option("user defined", "meters", 1000.0);
+        assertTrue(actualOption.equals(testOpt));
+        actualOption = new Option("kilometers");
+        testOpt = new Option("kilometers");
+        assertTrue(actualOption.equals(testOpt));
     }
 }
