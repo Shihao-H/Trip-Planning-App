@@ -19,7 +19,7 @@ export class Add extends Component {
 
     addPlace() {
         // event.preventDefault();
-        console.log("Before " ,this.props.trip);
+        //console.log("Before " ,this.props.trip);
         let copy={
             title:this.state.place.title,
             unit:this.state.place.unit,

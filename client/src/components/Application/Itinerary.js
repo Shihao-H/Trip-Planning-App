@@ -113,11 +113,11 @@ class Itinerary extends Component {
                 || this.state.display.Latitude === true || this.state.display.Longitude === true
                 || this.state.display.Leg === true || this.state.display.Total === true)
             {
-                children.push(<th key='' className="checkPlace">
-                    <div className="checkAll">
-                        <input type="checkbox" name="checkAll" id={"checkAll"} checked={this.props.selectAll}
-                               onChange={this.toggleSelectAll}/><label htmlFor={"checkAll"}><span></span></label>
-                    </div></th>);
+                children.push(<th key='checkAll' className="checkPlace">
+                    <form>
+                        <input type="checkbox" name="checkAll" id={"checkAll"} checked={this.props.selectAll} value={this.props.selectAll}
+                               onChange={this.toggleSelectAll}/>
+                    </form></th>);
             }
             if(this.state.display.Name === true)
                 children.push(<th key='destination'>{"Place"}</th>);
@@ -140,12 +140,12 @@ class Itinerary extends Component {
                     || this.state.display.Latitude === true || this.state.display.Longitude === true
                     || this.state.display.Leg === true || this.state.display.Total === true)
                 {
-                    cell.push(<th className="checkPlace">
-                        <div className="checkOne">
+                    cell.push(<th key={'check'+i} className="checkPlace">
+                        <form>
                             <input type="checkbox" name="checkOne" id={"checkOne" + i} checked={this.props.selected[this.props.trip.places[i].id]}
                                    value={this.props.trip.places[i].id}
-                                   onChange={(event) => {this.toggle(event.target.value)}}/><label htmlFor={"checkOne"}><span></span></label>
-                        </div></th>);
+                                   onChange={(event) => {this.toggle(event.target.value)}}/>
+                        </form></th>);
                 }
                 if(this.state.display.Name === true)
                     cell.push(<th key={'destination' + i}>{this.props.trip.places[i].name}</th>);
