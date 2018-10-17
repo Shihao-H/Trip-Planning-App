@@ -12,12 +12,18 @@ class Upload extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.LoadFile=this.LoadFile.bind(this);
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
+        this.updateHost=this.updateHost.bind(this);
         this.fileInput = React.createRef();
-        this.state = {otherTeams: null};
+        this.state = {otherTeams: null, host: null};
     }
 
     updateOtherTeams(event) {
         this.setState({otherTeams: event.target.value});
+
+    }
+
+    updateHost(event) {
+        this.setState({host: event.target.value});
 
     }
 
@@ -51,7 +57,7 @@ class Upload extends Component {
                 this.props.updateTrip('distances',Fi.distances);
             });
         } else {
-            request(obj,'plan', this.state.otherTeams, 'black-bottle.cs.colostate.edu').then((Fi)=>
+            request(obj,'plan', this.state.otherTeams, this.state.host).then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
             });
@@ -66,33 +72,43 @@ class Upload extends Component {
                         <Col md={6}>
                             <label>
                                 Submit your trip!
-                                <br/><br/>
+                                <br/>
                                 <input type="file" ref={this.fileInput} onChange={this.LoadFile}/>
                                 <small className="form-text text-muted">
                                     Upload a file that contains a Trip object in the TFFI format.
                                 </small>
                             </label>
                             <br/>
-                            <Button className='btn-outline-dark' size='lg' type="submit" onClick={this.handleSubmit}>Plan</Button>
-                            <br/><br/>
-                            REST API Server Address Port:
-                            <br/>
+                            <Button className='btn-outline-dark' type="submit" onClick={this.handleSubmit}>Plan</Button>
+                        </Col>
+
+                        <Col md={6}>
+                            Host name:<br/>
                             <input type="text"
-                                   placeholder="for example: 31403"
-                                   style={{width: 300}}
-                                   onChange={this.updateOtherTeams}
+                                   placeholder="black-bottle.cs.colostate.edu"
+                                   onChange={this.updateHost}
                             />
                             <br/>
+                            Port:<br/>
+                            <input type="text"
+                                   placeholder="31403"
+                                   onChange={this.updateOtherTeams}
+                            />
+                        </Col>
+
+                        <Col>
                             <SaveTrip trip={this.props.trip}/>
                             <Clear
                                 LoadFile={this.LoadFile} trip={this.props.trip} search={this.props.search} config={this.props.config} clearConfig={this.props.clearConfig}
                                 updateOptions={this.props.updateOptions} updateSearch={this.props.updateSearch} updateTrip={this.props.updateTrip}/>
                             <br/>
                         </Col>
+
                         <Col md={6}>
                             <Add trip={this.props.trip} search={this.props.search} config={this.props.config}
                                  TripPushPlace={this.props.TripPushPlace} updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
                         </Col>
+
                     </Row>
                 </CardBody>
             </div>
