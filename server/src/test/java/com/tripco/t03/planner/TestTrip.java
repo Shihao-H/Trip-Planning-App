@@ -41,6 +41,15 @@ public class TestTrip {
   }
 
   @Test
+  public void testSetRoute(){
+        trip = new Trip("test", opt, places);
+        String map = trip.map;
+        trip.setRoute();
+
+        assertNotSame(map, trip.map);
+  }
+
+  @Test
   public void testDistances() {
       trip = new Trip(opt, places);
       ArrayList<Integer> expectedDistances = new ArrayList<>();

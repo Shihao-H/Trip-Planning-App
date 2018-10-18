@@ -6,8 +6,6 @@ import com.google.gson.JsonParser;
 import com.tripco.t03.server.HTTP;
 import spark.Request;
 
-import java.util.ArrayList;
-
 /**
  * This class handles to the conversions of the trip request/resopnse,
  * converting from the Json string in the request body to a Trip object,
