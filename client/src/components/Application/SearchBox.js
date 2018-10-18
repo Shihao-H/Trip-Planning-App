@@ -1,23 +1,16 @@
 import React, {Component} from 'react'
-import {Button, Card, CardBody, Container, Table} from "reactstrap";
+import {Button, Card, CardBody, Container, Table, Input} from "reactstrap";
 import {request} from '../../api/api';
 import Optimization from "./Optimization";
-import Options from "./Options";
+import AddButton from "./AddButton";
 
 
 export class SearchBox extends Component {
     constructor(props)
     {
         super(props);
-        this.state = {
-            place: {
-                id: "",
-                name: "",
-                latitude: 0.00,
-                longitude: 0.00
-            }
-        };
         this.handleSearch = this.handleSearch.bind(this);
+        this.createTable = this.createTable.bind(this);
     }
 
     handleSearch(event)
@@ -34,39 +27,27 @@ export class SearchBox extends Component {
         }
     }
 
-    addPlace(i)
-    {
-        // let place = this.state.place;
-        // place.id = this.props.search.places[i].id;
-        // place.name = this.props.search.places[i].name;
-        // place.latitude=this.props.search.places[i].latitude;
-        // place.longitude=this.props.search.places[i].longitude;
-        // this.setState(place);
-        // let copy={
-        //     id:this.state.place.id,
-        //     name:this.state.place.name,
-        //     latitude:this.state.place.latitude,
-        //     longitude:this.state.place.longitude
-        // }
-        // let temp=this.props.trip.places;
-        // temp.push(copy);
-        // this.props.updateTrip('places',temp);
-
-    }
-
     createTable()
     {
         if(this.props.search.places.length !== 0){
             let table = [];
             for (let i = 0; i < this.props.search.places.length; i++) {
-                table.push(<tr key={'search' + i}><Button type={"button"} onClick={this.addPlace()}>+</Button>{this.props.search.places[i].name}</tr>);
+                table.push(<tr key={'search_place' + i}><td>{this.props.search.places[i].name}</td>
+                            <td><AddButton
+                                newPlace={this.props.search.places[i]}
+                                updateTrip={this.props.updateTrip}
+                                trip={this.props.trip}
+                                search={this.props.search}
+                                config={this.props.config}
+                            />
+                            </td></tr>);
             }
             return table;
         }
         else
         {
             let empty = [];
-            empty.push(<tr key={"space"}></tr>);
+            empty.push(<tr key={'empty_string'}><th>{' '}</th></tr>);
             return empty;
         }
 
@@ -74,16 +55,21 @@ export class SearchBox extends Component {
 
     render() {
         return (
-            <div>
+            <Card>
                 <CardBody>
                     <form>
+                        <label>
+                            Search for a new location
+                            <br/>
+                            <br/>
+                            <Input
+                                type="text"
+                                placeholder="Place name"
+                                style={{width: "75%"}}
+                                onChange={event => {this.props.updateSearch('match', event.target.value)}}
+                            />
                         <br/>
-                            <input type="text"
-                            placeholder="place name"
-                            style={{width: 300}}
-                            onChange={event => {this.props.updateSearch('match', event.target.value)}}
-                             />
-                            <button onClick={this.handleSearch} className = 'btn-dark' type="button">Search</button>
+                            <Button onClick={this.handleSearch} className = 'btn-dark btn-outline-dark' type="button" size='lg'>Search</Button>
                         <br/>
                             <Table className="Table" responsive>
                                 <tbody className="Body">
@@ -91,13 +77,17 @@ export class SearchBox extends Component {
                                 </tbody>
                             </Table>
                         <Container id="SearchBox"/>
-
+                        <Optimization
+                            trip={this.props.trip}
+                            search={this.props.search}
+                            config={this.props.config}
+                            updateSearch={this.props.updateSearch}
+                            updateOptions={this.props.updateOptions}
+                        />
                         <Container/>
+                        </label>
                     </form>
                 </CardBody>
-            </div>);
+            </Card>);
     }
 }
-export default SearchBox;
-
-
