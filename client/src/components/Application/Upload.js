@@ -35,13 +35,13 @@ class Upload extends Component {
     handleSubmit(event) {
         event.preventDefault();
         let obj=this.props.trip;
-        if(this.state.otherTeams === null){
+        if(this.props.otherTeams === null){
             request(obj,'plan').then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
             });
         } else {
-            request(obj,'plan', this.state.otherTeams, this.state.host).then((Fi)=>
+            request(obj,'plan', this.props.otherTeams, this.props.host).then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
             });

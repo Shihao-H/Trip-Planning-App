@@ -35,7 +35,9 @@ class Application extends Component {
                 places    : []
             },
             selected: new Map(),
-            selectAll: false
+            selectAll: false,
+            otherTeams: null,
+            host: null
         };
         this.updateTrip = this.updateTrip.bind(this);
         this.clearConfig = this.clearConfig.bind(this);
@@ -46,6 +48,8 @@ class Application extends Component {
         this.TripPushPlace = this.TripPushPlace.bind(this);
         this.updateSelected = this.updateSelected.bind(this);
         this.updateSelectAll = this.updateSelectAll.bind(this);
+        this.updateOtherTeams=this.updateOtherTeams.bind(this);
+        this.updateHost=this.updateHost.bind(this);
     }
 
     componentWillMount()
@@ -112,6 +116,18 @@ class Application extends Component {
         this.setState({selectAll: value});
     }
 
+
+    updateOtherTeams(event) {
+        this.setState({otherTeams: event.target.value});
+
+    }
+
+    updateHost(event) {
+        this.setState({host: event.target.value});
+
+    }
+
+
     render()
     {
         if (!this.state.config) {
@@ -122,12 +138,16 @@ class Application extends Component {
                 <Info/>
                 <Trip
                     config={this.state.config}
+                    host={this.state.host}
+                    otherTeams={this.state.otherTeams}
                     search={this.state.search}
                     trip={this.state.trip}
                     clearConfig={this.state.clearConfig}
                     LoadFile={this.LoadFile}
                     TripPushPlace={this.TripPushPlace}
+                    updateHost={this.updateHost}
                     updateOptions={this.updateOptions}
+                    updateOtherTeams={this.updateOtherTeams}
                     updateSearch={this.updateSearch}
                     updateSelectAll={this.updateSelectAll}
                     updateSelected={this.updateSelected}
@@ -141,8 +161,12 @@ class Application extends Component {
                     updateTrip={this.updateTrip}/>
                 <Options
                     config={this.state.config}
+                    host={this.state.host}
                     options={this.state.trip.options}
-                    updateOptions={this.updateOptions}/>
+                    otherTeams={this.state.otherTeams}
+                    updateHost={this.updateHost}
+                    updateOptions={this.updateOptions}
+                    updateOtherTeams={this.updateOtherTeams}/>
             </Container>
         )
     }
