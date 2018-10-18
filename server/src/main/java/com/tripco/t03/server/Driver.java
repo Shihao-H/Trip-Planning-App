@@ -17,16 +17,23 @@ public class Driver {
     // fill in SQL queries to count the number of records and to retrieve the data
     private static String count = "";
     private static String search = "";
+    private static String limitQuery = "";
     public static ArrayList<Place> places;
 
     /**
      * The find method is meant to get access to the database and execute queries.
      *
      */
-    public static void find(String match){
-        count = "select count(*) from airports";
+    public static void find(String match, int limit){
+        if(limit == 0)
+            limitQuery = "limit 10";
+        else
+            limitQuery = "limit " + Integer.toString(limit);
         search =  "select id,name,municipality,latitude,longitude from airports where name like '%"
-                    + match + "%'or municipality like '%" + match + "%'order by name limit 20";
+                    + match + "%'or municipality like '%" + match + "%'order by name " + limitQuery;
+        count = "select count(*) from airports where name like '%"
+                + match + "%'or municipality like '%" + match + "%'order by name";
+
         try {
             Class.forName(myDriver);
             // connect to the database and query
@@ -36,7 +43,7 @@ public class Driver {
                  ResultSet rsCount = stCount.executeQuery(count);
                  ResultSet rsQuery = stQuery.executeQuery(search)
             ) {
-                printJson(rsCount, rsQuery, match);
+                printJson(rsCount, rsQuery, match, limit);
             }
         } catch (Exception e) {
             System.err.println("Exception: " + e.getMessage());
@@ -47,7 +54,7 @@ public class Driver {
      * This function is meant to print the JSON on the terminal/ console to log.
      *
      */
-    private static void printJson(ResultSet count, ResultSet query, String match)
+    private static void printJson(ResultSet count, ResultSet query, String match, int limit)
             throws SQLException {
         System.out.printf("\n{\n");
         System.out.printf("\"type\": \"find\",\n");
@@ -57,6 +64,11 @@ public class Driver {
         // determine the number of results that match the query
         count.next();
         int results = count.getInt(1);
+        System.out.printf("%d results found.\n", results);
+        if(limit == 0)
+            System.out.println("The number of results displayed is limited to 10.\n");
+        else
+            System.out.printf("The number of results displayed is limited to %d.\n", limit);
         // iterate through query results and print out the airport codes
         while (query.next()) {
             final Place place = new Place(query.getString("id"),

@@ -18,7 +18,6 @@ export class Add extends Component {
     }
 
     addPlace() {
-        console.log("Before " ,this.props.trip);
         let copy={
             title:this.state.place.title,
             id:this.state.place.id,

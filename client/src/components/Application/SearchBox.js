@@ -15,7 +15,7 @@ export class SearchBox extends Component {
                 latitude: 0.00,
                 longitude: 0.00
             }
-        }
+        };
         this.handleSearch = this.handleSearch.bind(this);
     }
 
