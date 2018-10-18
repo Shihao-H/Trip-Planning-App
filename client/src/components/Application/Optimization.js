@@ -22,34 +22,28 @@ class Optimization extends Component{
     }
     render() {
         const buttons = this.props.config.optimization.map((optimization) =>
-            <Button
-                key={'optimization_button_' + optimization.label}
+            <Button key={'optimization_button_' + optimization.label}
                 className='btn-outline-dark optimization-button'
                 active={this.props.options.optimization === optimization.label}
                 value={optimization.label}
-                onClick={this.clickButton}
-            >
+                onClick={this.clickButton}>
                 {optimization.label.charAt(0).toUpperCase() + optimization.label.slice(1)}
             </Button>
         );
-
-
         return (
-            <Card>
-                <CardBody>
-                    <p>Select the optimizations you wish to use.</p>
-                    <Button
-                        size='lg'
-                        onClick={this.dropdown}
-                        className = 'btn-outline-dark'
-                    >Optimization</Button>
-                    <Collapse isOpen = {this.state.collapse}>
-                        <ButtonGroup size="lg" vertical>
-                            {buttons}
-                        </ButtonGroup>
-                    </Collapse>
-                </CardBody>
-            </Card>
+            <div className={'text-center'}>
+                <Card>
+                    <CardBody>
+                        <p>Select the optimizations you wish to use.</p>
+                        <Button size='lg'
+                            onClick={this.dropdown}
+                            className = 'btn-outline-dark'>Optimization</Button>
+                        <Collapse isOpen = {this.state.collapse}>
+                            <ButtonGroup size="lg" vertical>{buttons}</ButtonGroup>
+                        </Collapse>
+                    </CardBody>
+                </Card>
+            </div>
         )
     };
 }

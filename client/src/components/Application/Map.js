@@ -21,7 +21,7 @@ export class Map extends Component {
 
     render() {
         return (
-            <div>
+            <div className={'text-center'}>
                 <Button onClick={this.dropdown} size='lg'>Map</Button>
                     <Collapse isOpen = {this.state.collapse}>
                         <Card>

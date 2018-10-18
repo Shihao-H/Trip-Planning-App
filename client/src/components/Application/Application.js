@@ -143,56 +143,30 @@ class Application extends Component {
         this.updateSelectAll(false);
     }
 
-    render()
-    {
-        if (!this.state.config) {
-            return <div/>
-        }
+    render() {
+        if (!this.state.config) {return <div/>}
         return (
-            <Container id="Application">
-                <Card>
-                    <CardBody>
-                <Info/>
-                <Trip
-                    config={this.state.config}
-                    display={this.state.display}
-                    host={this.state.host}
-                    otherTeams={this.state.otherTeams}
-                    search={this.state.search}
-                    selectAll={this.state.selectAll}
-                    selected={this.state.selected}
-                    trip={this.state.trip}
-                    clearConfig={this.state.clearConfig}
-                    LoadFile={this.LoadFile}
-                    TripPushPlace={this.TripPushPlace}
-                    updateHost={this.updateHost}
-                    updateOptions={this.updateOptions}
-                    updateOtherTeams={this.updateOtherTeams}
-                    updateSearch={this.updateSearch}
-                    updateSelectAll={this.updateSelectAll}
-                    updateSelected={this.updateSelected}
-                    updateTrip={this.updateTrip}/>
-                <OptionPanel
-                    config={this.state.config}
-                    display={this.state.display}
-                    host={this.state.host}
-                    options={this.state.trip.options}
-                    otherTeams={this.state.otherTeams}
-                    updateDisplay={this.updateDisplay}
-                    updateHost={this.updateHost}
-                    updateOptions={this.updateOptions}
-                    updateOtherTeams={this.updateOtherTeams}/>
-                        <DistanceCal
-                            config={this.state.config}
-                            options={this.state.trip.options}
-                            search={this.state.search}
-                            trip={this.state.trip}
-                            updateOptions={this.updateOptions}
-                            updateSearch={this.updateSearch}
-                            updateTrip={this.updateTrip}/>
-                    </CardBody>
-                </Card>
-            </Container>
+            <Container id="Application"><Card><CardBody>
+                        <Info/>
+                        <Trip config={this.state.config} display={this.state.display}
+                              host={this.state.host} otherTeams={this.state.otherTeams}
+                              search={this.state.search} selectAll={this.state.selectAll}
+                              selected={this.state.selected} trip={this.state.trip}
+                              clearConfig={this.state.clearConfig} LoadFile={this.LoadFile}
+                              TripPushPlace={this.TripPushPlace} updateHost={this.updateHost}
+                              updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
+                              updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
+                              updateSelected={this.updateSelected} updateTrip={this.updateTrip}/>
+                        <OptionPanel config={this.state.config} display={this.state.display}
+                                     host={this.state.host} options={this.state.trip.options}
+                                     otherTeams={this.state.otherTeams} updateDisplay={this.updateDisplay}
+                                     updateHost={this.updateHost} updateOptions={this.updateOptions}
+                                     updateOtherTeams={this.updateOtherTeams}/>
+                        <DistanceCal config={this.state.config} options={this.state.trip.options}
+                                     search={this.state.search} trip={this.state.trip}
+                                     updateOptions={this.updateOptions} updateSearch={this.updateSearch}
+                                     updateTrip={this.updateTrip}/>
+                    </CardBody></Card></Container>
         )
     }
 }
