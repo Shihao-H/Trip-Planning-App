@@ -26,7 +26,12 @@ class SaveTrip extends Component{
 
 
     render() {
-        return (<Button className="btn-save" onClick={this.SaveTFFI} type="button">Save</Button>)
+        return (<Button
+                    size='lg'
+                    className="btn-save btn-dark btn-outline-dark"
+                    onClick={this.SaveTFFI}
+                    type="button"
+                >Save</Button>)
     };
 }
 

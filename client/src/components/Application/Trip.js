@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container,Row,Col} from 'reactstrap';
+import {Container,Row,Col,Card,CardBody} from 'reactstrap';
 import Add from "./Add"
 import Itinerary from "./Itinerary"
 import Map from "./Map"
@@ -17,10 +17,11 @@ class Trip extends Component {
     render()
     {
         return (
-            <Container id="Trip">
-                        <Row>
-                            <Col>
-                                <Plan
+            <Card>
+                <Container id="Trip">
+                    <Row>
+                        <Col>
+                            <Plan
                                 config={this.props.config}
                                 host={this.props.host}
                                 otherTeams={this.props.otherTeams}
@@ -36,44 +37,45 @@ class Trip extends Component {
                                 updateSelected={this.props.updateSelected}
                                 updateTrip={this.props.updateTrip}
                             />
-                            </Col>
-                            <Col>
-                                <SearchBox
-                                    config={this.props.config}
-                                    search={this.props.search}
-                                    trip={this.props.trip}
-                                    updateOptions={this.props.updateOptions}
-                                    updateSearch={this.props.updateSearch}
-                                    updateTrip={this.props.updateTrip}/>
-                            </Col>
-                            <Col>
-                                <Add
-                                    config={this.props.config}
-                                    search={this.props.search}
-                                    trip={this.props.trip}
-                                    TripPushPlace={this.props.TripPushPlace}
-                                    updateOptions={this.props.updateOptions}
-                                    updateSearch={this.props.updateSearch}/>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Map/>
-                            </Col>
-                            <Col>
-                                <Itinerary
-                                    display={this.props.display}
-                                    selectAll={this.props.selectAll}
-                                    selected={this.props.selected}
-                                    trip={this.props.trip}
-                                    updateOptions={this.props.updateOptions}
-                                    updatePlaces={this.props.updatePlaces}
-                                    updateSelectAll={this.props.updateSelectAll}
-                                    updateSelected={this.props.updateSelected}
-                                    updateTrip={this.props.updateTrip}/>
-                            </Col>
-                        </Row>
-        </Container>
+                        </Col>
+                        <Col>
+                            <SearchBox
+                                config={this.props.config}
+                                search={this.props.search}
+                                trip={this.props.trip}
+                                updateOptions={this.props.updateOptions}
+                                updateSearch={this.props.updateSearch}
+                                updateTrip={this.props.updateTrip}/>
+                        </Col>
+                        <Col>
+                            <Add
+                                config={this.props.config}
+                                search={this.props.search}
+                                trip={this.props.trip}
+                                TripPushPlace={this.props.TripPushPlace}
+                                updateOptions={this.props.updateOptions}
+                                updateSearch={this.props.updateSearch}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Map/>
+                        </Col>
+                        <Col>
+                            <Itinerary
+                                display={this.props.display}
+                                selectAll={this.props.selectAll}
+                                selected={this.props.selected}
+                                trip={this.props.trip}
+                                updateOptions={this.props.updateOptions}
+                                updatePlaces={this.props.updatePlaces}
+                                updateSelectAll={this.props.updateSelectAll}
+                                updateSelected={this.props.updateSelected}
+                                updateTrip={this.props.updateTrip}/>
+                        </Col>
+                    </Row>
+                </Container>
+            </Card>
         )
     }
 }

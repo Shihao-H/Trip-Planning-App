@@ -1,4 +1,4 @@
-import {Col} from "reactstrap";
+import {Col, Input, Card, CardBody} from "reactstrap";
 import React, {Component} from 'react'
 
 class InterOperate extends Component{
@@ -8,19 +8,26 @@ class InterOperate extends Component{
 
     render() {
         return (
-            <Col md={6}>
-                Host name:<br/>
-                <input type="text"
-                       placeholder="black-bottle"
-                       onChange={this.props.updateHost}
-                />
-                <br/>
-                Port:<br/>
-                <input type="text"
-                       placeholder="31403"
-                       onChange={this.props.updateOtherTeams}
-                />
-            </Col>
+            <Card>
+                <CardBody>
+                    <p>Select another team's site.</p>
+                        Host name:<br/>
+                        <Input
+                            style={{width: "100%"}}
+                            type="text"
+                            placeholder="black-bottle"
+                            onChange={this.props.updateHost}
+                        />
+                        <br/>
+                        Port:<br/>
+                        <Input
+                            style={{width: "100%"}}
+                            type="text"
+                            placeholder="31403"
+                            onChange={this.props.updateOtherTeams}
+                        />
+                </CardBody>
+            </Card>
         )
     };
 }

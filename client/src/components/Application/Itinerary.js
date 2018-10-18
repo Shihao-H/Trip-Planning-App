@@ -187,25 +187,28 @@ class Itinerary extends Component {
                                 </tbody>
                             </Table>
                             <Button
+                                size='lg'
                                 key={'delete_button'}
                                 className='btn-outline-dark delete-button'
                                 onClick={this.clickDeleteButton}
                             >
-                                Delete
-                            </Button>
+                                Delete selected location
+                            </Button><br/><br/>
                             <Button
+                                size='lg'
                                 key={'reverse_button'}
                                 className='btn-outline-dark reverse-button'
                                 onClick={this.clickReverseButton}
                             >
-                                Reverse
-                            </Button>
+                                Reverse trip
+                            </Button><br/><br/>
                             <Button
+                                size='lg'
                                 key={'changeStart_button'}
                                 className='btn-outline-dark changeStart-button'
                                 onClick={this.clickChangeStartButton}
                             >
-                                Change it to the starting location!
+                                Change selected to the starting location!
                             </Button>
                         </CardBody>
                     </Card>
