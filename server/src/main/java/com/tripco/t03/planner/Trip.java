@@ -1,112 +1,156 @@
 package com.tripco.t03.planner;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.tripco.t03.server.HTTP;
-import spark.Request;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
  * The Trip class supports TFFI so it can easily be converted to/from Json by Gson.
  *
  */
+
 public class Trip {
-  // The variables in this class should reflect TFFI.
-  public int version = 3;
-  public String type = "trip";
-  public String title;
-  public Option options;
-  public ArrayList<Place> places;
-  public ArrayList<Integer> distances;
-  public String map;
 
-  /**
-   * Default constructor.
-   */
-  public Trip(){
-    this.title = null;
-    this.options = new Option();
-    this.places = null;
-    this.distances = null;
-    this.map = null;
-  }
+    // The variables in this class should reflect TFFI.
+    public int version = 3;
+    public String type = "trip";
+    public String title;
+    public Option options;
+    public ArrayList<Place> places;
+    public ArrayList<Integer> distances;
+    public String map;
 
-  /**
-   * @param options Option Object.
-   * @param places ArrayList of Place.
-   * Constructor without title.
-   */
-  public Trip(Option options, ArrayList<Place> places){
-    this.title = null;
-    this.options = options;
-    this.places = places;
-  }
-
-  /**
-   * @param title String user defined title for trip.
-   * @param options Option Object.
-   * @param places ArrayList of Place objects.
-   * Constructor with title.
-   */
-  public Trip(String title, Option options, ArrayList<Place> places){
-    this.title=title;
-    this.options = options;
-    this.places = places;
-    this.map = "<svg width=\"1920\" height=\"960\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><!-- Created with SVG-edit - http://svg-edit.googlecode.com/ --> <g> <g id=\"svg_4\"> <svg id=\"svg_1\" height=\"960\" width=\"1920\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"svg_2\"> <title>Layer 1</title> <rect fill=\"rgb(119, 204, 119)\" stroke=\"black\" x=\"0\" y=\"0\" width=\"1920\" height=\"960\" id=\"svg_3\"/> </g> </svg> </g> <g id=\"svg_9\"> <svg id=\"svg_5\" height=\"480\" width=\"960\" y=\"240\" x=\"480\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"svg_6\"> <title>Layer 2</title> <polygon points=\"0,0 960,0 960,480 0,480\" stroke-width=\"12\" stroke=\"brown\" fill=\"none\" id=\"svg_8\"/> <polyline points=\"0,0 960,480 480,0 0,480 960,0 480,480 0,0\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/> </g> </svg> </g> </g> </svg>";
-  }
-
-  /** The top level method that does planning.
-   * At this point it just adds the map and distances for the places in order.
-   * It might need to reorder the places in the future.
-   */
-  public void plan() {
-
-    this.map = svg();
-    this.distances = legDistances();
-
-  }
-
-  /**
-   * Returns an SVG containing the background and the legs of the trip.
-   * @return String.
-   */
-  private String svg() {
-
-    // hardcoded example
-    return "<svg width=\"1920\" height=\"960\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><!-- Created with SVG-edit - http://svg-edit.googlecode.com/ --> <g> <g id=\"svg_4\"> <svg id=\"svg_1\" height=\"960\" width=\"1920\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"svg_2\"> <title>Layer 1</title> <rect fill=\"rgb(119, 204, 119)\" stroke=\"black\" x=\"0\" y=\"0\" width=\"1920\" height=\"960\" id=\"svg_3\"/> </g> </svg> </g> <g id=\"svg_9\"> <svg id=\"svg_5\" height=\"480\" width=\"960\" y=\"240\" x=\"480\" xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\"> <g id=\"svg_6\"> <title>Layer 2</title> <polygon points=\"0,0 960,0 960,480 0,480\" stroke-width=\"12\" stroke=\"brown\" fill=\"none\" id=\"svg_8\"/> <polyline points=\"0,0 960,480 480,0 0,480 960,0 480,480 0,0\" fill=\"none\" stroke-width=\"4\" stroke=\"blue\" id=\"svg_7\"/> </g> </svg> </g> </g> </svg>";
-  }
-
-  /**
-   * Returns the distances between consecutive places,
-   * including the return to the starting point to make a round trip.
-   * @return ArrayList of integers.
-   */
-  private ArrayList<Integer> legDistances() {
-
-    ArrayList<Integer> dist = new ArrayList<Integer>();
-
-    if(this.options.units.equals("user defined")){
-      for (int counter = 0; counter < places.size() - 1; counter++) {
-        Distance distance = new Distance(places.get(counter), places.get(counter + 1), options.units, options.unitName, options.unitRadius);
-        distance.setDistance();
-        dist.add(distance.distance);
-      }
-      Distance distance = new Distance(places.get(places.size() - 1), places.get(0), options.units, options.unitName, options.unitRadius);
-      distance.setDistance();
-      dist.add(distance.distance);
-    }else {
-      for (int counter = 0; counter < places.size() - 1; counter++) {
-        Distance distance = new Distance(places.get(counter), places.get(counter + 1), options.units);
-        distance.setDistance();
-        dist.add(distance.distance);
-      }
-      Distance distance = new Distance(places.get(places.size() - 1), places.get(0), options.units);
-      distance.setDistance();
-      dist.add(distance.distance);
+    /**
+     * Default constructor.
+     */
+    public Trip(){
+        this.title = null;
+        this.options = new Option();
+        this.places = null;
+        this.distances = null;
+        this.map = "";
+        svg();
     }
 
-    return dist;
-  }
+    /**
+     * @param options Option Object.
+     * @param places ArrayList of Place.
+     * Constructor without title.
+     */
+    public Trip(Option options, ArrayList<Place> places){
+        this.title = null;
+        this.options = options;
+        this.places = places;
+        this.map = "";
+        svg();
+    }
+
+    public Trip(String title, Option options, ArrayList<Place> places, ArrayList<Integer> distances){
+        this.title =title;
+        this.options=options;
+        this.places=places;
+        this.distances=distances;
+        this.map = "";
+        svg();
+    }
+    /**
+     * @param title String user defined title for trip.
+     * @param options Option Object.
+     * @param places ArrayList of Place objects.
+     * Constructor with title.
+     */
+    public Trip(String title, Option options, ArrayList<Place> places){
+        this.title=title;
+        this.options = options;
+        this.places = places;
+        this.map = "";
+        svg();
+    }
+
+    /** The top level method that does planning.
+     * At this point it just adds the map and distances for the places in order.
+     * It might need to reorder the places in the future.
+     */
+    public void plan() {
+        this.distances = legDistances();
+        if(this.options.optimization.equalsIgnoreCase("short")){
+            Optimize opt = new Optimize(this);
+            Trip optTrip = opt.getOptimalTrip();
+            this.title = optTrip.title;
+            this.options = optTrip.options;
+            this.places = optTrip.places;
+            this.map = optTrip.map;
+            svg();
+        }
+        setRoute();
+    }
+
+    /**
+     * Adds the route to the existing map.
+     */
+    public void setRoute() {
+
+        LineDistance ld = new LineDistance(this.places);
+        String route = ld.getCoordinates();
+        String fileLines = this.map.substring(0, this.map.length()-16) + route + this.map.substring(this.map.length()-16);
+        this.map = fileLines;
+    }
+
+    /**
+     * Creates an SVG containing the background and the legs of the trip.
+     */
+    public void svg() {
+        String fileLines = "";
+        try {
+            InputStream thisSVGwillNOTwin =Trip.class.getResourceAsStream("/CObackground.svg");
+            if(thisSVGwillNOTwin != null){
+                System.out.println("There might be some hope.");
+            }else{
+                System.out.println("GIVE UP NOW AND GO HOME!");
+            }
+            BufferedReader buffy = new BufferedReader(new InputStreamReader(thisSVGwillNOTwin));
+            if(buffy.ready()){
+                System.out.println("It found it.....");
+                while(buffy.ready()){
+                    fileLines+= buffy.readLine();
+                }
+                            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("POOP ON BUFFY INPUT STREAM!!");
+        }
+        this.map = fileLines;
+    }
+
+    /**
+     * Returns the distances between consecutive places,
+     * including the return to the starting point to make a round trip.
+     * @return ArrayList<Integer>
+     */
+    private ArrayList<Integer> legDistances() {
+
+        ArrayList<Integer> dist = new ArrayList<>();
+
+        if(this.options.units.equals("user defined")){
+            for (int counter = 0; counter < places.size() - 1; counter++) {
+                Distance distance = new Distance(places.get(counter), places.get(counter + 1), options.units, options.unitName, options.unitRadius);
+                distance.setDistance();
+                dist.add(distance.distance);
+            }
+            Distance distance = new Distance(places.get(places.size() - 1), places.get(0), options.units, options.unitName, options.unitRadius);
+            distance.setDistance();
+            dist.add(distance.distance);
+        }else {
+            for (int counter = 0; counter < places.size() - 1; counter++) {
+                Distance distance = new Distance(places.get(counter), places.get(counter + 1), options.units);
+                distance.setDistance();
+                dist.add(distance.distance);
+            }
+            Distance distance = new Distance(places.get(places.size() - 1), places.get(0), options.units);
+            distance.setDistance();
+            dist.add(distance.distance);
+        }
+
+        return dist;
+    }
 
 }
