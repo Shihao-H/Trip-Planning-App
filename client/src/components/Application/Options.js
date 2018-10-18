@@ -45,7 +45,7 @@ import {Card, CardBody, FormGroup, ButtonGroup, Collapse, Button} from 'reactstr
         return(
             <Card>
                 <CardBody>
-                    <p>Select the options you wish to use.</p>
+                    <p>Select the units you wish to use.</p>
                     <Button onClick={this.dropdown} className = 'btn-outline-dark' size='lg'>Choose Units</Button>
                         <Collapse isOpen = {this.state.collapse}>
                             <ButtonGroup size="lg" vertical>

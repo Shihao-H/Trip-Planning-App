@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Row, Col} from "reactstrap";
-import {CardBody} from 'reactstrap'
+import {CardBody,Card,Button,Row,Col} from 'reactstrap'
 import {request} from '../../api/api';
 
 class Upload extends Component {
@@ -50,24 +49,25 @@ class Upload extends Component {
 
     render() {
         return (
-            <div className="card">
-                <CardBody>
-                    <Row>
-                        <Col md={6}>
-                            <label>
-                                Submit your trip!
-                                <br/>
-                                <input type="file" ref={this.fileInput} onChange={this.LoadFile}/>
-                                <small className="form-text text-muted">
-                                    Upload a file that contains a Trip object in the TFFI format.
-                                </small>
-                            </label>
-                            <br/>
-                            <Button className='btn-outline-dark' type="submit" onClick={this.handleSubmit}>Plan</Button>
-                        </Col>
-                    </Row>
-                </CardBody>
-            </div>
+            <Row>
+                <Col>
+            <label><br/>
+                Submit your trip!
+                <br/>
+                <input type="file" maxLength={"40px"} ref={this.fileInput} onChange={this.LoadFile}/>
+                <small className="form-text text-muted">
+                    Upload a file that contains a Trip<br/>object in the TFFI format.
+                </small>
+            </label>
+            <br/>
+            <Button
+                size='lg'
+                className='btn-dark btn-outline-dark'
+                type="submit"
+                onClick={this.handleSubmit}
+            >Plan&nbsp;</Button>
+                </Col>
+            </Row>
         );
     }
 }
