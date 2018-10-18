@@ -37,7 +37,15 @@ class Application extends Component {
             selected: new Map(),
             selectAll: false,
             otherTeams: null,
-            host: null
+            host: null,
+            display: {
+                Name: true,
+                Id: true,
+                Latitude: true,
+                Longitude: true,
+                Leg: true,
+                Total: true
+            }
         };
         this.updateTrip = this.updateTrip.bind(this);
         this.clearConfig = this.clearConfig.bind(this);
@@ -50,6 +58,7 @@ class Application extends Component {
         this.updateSelectAll = this.updateSelectAll.bind(this);
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
         this.updateHost=this.updateHost.bind(this);
+        this.updateDisplay = this.updateDisplay.bind(this);
     }
 
     componentWillMount()
@@ -127,6 +136,12 @@ class Application extends Component {
 
     }
 
+    updateDisplay(value){
+        let display = this.state.display;
+        display[value] = !display[value];
+        this.setState({display: display});
+        this.updateSelectAll(false);
+    }
 
     render()
     {
@@ -154,6 +169,7 @@ class Application extends Component {
                     updateTrip={this.updateTrip}/>
                 <DistanceCal
                     config={this.state.config}
+                    options={this.state.trip.options}
                     search={this.state.search}
                     trip={this.state.trip}
                     updateOptions={this.updateOptions}
@@ -161,9 +177,11 @@ class Application extends Component {
                     updateTrip={this.updateTrip}/>
                 <Options
                     config={this.state.config}
+                    display={this.state.display}
                     host={this.state.host}
                     options={this.state.trip.options}
                     otherTeams={this.state.otherTeams}
+                    updateDisplay={this.updateDisplay}
                     updateHost={this.updateHost}
                     updateOptions={this.updateOptions}
                     updateOtherTeams={this.updateOtherTeams}/>

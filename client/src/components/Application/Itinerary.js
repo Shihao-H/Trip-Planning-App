@@ -6,16 +6,7 @@ class Itinerary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapse: true,
-            displayAttributes: false,
-            display: {
-                Name: true,
-                Id: true,
-                Latitude: true,
-                Longitude: true,
-                Leg: true,
-                Total: true
-            }
+            collapse: true
         };
 
         this.dropdown = this.dropdown.bind(this);
@@ -24,9 +15,7 @@ class Itinerary extends Component {
         this.toggleSelectAll = this.toggleSelectAll.bind(this);
         this.clickDeleteButton = this.clickDeleteButton.bind(this);
         this.clickReverseButton = this.clickReverseButton.bind(this);
-        this.clickAttributesButton = this.clickAttributesButton.bind(this);
         this.clear = this.clear.bind(this);
-        this.uncheck = this.uncheck.bind(this);
     }
 
     dropdown()
@@ -73,21 +62,12 @@ class Itinerary extends Component {
         this.props.updateTrip('places',reverse);
     }
 
-    clickAttributesButton() {
-        this.setState({displayAttributes: !this.state.displayAttributes});
-    }
-
     clear()
     {
         this.props.updateTrip('places',[]);
     }
 
-    uncheck(value){
-        let display = this.state.display;
-        display[value] = !display[value];
-        this.setState({display: display});
-        this.props.updateSelectAll(false);
-    }
+
 
     createTable(){
         let table = [];
@@ -203,42 +183,6 @@ class Itinerary extends Component {
                             >
                                 Reverse
                             </Button>
-                            <Button
-                                key={'attributes_button'}
-                                className='btn-outline-dark attributes-button'
-                                onClick={this.clickAttributesButton}
-                            >
-                                Attributes
-                            </Button>
-                            {this.state.displayAttributes && (
-                                <div>
-                                    <Col>
-                                        <br/>
-                                        <p> Please choose attributes to display: </p>
-                                        <form>
-                                            <Input type="checkbox" id={"check_name"} checked={this.state.display.Name} value={'Name'}
-                                                   onChange = {event => {this.uncheck(event.target.value)}}/>
-                                            <label> Name </label><br/>
-                                            <Input type="checkbox" id={"check_id"} checked={this.state.display.Id} value={'Id'}
-                                                   onChange = {event => {this.uncheck(event.target.value)}}/>
-                                            <label> Id </label><br/>
-                                            <Input type="checkbox" id={"check_latitude"} checked={this.state.display.Latitude} value={'Latitude'}
-                                                   onChange = {event => {this.uncheck(event.target.value)}}/>
-                                            <label> Latitude </label><br/>
-                                            <Input type="checkbox" id={"check_longitude"} checked={this.state.display.Longitude} value={'Longitude'}
-                                                   onChange = {event => {this.uncheck(event.target.value)}}/>
-                                            <label> Longitude </label><br/>
-                                            <Input type="checkbox" id={"check_leg"} checked={this.state.display.Leg} value={'Leg'}
-                                                   onChange = {event => {this.uncheck(event.target.value)}}/>
-                                            <label> Leg distances </label><br/>
-                                            <Input type="checkbox" id={"check_total"} checked={this.state.display.Total} value={'Total'}
-                                                   onChange = {event => {this.uncheck(event.target.value)}}/>
-                                            <label> Total distances </label><br/>
-                                        </form>
-                                    </Col>
-                                    <br/>
-                                </div>)
-                            }
                         </CardBody>
                     </Card>
                 </Collapse>
