@@ -43,7 +43,8 @@ class Trip extends Component {
                     search={this.props.search}
                     trip={this.props.trip}
                     updateOptions={this.props.updateOptions}
-                    updateSearch={this.props.updateSearch}/>
+                    updateSearch={this.props.updateSearch}
+                    updateTrip={this.props.updateTrip}/>
                 <Add
                     config={this.props.config}
                     search={this.props.search}

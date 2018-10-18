@@ -15,6 +15,7 @@ class Itinerary extends Component {
         this.toggleSelectAll = this.toggleSelectAll.bind(this);
         this.clickDeleteButton = this.clickDeleteButton.bind(this);
         this.clickReverseButton = this.clickReverseButton.bind(this);
+        this.clickChangeStartButton = this.clickChangeStartButton.bind(this);
         this.clear = this.clear.bind(this);
     }
 
@@ -60,6 +61,10 @@ class Itinerary extends Component {
     clickReverseButton() {
         var reverse = this.props.trip.places.reverse();
         this.props.updateTrip('places',reverse);
+    }
+
+    clickChangeStartButton(){
+
     }
 
     clear()
@@ -178,6 +183,13 @@ class Itinerary extends Component {
                                 key={'reverse_button'}
                                 className='btn-outline-dark reverse-button'
                                 onClick={this.clickReverseButton}
+                            >
+                                Reverse
+                            </Button>
+                            <Button
+                                key={'changeStart_button'}
+                                className='btn-outline-dark changeStart-button'
+                                onClick={this.clickChangeStartButton}
                             >
                                 Reverse
                             </Button>
