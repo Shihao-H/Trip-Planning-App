@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input,Col} from 'reactstrap';
+import {Button,Input,Col,Card,CardBody} from 'reactstrap';
 
 export class Add extends Component {
     constructor(props) {
@@ -45,24 +45,29 @@ export class Add extends Component {
 
     render() {
         return (
-            <div>
-                        <Col>
-                            <p> Add Your Own </p>
-                            <Input type="text" placeholder="title ex.lol"
-                                   onChange={(e) => this.updatePlaces('title', e.target.value)}/>
-                            <Input type="text" placeholder="Id ex.lol"
-                                   onChange={(e) => this.updatePlaces('id', e.target.value)}/>
-                            <Input type="text" placeholder="Place ex.mariana trench"
-                                   onChange={(e) => this.updatePlaces('name', e.target.value)}/>
-                            <Input type="text" placeholder="Latitude ex.39.12"
-                                   onChange={(e) => this.updatePlaces('latitude', e.target.value)}/>
-                            <Input type="text" placeholder="Longitude  ex.127.23"
-                                   onChange={(e) => this.updatePlaces('longitude', e.target.value)}/>
-                            <br/>
-                            <Button type={"button"} onClick={this.addPlace}>Add Place</Button>
-                        </Col>
+            <Card>
+                <CardBody>
+                        <p> Add Your Own </p>
+                        <Input type="text" placeholder="Trip Title"
+                               onChange={(e) => this.updatePlaces('title', e.target.value)}/>
+                        <Input type="text" placeholder="Trip ID"
+                               onChange={(e) => this.updatePlaces('id', e.target.value)}/>
+                        <Input type="text" placeholder="Place eg:Denver"
+                               onChange={(e) => this.updatePlaces('name', e.target.value)}/>
+                        <Input type="text" placeholder="Latitude eg:39.12"
+                               onChange={(e) => this.updatePlaces('latitude', e.target.value)}/>
+                        <Input type="text" placeholder="Longitude eg:127.23"
+                               onChange={(e) => this.updatePlaces('longitude', e.target.value)}/>
                         <br/>
-            </div>
+                        <Button
+                            size='lg'
+                            className='btn-dark btn-outline-dark'
+                            type={"button"}
+                            onClick={this.addPlace}
+                        >Add Place</Button>
+                    <br/>
+                </CardBody>
+            </Card>
         )
     }
 }

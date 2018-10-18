@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import {Button, ButtonGroup, CardBody, Collapse} from "reactstrap";
+import {Button, ButtonGroup, Card, CardBody, Collapse} from "reactstrap";
 
 class Optimization extends Component{
     constructor(props){
         super(props);
         this.state = {
-            collapse: true,
+            collapse: false,
             ifDisplayUserDefinedInputFields: false,
         };
         this.dropdown = this.dropdown.bind(this);
@@ -35,14 +35,21 @@ class Optimization extends Component{
 
 
         return (
-            <CardBody>
-                <Button onClick={this.dropdown} className = 'btn-outline-dark'>Optimization</Button>
-                <Collapse isOpen = {this.state.collapse}>
-                    <ButtonGroup size="lg" vertical>
-                        {buttons}
-                    </ButtonGroup>
-                </Collapse>
-            </CardBody>
+            <Card>
+                <CardBody>
+                    <p>Select the optimizations you wish to use.</p>
+                    <Button
+                        size='lg'
+                        onClick={this.dropdown}
+                        className = 'btn-outline-dark'
+                    >Optimization</Button>
+                    <Collapse isOpen = {this.state.collapse}>
+                        <ButtonGroup size="lg" vertical>
+                            {buttons}
+                        </ButtonGroup>
+                    </Collapse>
+                </CardBody>
+            </Card>
         )
     };
 }

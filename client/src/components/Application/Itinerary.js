@@ -15,6 +15,7 @@ class Itinerary extends Component {
         this.toggleSelectAll = this.toggleSelectAll.bind(this);
         this.clickDeleteButton = this.clickDeleteButton.bind(this);
         this.clickReverseButton = this.clickReverseButton.bind(this);
+        this.clickChangeStartButton = this.clickChangeStartButton.bind(this);
         this.clear = this.clear.bind(this);
     }
 
@@ -60,6 +61,24 @@ class Itinerary extends Component {
     clickReverseButton() {
         var reverse = this.props.trip.places.reverse();
         this.props.updateTrip('places',reverse);
+    }
+
+    clickChangeStartButton(){
+        let temp = this.props.trip.places;
+        var i = temp.length;
+        while(i--){
+            if(this.props.selected[temp[i].id] === true){
+                temp.splice(0,0,temp[i]);
+                temp.splice(i+1,1);
+                const newSelected = Object.assign({}, this.props.selected);
+                newSelected[temp[0].id] = !this.props.selected[temp[0].id];
+                this.props.updateSelected(newSelected);
+                break;
+            }
+        }
+        let dummy = this.props.trip.distances;
+        dummy.push(0);
+        this.props.updateTrip('places', temp);
     }
 
     clear()
@@ -168,18 +187,28 @@ class Itinerary extends Component {
                                 </tbody>
                             </Table>
                             <Button
+                                size='lg'
                                 key={'delete_button'}
                                 className='btn-outline-dark delete-button'
                                 onClick={this.clickDeleteButton}
                             >
-                                Delete
-                            </Button>
+                                Delete selected location
+                            </Button><br/><br/>
                             <Button
+                                size='lg'
                                 key={'reverse_button'}
                                 className='btn-outline-dark reverse-button'
                                 onClick={this.clickReverseButton}
                             >
-                                Reverse
+                                Reverse trip
+                            </Button><br/><br/>
+                            <Button
+                                size='lg'
+                                key={'changeStart_button'}
+                                className='btn-outline-dark changeStart-button'
+                                onClick={this.clickChangeStartButton}
+                            >
+                                Change selected to the starting location!
                             </Button>
                         </CardBody>
                     </Card>
