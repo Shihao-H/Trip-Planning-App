@@ -36,7 +36,7 @@ class Optimization extends Component{
 
         return (
             <CardBody>
-                <Button onClick={this.dropdown} >Optimization</Button>
+                <Button onClick={this.dropdown} className = 'btn-outline-dark'>Optimization</Button>
                 <Collapse isOpen = {this.state.collapse}>
                     <ButtonGroup size="lg" vertical>
                         {buttons}
