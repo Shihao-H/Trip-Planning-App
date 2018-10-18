@@ -64,7 +64,21 @@ class Itinerary extends Component {
     }
 
     clickChangeStartButton(){
-
+        let temp = this.props.trip.places;
+        var i = temp.length;
+        while(i--){
+            if(this.props.selected[temp[i].id] === true){
+                temp.splice(0,0,temp[i]);
+                temp.splice(i+1,1);
+                const newSelected = Object.assign({}, this.props.selected);
+                newSelected[temp[0].id] = !this.props.selected[temp[0].id];
+                this.props.updateSelected(newSelected);
+                break;
+            }
+        }
+        let dummy = this.props.trip.distances;
+        dummy.push(0);
+        this.props.updateTrip('places', temp);
     }
 
     clear()
@@ -191,7 +205,7 @@ class Itinerary extends Component {
                                 className='btn-outline-dark changeStart-button'
                                 onClick={this.clickChangeStartButton}
                             >
-                                Reverse
+                                Change it to the starting location!
                             </Button>
                         </CardBody>
                     </Card>
