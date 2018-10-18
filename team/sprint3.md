@@ -91,6 +91,8 @@ Epics planned for this sprint.
 | *10/08/2018* | *302, 291, 301* | *122, 111, 243, 245* | *Personal life issues* |
 | *10/10/2018* | *243, 245, 249, 247, 266, 265, 288* | *111, 122* | *Headaches trying to learn ReactJS, ReactStrap* |
 | *10/12/2018* | *255, 264, 323, 327, 251, 268, 277* | *111, 122, 250, 258, 259, 263, 326, 343, 345, 347, 349* | *Nearest neighbor algorithm, front end stuff, boost the test coverage* |
+| *10/16/2018* | *343, 345, 347, 349,* | *256, 258, 259, 260, 262, 263, 267, 326, 354, 355, 356, 357* | *Working on CS314 wholeheartedly!* |
+| *10/17/2018* | *256, 258, 259, 260, 262, 263, 267, 326, 354, 355, 356, 357* | *250, 182, 361, 122* | *Working on CS314 wholeheartedly!* |
 
 ## Review
 
@@ -100,15 +102,17 @@ Epics planned for this sprint.
 
 *Describe the solution based on the completed epics and list the epics below.*
 
-* *## epic title: comments*
-* 
+* *236 User: I want to design a trip from scratch so I can stop using the other tool: Create an empty itinerary.*
+* *232 User: I want to make and save changes to the trip: We enable the users to add and remove destinations; choose a different starting location; reverse the order of the trip; find possible destinations so that the users can add them; save the changes made to the trip.*
+* *233 User: I want my trips to be shorter: We use nearest neighbor to build a shorter trip.*
+* *235 User: I want to choose what information is displayed in the itinerary and map: allow additional attribut/evalue pairs to be captured for destinations whether they are entered manually or obtained from a database; allow the user to select attributes to display in the itinerary, including the latitude and longitude.*
 
 #### Incomplete Epics in Sprint Backlog 
 
 *Describe capabilities not included in the release and list the epics below with an explanation.*
 
-* *## epic title: explanation*
-*
+* *234 TripCo: All code must be tested: minimum 50% coverage, preferred 70% coverage.*
+
 
 #### What Went Well
 
