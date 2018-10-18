@@ -41,7 +41,7 @@ class Upload extends Component {
                 this.props.updateTrip('distances',Fi.distances);
             });
         } else {
-            request(obj,'plan', this.props.otherTeams, this.props.host).then((Fi)=>
+            request(obj,'plan', this.props.otherTeams, this.props.host + ".cs.colostate.edu").then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
             });
