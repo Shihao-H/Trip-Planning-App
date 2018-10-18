@@ -64,12 +64,14 @@ class Upload extends Component {
             request(obj,'plan').then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
+                this.props.updateTrip('map', Fi.map);
             });
        } else {
             request(obj,'plan', this.state.otherTeams, 'black-bottle.cs.colostate.edu').then((Fi)=>
             {
                 console.log('g',this.state.otherTeams);
                 this.props.updateTrip('distances',Fi.distances);
+                this.props.updateTrip('map', Fi.map);
             });
         }
     }
