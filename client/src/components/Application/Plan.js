@@ -16,16 +16,6 @@ class Plan extends Component {
     {
         return (
             <Container id="Plan">
-                <Clear
-                    config={this.props.config}
-                    search={this.props.search}
-                    trip={this.props.trip}
-                    clearConfig={this.props.clearConfig}
-                    LoadFile={this.props.LoadFile}
-                    updateOptions={this.props.updateOptions}
-                    updateSearch={this.props.updateSearch}
-                    updateTrip={this.props.updateTrip}
-                />
                 <Upload
                     config={this.props.config}
                     trip={this.props.trip}
@@ -41,6 +31,16 @@ class Plan extends Component {
                 />
                 <SaveTrip
                     trip={this.props.trip}
+                />
+                <Clear
+                    config={this.props.config}
+                    search={this.props.search}
+                    trip={this.props.trip}
+                    clearConfig={this.props.clearConfig}
+                    LoadFile={this.props.LoadFile}
+                    updateOptions={this.props.updateOptions}
+                    updateSearch={this.props.updateSearch}
+                    updateTrip={this.props.updateTrip}
                 />
             </Container>
         )

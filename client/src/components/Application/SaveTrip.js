@@ -26,11 +26,7 @@ class SaveTrip extends Component{
 
 
     render() {
-        return (
-            <div className="card">
-                    <Button className="btn-save" size='lg' onClick={this.SaveTFFI} type="button">Save</Button>
-            </div>
-        )
+        return (<Button className="btn-save" size='lg' onClick={this.SaveTFFI} type="button">Save</Button>)
     };
 }
 

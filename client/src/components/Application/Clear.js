@@ -26,11 +26,7 @@ class Clear extends Component{
 
 
     render() {
-        return (
-            <div className="card">
-                    <Button className="btn-save" size='lg' onClick={this.clear} type="button">Clear</Button>
-            </div>
-        )
+        return (<Button className="btn-save" size='lg' onClick={this.clear} type="button">Clear</Button>)
     };
 }
 
