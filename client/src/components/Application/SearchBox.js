@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Button, Card, CardBody, Container, Table} from "reactstrap";
 import {request} from '../../api/api';
 import Optimization from "./Optimization";
+import Options from "./Options";
 
 
 export class SearchBox extends Component {
@@ -99,3 +100,5 @@ export class SearchBox extends Component {
             </div>);
     }
 }
+
+export default SearchBox;

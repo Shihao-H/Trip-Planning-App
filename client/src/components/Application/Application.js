@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import { Container } from 'reactstrap';
-import Info from './Info'
-import Options from './Options';
-import Upload from './Upload';
-import { Map } from './Map';
 import { get_config } from '../../api/api';
-import Itinerary from './Itinerary'
-import {SearchBox} from "./SearchBox";
 import DistanceCal from "./DistanceCal";
+import Info from './Info';
+import Options from './Options';
+import Trip from "./Trip"
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -50,6 +47,7 @@ class Application extends Component {
         this.updateSelected = this.updateSelected.bind(this);
         this.updateSelectAll = this.updateSelectAll.bind(this);
     }
+
     componentWillMount()
     {
         get_config().then(
@@ -122,16 +120,30 @@ class Application extends Component {
         return (
             <Container id="Application">
                 <Info/>
-                <DistanceCal trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
-                <Options options={this.state.trip.options} config={this.state.config}
-                         updateOptions={this.updateOptions}/>
-                <Upload trip={this.state.trip} config={this.state.config} TripPushPlace={this.TripPushPlace}
-                        updateSelected={this.updateSelected} updateSelectAll={this.updateSelectAll}
-                        updateTrip={this.updateTrip}  updateOptions={this.updateOptions} clearConfig={this.clearConfig} updateSearch={this.updateSearch}/>
-                <Map/>
-                <Itinerary trip={this.state.trip} updateTrip={this.updateTrip} updateOptions={this.updateOptions} updatePlaces={this.updatePlaces}
-                           selected={this.state.selected} selectAll={this.state.selectAll} updateSelected={this.updateSelected} updateSelectAll={this.updateSelectAll}/>
-                <SearchBox trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateOptions={this.updateOptions}/>
+                <Trip
+                    config={this.props.config}
+                    search={this.props.search}
+                    trip={this.props.trip}
+                    clearConfig={this.props.clearConfig}
+                    LoadFile={this.LoadFile}
+                    TripPushPlace={this.props.TripPushPlace}
+                    updateOptions={this.props.updateOptions}
+                    updatePlaces={this.updatePlaces}
+                    updateSearch={this.props.updateSearch}
+                    updateSelectAll={this.updateSelectAll}
+                    updateSelected={this.updateSelected}
+                    updateTrip={this.props.updateTrip}/>
+                <DistanceCal
+                    config={this.state.config}
+                    search={this.state.search}
+                    trip={this.state.trip}
+                    updateOptions={this.updateOptions}
+                    updateSearch={this.updateSearch}
+                    updateTrip={this.updateTrip}/>
+                <Options
+                    config={this.state.config}
+                    options={this.state.trip.options}
+                    updateOptions={this.updateOptions}/>
             </Container>
         )
     }
