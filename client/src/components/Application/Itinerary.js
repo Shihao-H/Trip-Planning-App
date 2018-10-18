@@ -173,51 +173,31 @@ class Itinerary extends Component {
         }
     }
 
-    render()
-    {
+    render() {
         return (
-            <div>
+            <div className={'text-center'}>
                 <Button onClick={this.dropdown} size='lg'>Itinerary</Button>
                 <Collapse isOpen = {this.state.collapse}>
                     <Card>
                         <CardBody>
                             <Table className="Table" responsive>
-                                <tbody className="Body">
-                                {this.createTable()}
-                                </tbody>
+                                <tbody className="Body">{this.createTable()}</tbody>
                             </Table>
-                            <Button
-                                size='lg'
-                                key={'delete_button'}
-                                className='btn-outline-dark delete-button'
-                                onClick={this.clickDeleteButton}
-                            >
-                                Delete selected location
+                            <Button size='lg' key={'delete_button'} className='btn-outline-dark delete-button'
+                                onClick={this.clickDeleteButton}>Delete selected location
                             </Button><br/><br/>
-                            <Button
-                                size='lg'
-                                key={'reverse_button'}
-                                className='btn-outline-dark reverse-button'
-                                onClick={this.clickReverseButton}
-                            >
-                                Reverse trip
+                            <Button size='lg' key={'reverse_button'} className='btn-outline-dark reverse-button'
+                                    onClick={this.clickReverseButton}>Reverse trip
                             </Button><br/><br/>
-                            <Button
-                                size='lg'
-                                key={'changeStart_button'}
-                                className='btn-outline-dark changeStart-button'
-                                onClick={this.clickChangeStartButton}
-                            >
-                                Change selected to the starting location!
+                            <Button size='lg' key={'changeStart_button'} className='btn-outline-dark changeStart-button'
+                                 onClick={this.clickChangeStartButton}>Change selected to<br/>the starting location!
                             </Button>
                         </CardBody>
                     </Card>
                 </Collapse>
             </div>
         );
-
     }
-
 }
 
 export default Itinerary;

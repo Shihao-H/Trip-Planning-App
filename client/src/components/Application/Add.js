@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button,Input,Col,Card,CardBody} from 'reactstrap';
+import {Button,Input,Card,CardBody} from 'reactstrap';
 
 export class Add extends Component {
     constructor(props) {
@@ -45,9 +45,10 @@ export class Add extends Component {
 
     render() {
         return (
-            <Card>
-                <CardBody>
-                        <p> Add Your Own </p>
+            <div className={'text-center'}>
+                <Card>
+                    <CardBody>
+                        <p>Add your own location</p>
                         <Input type="text" placeholder="Trip Title"
                                onChange={(e) => this.updatePlaces('title', e.target.value)}/>
                         <Input type="text" placeholder="Trip ID"
@@ -59,15 +60,11 @@ export class Add extends Component {
                         <Input type="text" placeholder="Longitude eg:127.23"
                                onChange={(e) => this.updatePlaces('longitude', e.target.value)}/>
                         <br/>
-                        <Button
-                            size='lg'
-                            className='btn-dark btn-outline-dark'
-                            type={"button"}
-                            onClick={this.addPlace}
-                        >Add Place</Button>
-                    <br/>
-                </CardBody>
-            </Card>
+                        <Button size='lg' className='btn-dark btn-outline-dark'
+                            type={"button"} onClick={this.addPlace}>Add Place</Button><br/>
+                    </CardBody>
+                </Card>
+            </div>
         )
     }
 }

@@ -54,31 +54,29 @@ export class SearchBox extends Component {
 
     render() {
         return (
-            <Card>
-                <CardBody>
-                    <form>
-                        <label>
-                            Search for a new location
-                            <br/>
-                            <br/>
-                            <Input
-                                type="text"
-                                placeholder="Place name"
-                                style={{width: "75%"}}
-                                onChange={event => {this.props.updateSearch('match', event.target.value)}}
-                            />
-                        <br/>
-                            <Button onClick={this.handleSearch} className = 'btn-dark btn-outline-dark' type="button" size='lg'>Search</Button>
-                        <br/>
-                            <Table className="Table" responsive>
-                                <tbody className="Body">
-                                {this.createTable()}
-                                </tbody>
-                            </Table>
-                        </label>
-                    </form>
-                </CardBody>
-            </Card>);
+            <div className={'text-center'}>
+                <Card>
+                    <CardBody>
+                        <form>
+                            <label>
+                                Search for a new location
+                                <br/><br/>
+                                <Input type="text"
+                                       placeholder="Place name"
+                                       style={{width: "100%"}}
+                                       onChange={event => {this.props.updateSearch('match', event.target.value)}}/><br/>
+                                <Button onClick={this.handleSearch} className = 'btn-dark btn-outline-dark'
+                                        type="button" size='lg'>Search</Button><br/>
+                                <Table className="Table" responsive>
+                                    <tbody className="Body">
+                                    {this.createTable()}
+                                    </tbody>
+                                </Table>
+                            </label>
+                        </form>
+                    </CardBody>
+                </Card>
+            </div>);
     }
 }
 export default SearchBox;
