@@ -92,13 +92,14 @@ export class SearchBox extends Component {
                                 </tbody>
                             </Table>
                         <Container id="SearchBox"/>
-                        <Optimization trip={this.props.trip} search={this.props.search} config={this.props.config}
-                                      updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
+
                         <Container/>
                     </form>
                 </CardBody>
             </div>);
     }
 }
-
 export default SearchBox;
+
+//<Optimization trip={this.props.trip} search={this.props.search} config={this.props.config}
+  //            updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>

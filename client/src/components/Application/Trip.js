@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import { Container } from 'reactstrap';
+import { Card, CardBody, Container } from 'reactstrap';
 import Add from "./Add"
 import Itinerary from "./Itinerary"
 import Map from "./Map"
 import Plan from "./Plan";
 import SearchBox from "./SearchBox";
-import Clear from "./Clear";
 
 /* Renders the Trip.
  * Holds Plan, Search, Add, Map and Itinerary.
@@ -19,6 +18,8 @@ class Trip extends Component {
     {
         return (
             <Container id="Trip">
+                <Card>
+                    <CardBody>
                 <Plan
                     config={this.props.config}
                     search={this.props.search}
@@ -52,7 +53,9 @@ class Trip extends Component {
                     updateSelectAll={this.updateSelectAll}
                     updateSelected={this.updateSelected}
                     updateTrip={this.updateTrip}/>
-            </Container>
+                </CardBody>
+            </Card>
+        </Container>
         )
     }
 }

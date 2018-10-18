@@ -121,18 +121,17 @@ class Application extends Component {
             <Container id="Application">
                 <Info/>
                 <Trip
-                    config={this.props.config}
-                    search={this.props.search}
-                    trip={this.props.trip}
-                    clearConfig={this.props.clearConfig}
+                    config={this.state.config}
+                    search={this.state.search}
+                    trip={this.state.trip}
+                    clearConfig={this.state.clearConfig}
                     LoadFile={this.LoadFile}
-                    TripPushPlace={this.props.TripPushPlace}
-                    updateOptions={this.props.updateOptions}
-                    updatePlaces={this.updatePlaces}
-                    updateSearch={this.props.updateSearch}
+                    TripPushPlace={this.TripPushPlace}
+                    updateOptions={this.updateOptions}
+                    updateSearch={this.updateSearch}
                     updateSelectAll={this.updateSelectAll}
                     updateSelected={this.updateSelected}
-                    updateTrip={this.props.updateTrip}/>
+                    updateTrip={this.updateTrip}/>
                 <DistanceCal
                     config={this.state.config}
                     search={this.state.search}
