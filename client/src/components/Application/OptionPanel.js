@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container } from 'reactstrap';
+import { Container,Row,Col } from 'reactstrap';
 import Attributes from "./Attributes"
 import InterOperate from "./InterOperate"
 import Optimization from "./Optimization";
@@ -17,26 +17,36 @@ class OptionPanel extends Component {
     {
         return (
             <Container id="Plan">
-                <Options
-                    config={this.props.config}
-                    options={this.props.options}
-                    updateOptions={this.props.updateOptions}/>
-                <Optimization
-                    config={this.props.config}
-                    options={this.props.options}
-                    search={this.props.search}
-                    trip={this.props.trip}
-                    updateOptions={this.props.updateOptions}
-                    updateSearch={this.props.updateSearch}/>
-                <Attributes
-                    display={this.props.display}
-                    updateDisplay={this.props.updateDisplay}
-                />
-                <InterOperate
-                    host={this.props.host}
-                    otherTeams={this.props.otherTeams}
-                    updateHost={this.props.updateHost}
-                    updateOtherTeams={this.props.updateOtherTeams}/>
+                <Row>
+                    <Col>
+                        <Options
+                        config={this.props.config}
+                        options={this.props.options}
+                        updateOptions={this.props.updateOptions}/>
+                    </Col>
+                    <Col>
+                        <Optimization
+                        config={this.props.config}
+                        options={this.props.options}
+                        search={this.props.search}
+                        trip={this.props.trip}
+                        updateOptions={this.props.updateOptions}
+                        updateSearch={this.props.updateSearch}/>
+                    </Col>
+                    <Col>
+                        <Attributes
+                            display={this.props.display}
+                            updateDisplay={this.props.updateDisplay}
+                        />
+                    </Col>
+                    <Col>
+                        <InterOperate
+                            host={this.props.host}
+                            otherTeams={this.props.otherTeams}
+                            updateHost={this.props.updateHost}
+                            updateOtherTeams={this.props.updateOtherTeams}/>
+                    </Col>
+                </Row>
             </Container>
         )
     }

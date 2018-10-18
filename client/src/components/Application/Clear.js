@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, CardBody} from "reactstrap";
+import {Button} from "reactstrap";
 
 class Clear extends Component{
     constructor(props){
@@ -17,7 +17,6 @@ class Clear extends Component{
         this.props.updateOptions('optimization', 'none');
         this.props.updateOptions('unitName', "");
         this.props.updateOptions('unitRadius', 0.00);
-        console.log("LOL");
         this.props.updateSearch('match',"");
         this.props.updateSearch('places',[]);
         this.props.updateSearch('limit',0);
@@ -26,11 +25,7 @@ class Clear extends Component{
 
 
     render() {
-        return (
-            <div className="card">
-                    <Button className="btn-save" size='lg' onClick={this.clear} type="button">Clear</Button>
-            </div>
-        )
+        return (<Button className="btn-save" onClick={this.clear} type="button">Clear</Button>)
     };
 }
 
