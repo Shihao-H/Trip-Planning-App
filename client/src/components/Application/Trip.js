@@ -51,6 +51,7 @@ class Trip extends Component {
                     updateSearch={this.props.updateSearch}/>
                 <Map/>
                 <Itinerary
+                    display={this.props.display}
                     selectAll={this.props.selectAll}
                     selected={this.props.selected}
                     trip={this.props.trip}

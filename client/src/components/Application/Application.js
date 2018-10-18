@@ -5,6 +5,7 @@ import DistanceCal from "./DistanceCal";
 import Info from './Info';
 import Options from './Options';
 import Trip from "./Trip"
+import OptionPanel from "./OptionPanel";
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -153,6 +154,7 @@ class Application extends Component {
                 <Info/>
                 <Trip
                     config={this.state.config}
+                    display={this.state.display}
                     host={this.state.host}
                     otherTeams={this.state.otherTeams}
                     search={this.state.search}
@@ -175,7 +177,7 @@ class Application extends Component {
                     updateOptions={this.updateOptions}
                     updateSearch={this.updateSearch}
                     updateTrip={this.updateTrip}/>
-                <Options
+                <OptionPanel
                     config={this.state.config}
                     display={this.state.display}
                     host={this.state.host}

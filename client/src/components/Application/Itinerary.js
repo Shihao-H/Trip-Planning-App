@@ -74,24 +74,24 @@ class Itinerary extends Component {
         let children = [];
         let total_distance = 0;
         if(this.props.trip.places.length === 0){
-            if(this.state.display.Name === true)
+            if(this.props.display.Name === true)
                 children.push(<th key='default_destination'>{"Place"}</th>);
-            if(this.state.display.Id === true)
+            if(this.props.display.Id === true)
                 children.push(<th key='default_id'>{"ID"}</th>);
-            if(this.state.display.Latitude === true)
+            if(this.props.display.Latitude === true)
                 children.push(<th key='default_latitude'>{"Latitude"}</th>);
-            if(this.state.display.Longitude === true)
+            if(this.props.display.Longitude === true)
                 children.push(<th key='default_longitude'>{"Longitude"}</th>);
-            if(this.state.display.Leg === true)
+            if(this.props.display.Leg === true)
                 children.push(<th key='default_leg distance'>{"Leg distance"}</th>);
-            if(this.state.display.Total === true)
+            if(this.props.display.Total === true)
                 children.push(<th key='default_total distance'>{"Total distance"}</th>);
             table.push(<tr key='default header'>{children}</tr>);
             return table
         } else {
-            if(this.state.display.Name === true || this.state.display.Id === true
-                || this.state.display.Latitude === true || this.state.display.Longitude === true
-                || this.state.display.Leg === true || this.state.display.Total === true)
+            if(this.props.display.Name === true || this.props.display.Id === true
+                || this.props.display.Latitude === true || this.props.display.Longitude === true
+                || this.props.display.Leg === true || this.props.display.Total === true)
             {
                 children.push(<th key='checkAll' className="checkPlace">
                     <form>
@@ -99,26 +99,26 @@ class Itinerary extends Component {
                                onChange={this.toggleSelectAll}/>
                     </form></th>);
             }
-            if(this.state.display.Name === true)
+            if(this.props.display.Name === true)
                 children.push(<th key='destination'>{"Place"}</th>);
-            if(this.state.display.Id === true)
+            if(this.props.display.Id === true)
                 children.push(<th key='id'>{"ID"}</th>);
-            if(this.state.display.Latitude === true)
+            if(this.props.display.Latitude === true)
                 children.push(<th key='latitude'>{"Latitude"}</th>);
-            if(this.state.display.Longitude === true)
+            if(this.props.display.Longitude === true)
                 children.push(<th key='longitude'>{"Longitude"}</th>);
-            if(this.state.display.Leg === true)
+            if(this.props.display.Leg === true)
                 children.push(<th key='leg distance'>{"Leg distance"}</th>);
-            if(this.state.display.Total === true)
+            if(this.props.display.Total === true)
                 children.push(<th key='total distance'>{"Total distance"}</th>);
             table.push(<tr key='first row'>{children}</tr>);
 
             let cell = [];
             for (let i = 0; i < this.props.trip.places.length; i++) {
                 cell = [];
-                if(this.state.display.Name === true || this.state.display.Id === true
-                    || this.state.display.Latitude === true || this.state.display.Longitude === true
-                    || this.state.display.Leg === true || this.state.display.Total === true)
+                if(this.props.display.Name === true || this.props.display.Id === true
+                    || this.props.display.Latitude === true || this.props.display.Longitude === true
+                    || this.props.display.Leg === true || this.props.display.Total === true)
                 {
                     cell.push(<th key={'check'+i} className="checkPlace">
                         <form>
@@ -127,25 +127,25 @@ class Itinerary extends Component {
                                    onChange={(event) => {this.toggle(event.target.value)}}/>
                         </form></th>);
                 }
-                if(this.state.display.Name === true)
+                if(this.props.display.Name === true)
                     cell.push(<th key={'destination' + i}>{this.props.trip.places[i].name}</th>);
-                if(this.state.display.Id === true)
+                if(this.props.display.Id === true)
                     cell.push(<th key={'id' + i}>{this.props.trip.places[i].id}</th>);
-                if(this.state.display.Latitude === true)
+                if(this.props.display.Latitude === true)
                     cell.push(<th key={'latitude' + i}>{this.props.trip.places[i].latitude}</th>);
-                if(this.state.display.Longitude === true)
+                if(this.props.display.Longitude === true)
                     cell.push(<th key={'longitude' + i}>{this.props.trip.places[i].longitude}</th>);
 
                 if (this.props.trip.distances.length === 0) {
-                    if(this.state.display.Leg === true)
+                    if(this.props.display.Leg === true)
                         cell.push(<th key={'leg distance' + i}>{'0'}</th>);
-                    if(this.state.display.Total === true)
+                    if(this.props.display.Total === true)
                         cell.push(<th key={'total distance' + i}>{'0'}</th>);
                 } else {
-                    if(this.state.display.Leg === true)
+                    if(this.props.display.Leg === true)
                         cell.push(<th key={'leg distance' + i}>{this.props.trip.distances[i]}</th>);
                     total_distance = total_distance + this.props.trip.distances[i];
-                    if(this.state.display.Total === true)
+                    if(this.props.display.Total === true)
                         cell.push(<th key={'total distance' + i}>{total_distance}</th>);
                 }
 
