@@ -2,29 +2,13 @@ import React, {Component} from 'react'
 import {Button, Row, Col} from "reactstrap";
 import {CardBody} from 'reactstrap'
 import {request} from '../../api/api';
-import SaveTrip from './SaveTrip';
-import Add from "./Add";
-import Clear from "./Clear";
 
 class Upload extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.LoadFile=this.LoadFile.bind(this);
-        this.updateOtherTeams=this.updateOtherTeams.bind(this);
-        this.updateHost=this.updateHost.bind(this);
         this.fileInput = React.createRef();
-        this.state = {otherTeams: null, host: null};
-    }
-
-    updateOtherTeams(event) {
-        this.setState({otherTeams: event.target.value});
-
-    }
-
-    updateHost(event) {
-        this.setState({host: event.target.value});
-
     }
 
     LoadFile(event) {
@@ -51,13 +35,13 @@ class Upload extends Component {
     handleSubmit(event) {
         event.preventDefault();
         let obj=this.props.trip;
-        if(this.state.otherTeams === null){
+        if(this.props.otherTeams === null){
             request(obj,'plan').then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
             });
         } else {
-            request(obj,'plan', this.state.otherTeams, this.state.host).then((Fi)=>
+            request(obj,'plan', this.props.otherTeams, this.props.host).then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
             });
@@ -81,34 +65,6 @@ class Upload extends Component {
                             <br/>
                             <Button className='btn-outline-dark' type="submit" onClick={this.handleSubmit}>Plan</Button>
                         </Col>
-
-                        <Col md={6}>
-                            Host name:<br/>
-                            <input type="text"
-                                   placeholder="black-bottle.cs.colostate.edu"
-                                   onChange={this.updateHost}
-                            />
-                            <br/>
-                            Port:<br/>
-                            <input type="text"
-                                   placeholder="31403"
-                                   onChange={this.updateOtherTeams}
-                            />
-                        </Col>
-
-                        <Col>
-                            <SaveTrip trip={this.props.trip}/>
-                            <Clear
-                                LoadFile={this.LoadFile} trip={this.props.trip} search={this.props.search} config={this.props.config} clearConfig={this.props.clearConfig}
-                                updateOptions={this.props.updateOptions} updateSearch={this.props.updateSearch} updateTrip={this.props.updateTrip}/>
-                            <br/>
-                        </Col>
-
-                        <Col md={6}>
-                            <Add trip={this.props.trip} search={this.props.search} config={this.props.config}
-                                 TripPushPlace={this.props.TripPushPlace} updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
-                        </Col>
-
                     </Row>
                 </CardBody>
             </div>

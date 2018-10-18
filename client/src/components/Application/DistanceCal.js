@@ -12,11 +12,11 @@ export class DistanceCal extends Component {
                 unitName      :"",
                 unitRadius    :0.0,
                 origin        : {latitude:"",
-                                longitude:"",
-                                },
+                    longitude:"",
+                },
                 destination   : {latitude:"",
-                                longitude:"",
-                                },
+                    longitude:"",
+                },
                 units         : "miles",
                 distance      : 0
             },
@@ -101,43 +101,43 @@ export class DistanceCal extends Component {
                     <CardBody>
                         <Button onClick={this.dropdown}>Calculate Your Own</Button>
                         <Collapse isOpen = {this.state.collapse}>
-                        <Row>
-                            <Col md={6}>
-                                <Input type="text" placeholder="Origin ex.lat"
-                                    onChange={(e) => this.updateLoc('latitude', e.target.value,false)}/>
-                                <Input type="text" placeholder="Origin ex.lon"
-                                    onChange={(e) => this.updateLoc('longitude', e.target.value, false)}/>
-                                <Input type="text" placeholder="Des ex.lat"
-                                     onChange={(e) => this.updateLoc('latitude', e.target.value,true)}/>
-                                 <Input type="text" placeholder="Des ex.lat"
-                                      onChange={(e) => this.updateLoc('longitude', e.target.value,true)}/>
-                                 <Button type={"button"} onClick={this.Calculate}>Calculate</Button>
-                                 <p>{"Final distance " + this.state.distances.distance + " "}{this.Display()}</p>
-                             </Col>
-                            <Col md={6}>
-                                 <ButtonGroup size="lg" vertical>
-                                    {buttons}
-                                </ButtonGroup>
-                                <p>{' '}</p>
-                                {this.state.ifDisplayUserDefinedInputFields && (
-                                    <form>
-                                        <FormGroup>
-                                            <label>
-                                                Unit Name:
-                                            </label>
-                                            <input type="text" placeholder="Enter unit name" onChange={event =>
-                                            {this.updateDistance('unitName', event.target.value)}}
-                                            />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <label>Unit Radius: </label>
-                                            <input type="text" placeholder="Enter unit radius"
-                                                   onChange={event => {this.updateDistance('unitRadius', event.target.value)}}
-                                            />
-                                        </FormGroup>
-                                    </form>) }
-                            </Col>
-                        </Row>
+                            <Row>
+                                <Col md={6}>
+                                    <Input type="text" placeholder="Origin ex.lat"
+                                           onChange={(e) => this.updateLoc('latitude', e.target.value,false)}/>
+                                    <Input type="text" placeholder="Origin ex.lon"
+                                           onChange={(e) => this.updateLoc('longitude', e.target.value, false)}/>
+                                    <Input type="text" placeholder="Des ex.lat"
+                                           onChange={(e) => this.updateLoc('latitude', e.target.value,true)}/>
+                                    <Input type="text" placeholder="Des ex.lat"
+                                           onChange={(e) => this.updateLoc('longitude', e.target.value,true)}/>
+                                    <Button type={"button"} onClick={this.Calculate}>Calculate</Button>
+                                    <p>{"Final distance " + this.state.distances.distance + " "}{this.Display()}</p>
+                                </Col>
+                                <Col md={6}>
+                                    <ButtonGroup size="lg" vertical>
+                                        {buttons}
+                                    </ButtonGroup>
+                                    <p>{' '}</p>
+                                    {this.state.ifDisplayUserDefinedInputFields && (
+                                        <form>
+                                            <FormGroup>
+                                                <label>
+                                                    Unit Name:
+                                                </label>
+                                                <input type="text" placeholder="Enter unit name" onChange={event =>
+                                                {this.updateDistance('unitName', event.target.value)}}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <label>Unit Radius: </label>
+                                                <input type="text" placeholder="Enter unit radius"
+                                                       onChange={event => {this.updateDistance('unitRadius', event.target.value)}}
+                                                />
+                                            </FormGroup>
+                                        </form>) }
+                                </Col>
+                            </Row>
                         </Collapse>
                     </CardBody>
                 </Card>

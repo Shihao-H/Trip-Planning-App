@@ -35,14 +35,14 @@ class Optimization extends Component{
 
 
         return (
-                <CardBody>
-                    <Button onClick={this.dropdown} >Optimization</Button>
-                    <Collapse isOpen = {this.state.collapse}>
-                        <ButtonGroup size="lg" vertical>
-                            {buttons}
-                        </ButtonGroup>
-                    </Collapse>
-                </CardBody>
+            <CardBody>
+                <Button onClick={this.dropdown} >Optimization</Button>
+                <Collapse isOpen = {this.state.collapse}>
+                    <ButtonGroup size="lg" vertical>
+                        {buttons}
+                    </ButtonGroup>
+                </Collapse>
+            </CardBody>
         )
     };
 }

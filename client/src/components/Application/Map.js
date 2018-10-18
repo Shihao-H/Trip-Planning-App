@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, Collapse} from 'reactstrap';
 import colorado from '../../../../images/CObackground.svg';
+import Options from "./Options";
 
 
 
@@ -30,3 +31,5 @@ export class Map extends Component {
             </div>);
     }
 }
+
+export default Map;
