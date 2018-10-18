@@ -24,7 +24,7 @@ class Application extends Component {
           units: ["miles", 'kilometers', 'nautical miles', 'user defined'], 
           unitName: "",
           unitRadius: 0.00,
-            optimization:"none"
+            optimization:["none","short"]
         },
         places: [],
         distances: [],
@@ -111,8 +111,8 @@ class Application extends Component {
                                 updateSearch={this.updateSearch} updateTrip={this.updateTrip}/>
                     <Map/>
                     <Itinerary trip={this.state.trip}/>
-                    <SearchBox trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
-                    <DistanceCal trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
+                    <SearchBox trip={this.state.trip} search={this.state.search} config={this.state.config} options={this.state.trip.options} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
+                    <DistanceCal options={this.state.trip.options} config={this.state.config} trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
                 </Container>
             )
         }
