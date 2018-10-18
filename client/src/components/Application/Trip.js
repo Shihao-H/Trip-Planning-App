@@ -52,9 +52,10 @@ class Trip extends Component {
                                 config={this.props.config}
                                 search={this.props.search}
                                 trip={this.props.trip}
-                                TripPushPlace={this.props.TripPushPlace}
                                 updateOptions={this.props.updateOptions}
-                                updateSearch={this.props.updateSearch}/>
+                                updateTrip={this.props.updateTrip}
+                                updateSearch={this.props.updateSearch}
+                            />
                         </Col>
                     </Row>
                     <Row>
