@@ -82,3 +82,4 @@ export class SearchBox extends Component {
             </Card>);
     }
 }
+export default SearchBox;
