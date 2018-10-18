@@ -46,8 +46,8 @@ public class TestOptimize {
     @Test
     public void testGetOptimalTrip(){
         opt = new Optimize(trip);
-        Distance[] optTrip = opt.getOptimalTrip();
+        Trip optTrip = opt.getOptimalTrip();
 
-        assertEquals(optTrip.length, trip.places.size());
+        assertEquals(optTrip.places.size(), trip.places.size());
     }
 }
