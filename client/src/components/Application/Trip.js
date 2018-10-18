@@ -29,19 +29,21 @@ class Trip extends Component {
                     search={this.props.search}
                     trip={this.props.trip}
                     clearConfig={this.props.clearConfig}
-                    LoadFile={this.LoadFile}
-                    updateHost={this.updateHost}
+                    LoadFile={this.props.LoadFile}
+                    updateHost={this.props.updateHost}
                     updateOptions={this.props.updateOptions}
                     updateOtherTeams={this.props.updateOtherTeams}
                     updateSearch={this.props.updateSearch}
+                    updateSelectAll={this.props.updateSelectAll}
+                    updateSelected={this.props.updateSelected}
                     updateTrip={this.props.updateTrip}
                 />
                 <SearchBox
                     config={this.props.config}
                     search={this.props.search}
                     trip={this.props.trip}
-                    updateOptions={this.updateOptions}
-                    updateSearch={this.updateSearch}/>
+                    updateOptions={this.props.updateOptions}
+                    updateSearch={this.props.updateSearch}/>
                 <Add
                     config={this.props.config}
                     search={this.props.search}
@@ -55,11 +57,11 @@ class Trip extends Component {
                     selectAll={this.props.selectAll}
                     selected={this.props.selected}
                     trip={this.props.trip}
-                    updateOptions={this.updateOptions}
-                    updatePlaces={this.updatePlaces}
-                    updateSelectAll={this.updateSelectAll}
-                    updateSelected={this.updateSelected}
-                    updateTrip={this.updateTrip}/>
+                    updateOptions={this.props.updateOptions}
+                    updatePlaces={this.props.updatePlaces}
+                    updateSelectAll={this.props.updateSelectAll}
+                    updateSelected={this.props.updateSelected}
+                    updateTrip={this.props.updateTrip}/>
                 </CardBody>
             </Card>
         </Container>

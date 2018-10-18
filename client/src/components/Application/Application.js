@@ -158,6 +158,8 @@ class Application extends Component {
                     host={this.state.host}
                     otherTeams={this.state.otherTeams}
                     search={this.state.search}
+                    selectAll={this.state.selectAll}
+                    selected={this.state.selected}
                     trip={this.state.trip}
                     clearConfig={this.state.clearConfig}
                     LoadFile={this.LoadFile}

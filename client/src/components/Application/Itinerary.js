@@ -67,8 +67,6 @@ class Itinerary extends Component {
         this.props.updateTrip('places',[]);
     }
 
-
-
     createTable(){
         let table = [];
         let children = [];
