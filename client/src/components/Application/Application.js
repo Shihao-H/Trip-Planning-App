@@ -122,7 +122,7 @@ class Application extends Component {
         return (
             <Container id="Application">
                 <Info/>
-                <DistanceCal trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
+                <DistanceCal options={this.state.trip.options} config={this.state.config} trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
                 <Options options={this.state.trip.options} config={this.state.config}
                          updateOptions={this.updateOptions}/>
                 <Upload trip={this.state.trip} config={this.state.config} TripPushPlace={this.TripPushPlace}
@@ -131,7 +131,7 @@ class Application extends Component {
                 <Map/>
                 <Itinerary trip={this.state.trip} updateTrip={this.updateTrip} updateOptions={this.updateOptions} updatePlaces={this.updatePlaces}
                            selected={this.state.selected} selectAll={this.state.selectAll} updateSelected={this.updateSelected} updateSelectAll={this.updateSelectAll}/>
-                <SearchBox trip={this.state.trip} search={this.state.search} config={this.state.config} updateSearch={this.updateSearch} updateOptions={this.updateOptions}/>
+                <SearchBox trip={this.state.trip} search={this.state.search} config={this.state.config} options={this.state.trip.options} updateSearch={this.updateSearch} updateTrip={this.updateTrip} updateOptions={this.updateOptions}/>
             </Container>
         )
     }

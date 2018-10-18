@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input,Col,Card,CardBody} from 'reactstrap';
+import {Button, Input, Col, Card, CardBody, ButtonGroup, Collapse, Row, FormGroup} from 'reactstrap';
 import {request} from "../../api/api";
 
 export class DistanceCal extends Component {
@@ -19,12 +19,16 @@ export class DistanceCal extends Component {
                                 },
                 units         : "miles",
                 distance      : 0
-            }
+            },
+            collapse: false,
+            ifDisplayUserDefinedInputFields: false,
         }
         this.updateLoc = this.updateLoc.bind(this);
         this.updateDistance = this.updateDistance.bind(this);
         this.Calculate= this.Calculate.bind(this);
-
+        this.clickUnit= this.clickUnit.bind(this);
+        this.dropdown = this.dropdown.bind(this);
+        this.Display = this.Display.bind(this);
     }
 
     updateLoc(field,value,origin) {
@@ -41,6 +45,28 @@ export class DistanceCal extends Component {
         }
     }
 
+    dropdown()
+    {
+        this.setState({collapse: !this.state.collapse})
+    }
+
+    clickUnit(event){
+        this.updateDistance('units', event.target.value);
+        if(event.target.value === 'user defined'){
+            this.setState({ifDisplayUserDefinedInputFields: true});
+        } else {
+            this.setState({ifDisplayUserDefinedInputFields: false});
+        }
+    }
+
+    Display()
+    {
+        if(this.state.distances.unitName!=="")
+            return this.state.distances.unitName;
+        else
+            return this.state.distances.units;
+    }
+
     updateDistance(field,value)
     {
         let obj = this.state.distances;
@@ -52,29 +78,67 @@ export class DistanceCal extends Component {
     {
         request(this.state.distances,'distance').then((response)=>
         {
-            console.log("LOL ",response);
             this.updateDistance('distance',response.distance);
         });
     }
 
     render() {
+        const buttons = this.props.config.units.map((unit) =>
+            <Button
+                key={'DistanceCal_button_' + unit}
+                className='btn-outline-dark optimization-button'
+                active={this.state.distances.units === unit}
+                value={unit}
+                onClick={this.clickUnit}
+            >
+                {unit.charAt(0).toUpperCase() + unit.slice(1)}
+            </Button>
+        );
+
         return (
             <div>
                 <Card>
                     <CardBody>
-                <Col>
-                    <p> Calculate Your Own </p>
-                    <Input type="text" placeholder="Origin ex.lat"
-                           onChange={(e) => this.updateLoc('latitude', e.target.value,false)}/>
-                    <Input type="text" placeholder="Origin ex.lon"
-                           onChange={(e) => this.updateLoc('longitude', e.target.value, false)}/>
-                    <Input type="text" placeholder="Des ex.lat"
-                           onChange={(e) => this.updateLoc('latitude', e.target.value,true)}/>
-                    <Input type="text" placeholder="Des ex.lat"
-                           onChange={(e) => this.updateLoc('longitude', e.target.value,true)}/>
-                    <Button type={"button"} onClick={this.Calculate}>Calculate</Button>
-                    <p>{"Final Distance " + this.state.distances.distance }</p>
-                </Col>
+                        <Button onClick={this.dropdown}>Calculate Your Own</Button>
+                        <Collapse isOpen = {this.state.collapse}>
+                        <Row>
+                            <Col md={6}>
+                                <Input type="text" placeholder="Origin ex.lat"
+                                    onChange={(e) => this.updateLoc('latitude', e.target.value,false)}/>
+                                <Input type="text" placeholder="Origin ex.lon"
+                                    onChange={(e) => this.updateLoc('longitude', e.target.value, false)}/>
+                                <Input type="text" placeholder="Des ex.lat"
+                                     onChange={(e) => this.updateLoc('latitude', e.target.value,true)}/>
+                                 <Input type="text" placeholder="Des ex.lat"
+                                      onChange={(e) => this.updateLoc('longitude', e.target.value,true)}/>
+                                 <Button type={"button"} onClick={this.Calculate}>Calculate</Button>
+                                 <p>{"Final distance " + this.state.distances.distance + " "}{this.Display()}</p>
+                             </Col>
+                            <Col md={6}>
+                                 <ButtonGroup size="lg" vertical>
+                                    {buttons}
+                                </ButtonGroup>
+                                <p>{' '}</p>
+                                {this.state.ifDisplayUserDefinedInputFields && (
+                                    <form>
+                                        <FormGroup>
+                                            <label>
+                                                Unit Name:
+                                            </label>
+                                            <input type="text" placeholder="Enter unit name" onChange={event =>
+                                            {this.updateDistance('unitName', event.target.value)}}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <label>Unit Radius: </label>
+                                            <input type="text" placeholder="Enter unit radius"
+                                                   onChange={event => {this.updateDistance('unitRadius', event.target.value)}}
+                                            />
+                                        </FormGroup>
+                                    </form>) }
+                            </Col>
+                        </Row>
+                        </Collapse>
                     </CardBody>
                 </Card>
             </div>
