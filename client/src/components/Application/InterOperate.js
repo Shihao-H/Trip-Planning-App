@@ -11,7 +11,7 @@ class InterOperate extends Component{
             <Col md={6}>
                 Host name:<br/>
                 <input type="text"
-                       placeholder="black-bottle.cs.colostate.edu"
+                       placeholder="black-bottle"
                        onChange={this.props.updateHost}
                 />
                 <br/>
