@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import { Container } from 'reactstrap';
+import {Card, CardBody, Container} from 'reactstrap';
 import { get_config } from '../../api/api';
 import DistanceCal from "./DistanceCal";
 import Info from './Info';
-import Options from './Options';
 import Trip from "./Trip"
 import OptionPanel from "./OptionPanel";
 
@@ -151,6 +150,8 @@ class Application extends Component {
         }
         return (
             <Container id="Application">
+                <Card>
+                    <CardBody>
                 <Info/>
                 <Trip
                     config={this.state.config}
@@ -171,14 +172,6 @@ class Application extends Component {
                     updateSelectAll={this.updateSelectAll}
                     updateSelected={this.updateSelected}
                     updateTrip={this.updateTrip}/>
-                <DistanceCal
-                    config={this.state.config}
-                    options={this.state.trip.options}
-                    search={this.state.search}
-                    trip={this.state.trip}
-                    updateOptions={this.updateOptions}
-                    updateSearch={this.updateSearch}
-                    updateTrip={this.updateTrip}/>
                 <OptionPanel
                     config={this.state.config}
                     display={this.state.display}
@@ -189,6 +182,16 @@ class Application extends Component {
                     updateHost={this.updateHost}
                     updateOptions={this.updateOptions}
                     updateOtherTeams={this.updateOtherTeams}/>
+                        <DistanceCal
+                            config={this.state.config}
+                            options={this.state.trip.options}
+                            search={this.state.search}
+                            trip={this.state.trip}
+                            updateOptions={this.updateOptions}
+                            updateSearch={this.updateSearch}
+                            updateTrip={this.updateTrip}/>
+                    </CardBody>
+                </Card>
             </Container>
         )
     }

@@ -1,4 +1,4 @@
-import {Button, Card, CardBody, Col, Collapse, Input} from "reactstrap";
+import {Button, Card, CardBody, Collapse} from "reactstrap";
 import React, {Component} from 'react'
 import { Table } from 'reactstrap';
 
@@ -158,7 +158,7 @@ class Itinerary extends Component {
     {
         return (
             <div>
-                <Button onClick={this.dropdown} className = 'btn-dark' size='lg'>Itinerary</Button>
+                <Button onClick={this.dropdown} size='lg'>Itinerary</Button>
                 <Collapse isOpen = {this.state.collapse}>
                     <Card>
                         <CardBody>

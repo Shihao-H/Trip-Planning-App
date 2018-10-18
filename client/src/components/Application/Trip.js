@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import { Card, CardBody, Container,Row,Col} from 'reactstrap';
+import {Container,Row,Col} from 'reactstrap';
 import Add from "./Add"
 import Itinerary from "./Itinerary"
 import Map from "./Map"
 import Plan from "./Plan";
 import SearchBox from "./SearchBox";
-import Upload from "./Upload";
-import Options from "./Options";
 
 /* Renders the Trip.
  * Holds Plan, Search, Add, Map and Itinerary.
@@ -20,8 +18,6 @@ class Trip extends Component {
     {
         return (
             <Container id="Trip">
-                <Card>
-                    <CardBody>
                         <Row>
                             <Col>
                                 <Plan
@@ -76,8 +72,6 @@ class Trip extends Component {
                                     updateTrip={this.props.updateTrip}/>
                             </Col>
                         </Row>
-                </CardBody>
-            </Card>
         </Container>
         )
     }
