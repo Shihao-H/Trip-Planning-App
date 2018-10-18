@@ -59,14 +59,14 @@ export class SearchBox extends Component {
         if(this.props.search.places.length !== 0){
             let table = [];
             for (let i = 0; i < this.props.search.places.length; i++) {
-                table.push(<tr key={'LOL' + i}><button type={"button"} onClick={this.addPlace()}>+</button>{this.props.search.places[i].name}</tr>);
+                table.push(<tr key={'search' + i}><Button type={"button"} onClick={this.addPlace()}>+</Button>{this.props.search.places[i].name}</tr>);
             }
             return table;
         }
         else
         {
             let empty = [];
-            empty.push(<tr>{' '}</tr>);
+            empty.push(<tr key={"space"}></tr>);
             return empty;
         }
 
@@ -80,7 +80,6 @@ export class SearchBox extends Component {
                         <br/>
                             <input type="text"
                             placeholder="place name"
-
                             style={{width: 300}}
                             onChange={event => {this.props.updateSearch('match', event.target.value)}}
                              />
