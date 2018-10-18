@@ -19,10 +19,9 @@ class Plan extends Component {
                     <Upload
                         config={this.props.config} trip={this.props.trip}
                         host={this.props.host} otherTeams={this.props.otherTeams}
-                        clearConfig={this.props.clearConfig} TripPushPlace={this.props.TripPushPlace}
+                        clearConfig={this.props.clearConfig} updateTrip={this.props.updateTrip}
                         updateOptions={this.props.updateOptions} updateSearch={this.props.updateSearch}
-                        updateSelectAll={this.props.updateSelectAll} updateSelected={this.props.updateSelected}
-                        updateTrip={this.props.updateTrip}/><br/>
+                        updateSelectAll={this.props.updateSelectAll} updateSelected={this.props.updateSelected}/><br/>
                     <SaveTrip
                         trip={this.props.trip}/><br/><br/>
                     <Clear

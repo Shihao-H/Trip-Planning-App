@@ -18,7 +18,7 @@ class Application extends Component {
                 type: "trip",
                 title: "",
                 options : {
-                    units: ["miles", 'kilometers', 'nautical miles', 'user defined'],
+                    units: "miles",
                     unitName: "",
                     unitRadius: 0.00,
                     optimization:"none"
@@ -53,7 +53,6 @@ class Application extends Component {
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.updateOptions = this.updateOptions.bind(this);
         this.updateUpload = this.updateUpload.bind(this);
-        this.TripPushPlace = this.TripPushPlace.bind(this);
         this.updateSelected = this.updateSelected.bind(this);
         this.updateSelectAll = this.updateSelectAll.bind(this);
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
@@ -76,13 +75,6 @@ class Application extends Component {
     {
         let trip = this.state.trip;
         trip[field] = value;
-        this.setState(trip);
-    }
-
-    TripPushPlace(value)
-    {
-        let trip = this.state.trip;
-        trip.places.push(value);
         this.setState(trip);
     }
 
@@ -153,10 +145,10 @@ class Application extends Component {
                               search={this.state.search} selectAll={this.state.selectAll}
                               selected={this.state.selected} trip={this.state.trip}
                               clearConfig={this.state.clearConfig} LoadFile={this.LoadFile}
-                              TripPushPlace={this.TripPushPlace} updateHost={this.updateHost}
+                              updateHost={this.updateHost} updateTrip={this.updateTrip}
                               updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
                               updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
-                              updateSelected={this.updateSelected} updateTrip={this.updateTrip}/>
+                              updateSelected={this.updateSelected}/>
                         <OptionPanel config={this.state.config} display={this.state.display}
                                      host={this.state.host} options={this.state.trip.options}
                                      otherTeams={this.state.otherTeams} updateDisplay={this.updateDisplay}
