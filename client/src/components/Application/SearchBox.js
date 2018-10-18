@@ -76,15 +76,6 @@ export class SearchBox extends Component {
                                 {this.createTable()}
                                 </tbody>
                             </Table>
-                        <Container id="SearchBox"/>
-                        <Optimization
-                            trip={this.props.trip}
-                            search={this.props.search}
-                            config={this.props.config}
-                            updateSearch={this.props.updateSearch}
-                            updateOptions={this.props.updateOptions}
-                        />
-                        <Container/>
                         </label>
                     </form>
                 </CardBody>
