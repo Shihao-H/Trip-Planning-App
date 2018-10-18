@@ -22,7 +22,6 @@ class Plan extends Component {
                     host={this.props.host}
                     otherTeams={this.props.otherTeams}
                     clearConfig={this.props.clearConfig}
-                    TripPushPlace={this.props.TripPushPlace}
                     updateOptions={this.props.updateOptions}
                     updateSearch={this.props.updateSearch}
                     updateSelectAll={this.props.updateSelectAll}

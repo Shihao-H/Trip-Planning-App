@@ -48,31 +48,3 @@ class Optimization extends Component{
 }
 
 export default Optimization;
-
-
-{/*<ButtonGroup vertical>*/}
-    {/*<Button*/}
-        {/*className = 'btn-outline-dark'*/}
-        {/*active*/}
-        {/*value={"none"}*/}
-        {/*onClick={this.clickButton}*/}
-    {/*>None</Button>*/}
-    {/*<Button*/}
-        {/*className = 'btn-outline-dark'*/}
-        {/*active*/}
-        {/*value={"short"}*/}
-        {/*onClick={this.clickButton}*/}
-    {/*>Short</Button>*/}
-    {/*<Button*/}
-        {/*className = 'btn-outline-dark'*/}
-        {/*active*/}
-        {/*value={"shorter"}*/}
-        {/*onClick={this.clickButton}*/}
-    {/*>Shorter</Button>*/}
-    {/*<Button*/}
-        {/*className = 'btn-outline-dark'*/}
-        {/*active*/}
-        {/*value={"shortest"}*/}
-        {/*onClick={this.clickButton}*/}
-    {/*>Shortest</Button>*/}
-{/*</ButtonGroup>*/}

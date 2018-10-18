@@ -18,7 +18,7 @@ class Application extends Component {
                 type: "trip",
                 title: "",
                 options : {
-                    units: ["miles", 'kilometers', 'nautical miles', 'user defined'],
+                    units: "miles",
                     unitName: "",
                     unitRadius: 0.00,
                     optimization:"none"
@@ -53,7 +53,6 @@ class Application extends Component {
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.updateOptions = this.updateOptions.bind(this);
         this.updateUpload = this.updateUpload.bind(this);
-        this.TripPushPlace = this.TripPushPlace.bind(this);
         this.updateSelected = this.updateSelected.bind(this);
         this.updateSelectAll = this.updateSelectAll.bind(this);
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
@@ -76,13 +75,6 @@ class Application extends Component {
     {
         let trip = this.state.trip;
         trip[field] = value;
-        this.setState(trip);
-    }
-
-    TripPushPlace(value)
-    {
-        let trip = this.state.trip;
-        trip.places.push(value);
         this.setState(trip);
     }
 
@@ -164,7 +156,6 @@ class Application extends Component {
                     trip={this.state.trip}
                     clearConfig={this.state.clearConfig}
                     LoadFile={this.LoadFile}
-                    TripPushPlace={this.TripPushPlace}
                     updateHost={this.updateHost}
                     updateOptions={this.updateOptions}
                     updateOtherTeams={this.updateOtherTeams}
@@ -182,14 +173,14 @@ class Application extends Component {
                     updateHost={this.updateHost}
                     updateOptions={this.updateOptions}
                     updateOtherTeams={this.updateOtherTeams}/>
-                        <DistanceCal
-                            config={this.state.config}
-                            options={this.state.trip.options}
-                            search={this.state.search}
-                            trip={this.state.trip}
-                            updateOptions={this.updateOptions}
-                            updateSearch={this.updateSearch}
-                            updateTrip={this.updateTrip}/>
+                <DistanceCal
+                    config={this.state.config}
+                    options={this.state.trip.options}
+                    search={this.state.search}
+                    trip={this.state.trip}
+                    updateOptions={this.updateOptions}
+                    updateSearch={this.updateSearch}
+                    updateTrip={this.updateTrip}/>
                     </CardBody>
                 </Card>
             </Container>
