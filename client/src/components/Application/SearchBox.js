@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Button, Card, CardBody, Container, Table, Input} from "reactstrap";
 import {request} from '../../api/api';
-import Optimization from "./Optimization";
 import AddButton from "./AddButton";
 
 
@@ -47,7 +46,7 @@ export class SearchBox extends Component {
         else
         {
             let empty = [];
-            empty.push(<tr key={'empty_string'}><th>{' '}</th></tr>);
+            empty.push(<tr key={'empty_string'}></tr>);
             return empty;
         }
 
