@@ -15,6 +15,9 @@ export class AddButton extends Component {
         let newPlace = this.props.newPlace;
         let places = this.props.trip.places;
 
+        let dummy = this.props.trip.distances
+        dummy.push(0);
+        
         places.push(newPlace);
         this.props.updateTrip('places', places);
 
