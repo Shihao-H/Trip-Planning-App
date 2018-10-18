@@ -1,6 +1,11 @@
 package com.tripco.t03.planner;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 public class Optimize {
     private Trip trip;
     private Place[] longitude;
@@ -16,15 +21,43 @@ public class Optimize {
         setLong();
         buildOptArray();
         this.optTrip = nearestNeighborInit(0,0, this.optimizeArray.length-1);
-
     }
 
+    private void logToFile(){
+        File outFile = new File("optimize.txt");
+        PrintWriter pw;
+        try {
+            pw = new PrintWriter(outFile);
+            for(int i =0; i<optimizeArray.length; i++){
+                pw.printf("|%20s", optimizeArray[0][i].destination.name);
+            }
+            pw.printf("|\n");
+            for(int i =0; i < optimizeArray.length; i++){
+                pw.printf("|%20s|", optimizeArray[0][i].destination.name);
+                for(int j =0; j< optimizeArray[i].length; j++){
+                    pw.printf("%20d|", optimizeArray[i][j].distance);
+                }
+                pw.println();
+            }
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.print("PW FAIL");
+        }
+    }
     /**
      * Finds the optimal trip.
      * @return Distance[] with optimal trip.
      */
-    public Distance[] getOptimalTrip(){
-        return optTrip;
+    public Trip getOptimalTrip(){
+        ArrayList<Place> places = new ArrayList<>();
+        ArrayList<Integer> distances = new ArrayList<>();
+        for(int i = 0; i < optTrip.length; i++){
+            places.add(optTrip[i].origin);
+            distances.add(optTrip[i].distance);
+        }
+        Trip optimalTrip = new Trip(this.trip.title, this.trip.options, places, distances);
+        return optimalTrip;
     }
 
     /**
@@ -126,7 +159,6 @@ public class Optimize {
     
     private boolean isUsed(Distance[] dist, int column, int row){
         String destination = this.optimizeArray[column][row].destination.name;
-        String origin = this.optimizeArray[column][row].origin.name;
         for (Distance distObj: dist
         ) {
             if (distObj != null){
@@ -143,17 +175,25 @@ public class Optimize {
      * Builds the 2D array of Distances.
      */
     private void buildOptArray(){
+        for(int i =0; i<optimizeArray.length; i++){
+            optimizeArray[i][i] = new Distance(longitude[i], longitude[i], trip.options.units, 0);
+        }
         for (int i = 0; i < optimizeArray.length; i++) {
             for (int j = 0; j < optimizeArray[i].length; j++) {
-                if (trip.options.units.equalsIgnoreCase("user defined")) {
-                    optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units, trip.options.unitName, trip.options.unitRadius);
-                    optimizeArray[i][j].setDistance();
-                } else {
-                    optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units);
-                    optimizeArray[i][j].setDistance();
+                if(optimizeArray[i][j] == null) {
+                    if (trip.options.units.equalsIgnoreCase("user defined")) {
+                        optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units, trip.options.unitName, trip.options.unitRadius);
+                        optimizeArray[i][j].setDistance();
+                        optimizeArray[j][i] = new Distance(longitude[j], longitude[i], trip.options.units, optimizeArray[i][j].distance);
+                    } else {
+                        optimizeArray[i][j] = new Distance(longitude[i], longitude[j], trip.options.units);
+                        optimizeArray[i][j].setDistance();
+                        optimizeArray[j][i] = new Distance(longitude[j], longitude[i], trip.options.units, optimizeArray[i][j].distance);
+                    }
                 }
             }
         }
+        logToFile();
     }
 
     /**
