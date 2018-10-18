@@ -44,6 +44,7 @@ class Trip extends Component {
                                     trip={this.props.trip}
                                     updateOptions={this.props.updateOptions}
                                     updateSearch={this.props.updateSearch}/>
+                                    updateTrip={this.props.updateTrip}/>
                             </Col>
                             <Col>
                                 <Add
