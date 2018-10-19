@@ -95,6 +95,8 @@ class Itinerary extends Component {
                 children.push(<th key='default_destination'>{"Place"}</th>);
             if(this.props.display.Id === true)
                 children.push(<th key='default_id'>{"ID"}</th>);
+            if(this.props.display.UserDefined === true)
+                children.push(<th key='default_user'>{this.props.display.UserDefined}</th>);
             if(this.props.display.Latitude === true)
                 children.push(<th key='default_latitude'>{"Latitude"}</th>);
             if(this.props.display.Longitude === true)
@@ -108,7 +110,7 @@ class Itinerary extends Component {
         } else {
             if(this.props.display.Name === true || this.props.display.Id === true
                 || this.props.display.Latitude === true || this.props.display.Longitude === true
-                || this.props.display.Leg === true || this.props.display.Total === true)
+                || this.props.display.Leg === true || this.props.display.Total === true || this.props.display.UserDefinedDisplay === true)
             {
                 children.push(<th key='checkAll' className="checkPlace">
                     <form>
@@ -120,6 +122,8 @@ class Itinerary extends Component {
                 children.push(<th key='destination'>{"Place"}</th>);
             if(this.props.display.Id === true)
                 children.push(<th key='id'>{"ID"}</th>);
+            if(this.props.display.UserDefined === true)
+                children.push(<th key='user'>{this.props.display.UserDefined}</th>);
             if(this.props.display.Latitude === true)
                 children.push(<th key='latitude'>{"Latitude"}</th>);
             if(this.props.display.Longitude === true)
@@ -135,7 +139,7 @@ class Itinerary extends Component {
                 cell = [];
                 if(this.props.display.Name === true || this.props.display.Id === true
                     || this.props.display.Latitude === true || this.props.display.Longitude === true
-                    || this.props.display.Leg === true || this.props.display.Total === true)
+                    || this.props.display.Leg === true || this.props.display.Total === true || this.props.display.UserDefinedDisplay === true)
                 {
                     cell.push(<th key={'check'+i} className="checkPlace">
                         <form>
@@ -148,6 +152,8 @@ class Itinerary extends Component {
                     cell.push(<th key={'destination' + i}>{this.props.trip.places[i].name}</th>);
                 if(this.props.display.Id === true)
                     cell.push(<th key={'id' + i}>{this.props.trip.places[i].id}</th>);
+                if(this.props.display.UserDefined === true)
+                    children.push(<th key={'user' + i}>{this.props.trip.places[i].userDefined}</th>);
                 if(this.props.display.Latitude === true)
                     cell.push(<th key={'latitude' + i}>{this.props.trip.places[i].latitude}</th>);
                 if(this.props.display.Longitude === true)

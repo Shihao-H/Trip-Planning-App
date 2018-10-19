@@ -44,7 +44,9 @@ class Application extends Component {
                 Latitude: true,
                 Longitude: true,
                 Leg: true,
-                Total: true
+                Total: true,
+                UserDefined: null,
+                UserDefinedDisplay: false
             }
         };
         this.updateTrip = this.updateTrip.bind(this);
@@ -58,6 +60,7 @@ class Application extends Component {
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
         this.updateHost=this.updateHost.bind(this);
         this.updateDisplay = this.updateDisplay.bind(this);
+        this.updateDisplayUserDefined = this.updateDisplayUserDefined.bind(this);
     }
 
     componentWillMount()
@@ -135,6 +138,13 @@ class Application extends Component {
         this.updateSelectAll(false);
     }
 
+    updateDisplayUserDefined(value){
+        let display = this.state.display;
+        display.UserDefined = value;
+        this.setState({display: display});
+        this.updateSelectAll(false);
+    }
+
     render() {
         if (!this.state.config) {return <div/>}
         return (
@@ -152,6 +162,7 @@ class Application extends Component {
                         <OptionPanel config={this.state.config} display={this.state.display}
                                      host={this.state.host} options={this.state.trip.options}
                                      otherTeams={this.state.otherTeams} updateDisplay={this.updateDisplay}
+                                     updateDisplayUserDefined={this.updateDisplayUserDefined}
                                      updateHost={this.updateHost} updateOptions={this.updateOptions}
                                      updateOtherTeams={this.updateOtherTeams}/>
                         <DistanceCal config={this.state.config} options={this.state.trip.options}

@@ -12,8 +12,9 @@ import spark.Request;
 public class Place {
     public String id;
     public String name;
-    public double latitude;
-    public double longitude;
+    public String userDefined;
+    public Double latitude;
+    public Double longitude;
 
     /**
      * Default constructor
@@ -21,8 +22,8 @@ public class Place {
     public Place(){
         id = null;
         name = null;
-        latitude = '\0';
-        longitude = '\0';
+        latitude = 0.0;
+        longitude = 0.0;
     }
 
     /**
@@ -32,9 +33,17 @@ public class Place {
      * @param longitude longitude coordinates double
      *                  constructs an instance of Place for the desired place
      */
-    public Place(String id, String name, double latitude, double longitude){
+    public Place(String id, String name, Double latitude, Double longitude){
         this.id = id;
         this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Place(String id, String name, String userDefined, Double latitude, Double longitude){
+        this.id = id;
+        this.name = name;
+        this.userDefined = userDefined;
         this.latitude = latitude;
         this.longitude = longitude;
     }
