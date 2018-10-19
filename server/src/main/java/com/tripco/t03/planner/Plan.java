@@ -2,6 +2,7 @@ package com.tripco.t03.planner;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.tripco.t03.server.HTTP;
 import spark.Request;
@@ -19,7 +20,7 @@ public class Plan {
 
   /** Handles trip planning request, creating a new trip object from the trip request.
    * Does the conversion from Json to a Java class before planning the trip.
-   * @param request
+   * @param request HTTP Request.
    */
   public Plan (Request request) {
     // first print the request
@@ -44,12 +45,12 @@ public class Plan {
      * Constructor that takes a JsonObject for testing.
      * @param json JsonObject.
      */
-    public Plan (String json){
-        Gson gson = new Gson();
-        trip = gson.fromJson(json, Trip.class);
+  public Plan (String json){
+      Gson gson = new Gson();
+      trip = gson.fromJson(json, Trip.class);
 
-        trip.plan();
-    }
+      trip.plan();
+  }
 
   /** Handles the response for a Trip object.
    * Does the conversion from a Java class to a Json string.*
