@@ -1,7 +1,5 @@
 # Sprint 3 - *t03* - *WOPR*
 
-## Goal
-
 ### Build shorter trips!
 ### Sprint Leader: *Minjie Shen*
 
@@ -48,7 +46,6 @@ that the third and last epic can be finished by adding the nearest neighbor algo
 for shorter trips. With all of this in mind, the team came to the conclusion that Sprint 3 can be successful if these tasks relating to
 the epics listed above are met.
 
-*Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.) with a short paragraph or each.
 
 | Page Diagram | Description |
 |:------------:|-------------|
@@ -96,7 +93,9 @@ Epics planned for this sprint.
 
 ## Review
 
-*An introductory paragraph describing the overall results of the sprint.*
+*We were able to get a map with the route displayed up. We successfully set up our front end page. We added tests for both front
+and back end. We added the search function and connected to the database. We handled our first major conflict and came out
+a stronger team. 
 
 #### Completed Epics in Sprint Backlog 
 
@@ -116,34 +115,45 @@ Epics planned for this sprint.
 
 #### What Went Well
 
-*Describe what went well during the sprint in general terms followed by a more detailed list.*
-
-* *something*
-*
+* Planning and breaking up tasks into smaller more manageable jobs.
+* Javascript started being easier
+* We have started communicating well.
 
 #### Problems Encountered and Resolutions
 
-*Describe what problems occurred during the sprint in general terms followed by a more detailed list.*
-
-* *something*
-*
+* There were a lot of technical difficulties in getting the map from sprint 2 up and running. Asked for help. 
+* There were technical difficulties with bugs in javascript. Worked together and debugged and learned.
 
 ## Retrospective
 
-*An introductory paragraph for your retrospective.*
+*This sprint was challenging in a lot of ways. We had a lot of technical difficulties while trying to learn javascript. We also 
+had issues with communication at the beginning of the sprint, as well as time mananagement. We have made great strides as a team through 
+this sprint. We did hit a category 5 hurricane level of storming, or better yet, I did (Lacey) and the rest of my team responded 
+a lot better than I did and they deserve some kudos from me. Overall, I think we made improvements and grew as a team this sprint.
 
 #### What we changed this sprint
 
-*Articulate specifically what you will do differently based on the retrospective from the previous sprint before the sprint starts.*
+*We improved our communication skills*
+*We made improvements to time management*
+*We improved our planning skills*
 
 #### What we did well
 
-*Articulate what went well at the end of the sprint.*
+*Again, I (Lacey) want to give kudos to my teammates for the way they responded to my stupidity, they handled it and responded
+really well.*
+*Stayed on task.*
+*Began working well together.*
+
 
 #### What we need to work on
 
-*Articulate things you could improve at the end of the sprint.*
+*Not taking on too much work.*
+*Planning*
+*Asking for help*
+*Getting rest!!!!!*
 
 #### What we will change next sprint 
 
-*Articulate the one thing you will change for the next sprint and how you will accomplish that.*
+*We will continue to make improvements to our communication*
+*We will continue to work on planning*
+*We will continue to work on our time management skills* 
