@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button, Collapse} from 'reactstrap';
-import colorado from '../../../../images/CObackground.svg';
+import {Card, CardBody, Button, Collapse} from 'reactstrap';
+import { renderToStaticMarkup } from 'react-dom/server';
 
 
 
@@ -14,22 +14,29 @@ export class Map extends Component {
         };
         this.dropdown = this.dropdown.bind(this);
     }
+
+
     dropdown()
     {
         this.setState({collapse: !this.state.collapse})
     }
 
-    render() {
+    render(){
         return (
-            <div className={'text-center'}>
-                <Button onClick={this.dropdown} size='lg'>Map</Button>
-                    <Collapse isOpen = {this.state.collapse}>
-                        <Card>
-                            <CardImg  width="75%" src={colorado} alt={"Map of Colorado"}/>
+            <div>
+                <div className={'text-center'}>
+                    <Button onClick={this.dropdown} size='lg'>Map</Button>
+                            <Collapse isOpen = {this.state.collapse}>
+                            <Card>
+                            <CardBody>
+                                <img src={this.props.map} className={'Map'} alt={"Map of Colorado"}/>
+                            </CardBody>
                         </Card>
                     </Collapse>
+                </div>
             </div>);
     }
 }
 
 export default Map;
+

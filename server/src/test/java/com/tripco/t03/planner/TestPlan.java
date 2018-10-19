@@ -53,3 +53,4 @@ public class TestPlan {
         Assert.assertTrue(plan.getTrip().length() > jsonString.length());
     }
 }
+
