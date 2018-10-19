@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 
 
+
 export class Map extends Component {
     constructor(props)
     {
@@ -38,3 +39,4 @@ export class Map extends Component {
 }
 
 export default Map;
+

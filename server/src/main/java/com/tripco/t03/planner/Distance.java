@@ -6,7 +6,7 @@ public class Distance {
     public Place destination;
     public String units;
     public String unitName;
-    public double unitRadius;
+    public Double unitRadius;
     public int distance;
 
     /**Create a default distance object
@@ -18,7 +18,7 @@ public class Distance {
         destination = new Place();
         this.units = null;
         this.unitName = null;
-        this.unitRadius = '\0';
+        this.unitRadius = 0.0;
         this.distance = 0;
     }
 
@@ -33,7 +33,7 @@ public class Distance {
         this.destination = dest;
         this.units = units;
         this.unitName=null;
-        this.unitRadius = '\0';
+        this.unitRadius = 0.0;
         this.distance = 0;
 
     }
@@ -46,7 +46,7 @@ public class Distance {
      * @param rad value of Earth's radius in user defined units
      * Creates a distance object with data provided.
      */
-    public Distance(Place orig, Place dest, String units, String uName, double rad){
+    public Distance(Place orig, Place dest, String units, String uName, Double rad){
         this.origin=orig;
         this.destination=dest;
         this.units = units;
@@ -66,7 +66,7 @@ public class Distance {
         this.destination = dest;
         this.units = units;
         this.unitName=null;
-        this.unitRadius = '\0';
+        this.unitRadius = 0.0;
         this.distance = distance;
     }
 

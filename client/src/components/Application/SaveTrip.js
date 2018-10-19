@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, CardBody} from "reactstrap";
+import {Button} from "reactstrap";
 
 class SaveTrip extends Component{
     constructor(props){
@@ -26,13 +26,12 @@ class SaveTrip extends Component{
 
 
     render() {
-        return (
-            <div className="card">
-                <CardBody>
-                    <Button className="btn-save" size='lg' onClick={this.SaveTFFI} type="button">Save</Button>
-                </CardBody>
-            </div>
-        )
+        return (<Button
+                    size='lg'
+                    className="btn-save btn-dark btn-outline-dark"
+                    onClick={this.SaveTFFI}
+                    type="button"
+                >Save</Button>)
     };
 }
 

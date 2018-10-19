@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import { Container } from 'reactstrap';
-import Info from './Info'
-import Options from './Options';
-import Upload from './Upload';
 import Map from './Map';
-import {get_config, request} from '../../api/api';
-import Itinerary from './Itinerary'
 import defaultSvg from "../../../../images/CObackground.svg";
+import {Card, CardBody, Container} from 'reactstrap';
+import { get_config } from '../../api/api';
+import DistanceCal from "./DistanceCal";
+import Info from './Info';
+import Trip from "./Trip"
+import OptionPanel from "./OptionPanel";
+
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -21,14 +22,14 @@ class Application extends Component {
                 type: "trip",
                 title: "",
                 options : {
-                    units: ["miles",],
+                    units: "miles",
                     unitName: "",
                     unitRadius: 0.00,
                     optimization:"none"
                 },
                 places: [],
                 distances: [],
-                map: ""
+                map: '<svg width="1920" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
             },
             search: {
                 version   : 3,
@@ -38,12 +39,25 @@ class Application extends Component {
                 places    : []
             },
             selected: new Map(),
-            selectAll: false
+            selectAll: false,
+            otherTeams: null,
+            host: null,
+            display: {
+                Name: true,
+                Id: true,
+                Latitude: true,
+                Longitude: true,
+                Leg: true,
+                Total: true
+            }
         };
+        this.updateMap = this.updateMap.bind(this);
+        this.updateTrip = this.updateTrip.bind(this);
+        this.clearConfig = this.clearConfig.bind(this);
+        this.updateSearch = this.updateSearch.bind(this);
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.updateOptions = this.updateOptions.bind(this);
         this.updateUpload = this.updateUpload.bind(this);
-        this.updateMap = this.updateMap.bind(this);
         this.updateSelected = this.updateSelected.bind(this);
         this.updateSelectAll = this.updateSelectAll.bind(this);
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
@@ -107,12 +121,13 @@ class Application extends Component {
     updateSelectAll(value){
         this.setState({selectAll: value});
     }
-     
+
     updateMap(value){
         let trip = this.state.trip;
         trip.map = value;
         this.setState(trip);
     }
+
 
     updateOtherTeams(event) {
         this.setState({otherTeams: event.target.value});
@@ -155,8 +170,11 @@ class Application extends Component {
                                      updateOptions={this.updateOptions} updateSearch={this.updateSearch}
                                      updateTrip={this.updateTrip}/>
                     <Map updateMap={this.updateMap} map={this.state.map}/>
+
                     </CardBody></Card></Container>
         )
     }
 }
+
 export default Application;
+

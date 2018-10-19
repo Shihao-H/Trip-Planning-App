@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {Button, Card, CardBody, Container, Table} from "reactstrap";
+import {Button, Card, CardBody, Container, Table, Input} from "reactstrap";
 import {request} from '../../api/api';
-import Optimization from "./Optimization";
+import AddButton from "./AddButton";
 
 
 export class SearchBox extends Component {
@@ -9,6 +9,7 @@ export class SearchBox extends Component {
     {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
+        this.createTable = this.createTable.bind(this);
     }
 
     handleSearch(event)
@@ -30,14 +31,22 @@ export class SearchBox extends Component {
         if(this.props.search.places.length !== 0){
             let table = [];
             for (let i = 0; i < this.props.search.places.length; i++) {
-                table.push(<tr>{this.props.search.places[i].name}</tr>);
+                table.push(<tr key={'search_place' + i}><td>{this.props.search.places[i].name}</td>
+                            <td><AddButton
+                                newPlace={this.props.search.places[i]}
+                                updateTrip={this.props.updateTrip}
+                                trip={this.props.trip}
+                                search={this.props.search}
+                                config={this.props.config}
+                            />
+                            </td></tr>);
             }
             return table;
         }
         else
         {
             let empty = [];
-            empty.push(<tr>{' '}</tr>);
+            empty.push(<tr key={'empty_string'}></tr>);
             return empty;
         }
 
@@ -45,27 +54,29 @@ export class SearchBox extends Component {
 
     render() {
         return (
-            <div>
-                <CardBody>
-                    <form>
-                        <br/>
-                            <input type="text"
-                            placeholder="place name"
-                            style={{width: 300}}
-                            onChange={event => {this.props.updateSearch('match', event.target.value)}}
-                             />
-                        <br/>
-                        <Button onClick={this.handleSearch} className = 'btn-dark' size='lg'>Search</Button>
-                            <Table className="Table" responsive>
-                                <tbody className="Body">
-                                {this.createTable()}
-                                </tbody>
-                            </Table>
-                        <Container id="SearchBox"/>
-                        <Optimization trip={this.props.trip} search={this.props.search} config={this.props.config} updateSearch={this.props.updateSearch} updateOptions={this.props.updateOptions}/>
-                        <Container/>
-                    </form>
-                </CardBody>
+            <div className={'text-center'}>
+                <Card>
+                    <CardBody>
+                        <form>
+                            <label>
+                                Search for a new location
+                                <br/><br/>
+                                <Input type="text"
+                                       placeholder="Place name"
+                                       style={{width: "100%"}}
+                                       onChange={event => {this.props.updateSearch('match', event.target.value)}}/><br/>
+                                <Button onClick={this.handleSearch} className = 'btn-dark btn-outline-dark'
+                                        type="button" size='lg'>Search</Button><br/>
+                                <Table className="Table" responsive>
+                                    <tbody className="Body">
+                                    {this.createTable()}
+                                    </tbody>
+                                </Table>
+                            </label>
+                        </form>
+                    </CardBody>
+                </Card>
             </div>);
     }
 }
+export default SearchBox;

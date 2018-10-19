@@ -25,8 +25,15 @@ public class Search {
      * This is a constructor.
      * @param match String compare match with places' names in the database.
      */
-    public Search(String match){
+    public Search(String match)
+    {
         this.match = match;
+    }
+
+    public Search(String match, int limit)
+    {
+        this.match = match;
+        this.limit = limit;
     }
 
     /**
@@ -34,7 +41,7 @@ public class Search {
      */
     public void match(){
         Driver driver = new Driver();
-        driver.find(this.match);
+        driver.find(this.match, this.limit);
         this.places = (ArrayList<Place>) driver.places.clone();
     }
 
