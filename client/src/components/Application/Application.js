@@ -21,7 +21,7 @@ class Application extends Component {
                 type: "trip",
                 title: "",
                 options : {
-                    units: ["miles", 'kilometers', 'nautical miles', 'user defined'],
+                    units: ["miles",],
                     unitName: "",
                     unitRadius: 0.00,
                     optimization:"none"
@@ -40,16 +40,15 @@ class Application extends Component {
             selected: new Map(),
             selectAll: false
         };
-        this.updateTrip = this.updateTrip.bind(this);
-        this.clearConfig = this.clearConfig.bind(this);
-        this.updateSearch = this.updateSearch.bind(this);
         this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
         this.updateOptions = this.updateOptions.bind(this);
         this.updateUpload = this.updateUpload.bind(this);
-        this.TripPushPlace = this.TripPushPlace.bind(this);
+        this.updateMap = this.updateMap.bind(this);
         this.updateSelected = this.updateSelected.bind(this);
         this.updateSelectAll = this.updateSelectAll.bind(this);
-        this.updateMap = this.updateMap.bind(this);
+        this.updateOtherTeams=this.updateOtherTeams.bind(this);
+        this.updateHost=this.updateHost.bind(this);
+        this.updateDisplay = this.updateDisplay.bind(this);
     }
 
     componentWillMount()
@@ -63,19 +62,10 @@ class Application extends Component {
         );
     }
 
-
-
     updateTrip(field, value)
     {
         let trip = this.state.trip;
         trip[field] = value;
-        this.setState(trip);
-    }
-
-    TripPushPlace(value)
-    {
-        let trip = this.state.trip;
-        trip.places.push(value);
         this.setState(trip);
     }
 
@@ -117,30 +107,55 @@ class Application extends Component {
     updateSelectAll(value){
         this.setState({selectAll: value});
     }
-
+     
     updateMap(value){
         let trip = this.state.trip;
         trip.map = value;
         this.setState(trip);
     }
 
-    render()
-    {
-        if (!this.state.config) {
-            return <div/>
-        }
+    updateOtherTeams(event) {
+        this.setState({otherTeams: event.target.value});
+
+    }
+
+    updateHost(event) {
+        this.setState({host: event.target.value});
+
+    }
+
+    updateDisplay(value){
+        let display = this.state.display;
+        display[value] = !display[value];
+        this.setState({display: display});
+        this.updateSelectAll(false);
+    }
+
+    render() {
+        if (!this.state.config) {return <div/>}
         return (
-            <Container id="Application">
-                <Info/>
-                <Options options={this.state.trip.options} config={this.state.config}
-                         updateOptions={this.updateOptions}/>
-                <Upload trip={this.state.trip} config={this.state.config} TripPushPlace={this.TripPushPlace}
-                        updateSelected={this.updateSelected} updateSelectAll={this.updateSelectAll}
-                        updateTrip={this.updateTrip}  updateOptions={this.updateOptions} clearConfig={this.clearConfig} updateSearch={this.updateSearch}/>
-                <Map updateMap={this.updateMap} map={this.state.map}/>
-                <Itinerary trip={this.state.trip} updateTrip={this.updateTrip} updateOptions={this.updateOptions} updatePlaces={this.updatePlaces}
-                           selected={this.state.selected} selectAll={this.state.selectAll} updateSelected={this.updateSelected} updateSelectAll={this.updateSelectAll}/>
-            </Container>
+            <Container id="Application"><Card><CardBody>
+                        <Info/>
+                        <Trip config={this.state.config} display={this.state.display}
+                              host={this.state.host} otherTeams={this.state.otherTeams}
+                              search={this.state.search} selectAll={this.state.selectAll}
+                              selected={this.state.selected} trip={this.state.trip}
+                              clearConfig={this.state.clearConfig} LoadFile={this.LoadFile}
+                              updateHost={this.updateHost} updateTrip={this.updateTrip}
+                              updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
+                              updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
+                              updateSelected={this.updateSelected}/>
+                        <OptionPanel config={this.state.config} display={this.state.display}
+                                     host={this.state.host} options={this.state.trip.options}
+                                     otherTeams={this.state.otherTeams} updateDisplay={this.updateDisplay}
+                                     updateHost={this.updateHost} updateOptions={this.updateOptions}
+                                     updateOtherTeams={this.updateOtherTeams}/>
+                        <DistanceCal config={this.state.config} options={this.state.trip.options}
+                                     search={this.state.search} trip={this.state.trip}
+                                     updateOptions={this.updateOptions} updateSearch={this.updateSearch}
+                                     updateTrip={this.updateTrip}/>
+                    <Map updateMap={this.updateMap} map={this.state.map}/>
+                    </CardBody></Card></Container>
         )
     }
 }
