@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {Card, CardBody} from 'reactstrap';
+import {Card, CardBody, Button, Collapse} from 'reactstrap';
 import { renderToStaticMarkup } from 'react-dom/server';
-import defaultSvg from '../../../../images/CObackground.svg';
 
 
 export class Map extends Component {
@@ -21,15 +20,18 @@ export class Map extends Component {
     }
 
     render(){
-    console.log(this.props.map);
-
         return (
             <div>
-                <Card>
-                    <CardBody>
-                        <img src={this.props.map} className={'Map'} alt={"Map of Colorado"}/>
-                    </CardBody>
-                </Card>
+                <div className={'text-center'}>
+                    <Button onClick={this.dropdown} size='lg'>Map</Button>
+                            <Collapse isOpen = {this.state.collapse}>
+                            <Card>
+                            <CardBody>
+                                <img src={this.props.map} className={'Map'} alt={"Map of Colorado"}/>
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
             </div>);
     }
 }

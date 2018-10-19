@@ -120,8 +120,7 @@ class Application extends Component {
 
     updateMap(value){
         let trip = this.state.trip;
-        let svg = "data:image/svg+xml," + value;
-        trip.map = svg;
+        trip.map = value;
         this.setState(trip);
     }
 

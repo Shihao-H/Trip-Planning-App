@@ -29,13 +29,13 @@ public class Optimize {
         try {
             pw = new PrintWriter(outFile);
             for(int i =0; i<optimizeArray.length; i++){
-                pw.printf("|%20s", optimizeArray[0][i].destination.name);
+                pw.printf("%20s, ", optimizeArray[0][i].destination.name);
             }
             pw.printf("|\n");
             for(int i =0; i < optimizeArray.length; i++){
-                pw.printf("|%20s|", optimizeArray[0][i].destination.name);
+                pw.printf("%20s, ", optimizeArray[0][i].destination.name);
                 for(int j =0; j< optimizeArray[i].length; j++){
-                    pw.printf("%20d|", optimizeArray[i][j].distance);
+                    pw.printf("%20d, ", optimizeArray[i][j].distance);
                 }
                 pw.println();
             }

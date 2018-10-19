@@ -1,18 +1,18 @@
 package com.tripco.t03.planner;
 
-import static org.junit.Assert.*;
+import com.google.gson.Gson;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 
-public class TestOptimize {
-    private Optimize opt;
-    private Trip trip;
+
+public class TestPlan {
+
+    private String jsonString;
 
     @Before
-    public void setUp() {
-        Option opt = new Option("miles");
+    public void setup(){
         ArrayList<Place> places = new ArrayList<>();
         places.add(new Place("P1", "three", 18, -104));
         places.add(new Place("P2", "one", 41.000155556, -109.05));
@@ -32,22 +32,24 @@ public class TestOptimize {
         places.add(new Place("P12", "Conejos", 37.21, -106.18));
         places.add(new Place("P13", "San Luis", 37.28, -105.43));
         places.add(new Place("P14", "Ordway", 38.32, -103.79));
-        trip = new Trip(opt, places);
-        trip.plan();
+        Option option = new Option("miles");
+        Trip trip = new Trip("trip", option, places);
+        Gson gson = new Gson();
+        jsonString = gson.toJson(trip);
+    }
+
+
+    @Test
+    public void testPlan(){
+        Plan plan = new Plan(jsonString);
+
+        Assert.assertNotNull(plan);
     }
 
     @Test
-    public void testOptimize(){
-        opt = new Optimize(trip);
+    public void testGetTrip(){
+        Plan plan = new Plan(jsonString);
 
-        assertNotNull(opt);
-    }
-
-    @Test
-    public void testGetOptimalTrip(){
-        opt = new Optimize(trip);
-        Trip optTrip = opt.getOptimalTrip();
-
-        assertEquals(optTrip.places.size(), trip.places.size());
+        Assert.assertTrue(plan.getTrip().length() > jsonString.length());
     }
 }

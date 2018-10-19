@@ -40,6 +40,17 @@ public class Plan {
     System.out.println(trip.title);
   }
 
+    /**
+     * Constructor that takes a JsonObject for testing.
+     * @param json JsonObject.
+     */
+    public Plan (String json){
+        Gson gson = new Gson();
+        trip = gson.fromJson(json, Trip.class);
+
+        trip.plan();
+    }
+
   /** Handles the response for a Trip object.
    * Does the conversion from a Java class to a Json string.*
    */
