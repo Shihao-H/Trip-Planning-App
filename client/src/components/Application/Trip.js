@@ -60,7 +60,8 @@ class Trip extends Component {
                     </Row>
                     <Row>
                         <Col>
-                            <Map/>
+                            <Map
+                                    updateMap={this.props.updateMap} map={this.props.map}/>
                         </Col>
                         <Col>
                             <Itinerary
