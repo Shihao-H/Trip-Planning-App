@@ -14,9 +14,9 @@ public class TestOptimize {
     public void setUp() {
         Option opt = new Option("miles");
         ArrayList<Place> places = new ArrayList<>();
-        places.add(new Place("P1", "three", 18, -104));
+        places.add(new Place("P1", "three", 18.0, -104.0));
         places.add(new Place("P2", "one", 41.000155556, -109.05));
-        places.add(new Place("P3", "four", 39, 116));
+        places.add(new Place("P3", "four", 39.0, 116.0));
         places.add(new Place("P4", "two", 41.00055556, -102.05166667));
         places.add(new Place("P1" , "Brighton", 39.87, -104.33));
         places.add(new Place("P2" , "Alamosa", 37.57, -105.79));

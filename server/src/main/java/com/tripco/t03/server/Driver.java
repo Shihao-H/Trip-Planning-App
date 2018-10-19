@@ -73,10 +73,12 @@ public class Driver {
         while (query.next()) {
             final Place place = new Place(query.getString("id"),
                                     query.getString("name"),
+                                    query.getString("municipality"),
                                     Double.parseDouble(query.getString("latitude")),
                                     Double.parseDouble(query.getString("longitude")));
             System.out.printf(" {\"id\":\"%s\", ", query.getString("id"));
             System.out.printf("\"name\":\"%s\", ", query.getString("name"));
+            System.out.printf("\"municipality\":\"%s\", ", query.getString("municipality"));
             System.out.printf("\"latitude\":\"%s\", ", query.getString("latitude"));
             System.out.printf("\"longitude\":\"%s\"}", query.getString("longitude"));
             if (--results == 0)
@@ -84,6 +86,9 @@ public class Driver {
             else
                 {System.out.printf(",\n");}
             places.add(place);
+//            for(Place sth: places){
+//                System.out.println("driver: " + sth.userDefined);
+//            }
         }
         System.out.printf(" ]\n}\n");
     }

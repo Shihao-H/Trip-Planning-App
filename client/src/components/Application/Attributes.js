@@ -31,6 +31,15 @@ class Attributes extends Component{
                                 <Input type="checkbox" id={"check_total"} checked={this.props.display.Total} value={'Total'}
                                        onChange = {event => {this.props.updateDisplay(event.target.value)}}/>
                                 <label> Total distances </label><br/>
+                                <p>Add an attribute!</p>
+                                <Input type="checkbox" id={"check_user"} checked={this.props.display.UserDefinedDisplay} value={'UserDefinedDisplay'}
+                                       onChange = {event => {this.props.updateDisplay(event.target.value)}}/>
+                                <Input
+                                    style={{width: "100%"}}
+                                    type="text"
+                                    placeholder="municipality"
+                                    onChange={event => {this.props.updateDisplayUserDefined(event.target.value)}}
+                                />
                             </form>
                         </Col>
                     </CardBody>

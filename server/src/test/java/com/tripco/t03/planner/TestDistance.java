@@ -11,8 +11,8 @@ public class TestDistance {
 
     @Test
     public void testDistance4(){
-        Place origin = new Place("orig", "origin",18, -104);
-        Place destination = new Place("dest", "destination", 39, 116);
+        Place origin = new Place("orig", "origin",18.0, -104.0);
+        Place destination = new Place("dest", "destination", 39.0, 116.0);
         dist = new Distance(origin, destination, "kilometers", 12434);
 
         assertEquals(dist.distance, 12434);
@@ -68,8 +68,8 @@ public class TestDistance {
 
     @Test
     public void testMiles2(){
-        Place origin = new Place("orig", "origin",18, -104);
-        Place destination = new Place("dest", "destination", 39, 116);
+        Place origin = new Place("orig", "origin",18.0, -104.0);
+        Place destination = new Place("dest", "destination", 39.0, 116.0);
         dist = new Distance(origin, destination, "miles");
 
         dist.setDistance();
@@ -79,8 +79,8 @@ public class TestDistance {
 
     @Test
     public void testKilo(){
-        Place origin = new Place("orig", "origin",18, -104);
-        Place destination = new Place("dest", "destination", 39, 116);
+        Place origin = new Place("orig", "origin",18.0, -104.0);
+        Place destination = new Place("dest", "destination", 39.0, 116.0);
         dist = new Distance(origin, destination, "kilometers");
 
         dist.setDistance();
@@ -90,8 +90,8 @@ public class TestDistance {
 
     @Test
     public void testNM(){
-        Place origin = new Place("orig", "origin",18, -104);
-        Place destination = new Place("dest", "destination", 39, 116);
+        Place origin = new Place("orig", "origin",18.0, -104.0);
+        Place destination = new Place("dest", "destination", 39.0, 116.0);
         dist = new Distance(origin, destination, "nautical miles");
 
         dist.setDistance();
@@ -101,8 +101,8 @@ public class TestDistance {
 
     @Test
     public void testUD(){
-        Place origin = new Place("orig", "origin",18, 104);
-        Place destination = new Place("dest", "destination", 25, -105);
+        Place origin = new Place("orig", "origin",18.0, 104.0);
+        Place destination = new Place("dest", "destination", 25.0, -105.0);
         dist = new Distance(origin, destination, "user defined", "some", 42.0);
 
         dist.setDistance();
@@ -130,8 +130,8 @@ public class TestDistance {
 
     @Test
     public void testToString() {
-        Place origin = new Place("orig", "origin",18, 104);
-        Place destination = new Place("dest", "destination", 25, -105);
+        Place origin = new Place("orig", "origin",18.0, 104.0);
+        Place destination = new Place("dest", "destination", 25.0, -105.0);
         dis = new Distance(origin, destination, "user defined", "some", 42.0);
         assertEquals(dis.toString(), "Origin: latitude: 18.000000, longitude: 104.000000, name: origin, Destination: latitude: 25.000000, " +
                 "longitude: -105.000000, name: destination, Units: user defined, Unit Name: some, Distance: 0.");

@@ -29,7 +29,8 @@ class OptionPanel extends Component {
                             updateOptions={this.props.updateOptions} updateSearch={this.props.updateSearch}/>
                         </Col>
                         <Col>
-                            <Attributes display={this.props.display} updateDisplay={this.props.updateDisplay}/>
+                            <Attributes display={this.props.display} updateDisplay={this.props.updateDisplay}
+                            updateDisplayUserDefined={this.props.updateDisplayUserDefined}/>
                         </Col>
                         <Col>
                             <InterOperate host={this.props.host} otherTeams={this.props.otherTeams}
