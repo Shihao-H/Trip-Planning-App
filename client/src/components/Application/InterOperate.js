@@ -1,4 +1,4 @@
-import {Col, Input, Card, CardBody} from "reactstrap";
+import {Input, Card, CardBody} from "reactstrap";
 import React, {Component} from 'react'
 
 class InterOperate extends Component{
