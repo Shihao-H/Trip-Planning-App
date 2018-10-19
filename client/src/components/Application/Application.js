@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import Map from './Map';
+import defaultSvg from "../../../../images/CObackground.svg";
 import {Card, CardBody, Container} from 'reactstrap';
 import { get_config } from '../../api/api';
 import DistanceCal from "./DistanceCal";
 import Info from './Info';
 import Trip from "./Trip"
 import OptionPanel from "./OptionPanel";
+
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -15,6 +18,7 @@ class Application extends Component {
         this.state = {
             config:null,
             trip: {
+                version: 3,
                 type: "trip",
                 title: "",
                 options : {
@@ -49,6 +53,7 @@ class Application extends Component {
                 UserDefinedDisplay: false
             }
         };
+        this.updateMap = this.updateMap.bind(this);
         this.updateTrip = this.updateTrip.bind(this);
         this.clearConfig = this.clearConfig.bind(this);
         this.updateSearch = this.updateSearch.bind(this);
@@ -120,6 +125,12 @@ class Application extends Component {
         this.setState({selectAll: value});
     }
 
+    updateMap(value){
+        let trip = this.state.trip;
+        trip.map = value;
+        this.setState(trip);
+    }
+
 
     updateOtherTeams(event) {
         this.setState({otherTeams: event.target.value});
@@ -169,8 +180,12 @@ class Application extends Component {
                                      search={this.state.search} trip={this.state.trip}
                                      updateOptions={this.updateOptions} updateSearch={this.updateSearch}
                                      updateTrip={this.updateTrip}/>
+                    <Map updateMap={this.updateMap} map={this.state.map}/>
+
                     </CardBody></Card></Container>
         )
     }
 }
+
 export default Application;
+

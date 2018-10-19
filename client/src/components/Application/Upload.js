@@ -38,11 +38,13 @@ class Upload extends Component {
             request(obj,'plan').then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
+                this.props.updateTrip('map', Fi.map);
             });
         } else {
             request(obj,'plan', this.props.otherTeams, this.props.host + ".cs.colostate.edu").then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
+                this.props.updateTrip('map', Fi.map);
             });
         }
     }

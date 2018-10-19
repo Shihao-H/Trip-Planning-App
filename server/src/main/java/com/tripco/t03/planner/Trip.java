@@ -99,7 +99,7 @@ public class Trip {
      * Creates an SVG containing the background and the legs of the trip.
      */
     public void svg() {
-        String fileLines = "";
+        String fileLines = "data:image/svg+xml," ;
         try {
             InputStream thisSVGwillNOTwin =Trip.class.getResourceAsStream("/CObackground.svg");
             if(thisSVGwillNOTwin != null){

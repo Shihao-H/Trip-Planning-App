@@ -53,7 +53,7 @@ body {
 }
 
 .map{
-    max-width: 25%;
+    max-width: 100% \9;
     height: auto;
 }
 
