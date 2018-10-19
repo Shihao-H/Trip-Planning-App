@@ -26,8 +26,8 @@ public class TestTrip {
         places = new ArrayList<>();
         places.add(new Place("P1", "one", 41.000155556, -109.05));
         places.add(new Place("P2", "two", 41.00055556, -102.05166667));
-        places.add(new Place("P3", "three", 18, -104));
-        places.add(new Place("P4", "four", 39, 116));
+        places.add(new Place("P3", "three", 18.0, -104.0));
+        places.add(new Place("P4", "four", 39.0, 116.0));
     }
 
   @Test
@@ -71,8 +71,8 @@ public class TestTrip {
       places = new ArrayList<>();
       places.add(new Place("P01", "one", 41.000155556, -109.05));
       places.add(new Place("P02", "two", 41.00055556, -102.05166667));
-      places.add(new Place("P03", "three", 18, -104));
-      places.add(new Place("P04", "four", 39, 116));
+      places.add(new Place("P03", "three", 18.0, -104.0));
+      places.add(new Place("P04", "four", 39.0, 116.0));
       trip = new Trip(opt, places);
 
       trip.plan();

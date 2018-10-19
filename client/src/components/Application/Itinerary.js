@@ -152,8 +152,8 @@ class Itinerary extends Component {
                     cell.push(<th key={'destination' + i}>{this.props.trip.places[i].name}</th>);
                 if(this.props.display.Id === true)
                     cell.push(<th key={'id' + i}>{this.props.trip.places[i].id}</th>);
-                if(this.props.display.UserDefined === true)
-                    children.push(<th key={'user' + i}>{this.props.trip.places[i].userDefined}</th>);
+                if(this.props.display.UserDefinedDisplay === true)
+                    cell.push(<th key={'user' + i}>{this.props.trip.places[i].userDefined}</th>);
                 if(this.props.display.Latitude === true)
                     cell.push(<th key={'latitude' + i}>{this.props.trip.places[i].latitude}</th>);
                 if(this.props.display.Longitude === true)

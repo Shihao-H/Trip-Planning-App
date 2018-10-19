@@ -86,9 +86,9 @@ public class Driver {
             else
                 {System.out.printf(",\n");}
             places.add(place);
-            for(Place sth: places){
-                System.out.println("driver: " + sth);
-            }
+//            for(Place sth: places){
+//                System.out.println("driver: " + sth.userDefined);
+//            }
         }
         System.out.printf(" ]\n}\n");
     }

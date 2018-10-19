@@ -43,9 +43,9 @@ public class Search {
         Driver driver = new Driver();
         driver.find(this.match, this.limit);
         this.places = (ArrayList<Place>) driver.places.clone();
-        for(Place place: places){
-            System.out.println(place);
-        }
+//        for(Place place: places){
+//            System.out.println(place);
+//        }
     }
 
 
