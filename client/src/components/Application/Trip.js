@@ -5,6 +5,7 @@ import Itinerary from "./Itinerary"
 import Map from "./Map"
 import Plan from "./Plan";
 import SearchBox from "./SearchBox";
+import OptionPanel from "./OptionPanel";
 
 /* Renders the Trip.
  * Holds Plan, Search, Add, Map and Itinerary.
@@ -54,13 +55,18 @@ class Trip extends Component {
                                 trip={this.props.trip}
                                 updateOptions={this.props.updateOptions}
                                 updateTrip={this.props.updateTrip}
-                                updateSearch={this.props.updateSearch}
-                            />
+                                updateSearch={this.props.updateSearch}/>
                         </Col>
                     </Row>
+                    <OptionPanel config={this.props.config} display={this.props.display}
+                                 host={this.props.host} options={this.props.trip.options}
+                                 otherTeams={this.props.otherTeams} updateDisplay={this.props.updateDisplay}
+                                 updateDisplayUserDefined={this.props.updateDisplayUserDefined}
+                                 updateHost={this.props.updateHost} updateOptions={this.props.updateOptions}
+                                 updateOtherTeams={this.props.updateOtherTeams}/>
                     <Row>
                         <Col>
-                            <Map/>
+                            <Map updateMap={this.props.updateMap} map={this.props.map}/>
                         </Col>
                         <Col>
                             <Itinerary

@@ -169,15 +169,10 @@ class Application extends Component {
                               updateHost={this.updateHost} updateTrip={this.updateTrip}
                               updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
                               updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
-                              updateSelected={this.updateSelected}
-                              updateMap={this.updateMap} map={this.state.map}
+                              updateSelected={this.updateSelected} updateMap={this.updateMap}
+                              map={this.state.map} updateDisplay={this.updateDisplay}
+                              updateDisplayUserDefined={this.updateDisplayUserDefined}
                         />
-                        <OptionPanel config={this.state.config} display={this.state.display}
-                                     host={this.state.host} options={this.state.trip.options}
-                                     otherTeams={this.state.otherTeams} updateDisplay={this.updateDisplay}
-                                     updateDisplayUserDefined={this.updateDisplayUserDefined}
-                                     updateHost={this.updateHost} updateOptions={this.updateOptions}
-                                     updateOtherTeams={this.updateOtherTeams}/>
                         <DistanceCal config={this.state.config} options={this.state.trip.options}
                                      search={this.state.search} trip={this.state.trip}
                                      updateOptions={this.updateOptions} updateSearch={this.updateSearch}
