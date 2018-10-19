@@ -3,12 +3,13 @@ import {Card, CardBody, Button, Collapse} from 'reactstrap';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 
+
 export class Map extends Component {
     constructor(props)
     {
         super(props);
         this.state = {
-            collapse: true,
+            collapse: false,
         };
         this.dropdown = this.dropdown.bind(this);
     }
@@ -35,4 +36,5 @@ export class Map extends Component {
             </div>);
     }
 }
+
 export default Map;
