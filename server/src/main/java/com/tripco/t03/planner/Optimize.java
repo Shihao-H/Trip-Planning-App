@@ -1,6 +1,5 @@
 package com.tripco.t03.planner;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
