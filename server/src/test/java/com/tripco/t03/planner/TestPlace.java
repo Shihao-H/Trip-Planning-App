@@ -32,12 +32,11 @@ public class TestPlace {
     place = new Place("dnvr", "Denver", 1.0, 0.0);
   }
 
-  @Test
-  public void testPlace() {
-    Place testPlace = new Place("dnvr", "Denver", 1.0, 0.0);
-
-    assertTrue(testPlace.equals(place));
-  }
+//  @Test
+//  public void testPlace() {
+//    Place testPlace = new Place("dnvr", "Denver", 1.0, 0.0);
+//    assertTrue(testPlace.equals(place));
+//  }
   
   @Test
   public void testGetName() {

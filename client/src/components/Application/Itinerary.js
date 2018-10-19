@@ -95,7 +95,7 @@ class Itinerary extends Component {
                 children.push(<th key='default_destination'>{"Place"}</th>);
             if(this.props.display.Id === true)
                 children.push(<th key='default_id'>{"ID"}</th>);
-            if(this.props.display.UserDefined === true)
+            if(this.props.display.UserDefinedDisplay === true)
                 children.push(<th key='default_user'>{this.props.display.UserDefined}</th>);
             if(this.props.display.Latitude === true)
                 children.push(<th key='default_latitude'>{"Latitude"}</th>);
@@ -122,7 +122,7 @@ class Itinerary extends Component {
                 children.push(<th key='destination'>{"Place"}</th>);
             if(this.props.display.Id === true)
                 children.push(<th key='id'>{"ID"}</th>);
-            if(this.props.display.UserDefined === true)
+            if(this.props.display.UserDefinedDisplay === true)
                 children.push(<th key='user'>{this.props.display.UserDefined}</th>);
             if(this.props.display.Latitude === true)
                 children.push(<th key='latitude'>{"Latitude"}</th>);
@@ -186,6 +186,7 @@ class Itinerary extends Component {
                 <Collapse isOpen = {this.state.collapse}>
                     <Card>
                         <CardBody>
+                            <p>{this.props.trip.title}</p>
                             <Table className="Table" responsive>
                                 <tbody className="Body">{this.createTable()}</tbody>
                             </Table>
