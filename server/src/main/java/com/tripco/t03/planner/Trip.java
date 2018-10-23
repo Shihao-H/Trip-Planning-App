@@ -163,4 +163,46 @@ public class Trip {
         this.places =new ArrayList<>(Arrays.asList(route));
     }
 
+    public void TwoOpt ()
+    {
+        final int n = places.size();
+        Place[] bestPath = new Place[n];
+        for(int k=0;k<n;k++)
+        {
+            bestPath[k]=this.places.get(k);
+        }
+        if (n > 4) {
+            boolean improvement = true;
+            while (improvement) {
+                improvement = false;
+                for (int i = 0; i <= n - 3; i++)
+                {
+                    for (int j = i + 2; j <= n - 1; j++)
+                    {
+                        Place o1, o2, d1, d2;
+                        if (j == n - 1)
+                        {
+                            o1 = bestPath[i];
+                            o2 = bestPath[i+1];
+                            d1 = bestPath[j];
+                            d2 = bestPath[0];
+                        }
+                        else
+                        {
+                            o1 = bestPath[i];
+                            o2 = bestPath[i+1];
+                            d1 = bestPath[j];
+                            d2 = bestPath[j+1];
+                        }
+                        int delta = -calDist(o1, o2) - calDist(d1, d2) + calDist(o1, d1) + calDist(o2, d2);
+                        if (delta < 0)
+                        {
+                            opt2Reverse(i + 1, j, bestPath);
+                            improvement = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
