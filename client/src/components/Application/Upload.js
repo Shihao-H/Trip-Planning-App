@@ -40,6 +40,7 @@ class Upload extends Component {
                 this.props.updateTrip('distances',Fi.distances);
                 this.props.updateTrip('places',Fi.places);
                 this.props.updateTrip('map', Fi.map);
+                this.props.updateOptions('optimization', Fi.options.optimization);
             });
         } else {
             request(obj,'plan', this.props.otherTeams, this.props.host + ".cs.colostate.edu").then((Fi)=>
@@ -47,6 +48,7 @@ class Upload extends Component {
                 this.props.updateTrip('distances',Fi.distances);
                 this.props.updateTrip('places',Fi.places);
                 this.props.updateTrip('map', Fi.map);
+                this.props.updateOptions('optimization', Fi.options.optimization);
             });
         }
     }
@@ -58,7 +60,7 @@ class Upload extends Component {
             <label><br/>
                 Submit your trip!
                 <br/>
-                <input type="file" maxLength={"40px"} ref={this.fileInput} onChange={this.LoadFile}/>
+                <input type="file" maxLength={"40px"} ref={this.fileInput} onChange={(event)=>this.LoadFile(event)}/>
                 <small className="form-text text-muted">
                     Upload a file that contains a Trip<br/>object in the TFFI format.
                 </small>

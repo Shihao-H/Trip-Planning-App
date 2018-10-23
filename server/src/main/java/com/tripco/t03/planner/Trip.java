@@ -2,7 +2,7 @@ package com.tripco.t03.planner;
 
 import java.io.*;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 /**
  * The Trip class supports TFFI so it can easily be converted to/from Json by Gson.
  *
@@ -113,7 +113,7 @@ public class Trip {
                 while(buffy.ready()){
                     fileLines+= buffy.readLine();
                 }
-                            }
+            }
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("POOP ON BUFFY INPUT STREAM!!");
@@ -149,8 +149,18 @@ public class Trip {
             distance.setDistance();
             dist.add(distance.distance);
         }
-
         return dist;
+    }
+
+    public void opt2Reverse(int i,int k,Place[] route)
+    {
+        while(i < k) {
+            Place temp = route[i];
+            route[i] = route[k];
+            route[k] = temp;
+            i++; k--;
+        }
+        this.places =new ArrayList<>(Arrays.asList(route));
     }
 
 }
