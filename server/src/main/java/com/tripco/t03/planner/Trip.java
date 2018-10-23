@@ -152,6 +152,14 @@ public class Trip {
         return dist;
     }
 
+    public int calDist(Place origin, Place destination){
+        Distance dis=new Distance(origin, destination, this.options.units,
+                this.options.unitName, this.options.unitRadius);
+        dis.setDistance();
+        return dis.distance;
+    }
+
+
     public void opt2Reverse(int i,int k,Place[] route)
     {
         while(i < k) {
