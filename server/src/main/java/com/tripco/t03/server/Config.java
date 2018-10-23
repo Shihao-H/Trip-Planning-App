@@ -13,7 +13,8 @@ public class Config {
 
   public Config(){
     units = Arrays.asList("miles", "kilometers", "nautical miles", "user defined");
-    optimization = Arrays.asList(new Optimization("none", "The trip is not optimized."), new Optimization("short", "Nearest neighbor."));
+    optimization = Arrays.asList(new Optimization("none", "The trip is not optimized."), new Optimization("short", "Nearest neighbor."),
+            new Optimization("shorter", "Two Opt"));
     attributes = Arrays.asList("name", "id", "latitude", "longitude", "userDefined");
   }
 
