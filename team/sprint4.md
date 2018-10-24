@@ -44,8 +44,16 @@
 
 Epics planned for this sprint.
 
-* *## epic title: description*
-*
+* *112 TripCo: All clients and servers must interoperate!*
+* *113 TripCo: The solution must be responsive for mobile devices.*
+* *114 TripCo: All code shall be clean!*
+* *234 TripCo: All code must be tested.*
+* *393 User: I'd like even shorter trips.*
+* *394 User: I want to plan trips worldwide.*
+* *395 User: I want to view my trip in other tools.*
+* *396 User: I want trip planning to be fast.*
+* *397 User: I want the shortest trips possible.*
+* *403 User: I want to choose what information is displayed in the itinerary and map.*
 
 
 ## Metrics
