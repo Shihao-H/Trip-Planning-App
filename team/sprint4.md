@@ -38,7 +38,17 @@
 
 ## Plan
 
-*An introductory paragraph describing what you expect to accomplish this sprint that will achieve the goal.*
+*WOPR expects to have a very successful release for our 4.0 release. We were pretty happy with our 3.0 product, but
+we really feel that this will be a great sprint for us. Not including our 'static' epics that we always focus on, we have
+four epics that we think will help us reach our goal of creating a product that users will really benefit from. 
+Our shorter trips epic will have our 2-opt algorithm integrated in our system to help the client plan a more optimal trip 
+than our nearest neighbor. The epic focused on viewing the trip in other tools will provide a user friendly experience of
+displaying a world map for whatever trips the client decides to make, along with many options for adding new places with a
+variety of specific choices for each one (id, name, elevation, etc.). For planning trips worldwide, we have tasks that deal
+with creating back end systems that communicate with the more robust database, and making trips that can span the globe. 
+Itinerary and map display is another epic in our repertoire that will enhance our product. Being able to decide different
+attributes to display in the itinerary and/or the map can help clients modify their trip to their liking. With these epics
+and handful of many tasks that have been outlined above, WOPR is confident that the release of 4.0 will be their best yet!*
 
 *Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.)with a short paragraph for each.
 
@@ -50,10 +60,10 @@ Epics planned for this sprint.
 * *234 TripCo: All code must be tested.*
 * *393 User: I'd like even shorter trips.*
 * *394 User: I want to plan trips worldwide.*
+* *403 User: I want to choose what information is displayed in the itinerary and map.*
 * *395 User: I want to view my trip in other tools.*
 * *396 User: I want trip planning to be fast.*
 * *397 User: I want the shortest trips possible.*
-* *403 User: I want to choose what information is displayed in the itinerary and map.*
 
 
 ## Metrics
