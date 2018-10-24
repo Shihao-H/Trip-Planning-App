@@ -40,7 +40,7 @@
 
 *An introductory paragraph describing what you expect to accomplish this sprint that will achieve the goal.*
 
-*Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.) with a short paragraph for each.
+*Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.)with a short paragraph for each.
 
 Epics planned for this sprint.
 
