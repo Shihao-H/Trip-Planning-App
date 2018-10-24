@@ -1,9 +1,9 @@
-# Sprint 4 - *your team number* - *your team name*
+# Sprint 4 - *t03* - *WOPR*
 
 ## Goal
 
 ### Interactive Maps and Shorter Trips!
-### Sprint Leader: *firstname lastname*
+### Sprint Leader: Lacey Willmann
 
 ## Definition of Done
 
