@@ -71,7 +71,6 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-        this.distances = legDistances();
         if(this.options.optimization.equalsIgnoreCase("short")){
             Optimize opt = new Optimize(this);
             Trip optTrip = opt.getOptimalTrip();
@@ -81,6 +80,7 @@ public class Trip {
             this.map = optTrip.map;
             svg();
         }
+        this.distances = legDistances();
         setRoute();
     }
 
@@ -88,7 +88,6 @@ public class Trip {
      * Adds the route to the existing map.
      */
     public void setRoute() {
-
         LineDistance ld = new LineDistance(this.places);
         String route = ld.getCoordinates();
         String fileLines = this.map.substring(0, this.map.length()-16) + route + this.map.substring(this.map.length()-16);
@@ -99,7 +98,7 @@ public class Trip {
      * Creates an SVG containing the background and the legs of the trip.
      */
     public void svg() {
-        String fileLines = "data:image/svg+xml," ;
+        String fileLines = "" ;
         try {
             InputStream thisSVGwillNOTwin =Trip.class.getResourceAsStream("/CObackground.svg");
             if(thisSVGwillNOTwin != null){

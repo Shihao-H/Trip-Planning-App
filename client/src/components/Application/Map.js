@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import {Card, CardBody, Button, Collapse} from 'reactstrap';
 import { renderToStaticMarkup } from 'react-dom/server';
 
-
-
-
 export class Map extends Component {
     constructor(props)
     {
@@ -14,7 +11,6 @@ export class Map extends Component {
         };
         this.dropdown = this.dropdown.bind(this);
     }
-
 
     dropdown()
     {
@@ -29,7 +25,7 @@ export class Map extends Component {
                             <Collapse isOpen = {this.state.collapse}>
                             <Card>
                             <CardBody>
-                                <img src={this.props.map} className={'Map'} alt={"Map of Colorado"}/>
+                                <img src={"data:image/svg+xml," + this.props.map} className={'Map'} alt={"Map of Colorado"}/>
                             </CardBody>
                         </Card>
                     </Collapse>

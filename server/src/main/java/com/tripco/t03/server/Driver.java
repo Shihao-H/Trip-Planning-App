@@ -29,8 +29,11 @@ public class Driver {
             limitQuery = "limit 10";
         else
             limitQuery = "limit " + Integer.toString(limit);
-        search =  "select id,name,municipality,latitude,longitude from airports where name like '%"
-                    + match + "%'or municipality like '%" + match + "%'order by name " + limitQuery;
+        search = "select id,name,municipality,latitude,longitude from airports " +
+                 "where name like '%" + match + "%' " +
+                 "or municipality like '%" + match + "%' " +
+                 "or id like '%" + match + "%' " +
+                 "order by name " + limitQuery;
         count = "select count(*) from airports where name like '%"
                 + match + "%'or municipality like '%" + match + "%'order by name";
 

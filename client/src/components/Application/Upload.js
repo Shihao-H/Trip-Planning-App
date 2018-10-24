@@ -19,6 +19,10 @@ class Upload extends Component {
             let obj=JSON.parse(event.target.result);
             this.props.updateTrip('title', obj.title);
             this.props.updateOptions('units', obj.options.units);
+            if(obj.options.optimization)
+                this.props.updateOptions('optimization', obj.options.optimization);
+            else
+                this.props.updateOptions('optimization', 'none');
             if(obj.options.units==="user defined")
             {
                 this.props.updateOptions('unitRadius',obj.options.unitRadius);
