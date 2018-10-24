@@ -60,11 +60,11 @@ Epics planned for this sprint.
 
 | Statistic | Planned | Completed |
 | --- | ---: | ---: |
-| Epics | *total* | *total* |
-| Tasks |  *total*   | *total* | 
-| Story Points |  *total*  | *total* | 
+| Epics | *7* | *total* |
+| Tasks |  *21*   | *total* | 
+| Story Points |  *35*  | *total* | 
 
-*Enter the `# Planned` at the beginning of the sprint.  Include a discussion of planning decisions based on the planned number of story points versus how many were completed in previous sprints.*
+*Although in the previous sprint, we ended up with 76 issues and 130 story points, we plan to have 28 issues and 35 story points for this sprint, because we are familiar with all the stuff and we are confident when we plan.*
 
 *Enter the `# Completed` at the end of the sprint.  Include a discussion about any difference in the number planned versus completed tasks and story points.*
 
