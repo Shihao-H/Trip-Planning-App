@@ -50,7 +50,12 @@ Itinerary and map display is another epic in our repertoire that will enhance ou
 attributes to display in the itinerary and/or the map can help clients modify their trip to their liking. With these epics
 and handful of many tasks that have been outlined above, WOPR is confident that the release of 4.0 will be their best yet!*
 
-*Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.)with a short paragraph for each.
+| Page Diagram | Description |
+|:------------:|-------------|
+| ![Our Page Layout Diagram](../images/pageLayout.jpeg) | The proposed layout and flow chart for our page for sprint 4. We want to try to hide some of the elements until they are needed to reduce clutter. |
+| ![Frontend Search](../images/serverDiagram.jpeg) | Hierarchy diagram for our backend.  |
+| ![Backend Search](../images/stateDiagram.jpeg) | The state diagram for our client side. Blue lines represent state being passed; the arrows show the direction the state flows.|
+
 
 Epics planned for this sprint.
 
