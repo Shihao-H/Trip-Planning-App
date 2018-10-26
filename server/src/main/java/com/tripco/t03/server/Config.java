@@ -1,21 +1,25 @@
 package com.tripco.t03.server;
 
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Config {
   private String type = "config";
-  private short version = 3;
-  private List<String> units;
-  private List<Optimization> optimization;
-  private List<String> attributes;
+  private short version = 4;
+  private ArrayList<String> units;
+  private ArrayList<Optimization> optimization;
+  private ArrayList<String> attributes;
+  private String filters;
+  private String maps;
 
   public Config(){
-    units = Arrays.asList("miles", "kilometers", "nautical miles", "user defined");
-    optimization = Arrays.asList(new Optimization("none", "The trip is not optimized."), new Optimization("short", "Nearest neighbor."),
-            new Optimization("shorter", "Two Opt"));
-    attributes = Arrays.asList("name", "id", "latitude", "longitude", "userDefined");
+    units = new ArrayList<>(Arrays.asList("miles", "kilometers", "nautical miles", "user defined"));
+    optimization = new ArrayList<>(Arrays.asList(new Optimization("none", "The trip is not optimized."), new Optimization("short", "Nearest neighbor."), new Optimization("shorter", "Two Opt")));
+    attributes = new ArrayList<>(Arrays.asList("name", "id", "latitude", "longitude", "userDefined"));
+    filters = "none";
+    maps = "svg";
   }
 
   static String getConfig() {
