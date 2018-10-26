@@ -1,13 +1,13 @@
 package com.tripco.t03.planner;
 public class Distance {
-    public short version = 2;
+    public short version = 4;
     public String type = "distance";
     public Place origin;
     public Place destination;
     public String units;
     public String unitName;
     public Double unitRadius;
-    public int distance;
+    public Integer distance;
 
     /**Create a default distance object
      * Declares and initializes default Place objects for destination and origin
@@ -16,10 +16,10 @@ public class Distance {
     public Distance(){
         origin = new Place();
         destination = new Place();
-        this.units = null;
+        this.units = "";
         this.unitName = null;
-        this.unitRadius = 0.0;
-        this.distance = 0;
+        this.unitRadius = null;
+        this.distance = null;
     }
 
     /**
@@ -33,8 +33,8 @@ public class Distance {
         this.destination = dest;
         this.units = units;
         this.unitName=null;
-        this.unitRadius = 0.0;
-        this.distance = 0;
+        this.unitRadius = null;
+        this.distance = null;
 
     }
 
@@ -52,7 +52,7 @@ public class Distance {
         this.units = units;
         this.unitName=uName;
         this.unitRadius=rad;
-        this.distance = 0;
+        this.distance = null;
     }
 
     /**
@@ -66,7 +66,7 @@ public class Distance {
         this.destination = dest;
         this.units = units;
         this.unitName=null;
-        this.unitRadius = 0.0;
+        this.unitRadius = null;
         this.distance = distance;
     }
 
