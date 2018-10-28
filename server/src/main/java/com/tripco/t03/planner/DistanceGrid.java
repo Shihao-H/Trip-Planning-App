@@ -27,7 +27,7 @@ public class DistanceGrid {
     }
 
     /**
-     * Constructor for user defined units
+     * Constructor for user defined units.
      * @param locations Array of places.
      * @param units String type of units.
      * @param udUnitName String name of user defined units.
@@ -61,10 +61,12 @@ public class DistanceGrid {
      * @param column int column index.
      */
     private void setDistanceObject(int row, int column){
+        Place origin = this.locations[row];
+        Place destination = this.locations[column];
         if (this.units.equalsIgnoreCase("user defined")) {
-            distanceGrid[row][column] = new Distance(this.locations[row], locations[column], this.units, this.userDefinedUnitName, this.userDefinedRadius);
+            distanceGrid[row][column] = new Distance(origin, destination, units, userDefinedUnitName, userDefinedRadius);
         } else {
-            distanceGrid[row][column] = new Distance(locations[row], locations[column], this.units);
+            distanceGrid[row][column] = new Distance(origin, destination, this.units);
         }
         distanceGrid[row][column].setDistance();
     }
@@ -75,7 +77,10 @@ public class DistanceGrid {
      * @param column int column index.
      */
     private void setOpposite(int row, int column){
-        distanceGrid[column][row] = new Distance(locations[column], locations[row], this.units, distanceGrid[row][column].distance);
+        Place origin = this.locations[column];
+        Place destination = this.locations[row];
+        Integer distance = this.distanceGrid[row][column].distance;
+        distanceGrid[column][row] = new Distance(origin, destination, this.units, distance);
     }
 
     /**
