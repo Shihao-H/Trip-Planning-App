@@ -45,7 +45,7 @@ public class TestDistanceGrid {
     @Test
     public void testBuildGrid(){
         distGrid = new DistanceGrid(locations, "miles");
-        distGrid.buildGrid();
+        distGrid.buildGrid(0,0);
 
         Assert.assertNotNull(distGrid.distanceGrid[0][1]);
     }
@@ -53,7 +53,7 @@ public class TestDistanceGrid {
     @Test
     public void testUserDefinedBuildGrid(){
         distGrid = new DistanceGrid(locations, "user defined", "ugh", 92.0000);
-        distGrid.buildGrid();
+        distGrid.buildGrid(0,0);
 
         Assert.assertNotNull(distGrid.distanceGrid[0][1]);
     }
