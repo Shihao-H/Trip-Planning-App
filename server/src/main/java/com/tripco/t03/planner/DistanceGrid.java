@@ -44,39 +44,38 @@ public class DistanceGrid {
     /**
      * Builds 2D array of Distance objects.
      */
-    public void buildGrid(){
+    public void buildGrid(int row, int column){
         setSamePlace();
-        for (int i = 0; i < locations.length; i++) {
-            for (int j = i + 1; j < locations.length; j++) {
-                if (distanceGrid[i][j] == null) {
-                    setDistanceObject(i, j);
-                    setOpposite(i, j);
-                }
-            }
+        if ((column < this.distanceGrid[row].length) && (this.distanceGrid[row][column] == null)) {
+            setDistanceObject(row, column);
+            setOpposite(row, column);
+            buildGrid(row, column+1);
+        }else if (column < this.distanceGrid.length){
+            buildGrid(row+1, 0);
         }
     }
 
     /**
      * Sets distance object in Distance Grid.
-     * @param i int row index.
-     * @param j int column index.
+     * @param row int row index.
+     * @param column int column index.
      */
-    private void setDistanceObject(int i, int j){
+    private void setDistanceObject(int row, int column){
         if (this.units.equalsIgnoreCase("user defined")) {
-            distanceGrid[i][j] = new Distance(this.locations[i], locations[j], this.units, this.userDefinedUnitName, this.userDefinedRadius);
+            distanceGrid[row][column] = new Distance(this.locations[row], locations[column], this.units, this.userDefinedUnitName, this.userDefinedRadius);
         } else {
-            distanceGrid[i][j] = new Distance(locations[i], locations[j], this.units);
+            distanceGrid[row][column] = new Distance(locations[row], locations[column], this.units);
         }
-        distanceGrid[i][j].setDistance();
+        distanceGrid[row][column].setDistance();
     }
 
     /**
      * Sets the opposite distance object equal to the same distance.
-     * @param i int row index.
-     * @param j int column index.
+     * @param row int row index.
+     * @param column int column index.
      */
-    private void setOpposite(int i, int j){
-        distanceGrid[j][i] = new Distance(locations[j], locations[i], this.units, distanceGrid[i][j].distance);
+    private void setOpposite(int row, int column){
+        distanceGrid[column][row] = new Distance(locations[column], locations[row], this.units, distanceGrid[row][column].distance);
     }
 
     /**
