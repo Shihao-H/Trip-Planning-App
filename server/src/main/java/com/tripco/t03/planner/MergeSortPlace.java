@@ -22,7 +22,9 @@ public class MergeSortPlace {
     private static Place[] divide(int left, int right, Place[] toSort, Place[] sorted){
         if(right > left) {
             int mid = (right + left) / 2;
-            return mergeLong(left, mid+1, right, divide(left, mid, toSort, sorted), divide(mid+1, right, toSort, sorted));
+            Place[] left = divide(left, mid, toSort, sorted);
+            Place[] right = divide(mid+1, right, toSort, sorted);
+            return mergeLong(left, mid+1, right, left, right);
         }else{
             Place[] temp = new Place[1];
             temp[0] = toSort[left];
@@ -43,7 +45,9 @@ public class MergeSortPlace {
         int leftSize = (mid-begin);
         int rightSize = (end-mid)+1;
         Place[] sorted = new Place[leftSize+rightSize];
-        int leftIndex = 0, rightIndex = 0, sortIndex = 0;
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int sortIndex = 0;
 
         while((leftIndex < leftSize) && (rightIndex < rightSize)){
             if(left[leftIndex].longitude <= right[rightIndex].longitude){
@@ -55,7 +59,8 @@ public class MergeSortPlace {
             }
             sortIndex++;
         }
-        return finalMerge(leftIndex, sortIndex, leftSize, left, finalMerge(rightIndex, sortIndex, rightSize, right, sorted));
+        Place[] temp =  finalMerge(rightIndex, sortIndex, rightSize, right, sorted);
+        return finalMerge(leftIndex, sortIndex, leftSize, left, temp);
     }
 
     /**
