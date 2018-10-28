@@ -22,9 +22,9 @@ public class MergeSortPlace {
     private static Place[] divide(int left, int right, Place[] toSort, Place[] sorted){
         if(right > left) {
             int mid = (right + left) / 2;
-            Place[] left = divide(left, mid, toSort, sorted);
-            Place[] right = divide(mid+1, right, toSort, sorted);
-            return mergeLong(left, mid+1, right, left, right);
+            Place[] leftSide = divide(left, mid, toSort, sorted);
+            Place[] rightSide = divide(mid+1, right, toSort, sorted);
+            return mergeLong(left, mid+1, right, leftSide, rightSide);
         }else{
             Place[] temp = new Place[1];
             temp[0] = toSort[left];
