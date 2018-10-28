@@ -9,17 +9,17 @@ public class DistanceGrid {
     private Double userDefinedRadius;
 
     /**
-     * Default constructor.
-     */
+    *Default contructor.
+    */
     public DistanceGrid(){
         this.distanceGrid = null;
     }
 
     /**
-     * Constructor for non user defined units.
-     * @param location Array of places.
-     * @param units String type of units.
-     */
+    *Constructor for non user defined options
+    *@param location array of Places.
+    *@param units string of unit type.
+    */
     public DistanceGrid(Place[] location, String units){
         this.locations=location;
         this.units = units;
@@ -27,12 +27,12 @@ public class DistanceGrid {
     }
 
     /**
-     * Constructor for user defined units.
-     * @param locations Array of places.
-     * @param units String type of units.
-     * @param udUnitName String name of user defined units.
-     * @param udRadius Double radius of Earth in user defined units.
-     */
+    *Constructor for userd defined options
+    *@param locations array of Places.
+    *@param units String unit type.
+    *@param udUnitName String name of user defined unit.
+    *@param udRadius Double the radius of Earth in user defined units.
+    */
     public DistanceGrid(Place[] locations, String units, String udUnitName, Double udRadius){
         this.locations = locations;
         this.units = units;
@@ -42,53 +42,24 @@ public class DistanceGrid {
     }
 
     /**
-     * Builds 2D array of Distance objects.
-     */
-    public void buildGrid(int row, int column){
-        setSamePlace();
-        if ((column < this.distanceGrid[row].length) && (this.distanceGrid[row][column] == null)) {
-            setDistanceObject(row, column);
-            setOpposite(row, column);
-            buildGrid(row, column+1);
-        }else if (column < this.distanceGrid.length){
-            buildGrid(row+1, 0);
-        }
-    }
-
-    /**
-     * Sets distance object in Distance Grid.
-     * @param row int row index.
-     * @param column int column index.
-     */
-    private void setDistanceObject(int row, int column){
-        Place origin = this.locations[row];
-        Place destination = this.locations[column];
-        if (this.units.equalsIgnoreCase("user defined")) {
-            distanceGrid[row][column] = new Distance(origin, destination, units, userDefinedUnitName, userDefinedRadius);
-        } else {
-            distanceGrid[row][column] = new Distance(origin, destination, this.units);
-        }
-        distanceGrid[row][column].setDistance();
-    }
-
-    /**
-     * Sets the opposite distance object equal to the same distance.
-     * @param row int row index.
-     * @param column int column index.
-     */
-    private void setOpposite(int row, int column){
-        Place origin = this.locations[column];
-        Place destination = this.locations[row];
-        Integer distance = this.distanceGrid[row][column].distance;
-        distanceGrid[column][row] = new Distance(origin, destination, this.units, distance);
-    }
-
-    /**
-     * Helper method for setting the Distance objects with the same origin and destination to null.
-     */
-    private void setSamePlace(){
+    *Builds a 2D array of Distance objects.
+    */
+    public void buildGrid(){
         for (int i = 0; i < this.locations.length; i++) {
             distanceGrid[i][i] = null;
+        }
+        for (int i = 0; i < locations.length; i++) {
+            for (int j = i + 1; j < locations.length; j++) {
+                if (distanceGrid[i][j] == null) {
+                    if (this.units.equalsIgnoreCase("user defined")) {
+                        distanceGrid[i][j] = new Distance(this.locations[i], locations[j], this.units, this.userDefinedUnitName, this.userDefinedRadius);
+                    } else {
+                        distanceGrid[i][j] = new Distance(locations[i], locations[j], this.units);
+                    }
+                    distanceGrid[i][j].setDistance();
+                    distanceGrid[j][i] = new Distance(locations[j], locations[i], this.units, distanceGrid[i][j].distance);
+                }
+            }
         }
     }
 
