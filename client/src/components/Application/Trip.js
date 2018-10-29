@@ -30,6 +30,7 @@ class Trip extends Component {
                                 trip={this.props.trip}
                                 clearConfig={this.props.clearConfig}
                                 LoadFile={this.props.LoadFile}
+                                map={this.props.map}
                                 updateHost={this.props.updateHost}
                                 updateOptions={this.props.updateOptions}
                                 updateOtherTeams={this.props.updateOtherTeams}
