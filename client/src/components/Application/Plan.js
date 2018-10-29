@@ -23,7 +23,7 @@ class Plan extends Component {
                         updateOptions={this.props.updateOptions} updateSearch={this.props.updateSearch}
                         updateSelectAll={this.props.updateSelectAll} updateSelected={this.props.updateSelected}/><br/>
                     <SaveTrip
-                        trip={this.props.trip}/><br/><br/>
+                        trip={this.props.trip} map={this.props.map}/><br/><br/>
                     <Clear
                         config={this.props.config} search={this.props.search}
                         trip={this.props.trip} clearConfig={this.props.clearConfig}
