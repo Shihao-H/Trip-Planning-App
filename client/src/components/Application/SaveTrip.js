@@ -27,26 +27,12 @@ class SaveTrip extends Component{
 
     SaveMap()
     {
-        // return{
-        //     mime: 'svg/plain',
-        //     filename: 'download.svg',
-        //     contents: this.props.map,
-        // }
-        // let title = this.props.trip.title;
-        // let MAP = JSON.stringify(this.props.map);
-        // if(!title.endsWith(".svg"))
-        // {
-        //     title += ".svg";
-        // }
-
-        // let ele = document.createElement('a');
-        // ele.setAttribute('href',this.props.map);
-        // ele.setAttribute('download','download.svg');
-        // document.body.appendChild(ele);
-        // ele.click();
-        // document.body.removeChild(ele);
-
-
+        let ele = document.createElement('a');
+        ele.setAttribute('href',this.props.map);
+        ele.setAttribute('download','download.svg');
+        document.body.appendChild(ele);
+        ele.click();
+        document.body.removeChild(ele);
     }
     render() {
         return (
