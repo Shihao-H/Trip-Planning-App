@@ -26,7 +26,7 @@ public class Driver {
      */
     public static void find(String match, int limit){
         if(limit == 0)
-            limitQuery = "limit 10";
+            limitQuery = "";
         else
             limitQuery = "limit " + Integer.toString(limit);
         search = "select id,name,municipality,latitude,longitude from airports " +
