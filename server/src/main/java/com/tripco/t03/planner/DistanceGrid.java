@@ -61,7 +61,7 @@ public class DistanceGrid {
      * @param column int column index.
      */
     private void setDistanceObject(int row, int column){
-        Place origin = this.locations[row];
+         Place origin = this.locations[row];
         Place destination = this.locations[column];
         if (this.units.equalsIgnoreCase("user defined")) {
             distanceGrid[row][column] = new Distance(origin, destination, units, userDefinedUnitName, userDefinedRadius);
