@@ -113,13 +113,13 @@ public class Driver {
             System.out.printf(" {\"id\":\"%s\", ", query.getString("id"));
             System.out.printf("\"name\":\"%s\", ", query.getString(1));
             System.out.printf("\"latitude\":\"%s\", ", query.getString("latitude"));
-            System.out.printf("\"longitude\":\"%s\"}", query.getString("longitude"));
+            System.out.printf("\"longitude\":\"%s\"", query.getString("longitude"));
 
-            System.out.printf("\"type\":\"%s\"}", query.getString("type"));
-            System.out.printf("\"elevation\":\"%s\"}", query.getString("elevation"));
-            System.out.printf("\"continent\":\"%s\"}", query.getString(5));
-            System.out.printf("\"country\":\"%s\"}", query.getString(4));
-            System.out.printf("\"region\":\"%s\"}", query.getString(3));
+            System.out.printf("\"type\":\"%s\"", query.getString("type"));
+            System.out.printf("\"elevation\":\"%s\"", query.getString("elevation"));
+            System.out.printf("\"continent\":\"%s\"", query.getString(5));
+            System.out.printf("\"country\":\"%s\"", query.getString(4));
+            System.out.printf("\"region\":\"%s\"", query.getString(3));
             System.out.printf("\"municipality\":\"%s\"}", query.getString("municipality"));
 
             if (--result == 0)

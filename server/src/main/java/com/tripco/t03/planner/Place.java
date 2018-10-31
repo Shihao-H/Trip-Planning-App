@@ -79,8 +79,8 @@ public class Place {
     public boolean equals(Place place){
         return (this.longitude == place.longitude)
                 && (this.latitude == place.latitude)
-                && (this.name.equalsIgnoreCase(place.name))
-                && (this.id.equalsIgnoreCase(place.id));
+                && (this.name.equals(place.name))
+                && (this.id.equals(place.id));
     }
 
     public String toString(){
