@@ -35,7 +35,7 @@ public class Optimize {
         return this.sortedPlaces;
     }
 
-   /* public Trip getOptimalTrip(){
+    public Trip getOptimalTrip(){/*
         NearestNeighbor nn = new NearestNeighbor(this);
         int index = nn.optimizeNearestNeighbor();
         Place[] optimalTrip = nn.getTripPlaceArray(index);
@@ -44,9 +44,11 @@ public class Optimize {
         System.out.printf("tripDistance: %s\n", Arrays.toString(new Integer[]{optimalDistances[index]}));
         this.trip.setDistances(new ArrayList<>(Arrays.asList(optimalDistances[index])));
         return this.trip;
+    */
+        return null;
     }
 
-    *//**
+        /**
      * Method to set up Distance object grid.
      *//*
     private void setGrid(){
