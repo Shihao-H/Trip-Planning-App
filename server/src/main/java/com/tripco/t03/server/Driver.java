@@ -97,14 +97,30 @@ public class Driver {
             System.out.printf("The limit is %d.\n", limit);
 
         while (query.next()) {
-            final Place place = new Place(query.getString("id"),
-                                    query.getString("name"),
+            final Place place = new Place(
+                                    query.getString("id"),
+                                    query.getString(1),//name
                                     Double.parseDouble(query.getString("latitude")),
-                                    Double.parseDouble(query.getString("longitude")));
+                                    Double.parseDouble(query.getString("longitude")),
+                                    query.getString("type"),
+                                    query.getString("elevation"),
+                                    query.getString(5),//continent
+                                    query.getString(4),//country
+                                    query.getString(3),//region
+                                    query.getString("municipality")
+                    );
+
             System.out.printf(" {\"id\":\"%s\", ", query.getString("id"));
-            System.out.printf("\"name\":\"%s\", ", query.getString("name"));
+            System.out.printf("\"name\":\"%s\", ", query.getString(1));
             System.out.printf("\"latitude\":\"%s\", ", query.getString("latitude"));
             System.out.printf("\"longitude\":\"%s\"}", query.getString("longitude"));
+
+            System.out.printf("\"type\":\"%s\"}", query.getString("type"));
+            System.out.printf("\"elevation\":\"%s\"}", query.getString("elevation"));
+            System.out.printf("\"continent\":\"%s\"}", query.getString(5));
+            System.out.printf("\"country\":\"%s\"}", query.getString(4));
+            System.out.printf("\"region\":\"%s\"}", query.getString(3));
+            System.out.printf("\"municipality\":\"%s\"}", query.getString("municipality"));
 
             if (--result == 0)
                 {System.out.print("\n");}
