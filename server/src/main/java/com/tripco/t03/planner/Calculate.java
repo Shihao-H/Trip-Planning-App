@@ -5,7 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import spark.Request;
 
-
 /**
  * This class handles to the conversions of the JSON request/resopnse,
  * converting from the Json string in the request body to a Distance object,
