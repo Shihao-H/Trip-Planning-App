@@ -55,7 +55,8 @@ public class Search {
      */
     public void match(){
         Driver driver = new Driver();
-        this.found = driver.find(this.match, this.limit);
+        driver.find(this.match, this.limit);
+        this.found = driver.found;
         this.places = (ArrayList<Place>) driver.places.clone();
     }
 }

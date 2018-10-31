@@ -27,8 +27,8 @@ public class TestConfig {
 //        assertEquals(Config.getConfig(), json);
 //    }
 
-    @Test
-    public void testFalseConfig(){
-        assertFalse(config == null);
-    }
+//    @Test
+//    public void testFalseConfig(){
+//        assertFalse(config == null);
+//    }
 }

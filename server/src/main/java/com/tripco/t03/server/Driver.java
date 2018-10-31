@@ -19,21 +19,20 @@ public class Driver {
     private static String search = "";
     private static String limitQuery = "";
     public static ArrayList<Place> places;
+    public static int found = 0;
 
     /**
      * The find method is meant to get access to the database and execute queries.
      *
      */
-    public static int find(String match, int limit){
-        int found = 0;
-
+    public static void find(String match, int limit){
         if(limit == 0)
             limitQuery = ""; // no limit
         else
             limitQuery = "limit " + Integer.toString(limit);
 
         search = "SELECT world_airports.name, world_airports.municipality, region.name, country.name, continents.name, " +
-                "world_airports.id, world_airports.type, world_airports.longtitude, world_airports.latitude, " +
+                "world_airports.id, world_airports.type, world_airports.longitude, world_airports.latitude, " +
                 "world_airports.elevation " +
                 "FROM continents \n" +
                 "INNER JOIN country ON continents.id = country.continent \n" +
@@ -67,34 +66,35 @@ public class Driver {
                  ResultSet rsCount = stCount.executeQuery(count);
                  ResultSet rsQuery = stQuery.executeQuery(search)
             ) {
-                found = printJson(rsCount, rsQuery, match, limit);
+                printJson(rsCount, rsQuery, match, limit);
             }
         } catch (Exception e) {
             System.err.println("Exception: " + e.getMessage());
         }
-        return found;
     }
 
     /**
      * This function is meant to print the JSON on the terminal/ console to log.
      *
      */
-    private static int printJson(ResultSet count, ResultSet query, String match, int limit) throws SQLException {
+    private static void printJson(ResultSet count, ResultSet query, String match, int limit) throws SQLException {
 
-        System.out.printf("\n{\n");
-        System.out.printf("\"type\": \"find\",\n");
-        System.out.printf("\"title\": \"%s\",\n", match);
-        System.out.printf("\"places\": [\n");
+        System.out.print("\n{\n");
+        System.out.print("\"version\": 4,\n");
+        System.out.print("\"type\": \"search\",\n");
+        System.out.printf("\"match\": \"%s\",\n", match);
+        System.out.print("\"places\": [\n");
         places = new ArrayList<Place>();
 
         count.next();
-        int results = count.getInt(1);
-        System.out.printf("%d results found.\n", results);
+        int result  = count.getInt(1);
+        found = result;
+        System.out.printf("%d results found.\n", found);
 
         if(limit == 0)
-            System.out.println("The number of results displayed is not limited.\n");
+            System.out.print("No limit.\n");
         else
-            System.out.printf("The number of results displayed is limited to %d.\n", limit);
+            System.out.printf("The limit is %d.\n", limit);
 
         while (query.next()) {
             final Place place = new Place(query.getString("id"),
@@ -106,14 +106,13 @@ public class Driver {
             System.out.printf("\"latitude\":\"%s\", ", query.getString("latitude"));
             System.out.printf("\"longitude\":\"%s\"}", query.getString("longitude"));
 
-            if (--results == 0)
-                {System.out.printf("\n");}
+            if (--result == 0)
+                {System.out.print("\n");}
             else
-                {System.out.printf(",\n");}
+                {System.out.print(",\n");}
             places.add(place);
         }
 
-        System.out.printf(" ]\n}\n");
-        return results;
+        System.out.print(" ]\n}\n");
     }
 }
