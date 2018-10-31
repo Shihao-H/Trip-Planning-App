@@ -22,7 +22,6 @@ public class Place {
         this.name = null;
         this.latitude = null;
         this.longitude = null;
-        this.userDefined = null;
     }
 
     /**
@@ -37,7 +36,6 @@ public class Place {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.userDefined = null;
     }
 
     /**
@@ -70,7 +68,6 @@ public class Place {
         this.name = from.name;
         this.latitude = from.latitude;
         this.longitude = from.longitude;
-        this.userDefined = from.userDefined;
     }
     /**
      * @return name of place object.
