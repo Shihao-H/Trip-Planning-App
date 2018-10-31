@@ -1,5 +1,6 @@
 package com.tripco.t03.planner;
 
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -22,7 +23,7 @@ public class Plan {
    */
   public Plan (Request request) {
     // first print the request
-    System.out.println(HTTP.echoRequest(request));
+    //System.out.println(HTTP.echoRequest(request));
 
     // extract the information from the body of the request.
     JsonParser jsonParser = new JsonParser();
