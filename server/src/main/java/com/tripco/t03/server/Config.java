@@ -17,7 +17,7 @@ public class Config {
   public Config(){
     units = new ArrayList<>(Arrays.asList("miles", "kilometers", "nautical miles", "user defined"));
     optimization = new ArrayList<>(Arrays.asList(new Optimization("none", "The trip is not optimized."), new Optimization("short", "Nearest neighbor."), new Optimization("shorter", "Two Opt")));
-    attributes = new ArrayList<>(Arrays.asList("name", "id", "latitude", "longitude", "userDefined"));
+    attributes = new ArrayList<>(Arrays.asList("name", "id", "latitude", "longitude", "type", "continent", "wikipedia_link"));
     filters = "none";
     maps = "svg";
   }
