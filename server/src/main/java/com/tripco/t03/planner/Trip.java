@@ -168,101 +168,208 @@ public class Trip {
             return;
         }
         else if("short".equals(options.optimization)){
-            nearestN();
+            nearestNeighbor();
         }
         else if("shorter".equals(options.optimization)){
-            nearestN();
+            nearestNeighbor();
             TwoOpt();
         }
         else if("shortest".equals(options.optimization)){
-            nearestN();
+            nearestNeighbor();
             TwoOpt();
             ThreeOpt();
         }
 
     }
 
-    public void nearestN(){
+    private void nearestNeighbor(){
 
-        int[] loc = new int[places.size()];
-        fillArray(loc);
-        int tripDist = 100000000; //ugly hardcode but it is neat compared to a pre-compute
-        int shortestT = 0; //sets the current shortest start to be
-        for(int i = 0; i < places.size(); i++){ //loop through all the best start locations
-            loc[0] = i;
-            loc[i] = 0;//set up the new start location
+        int size = this.places.size();
+        int distance[][] = new int[size][size];
+        Place[] copyToArray = this.places.toArray(new Place[size]);
 
-            //call the help method
-            int hold = setNearest(loc);//returns length of trip and reorganizes the array
-            if(hold < tripDist){
-                tripDist = hold;//store the new shortest trip length
-                shortestT = i;//set the shortest trip to remember the best starting place
-            }
-            //reset array
-            fillArray(loc);
-        }
-
-        //set up the best nearest N
-        ArrayList<Place> newPlaces = new ArrayList<Place>();
-        loc[0] = shortestT;
-        loc[shortestT] = 0;
-        setNearest(loc);
-
-        for(int i = 0; i < loc.length;i++){
-
-            newPlaces.add(places.get(loc[i]));
-
-        }
-
-        this.places = newPlaces;
-
-    }
-
-//two opt algorithm
-
-//three opt algorithm
-
-
-//helper methods
-
-//calcDist already exists above
-
-    public int setNearest(int[] P){
-        int nearest = 1;//set the first nearest
-        int curbest = 100000000;//set the best as the first option
-        int totaldist = 0;
-        int hold = 0;
-        //0 in P is already "correct" find the thing that needs to go in the next place and repeat place
-        for(int i = 1; i < P.length-1;i++){//for each location
-
-            for(int k = i; k < P.length;k++){//find the closest place
-                //find the nearest
-                hold =  calDist(places.get(P[i-1]),places.get(P[k]));
-                if(curbest > hold){
-                    curbest = hold;
-                    nearest = k;
+        for(int i = 0; i < size; i++){
+            for(int j = 0; j < size; j++){
+                if (i == j){
+                    distance[i][j] = Integer.MAX_VALUE;
+                } else if (i > j){
+                    distance[i][j] = distance[j][i];
+                } else {
+                    Distance calc;
+                    if (this.options.units.equals("user defined")) {
+                        calc = new Distance(copyToArray[i], copyToArray[j], options.units, options.unitName, options.unitRadius);
+                        calc.setDistance();
+                        distance[i][j] = calc.distance;
+                    } else {
+                        calc = new Distance(copyToArray[i], copyToArray[j], options.units);
+                        calc.setDistance();
+                        distance[i][j] = calc.distance;
+                    }
                 }
             }
-            //swap the best option into the slot
-            hold = P[nearest];//hold the new nearest
-            P[nearest] = P[i];//put the i + 1 in nearest
-            P[i] = hold;//put nearest in i + 1
-            totaldist += curbest; //add the new dist to the total
-            curbest = 1000000000;//sloppy reset of value
-            nearest = -1;
-            hold = -1;//should be unnessesary
         }
-        //add the distance of the first to last place to complete the circle
-        totaldist += calDist(places.get(P[0]),places.get(P[P.length-1]));
 
-        return totaldist;
+        ////////////////////////////////////////////////////////
+
+        boolean visit[];
+        int total[] = new int[size];
+        for(int k = 0; k < size; k++){
+            visit = new boolean[size];
+            visit[k] = true;
+            int start = k;
+            while(unvisitedCityLeft(visit)){
+                int index = getMin(distance[start], visit, total, k);
+                start = index;
+
+            }
+            total[k] += distance[start][k];
+        }
+
+        ///////////////////////////////////////////
+
+        this.places = new ArrayList<Place>();
+        int k = getMinValue(total);
+        this.places.add(copyToArray[k]);
+        visit = new boolean[size];
+        visit[k] = true;
+        int start = k;
+        while(unvisitedCityLeft(visit)){
+            int index = getMin(distance[start], visit, total, k);
+            start = index;
+            this.places.add(copyToArray[index]);
+        }
+
     }
 
-    public void fillArray(int[] array){
-        for(int i = 0;i < array.length;i++){
-            array[i] = i;
+    public boolean unvisitedCityLeft(boolean[] visit){
+        boolean flag = false;
+        for(int i = 0; i < visit.length; i++){
+            if(visit[i] == false)
+                return true;
         }
+        return flag;
     }
+
+    public int getMin(int[] numbers, boolean[] visit, int[] total, int k){
+        int minValue = -1;
+        int i, index = -1;
+
+        for(i = 0;i < numbers.length; i++){
+            if(visit[i] == false){
+                minValue = numbers[i];
+                index = i;
+                break;
+            }
+        }
+
+        while(i < numbers.length){
+            if(numbers[i] < minValue){
+                if(visit[i] == false){
+                    minValue = numbers[i];
+                    index = i;
+                }
+            }
+            i++;
+        }
+
+        visit[index] = true;
+        total[k] += minValue;
+        return index;
+    }
+
+    public int getMinValue(int[] numbers){
+        int minValue = numbers[0];
+        int index = 0;
+        for(int i=1;i<numbers.length;i++){
+            if(numbers[i] < minValue){
+                minValue = numbers[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+
+//    public void nearestN(){
+//
+//        int[] loc = new int[places.size()];
+//        fillArray(loc);
+//        int tripDist = 100000000; //ugly hardcode but it is neat compared to a pre-compute
+//        int shortestT = 0; //sets the current shortest start to be
+//        for(int i = 0; i < places.size(); i++){ //loop through all the best start locations
+//            loc[0] = i;
+//            loc[i] = 0;//set up the new start location
+//
+//            //call the help method
+//            int hold = setNearest(loc);//returns length of trip and reorganizes the array
+//            if(hold < tripDist){
+//                tripDist = hold;//store the new shortest trip length
+//                shortestT = i;//set the shortest trip to remember the best starting place
+//            }
+//            //reset array
+//            fillArray(loc);
+//        }
+//
+//        //set up the best nearest N
+//        ArrayList<Place> newPlaces = new ArrayList<Place>();
+//        loc[0] = shortestT;
+//        loc[shortestT] = 0;
+//        setNearest(loc);
+//
+//        for(int i = 0; i < loc.length;i++){
+//
+//            newPlaces.add(places.get(loc[i]));
+//
+//        }
+//
+//        this.places = newPlaces;
+//
+//    }
+//
+////two opt algorithm
+//
+////three opt algorithm
+//
+//
+////helper methods
+//
+////calcDist already exists above
+//
+//    public int setNearest(int[] P){
+//        int nearest = 1;//set the first nearest
+//        int curbest = 100000000;//set the best as the first option
+//        int totaldist = 0;
+//        int hold = 0;
+//        //0 in P is already "correct" find the thing that needs to go in the next place and repeat place
+//        for(int i = 1; i < P.length-1;i++){//for each location
+//
+//            for(int k = i; k < P.length;k++){//find the closest place
+//                //find the nearest
+//                hold =  calDist(places.get(P[i-1]),places.get(P[k]));
+//                if(curbest > hold){
+//                    curbest = hold;
+//                    nearest = k;
+//                }
+//            }
+//            //swap the best option into the slot
+//            hold = P[nearest];//hold the new nearest
+//            P[nearest] = P[i];//put the i + 1 in nearest
+//            P[i] = hold;//put nearest in i + 1
+//            totaldist += curbest; //add the new dist to the total
+//            curbest = 1000000000;//sloppy reset of value
+//            nearest = -1;
+//            hold = -1;//should be unnessesary
+//        }
+//        //add the distance of the first to last place to complete the circle
+//        totaldist += calDist(places.get(P[0]),places.get(P[P.length-1]));
+//
+//        return totaldist;
+//    }
+//
+//    public void fillArray(int[] array){
+//        for(int i = 0;i < array.length;i++){
+//            array[i] = i;
+//        }
+//    }
 
 
     public int calDist(Place origin, Place destination){

@@ -63,17 +63,6 @@ public class DistanceGrid {
                 }
             }
         }
-        for(int i=0;i<this.locations.length;i++)
-        {
-            for(int j=0;j<this.locations.length;j++)
-            {
-                System.out.print(distanceGrid[i][j]);
-                System.out.print(' ');
-            }
-            System.out.print("\n");
-        }
-
-
     }
 
     public int calDist(Place origin, Place destination){
