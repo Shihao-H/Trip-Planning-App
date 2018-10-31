@@ -37,7 +37,8 @@ public class Place {
     }
 
     public Place(String id, String name, Double latitude, Double longitude,
-                 String type, String elevation, String continent, String country, String region, String municipality){
+                 String type, String elevation, String continent, String country, 
+                 String region, String municipality){
         this.id = id;
         this.name = name;
         this.latitude = latitude;
