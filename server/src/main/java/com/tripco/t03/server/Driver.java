@@ -31,32 +31,32 @@ public class Driver {
         else
             limitQuery = "limit " + Integer.toString(limit);
 
-        search = "SELECT world_airports.name, world_airports.municipality, region.name, country.name, continents.name, " +
-                "world_airports.id, world_airports.type, world_airports.longitude, world_airports.latitude, " +
-                "world_airports.elevation " +
-                "FROM continents \n" +
-                "INNER JOIN country ON continents.id = country.continent \n" +
-                "INNER JOIN region ON country.id = region.iso_country \n" +
-                "INNER JOIN world_airports ON region.id = world_airports.iso_region \n" +
-                "WHERE continents.name LIKE \"%" + match + "%\"  \n" +
-                "OR country.name LIKE \"%" + match + "%\"  \n" +
-                "OR region.name LIKE \"%" + match + "%\"  \n" +
-                "OR world_airports.municipality LIKE \"%" + match + "%\" \n" +
-                "OR world_airports.name LIKE \"%" + match + "%\" \n" +
-                "ORDER BY continents.name, country.name, region.name, world_airports.municipality, world_airports.name ASC \n" +
-                limitQuery;
+        search = "SELECT world_airports.name, world_airports.municipality, region.name, country.name, continents.name, "
+                + "world_airports.id, world_airports.type, world_airports.longitude, world_airports.latitude, "
+                + "world_airports.elevation "
+                + "FROM continents \n"
+                + "INNER JOIN country ON continents.id = country.continent \n"
+                + "INNER JOIN region ON country.id = region.iso_country \n"
+                + "INNER JOIN world_airports ON region.id = world_airports.iso_region \n"
+                + "WHERE continents.name LIKE \"%" + match + "%\"  \n"
+                + "OR country.name LIKE \"%" + match + "%\"  \n"
+                + "OR region.name LIKE \"%" + match + "%\"  \n"
+                + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
+                + "OR world_airports.name LIKE \"%" + match + "%\" \n"
+                + "ORDER BY continents.name, country.name, region.name, world_airports.municipality, world_airports.name ASC "
+                + limitQuery;
 
-        count = "SELECT count(*) " +
-                "FROM continents \n" +
-                "INNER JOIN country ON continents.id = country.continent \n" +
-                "INNER JOIN region ON country.id = region.iso_country \n" +
-                "INNER JOIN world_airports ON region.id = world_airports.iso_region \n" +
-                "WHERE continents.name LIKE \"%" + match + "%\"  \n" +
-                "OR country.name LIKE \"%" + match + "%\"  \n" +
-                "OR region.name LIKE \"%" + match + "%\"  \n" +
-                "OR world_airports.municipality LIKE \"%" + match + "%\" \n" +
-                "OR world_airports.name LIKE \"%" + match + "%\" \n" +
-                "ORDER BY continents.name, country.name, region.name, world_airports.municipality, world_airports.name ASC";
+        count = "SELECT count(*) "
+                + "FROM continents \n"
+                + "INNER JOIN country ON continents.id = country.continent \n"
+                + "INNER JOIN region ON country.id = region.iso_country \n"
+                + "INNER JOIN world_airports ON region.id = world_airports.iso_region \n"
+                + "WHERE continents.name LIKE \"%" + match + "%\"  \n"
+                + "OR country.name LIKE \"%" + match + "%\"  \n"
+                + "OR region.name LIKE \"%" + match + "%\"  \n"
+                + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
+                + "OR world_airports.name LIKE \"%" + match + "%\" \n"
+                + "ORDER BY continents.name, country.name, region.name, world_airports.municipality, world_airports.name ASC";
 
         try {
             Class.forName(myDriver);
