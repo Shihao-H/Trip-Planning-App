@@ -3,7 +3,6 @@ package com.tripco.t03.planner;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.tripco.t03.server.HTTP;
 import spark.Request;
 
 
@@ -23,7 +22,7 @@ public class Calculate {
    */
   public Calculate (Request request) {
     // first print the request
-    System.out.println(HTTP.echoRequest(request));
+    //System.out.println(HTTP.echoRequest(request));
 
     // extract the information from the body of the request.
     JsonParser jsonParser = new JsonParser();
@@ -60,7 +59,27 @@ public class Calculate {
         return circleDistance(radius, getDeltaSigma(p1.latitude,p1.longitude,p2.latitude, p2.longitude));
     }
 
-  /**
+    /**
+     * @param origin Place object.
+     * @param destination Place object.
+     * @param units String designating the units for radius.
+     * @return integer value of distance between origin and destination; -1 if invalid.
+     * Calls getDeltaSigma() and uses that value to determine the distance between two lat/long coordinates
+     * Assigns that value to the distance variable
+     */
+    public static int calcDistance(Place origin, Place destination, String units){
+        double radius = -1;
+        if(units.equalsIgnoreCase("miles")) {
+            radius = 3959.0;
+        }else if(units.equalsIgnoreCase("kilometers")) {
+            radius = 6371.0;
+        }else if(units.equalsIgnoreCase("nautical miles")) {
+            radius = 3440.0;
+        }
+        return circleDistance(radius, getDeltaSigma(origin.latitude,origin.longitude,destination.latitude, destination.longitude));
+    }
+
+    /**
    * @param distance Distance object
    * @return integer value of distance between origin and destination; -1 if invalid.
    * Calls getDeltaSigma() and uses that value to determine the distance between two lat/long coordinates

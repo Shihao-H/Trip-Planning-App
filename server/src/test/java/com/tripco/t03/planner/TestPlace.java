@@ -18,10 +18,7 @@ public class TestPlace {
 
   @Test
   public void testEmptyPlace() {
-    assertNull(p.id);
     assertNull(p.name);
-    assertEquals(p.latitude, '\0', 1);
-    assertEquals(p.longitude, '\0', 1);
   }
   
   Place place;
