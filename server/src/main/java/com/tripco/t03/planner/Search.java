@@ -10,17 +10,15 @@ public class Search {
 
     public String type = "search";
     public int version = 4;
-    public String match;
+    public String match = null;
     public int limit = 0;
     public int found = 0;
     public ArrayList<Place> places;
-    public Filters filters;
+    public Filter[] filters = null;
     /**
      * This is a default constructor.
      */
-    public Search(){
-        this.match = null;
-    }
+    public Search(){}
     
     /**
      * This is a constructor.
@@ -37,13 +35,13 @@ public class Search {
         this.limit = limit;
     }
 
-    public Search(String match, Filters filters)
+    public Search(String match, Filter[] filters)
     {
         this.match = match;
         this.filters = filters;
     }
 
-    public Search(String match, int limit, Filters filters)
+    public Search(String match, int limit, Filter[] filters)
     {
         this.match = match;
         this.limit = limit;

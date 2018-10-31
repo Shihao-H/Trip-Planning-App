@@ -3,7 +3,7 @@ package com.tripco.t03.planner;
 /**
  * The Filters class supports TFFI so it can easily be converted to/from Json by Gson.
  */
-public class Filters {
+public class Filter {
 
     public String name;
     public String[] values;
@@ -11,7 +11,7 @@ public class Filters {
     /**
      * This is a default constructor.
      */
-    public Filters() {
+    public Filter() {
         name = null;
         values = null;
     }
@@ -19,7 +19,7 @@ public class Filters {
     /**
      * This is a constructor.
      */
-    public Filters(String name, String[] values) {
+    public Filter(String name, String[] values) {
         this.name = name;
         this.values = values;
     }
