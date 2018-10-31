@@ -1,11 +1,18 @@
 package com.tripco.t03.planner;
 
+
 public class Place {
     public String id;
     public String name;
-    public String userDefined;
     public Double latitude;
     public Double longitude;
+
+    public String type;
+    public String elevation;
+    public String continent;
+    public String country;
+    public String region;
+    public String municipality;
 
     /**
      * Default constructor
@@ -44,9 +51,14 @@ public class Place {
     public Place(String id, String name, String userDefined, Double latitude, Double longitude){
         this.id = id;
         this.name = name;
-        this.userDefined = userDefined;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.type = type;
+        this.elevation = elevation;
+        this.continent = continent;
+        this.country = country;
+        this.region = region;
+        this.municipality = municipality;
     }
 
     /**
@@ -87,10 +99,14 @@ public class Place {
      * Compares two Place objects for equality.
      */
     public boolean equals(Place place){
-        return (this.longitude == place.longitude) && (this.latitude == place.latitude) && (this.name.equalsIgnoreCase(place.name)) && (this.id.equalsIgnoreCase(place.id));
+        return (this.longitude == place.longitude)
+                && (this.latitude == place.latitude)
+                && (this.name.equals(place.name))
+                && (this.id.equals(place.id));
     }
 
-//    public String toString(){
-//        return String.format("Id: %s, Name: %s, Latitude: %f, Longitude: %f", this.id, this.name, this.latitude, this.longitude);
-//    }
+    public String toString(){
+        return String.format("Id: %s, Name: %s, Latitude: %f, Longitude: %f",
+                this.id, this.name, this.latitude, this.longitude);
+    }
 }
