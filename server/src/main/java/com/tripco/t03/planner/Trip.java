@@ -506,7 +506,7 @@ public class Trip {
                             int[] delta = new int[7];
                             delta[0]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][d2];
                             delta[1]= -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[d1][p1] + grid.distanceGrid[d2][p2];
-                            delta[2]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[p1][p2] + calDist(o1, p1) + calDist(o2, p2);
+                            delta[2]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][p1] + grid.distanceGrid[o2][p2];
                             delta[3]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][p1]+ grid.distanceGrid[d2][p2];
                             delta[4]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][p1] + grid.distanceGrid[d2][o2]+ grid.distanceGrid[d1][p2];
                             delta[5]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d2] + grid.distanceGrid[p1][d1]+ grid.distanceGrid[o2][p2];
