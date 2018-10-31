@@ -405,12 +405,15 @@ public class Trip {
         return section;
     }
 
-    public int[] ReverseArray(int[] places)
+    public int[] ReverseArray(int[] arr)
     {
-        List<Integer> listOfProducts = (List<Integer>) Arrays.asList(places);
-        Collections.reverse(listOfProducts);
-        int[] reversed = listOfProducts.toArray(places);
-        return reversed;
+        for(int i = 0; i < arr.length / 2; i++)
+        {
+            int temp = arr[i];
+            arr[i] = arr[arr.length - i - 1];
+            arr[arr.length - i - 1] = temp;
+        }
+        return arr;
     }
 
     public int[] Combine(int[] a,int[] b)
