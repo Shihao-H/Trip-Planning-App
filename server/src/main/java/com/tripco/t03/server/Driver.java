@@ -31,8 +31,10 @@ public class Driver {
         else
             limitQuery = "limit " + Integer.toString(limit);
 
-        search = "SELECT world_airports.name, world_airports.municipality, region.name, country.name, continents.name, "
-                + "world_airports.id, world_airports.type, world_airports.longitude, world_airports.latitude, "
+        search = "SELECT world_airports.name, world_airports.municipality, region.name, "
+                + "country.name, continents.name, "
+                + "world_airports.id, world_airports.type, world_airports.longitude, "
+                + "world_airports.latitude, "
                 + "world_airports.elevation "
                 + "FROM continents \n"
                 + "INNER JOIN country ON continents.id = country.continent \n"
@@ -43,7 +45,8 @@ public class Driver {
                 + "OR region.name LIKE \"%" + match + "%\"  \n"
                 + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\" \n"
-                + "ORDER BY continents.name, country.name, region.name, world_airports.municipality, world_airports.name ASC "
+                + "ORDER BY continents.name, country.name, region.name, world_airports.municipality, "
+                + "world_airports.name ASC "
                 + limitQuery;
 
         count = "SELECT count(*) "
@@ -56,7 +59,8 @@ public class Driver {
                 + "OR region.name LIKE \"%" + match + "%\"  \n"
                 + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\" \n"
-                + "ORDER BY continents.name, country.name, region.name, world_airports.municipality, world_airports.name ASC";
+                + "ORDER BY continents.name, country.name, region.name, world_airports.municipality, "
+                + "world_airports.name ASC";
 
         try {
             Class.forName(myDriver);
@@ -77,7 +81,8 @@ public class Driver {
      * This function is meant to print the JSON on the terminal/ console to log.
      *
      */
-    private static void printJson(ResultSet count, ResultSet query, String match, int limit) throws SQLException {
+    private static void printJson(ResultSet count, ResultSet query, String match, int limit) 
+        throws SQLException {
 
         System.out.print("\n{\n");
         System.out.print("\"version\": 4,\n");
