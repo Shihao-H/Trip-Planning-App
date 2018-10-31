@@ -15,6 +15,7 @@ public class Search {
     public int found = 0;
     public ArrayList<Place> places;
     public Filter[] filters = null;
+    
     /**
      * This is a default constructor.
      */
