@@ -30,7 +30,8 @@ public class Trip {
         this.options = new Option();
         this.places = null;
         this.distances = null;
-        this.map = svg();
+        this.map = "";
+        svg();
     }
 
     /**
@@ -42,7 +43,8 @@ public class Trip {
         this.title = null;
         this.options = options;
         this.places = places;
-        this.map = svg();
+        this.map = "";
+        svg();
     }
 
     public Trip(String title, Option options, ArrayList<Place> places, ArrayList<Integer> distances){
@@ -50,7 +52,8 @@ public class Trip {
         this.options=options;
         this.places=places;
         this.distances=distances;
-        this.map = svg();
+        this.map = "";
+        svg();
     }
     /**
      * @param title String user defined title for trip.
@@ -62,68 +65,99 @@ public class Trip {
         this.title=title;
         this.options = options;
         this.places = places;
-        this.map = svg();
+        this.map = "";
+        svg();
     }
 
-    //    /** The top level method that does planning.
-//     * At this point it just adds the map and distances for the places in order.
-//     * It might need to reorder the places in the future.
-//     */
-//    public void plan() {
-//        this.distances = legDistances();
-//        if(this.options.optimization.equalsIgnoreCase("short")){
-//            Optimize opt = new Optimize(this);
-//            Trip optTrip = opt.getOptimalTrip();
-//            this.title = optTrip.title;
-//            this.options = optTrip.options;
-//            this.places = optTrip.places;
-//            this.map = optTrip.map;
-//            svg();
-//        }
-//        setRoute();
-//    }
+        /** The top level method that does planning.
+     * At this point it just adds the map and distances for the places in order.
+     * It might need to reorder the places in the future.
+     */
     public void plan() {
-        optimize();
-        this.map=svg();
         this.distances = legDistances();
+        if(this.options.optimization.equalsIgnoreCase("short")){
+            Optimize opt = new Optimize(this);
+            Trip optTrip = opt.getOptimalTrip();
+            this.title = optTrip.title;
+            this.options = optTrip.options;
+            this.places = optTrip.places;
+            this.map = optTrip.map;
+            svg();
+        }
+        setRoute();
+        else if(this.options.optimization.equalsIgnoreCase("shorter")){
+            Optimize opt = new Optimize(this);
+            Trip optTrip = opt.getOptimalTrip();
+            this.title = optTrip.title;
+            this.options = optTrip.options;
+            this.places = optTrip.places;
+            this.map = optTrip.map;
+            svg();
+        }
+        setRoute();
+        else if(this.options.optimization.equalsIgnoreCase("shortest")){
+            Optimize opt = new Optimize(this);
+            Trip optTrip = opt.getOptimalTrip();
+            this.title = optTrip.title;
+            this.options = optTrip.options;
+            this.places = optTrip.places;
+            this.map = optTrip.map;
+            svg();
+        }
         setRoute();
     }
+
+    /**
+     * Setter for places ArrayList.
+     * @param newPlaces Array of Places.
+     */
+    public void setPlace(Place[] newPlaces) {
+        this.places.clear();
+        this.places.addAll(Arrays.asList(newPlaces));
+    }
+
+    /**
+     * Setter for distances ArrayList.
+     * @param distances ArrayList of Integers.
+     */
+    public void setDistances(ArrayList<Integer> distances){
+        this.distances = distances;
+    }
+
+//    public void plan() {
+//        optimize();
+//        this.map=svg();
+//        this.distances = legDistances();
+//        setRoute();
+//    }
 
     /**
      * Adds the route to the existing map.
      */
     public void setRoute() {
-
         LineDistance ld = new LineDistance(this.places);
         String route = ld.getCoordinates();
-        String fileLines = this.map.substring(0, this.map.length()-16) + route + this.map.substring(this.map.length()-16);
-        this.map = fileLines;
+        this.map = this.map.substring(0, this.map.length()-16) + route + this.map.substring(this.map.length()-16);
     }
 
     /**
      * Creates an SVG containing the background and the legs of the trip.
      */
-    public String svg() {
-        String fileLines = "data:image/svg+xml," ;
+    public void svg() {
+        String fileLines = "" ;
         try {
             InputStream thisSVGwillNOTwin =Trip.class.getResourceAsStream("/CObackground.svg");
-            if(thisSVGwillNOTwin != null){
-//                System.out.println("There might be some hope.");
-            }else{
-//                System.out.println("GIVE UP NOW AND GO HOME!");
-            }
             BufferedReader buffy = new BufferedReader(new InputStreamReader(thisSVGwillNOTwin));
             if(buffy.ready()){
-//                System.out.println("It found it.....");
                 while(buffy.ready()){
-                    fileLines+= buffy.readLine();
+                    fileLines= fileLines + buffy.readLine();
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-//            System.out.println("POOP ON BUFFY INPUT STREAM!!");
+            System.out.println("POOP ON BUFFY INPUT STREAM!!");
         }
-        return fileLines;
+        this.map = fileLines;
     }
 
     /**
@@ -157,137 +191,137 @@ public class Trip {
         return dist;
     }
 
-    public void optimize(){
-        if(places.size() == 0){
-            return;
-        }
-        if(options == null || options.optimization == null){
-            return;
-        }
-        else if("none".equals(options.optimization)){
-            return;
-        }
-        else if("short".equals(options.optimization)){
-            nearestNeighbor();
-        }
-        else if("shorter".equals(options.optimization)){
-            nearestNeighbor();
-            TwoOpt();
-        }
-        else if("shortest".equals(options.optimization)){
-            nearestNeighbor();
-            TwoOpt();
-            ThreeOpt();
-        }
-
-    }
-
-    private void nearestNeighbor(){
-
-        int size = this.places.size();
-        int distance[][] = new int[size][size];
-        Place[] copyToArray = this.places.toArray(new Place[size]);
-
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < size; j++){
-                if (i == j){
-                    distance[i][j] = Integer.MAX_VALUE;
-                } else if (i > j){
-                    distance[i][j] = distance[j][i];
-                } else {
-                    Distance calc;
-                    if (this.options.units.equals("user defined")) {
-                        calc = new Distance(copyToArray[i], copyToArray[j], options.units, options.unitName, options.unitRadius);
-                        calc.setDistance();
-                        distance[i][j] = calc.distance;
-                    } else {
-                        calc = new Distance(copyToArray[i], copyToArray[j], options.units);
-                        calc.setDistance();
-                        distance[i][j] = calc.distance;
-                    }
-                }
-            }
-        }
-
-        ////////////////////////////////////////////////////////
-
-        boolean visit[];
-        int total[] = new int[size];
-        for(int k = 0; k < size; k++){
-            visit = new boolean[size];
-            visit[k] = true;
-            int start = k;
-            while(unvisitedCityLeft(visit)){
-                int index = getMin(distance[start], visit, total, k);
-                start = index;
-
-            }
-            total[k] += distance[start][k];
-        }
-
-        ///////////////////////////////////////////
-
-        this.places = new ArrayList<Place>();
-        int k = getMinValue(total);
-        this.places.add(copyToArray[k]);
-        visit = new boolean[size];
-        visit[k] = true;
-        int start = k;
-        while(unvisitedCityLeft(visit)){
-            int index = getMin(distance[start], visit, total, k);
-            start = index;
-            this.places.add(copyToArray[index]);
-        }
-
-    }
-
-    public boolean unvisitedCityLeft(boolean[] visit){
-        boolean flag = false;
-        for(int i = 0; i < visit.length; i++){
-            if(visit[i] == false)
-                return true;
-        }
-        return flag;
-    }
-
-    public int getMin(int[] numbers, boolean[] visit, int[] total, int k){
-        int minValue = -1;
-        int i, index = -1;
-
-        for(i = 0;i < numbers.length; i++){
-            if(visit[i] == false){
-                minValue = numbers[i];
-                index = i;
-                break;
-            }
-        }
-
-        while(i < numbers.length){
-            if(numbers[i] < minValue){
-                if(visit[i] == false){
-                    minValue = numbers[i];
-                    index = i;
-                }
-            }
-            i++;
-        }
-
-        visit[index] = true;
-        total[k] += minValue;
-        return index;
-    }
-
-    public int getMinValue(int[] numbers){
-        int minValue = numbers[0];
-        int index = 0;
-        for(int i=1;i<numbers.length;i++){
-            if(numbers[i] < minValue){
-                minValue = numbers[i];
-                index = i;
-            }
-        }
-        return index;
-    }
+//    public void optimize(){
+//        if(places.size() == 0){
+//            return;
+//        }
+//        if(options == null || options.optimization == null){
+//            return;
+//        }
+//        else if("none".equals(options.optimization)){
+//            return;
+//        }
+//        else if("short".equals(options.optimization)){
+//            nearestNeighbor();
+//        }
+//        else if("shorter".equals(options.optimization)){
+//            nearestNeighbor();
+//            TwoOpt();
+//        }
+//        else if("shortest".equals(options.optimization)){
+//            nearestNeighbor();
+//            TwoOpt();
+//            ThreeOpt();
+//        }
+//
+//    }
+//
+//    private void nearestNeighbor(){
+//
+//        int size = this.places.size();
+//        int distance[][] = new int[size][size];
+//        Place[] copyToArray = this.places.toArray(new Place[size]);
+//
+//        for(int i = 0; i < size; i++){
+//            for(int j = 0; j < size; j++){
+//                if (i == j){
+//                    distance[i][j] = Integer.MAX_VALUE;
+//                } else if (i > j){
+//                    distance[i][j] = distance[j][i];
+//                } else {
+//                    Distance calc;
+//                    if (this.options.units.equals("user defined")) {
+//                        calc = new Distance(copyToArray[i], copyToArray[j], options.units, options.unitName, options.unitRadius);
+//                        calc.setDistance();
+//                        distance[i][j] = calc.distance;
+//                    } else {
+//                        calc = new Distance(copyToArray[i], copyToArray[j], options.units);
+//                        calc.setDistance();
+//                        distance[i][j] = calc.distance;
+//                    }
+//                }
+//            }
+//        }
+//
+//        ////////////////////////////////////////////////////////
+//
+//        boolean visit[];
+//        int total[] = new int[size];
+//        for(int k = 0; k < size; k++){
+//            visit = new boolean[size];
+//            visit[k] = true;
+//            int start = k;
+//            while(unvisitedCityLeft(visit)){
+//                int index = getMin(distance[start], visit, total, k);
+//                start = index;
+//
+//            }
+//            total[k] += distance[start][k];
+//        }
+//
+//        ///////////////////////////////////////////
+//
+//        this.places = new ArrayList<Place>();
+//        int k = getMinValue(total);
+//        this.places.add(copyToArray[k]);
+//        visit = new boolean[size];
+//        visit[k] = true;
+//        int start = k;
+//        while(unvisitedCityLeft(visit)){
+//            int index = getMin(distance[start], visit, total, k);
+//            start = index;
+//            this.places.add(copyToArray[index]);
+//        }
+//
+//    }
+//
+//    public boolean unvisitedCityLeft(boolean[] visit){
+//        boolean flag = false;
+//        for(int i = 0; i < visit.length; i++){
+//            if(visit[i] == false)
+//                return true;
+//        }
+//        return flag;
+//    }
+//
+//    public int getMin(int[] numbers, boolean[] visit, int[] total, int k){
+//        int minValue = -1;
+//        int i, index = -1;
+//
+//        for(i = 0;i < numbers.length; i++){
+//            if(visit[i] == false){
+//                minValue = numbers[i];
+//                index = i;
+//                break;
+//            }
+//        }
+//
+//        while(i < numbers.length){
+//            if(numbers[i] < minValue){
+//                if(visit[i] == false){
+//                    minValue = numbers[i];
+//                    index = i;
+//                }
+//            }
+//            i++;
+//        }
+//
+//        visit[index] = true;
+//        total[k] += minValue;
+//        return index;
+//    }
+//
+//    public int getMinValue(int[] numbers){
+//        int minValue = numbers[0];
+//        int index = 0;
+//        for(int i=1;i<numbers.length;i++){
+//            if(numbers[i] < minValue){
+//                minValue = numbers[i];
+//                index = i;
+//            }
+//        }
+//        return index;
+//    }
 
 //    public void nearestN(){
 //
@@ -372,305 +406,305 @@ public class Trip {
 //    }
 
 
-    public int calDist(Place origin, Place destination){
-        Distance dis=new Distance(origin, destination, this.options.units,
-                this.options.unitName, this.options.unitRadius);
-        dis.setDistance();
-        return dis.distance;
-    }
-
-
-    public void opt2Reverse(int i,int k,Place[] route)
-    {
-        while(i < k) {
-            Place temp = route[i];
-            route[i] = route[k];
-            route[k] = temp;
-            i++; k--;
-        }
-        this.places =new ArrayList<>(Arrays.asList(route));
-    }
-
-    public void opt2Reverse2(int i,int k,int[] indexes)
-    {
-        while(i < k) {
-            int temp = indexes[i];
-            indexes[i] = indexes[k];
-            indexes[k] = temp;
-            i++; k--;
-        }
-    }
-
-    public void updatePlaces(int[] indexes,Place[] initialPath)
-    {
-        Place[] copy = new Place[initialPath.length];
-        for(int k=0;k<copy.length;k++)
-        {
-            copy[k]=initialPath[k];
-        }
-        for(int j=0;j<initialPath.length;j++)
-        {
-            initialPath[j]=copy[indexes[j]];
-        }
-        this.places =new ArrayList<>(Arrays.asList(initialPath));
-    }
-
-    public void TwoOpt ()
-    {
-        final int n = places.size();
-//        Place[] bestPath = new Place[n];
+//    public int calDist(Place origin, Place destination){
+//        Distance dis=new Distance(origin, destination, this.options.units,
+//                this.options.unitName, this.options.unitRadius);
+//        dis.setDistance();
+//        return dis.distance;
+//    }
+//
+//
+//    public void opt2Reverse(int i,int k,Place[] route)
+//    {
+//        while(i < k) {
+//            Place temp = route[i];
+//            route[i] = route[k];
+//            route[k] = temp;
+//            i++; k--;
+//        }
+//        this.places =new ArrayList<>(Arrays.asList(route));
+//    }
+//
+//    public void opt2Reverse2(int i,int k,int[] indexes)
+//    {
+//        while(i < k) {
+//            int temp = indexes[i];
+//            indexes[i] = indexes[k];
+//            indexes[k] = temp;
+//            i++; k--;
+//        }
+//    }
+//
+//    public void updatePlaces(int[] indexes,Place[] initialPath)
+//    {
+//        Place[] copy = new Place[initialPath.length];
+//        for(int k=0;k<copy.length;k++)
+//        {
+//            copy[k]=initialPath[k];
+//        }
+//        for(int j=0;j<initialPath.length;j++)
+//        {
+//            initialPath[j]=copy[indexes[j]];
+//        }
+//        this.places =new ArrayList<>(Arrays.asList(initialPath));
+//    }
+//
+//    public void TwoOpt ()
+//    {
+//        final int n = places.size();
+////        Place[] bestPath = new Place[n];
+////        for(int k=0;k<n;k++)
+////        {
+////            bestPath[k]=this.places.get(k);
+////        }
+//        Place[] initialPath = new Place[n];
 //        for(int k=0;k<n;k++)
 //        {
-//            bestPath[k]=this.places.get(k);
+//            initialPath[k]=this.places.get(k);
 //        }
-        Place[] initialPath = new Place[n];
-        for(int k=0;k<n;k++)
-        {
-            initialPath[k]=this.places.get(k);
-        }
-        String units=this.options.units;
-        String unitName=this.options.unitName;
-        Double uniRadius=this.options.unitRadius;
-        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
-        grid.buildGrid();
-        int[] indexes = new int[n];
-        for(int k=0;k<n;k++)
-        {
-            indexes[k]=k;
-        }
-        if (n > 4) {
-            boolean improvement = true;
-            while (improvement) {
-                improvement = false;
-                for (int i = 0; i <= n - 3; i++)
-                {
-                    for (int j = i + 2; j <= n - 1; j++)
-                    {
-//                        Place o1, o2, d1, d2;
-                        int o1, o2, d1, d2;
-                        if (j == n - 1)
-                        {
-//                            o1 = bestPath[i];
-//                            o2 = bestPath[i+1];
-//                            d1 = bestPath[j];
-//                            d2 = bestPath[0];
-                            o1 = indexes[i];
-                            o2 = indexes[i+1];
-                            d1 = indexes[j];
-                            d2 = indexes[0];
-                        }
-                        else
-                        {
-//                            o1 = bestPath[i];
-//                            o2 = bestPath[i+1];
-//                            d1 = bestPath[j];
-//                            d2 = bestPath[j+1];
-                              o1 = indexes[i];
-                              o2 = indexes[i+1];
-                              d1 = indexes[j];
-                              d2 = indexes[j+1];
-                        }
-//                        int delta = -calDist(o1, o2) - calDist(d1, d2) + calDist(o1, d1) + calDist(o2, d2);
-                          int delta = -grid.distanceGrid[o1][o2] - grid.distanceGrid[d1][d2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][d2];
-                        if (delta < 0)
-                        {
-//                            opt2Reverse(i + 1, j, bestPath);
-                            opt2Reverse2(i + 1, j, indexes);
-                            improvement = true;
-                        }
-                    }
-                }
-            }
-        }
-        updatePlaces(indexes,initialPath);
-    }
-
-    public int findminIndex(int[] delta)
-    {
-        int min = delta[0];
-        int index=0;
-        for(int i = 0; i < delta.length; i++)
-        {
-            if(min > delta[i])
-            {
-                min = delta[i];
-                index=i;
-            }
-        }
-        return index;
-    }
-
-    public int[] Section(int i, int j, int[] places)
-    {
-        int[] section = new int[j-i+1];
-        int cout=0;
-        for(int k = i; k <= j; k++)
-        {
-            section[cout]=places[k];
-            cout++;
-        }
-        return section;
-    }
-
-    public int[] ReverseArray(int[] arr)
-    {
-        for(int i = 0; i < arr.length / 2; i++)
-        {
-            int temp = arr[i];
-            arr[i] = arr[arr.length - i - 1];
-            arr[arr.length - i - 1] = temp;
-        }
-        return arr;
-    }
-
-    public int[] Combine(int[] a,int[] b)
-    {
-        int[] newPath = new int[a.length+b.length];
-        for(int i=0;i<a.length;i++){
-            newPath[i]=a[i];
-        }
-        int cout=0;
-        for(int j=a.length;j<newPath.length;j++)
-        {
-            newPath[j]=b[cout];
-            cout++;
-        }
-        return newPath;
-    }
-
-    public int[] Replace(int i, int j, int[] temp, int[] bestpath)
-    {
-        int index=0;
-        for(int k = i; k <= j; k++)
-        {
-            bestpath[k]=temp[index];
-            index++;
-        }
-        return bestpath;
-    }
-
-    public void ThreeOpt()
-    {
-        final int n = places.size();
-//        Place[] bestPath = new Place[n];
+//        String units=this.options.units;
+//        String unitName=this.options.unitName;
+//        Double uniRadius=this.options.unitRadius;
+//        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
+//        grid.buildGrid();
+//        int[] indexes = new int[n];
 //        for(int k=0;k<n;k++)
 //        {
-//            bestPath[k]=this.places.get(k);
+//            indexes[k]=k;
 //        }
-        Place[] initialPath = new Place[n];
-        for(int k=0;k<n;k++)
-        {
-            initialPath[k]=this.places.get(k);
-        }
-        String units=this.options.units;
-        String unitName=this.options.unitName;
-        Double uniRadius=this.options.unitRadius;
-        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
-        grid.buildGrid();
-        int[] indexes = new int[n];
-        for(int k=0;k<n;k++)
-        {
-            indexes[k]=k;
-        }
-        if (n > 6) {
-            boolean improvement = true;
-            while (improvement) {
-                improvement = false;
-                for(int i=0;i<=n-3;i++){
-                    for (int j = i+1; j <= n-2; j++) {
-                        for (int k = j + 1; k <= n - 1; k++) {
-//                            Place o1, o2, d1, d2, p1, p2;
-                            int o1, o2, d1, d2, p1, p2;
-                            if (k == n - 1) {
-//                                o1 = bestPath[i];
-//                                o2 = bestPath[i + 1];
-//                                d1 = bestPath[j];
-//                                d2 = bestPath[j+1];
-//                                p1 = bestPath[k];
-//                                p2 = bestPath[0];
-
-                                o1 = indexes[i];
-                                o2 = indexes[i + 1];
-                                d1 = indexes[j];
-                                d2 = indexes[j+1];
-                                p1 = indexes[k];
-                                p2 = indexes[0];
-
-                            } else {
-//                                o1 = bestPath[i];
-//                                o2 = bestPath[i + 1];
-//                                d1 = bestPath[j];
-//                                d2 = bestPath[j + 1];
-//                                p1 = bestPath[k];
-//                                p2 = bestPath[k+1];
-                                o1 = indexes[i];
-                                o2 = indexes[i + 1];
-                                d1 = indexes[j];
-                                d2 = indexes[j + 1];
-                                p1 = indexes[k];
-                                p2 = indexes[k+1];
-                            }
-                            int[] delta = new int[7];
-                            delta[0]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][d2];
-                            delta[1]= -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[d1][p1] + grid.distanceGrid[d2][p2];
-                            delta[2]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][p1] + grid.distanceGrid[o2][p2];
-                            delta[3]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][p1]+ grid.distanceGrid[d2][p2];
-                            delta[4]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][p1] + grid.distanceGrid[d2][o2]+ grid.distanceGrid[d1][p2];
-                            delta[5]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d2] + grid.distanceGrid[p1][d1]+ grid.distanceGrid[o2][p2];
-                            delta[6]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d2] + grid.distanceGrid[p1][o2]+ grid.distanceGrid[d1][p2];
-                            int minIndex = findminIndex(delta);
-                            if (delta[minIndex] < 0) {
-                                if(minIndex==0) {
-//                                    opt2Reverse(i + 1, j, bestPath);
-                                    opt2Reverse2(i + 1, j, indexes);
-                                }
-                                else if(minIndex==1) {
-//                                    opt2Reverse(j + 1, k, bestPath);
-                                    opt2Reverse2(j + 1, k, indexes);
-                                }
-                                else if(minIndex==2) {
-//                                    opt2Reverse(i + 1, k, bestPath);
-                                    opt2Reverse2(i + 1, k, indexes);
-                                }
-                                else if(minIndex==3)
-                                {
-//                                    opt2Reverse(i + 1, j, bestPath);
-                                    opt2Reverse2(i + 1, j, indexes);
-//                                    opt2Reverse(j + 1, k, bestPath);
-                                    opt2Reverse2(j + 1, k, indexes);
-                                }
-                                else if(minIndex==4)
-                                {
-                                    int[] temp=Section(j+1,k,indexes);
-                                    temp=ReverseArray(temp);
-                                    int[] temp2=Section(i+1,j,indexes);
-                                    temp=Combine(temp,temp2);
-                                    indexes=Replace(i+1,k,temp,indexes);
-//                                    this.places =new ArrayList<>(Arrays.asList(bestPath));
-                                }
-                                else if(minIndex==5)
-                                {
-                                    int[] temp=Section(i+1,j,indexes);
-                                    temp=ReverseArray(temp);
-                                    int[] temp2=Section(j+1,k,indexes);
-                                    temp=Combine(temp2,temp);
-                                    indexes=Replace(i+1,k,temp,indexes);
-//                                    this.places =new ArrayList<>(Arrays.asList(bestPath));
-                                }
-                                else {
-                                    int[] temp=Section(i+1,j,indexes);
-                                    int[] temp2=Section(j+1,k,indexes);
-                                    temp=Combine(temp2,temp);
-                                    indexes=Replace(i+1,k,temp,indexes);
-//                                    this.places =new ArrayList<>(Arrays.asList(bestPath));
-                                }
-                                improvement = true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        updatePlaces(indexes,initialPath);
-    }
+//        if (n > 4) {
+//            boolean improvement = true;
+//            while (improvement) {
+//                improvement = false;
+//                for (int i = 0; i <= n - 3; i++)
+//                {
+//                    for (int j = i + 2; j <= n - 1; j++)
+//                    {
+////                        Place o1, o2, d1, d2;
+//                        int o1, o2, d1, d2;
+//                        if (j == n - 1)
+//                        {
+////                            o1 = bestPath[i];
+////                            o2 = bestPath[i+1];
+////                            d1 = bestPath[j];
+////                            d2 = bestPath[0];
+//                            o1 = indexes[i];
+//                            o2 = indexes[i+1];
+//                            d1 = indexes[j];
+//                            d2 = indexes[0];
+//                        }
+//                        else
+//                        {
+////                            o1 = bestPath[i];
+////                            o2 = bestPath[i+1];
+////                            d1 = bestPath[j];
+////                            d2 = bestPath[j+1];
+//                              o1 = indexes[i];
+//                              o2 = indexes[i+1];
+//                              d1 = indexes[j];
+//                              d2 = indexes[j+1];
+//                        }
+////                        int delta = -calDist(o1, o2) - calDist(d1, d2) + calDist(o1, d1) + calDist(o2, d2);
+//                          int delta = -grid.distanceGrid[o1][o2] - grid.distanceGrid[d1][d2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][d2];
+//                        if (delta < 0)
+//                        {
+////                            opt2Reverse(i + 1, j, bestPath);
+//                            opt2Reverse2(i + 1, j, indexes);
+//                            improvement = true;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        updatePlaces(indexes,initialPath);
+//    }
+//
+//    public int findminIndex(int[] delta)
+//    {
+//        int min = delta[0];
+//        int index=0;
+//        for(int i = 0; i < delta.length; i++)
+//        {
+//            if(min > delta[i])
+//            {
+//                min = delta[i];
+//                index=i;
+//            }
+//        }
+//        return index;
+//    }
+//
+//    public int[] Section(int i, int j, int[] places)
+//    {
+//        int[] section = new int[j-i+1];
+//        int cout=0;
+//        for(int k = i; k <= j; k++)
+//        {
+//            section[cout]=places[k];
+//            cout++;
+//        }
+//        return section;
+//    }
+//
+//    public int[] ReverseArray(int[] arr)
+//    {
+//        for(int i = 0; i < arr.length / 2; i++)
+//        {
+//            int temp = arr[i];
+//            arr[i] = arr[arr.length - i - 1];
+//            arr[arr.length - i - 1] = temp;
+//        }
+//        return arr;
+//    }
+//
+//    public int[] Combine(int[] a,int[] b)
+//    {
+//        int[] newPath = new int[a.length+b.length];
+//        for(int i=0;i<a.length;i++){
+//            newPath[i]=a[i];
+//        }
+//        int cout=0;
+//        for(int j=a.length;j<newPath.length;j++)
+//        {
+//            newPath[j]=b[cout];
+//            cout++;
+//        }
+//        return newPath;
+//    }
+//
+//    public int[] Replace(int i, int j, int[] temp, int[] bestpath)
+//    {
+//        int index=0;
+//        for(int k = i; k <= j; k++)
+//        {
+//            bestpath[k]=temp[index];
+//            index++;
+//        }
+//        return bestpath;
+//    }
+//
+//    public void ThreeOpt()
+//    {
+//        final int n = places.size();
+////        Place[] bestPath = new Place[n];
+////        for(int k=0;k<n;k++)
+////        {
+////            bestPath[k]=this.places.get(k);
+////        }
+//        Place[] initialPath = new Place[n];
+//        for(int k=0;k<n;k++)
+//        {
+//            initialPath[k]=this.places.get(k);
+//        }
+//        String units=this.options.units;
+//        String unitName=this.options.unitName;
+//        Double uniRadius=this.options.unitRadius;
+//        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
+//        grid.buildGrid();
+//        int[] indexes = new int[n];
+//        for(int k=0;k<n;k++)
+//        {
+//            indexes[k]=k;
+//        }
+//        if (n > 6) {
+//            boolean improvement = true;
+//            while (improvement) {
+//                improvement = false;
+//                for(int i=0;i<=n-3;i++){
+//                    for (int j = i+1; j <= n-2; j++) {
+//                        for (int k = j + 1; k <= n - 1; k++) {
+////                            Place o1, o2, d1, d2, p1, p2;
+//                            int o1, o2, d1, d2, p1, p2;
+//                            if (k == n - 1) {
+////                                o1 = bestPath[i];
+////                                o2 = bestPath[i + 1];
+////                                d1 = bestPath[j];
+////                                d2 = bestPath[j+1];
+////                                p1 = bestPath[k];
+////                                p2 = bestPath[0];
+//
+//                                o1 = indexes[i];
+//                                o2 = indexes[i + 1];
+//                                d1 = indexes[j];
+//                                d2 = indexes[j+1];
+//                                p1 = indexes[k];
+//                                p2 = indexes[0];
+//
+//                            } else {
+////                                o1 = bestPath[i];
+////                                o2 = bestPath[i + 1];
+////                                d1 = bestPath[j];
+////                                d2 = bestPath[j + 1];
+////                                p1 = bestPath[k];
+////                                p2 = bestPath[k+1];
+//                                o1 = indexes[i];
+//                                o2 = indexes[i + 1];
+//                                d1 = indexes[j];
+//                                d2 = indexes[j + 1];
+//                                p1 = indexes[k];
+//                                p2 = indexes[k+1];
+//                            }
+//                            int[] delta = new int[7];
+//                            delta[0]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][d2];
+//                            delta[1]= -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[d1][p1] + grid.distanceGrid[d2][p2];
+//                            delta[2]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][p1] + grid.distanceGrid[o2][p2];
+//                            delta[3]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][p1]+ grid.distanceGrid[d2][p2];
+//                            delta[4]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][p1] + grid.distanceGrid[d2][o2]+ grid.distanceGrid[d1][p2];
+//                            delta[5]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d2] + grid.distanceGrid[p1][d1]+ grid.distanceGrid[o2][p2];
+//                            delta[6]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d2] + grid.distanceGrid[p1][o2]+ grid.distanceGrid[d1][p2];
+//                            int minIndex = findminIndex(delta);
+//                            if (delta[minIndex] < 0) {
+//                                if(minIndex==0) {
+////                                    opt2Reverse(i + 1, j, bestPath);
+//                                    opt2Reverse2(i + 1, j, indexes);
+//                                }
+//                                else if(minIndex==1) {
+////                                    opt2Reverse(j + 1, k, bestPath);
+//                                    opt2Reverse2(j + 1, k, indexes);
+//                                }
+//                                else if(minIndex==2) {
+////                                    opt2Reverse(i + 1, k, bestPath);
+//                                    opt2Reverse2(i + 1, k, indexes);
+//                                }
+//                                else if(minIndex==3)
+//                                {
+////                                    opt2Reverse(i + 1, j, bestPath);
+//                                    opt2Reverse2(i + 1, j, indexes);
+////                                    opt2Reverse(j + 1, k, bestPath);
+//                                    opt2Reverse2(j + 1, k, indexes);
+//                                }
+//                                else if(minIndex==4)
+//                                {
+//                                    int[] temp=Section(j+1,k,indexes);
+//                                    temp=ReverseArray(temp);
+//                                    int[] temp2=Section(i+1,j,indexes);
+//                                    temp=Combine(temp,temp2);
+//                                    indexes=Replace(i+1,k,temp,indexes);
+////                                    this.places =new ArrayList<>(Arrays.asList(bestPath));
+//                                }
+//                                else if(minIndex==5)
+//                                {
+//                                    int[] temp=Section(i+1,j,indexes);
+//                                    temp=ReverseArray(temp);
+//                                    int[] temp2=Section(j+1,k,indexes);
+//                                    temp=Combine(temp2,temp);
+//                                    indexes=Replace(i+1,k,temp,indexes);
+////                                    this.places =new ArrayList<>(Arrays.asList(bestPath));
+//                                }
+//                                else {
+//                                    int[] temp=Section(i+1,j,indexes);
+//                                    int[] temp2=Section(j+1,k,indexes);
+//                                    temp=Combine(temp2,temp);
+//                                    indexes=Replace(i+1,k,temp,indexes);
+////                                    this.places =new ArrayList<>(Arrays.asList(bestPath));
+//                                }
+//                                improvement = true;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        updatePlaces(indexes,initialPath);
+//    }
 }

@@ -4,6 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TwoOpt {
+    private Integer[] sortedIndexes;
+    private Integer[][] distanceGrid;
+
+    /**
+     * Constructor for NearestNeighbor Object.
+     * @param sortedIndexes Integer array of sorted place indices.
+     * @param distanceGrid 2D Integer array of all the distances.
+     */
+    public TwoOpt(Integer [] sortedIndexes, Integer[][] distanceGrid){
+        this.sortedIndexes = sortedIndexes;
+        this.distanceGrid = distanceGrid;
+    }
+
+
     public void opt2Reverse2(int i,int k,int[] indexes)
     {
         while(i < k) {
@@ -14,7 +28,7 @@ public class TwoOpt {
         }
     }
 
-    public void TwoOpt ()
+    public static void TwoOpt ()
     {
         final int n = places.size();
         Place[] initialPath = new Place[n];

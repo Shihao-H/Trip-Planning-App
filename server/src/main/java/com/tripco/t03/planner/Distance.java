@@ -7,7 +7,7 @@ public class Distance {
     public String units;
     public String unitName;
     public Double unitRadius;
-    public int distance;
+    public Integer distance;
 
     /**Create a default distance object
      * Declares and initializes default Place objects for destination and origin
@@ -18,8 +18,8 @@ public class Distance {
         destination = new Place();
         this.units = null;
         this.unitName = null;
-        this.unitRadius = 0.0;
-        this.distance = 0;
+        this.unitRadius = null;
+        this.distance = null;
     }
 
     /**
@@ -33,8 +33,8 @@ public class Distance {
         this.destination = dest;
         this.units = units;
         this.unitName=null;
-        this.unitRadius = 0.0;
-        this.distance = 0;
+        this.unitRadius = null;
+        this.distance = null;
 
     }
 
@@ -52,7 +52,7 @@ public class Distance {
         this.units = units;
         this.unitName=uName;
         this.unitRadius=rad;
-        this.distance = 0;
+        this.distance = null;
     }
 
     /**
@@ -60,13 +60,13 @@ public class Distance {
      * @param dest trip destination Place object
      * @param units String designation of unit type
      *Creates a distance object with data.
-            */
+     */
     public Distance(Place orig, Place dest, String units, int distance){
         this.origin = orig;
         this.destination = dest;
         this.units = units;
         this.unitName=null;
-        this.unitRadius = 0.0;
+        this.unitRadius = null;
         this.distance = distance;
     }
 
