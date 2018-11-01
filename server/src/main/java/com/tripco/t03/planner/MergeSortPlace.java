@@ -44,6 +44,7 @@ public class MergeSortPlace {
         int rightSize = right.length;
         Integer[] sorted = new Integer[leftSize+rightSize];
         int leftIndex = 0, rightIndex = 0, sortIndex = 0;
+      
         while((leftIndex < leftSize) && (rightIndex < rightSize)){
             if(toSort.get(left[leftIndex]).longitude <= toSort.get(right[rightIndex]).longitude){
                 sorted[sortIndex] = left[leftIndex];
@@ -54,7 +55,8 @@ public class MergeSortPlace {
             }
             sortIndex++;
         }
-        return finalMerge(leftIndex, sortIndex, left, finalMerge(rightIndex, sortIndex, right, sorted));
+        Integer[] temp = finalMerge(rightIndex, sortIndex, right, sorted);
+        return finalMerge(leftIndex, sortIndex, left, temp);
     }
 
     /**

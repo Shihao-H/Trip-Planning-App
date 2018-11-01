@@ -68,6 +68,7 @@ public class DistanceGrid {
                 column++;
             }
             row++;
+
         }
     }
 

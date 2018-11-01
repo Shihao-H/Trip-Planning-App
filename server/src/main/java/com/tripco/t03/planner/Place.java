@@ -1,12 +1,19 @@
 package com.tripco.t03.planner;
 
+
 public class Place {
     public String id;
     public String name;
-    public String userDefined;
     public Double latitude;
     public Double longitude;
     public String airportType;
+    public String elevation;
+    public String continent;
+    public String country;
+    public String region;
+    public String municipality;
+
+    public String type;
     public String elevation;
     public String continent;
     public String country;
@@ -21,7 +28,6 @@ public class Place {
         this.name = null;
         this.latitude = null;
         this.longitude = null;
-        this.userDefined = null;
     }
 
     /**
@@ -36,7 +42,6 @@ public class Place {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.userDefined = null;
     }
 
     /**
@@ -50,11 +55,44 @@ public class Place {
     public Place(String id, String name, String userDefined, Double latitude, Double longitude){
         this.id = id;
         this.name = name;
-        this.userDefined = userDefined;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.type = type;
+        this.elevation = elevation;
+        this.continent = continent;
+        this.country = country;
+        this.region = region;
+        this.municipality = municipality;
     }
 
+     /**
+     * Constructor for place with all attributes.
+     * @param id
+     * @param name
+     * @param latitude
+     * @param longitude
+     * @param type
+     * @param elevation
+     * @param continent
+     * @param country
+     * @param region
+     * @param municipality
+     */
+    public Place(String id, String name, Double latitude, Double longitude,
+                 String type, String elevation, String continent, String country,
+                 String region, String municipality){
+        this.id = id;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.type = type;
+        this.elevation = elevation;
+        this.continent = continent;
+        this.country = country;
+        this.region = region;
+        this.municipality = municipality;
+    }
+    
     /**
      * Constructor for place with all attributes.
      * @param id
@@ -92,7 +130,6 @@ public class Place {
         this.name = from.name;
         this.latitude = from.latitude;
         this.longitude = from.longitude;
-        this.userDefined = from.userDefined;
     }
     /**
      * @return name of place object.
@@ -121,10 +158,14 @@ public class Place {
      * Compares two Place objects for equality.
      */
     public boolean equals(Place place){
-        return (this.longitude == place.longitude) && (this.latitude == place.latitude) && (this.name.equalsIgnoreCase(place.name)) && (this.id.equalsIgnoreCase(place.id));
+        return (this.longitude == place.longitude)
+                && (this.latitude == place.latitude)
+                && (this.name.equals(place.name))
+                && (this.id.equals(place.id));
     }
 
-//    public String toString(){
-//        return String.format("Id: %s, Name: %s, Latitude: %f, Longitude: %f", this.id, this.name, this.latitude, this.longitude);
-//    }
+    public String toString(){
+        return String.format("Id: %s, Name: %s, Latitude: %f, Longitude: %f",
+                this.id, this.name, this.latitude, this.longitude);
+    }
 }

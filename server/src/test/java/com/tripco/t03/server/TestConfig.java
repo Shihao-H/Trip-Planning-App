@@ -14,12 +14,17 @@ public class TestConfig {
     @Before
     public void setUp(){
         this.config = new Config();
-        json = "{\"type\":\"config\",\"version\":4,\"units\":[\"miles\",\"kilometers\",\"nautical miles\",\"user defined\"],\"optimization\":"
-                + "[{\"label\":\"none\",\"description\":\"The trip is not optimized.\"},{\"label\":\"short\",\"description\":\"Nearest neighbor.\"}," +
-                "{\"label\":\"shorter\",\"description\":\"Two Opt\"}]," +
-                "\"attributes\":[\"name\",\"id\",\"latitude\",\"longitude\",\"userDefined\"]," +
-                 "\"filters\":\"none\"," +
-                "\"maps\":\"svg\"}";
+        json = "{\"type\":\"config\",\"version\":4," +
+                "\"units\":[\"miles\",\"kilometers\",\"nautical miles\",\"user defined\"]," +
+                "\"optimization\":[{\"label\":\"none\",\"description\":\"The trip is not optimized.\"}," +
+                "{\"label\":\"short\",\"description\":\"Nearest neighbor.\"}," +
+                "{\"label\":\"shorter\",\"description\":\"2-opt.\"}]," +
+                "\"attributes\":[\"name\",\"id\",\"latitude\",\"longitude\",\"type\",\"elevation\"," +
+                "\"continent\",\"country\",\"region\",\"municipality\"]," +
+                "\"filters\":[{\"name\":\"continents\",\"values\":[\"Africa\",\"Antarctica\",\"Asia\",\"Europe\",\"North America\"," +
+                "\"Oceania\",\"South America\"]}," +
+                "{\"name\":\"type\",\"values\":[\"heliport\",\"small_airport\",\"seaplane_base\",\"closed\",\"balloonport\"," +
+                "\"medium_airport\",\"large_airport\"]}],\"maps\":\"svg\"}";
     }
 
     @Test

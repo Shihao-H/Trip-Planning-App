@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import {Button} from "reactstrap";
+import {Button, Card, CardBody,DownloadButton} from "reactstrap";
 
 class SaveTrip extends Component{
     constructor(props){
         super(props);
         this.SaveTFFI=this.SaveTFFI.bind(this);
+        this.SaveMap=this.SaveMap.bind(this);
     }
 
     SaveTFFI()
@@ -24,14 +25,32 @@ class SaveTrip extends Component{
         document.body.removeChild(ele);
     }
 
-
+    SaveMap()
+    {
+        let ele = document.createElement('a');
+        ele.setAttribute('href',this.props.map);
+        ele.setAttribute('download','download.svg');
+        document.body.appendChild(ele);
+        ele.click();
+        document.body.removeChild(ele);
+    }
     render() {
-        return (<Button
-                    size='lg'
-                    className="btn-save btn-dark btn-outline-dark"
-                    onClick={this.SaveTFFI}
-                    type="button"
-                >Save</Button>)
+        return (
+            <div>
+                <Card>
+                    <CardBody>
+                        <Button
+                            size='lg' className="btn-save btn-dark btn-outline-dark"
+                            onClick={this.SaveTFFI} type="button"
+                            >SaveTrip</Button>
+                        <Button
+                            size='lg' className="btn-save btn-dark btn-outline-dark"
+                            onClick={this.SaveMap} type="button"
+                        >SaveMap</Button>
+                     </CardBody>
+                </Card>
+            </div>
+        )
     };
 }
 
