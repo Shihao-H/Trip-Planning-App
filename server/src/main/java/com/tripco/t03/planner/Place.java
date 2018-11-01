@@ -59,6 +59,34 @@ public class Place {
         this.municipality = municipality;
     }
 
+     /**
+     * Constructor for place with all attributes.
+     * @param id
+     * @param name
+     * @param latitude
+     * @param longitude
+     * @param type
+     * @param elevation
+     * @param continent
+     * @param country
+     * @param region
+     * @param municipality
+     */
+    public Place(String id, String name, Double latitude, Double longitude,
+                 String type, String elevation, String continent, String country,
+                 String region, String municipality){
+        this.id = id;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.airportType = type;
+        this.elevation = elevation;
+        this.continent = continent;
+        this.country = country;
+        this.region = region;
+        this.municipality = municipality;
+    }
+    
     /**
      * Copy constructor.
      * @param from Place object to copy.
