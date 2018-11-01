@@ -6,6 +6,9 @@ import java.util.Arrays;
 public class Optimize {
     private Trip trip;
     private Integer[] sortedPlaces;
+    private Integer[] optimalIndices;
+    private Integer[] optimalLegs;
+    private int optimalTotalDistance;
     private DistanceGrid grid;
 
     /**
@@ -13,65 +16,61 @@ public class Optimize {
      * @param trip Trip object to optimize.
      */
     public Optimize(Trip trip) {
-       /*this.sortedPlaces = new Integer[trip.places.size()];
         this.trip = trip;
+        this.sortedPlaces = new Integer[trip.places.size()];
         this.sortedPlaces = MergeSortPlace.sort(this.trip.places);
-        setGrid();*/
+        this.optimalIndices = new Integer[this.sortedPlaces.length];
+        this.optimalLegs = new Integer[this.sortedPlaces.length];
+        setGrid();
     }
 
     /**
-     * Getter::2D array for distance objects.
-     * @return 2D Distance Array.
+     * Getter for total distance.
+     * @return int total distance for optimal trip.
      */
-    public DistanceGrid getDistanceGrid(){
-        return this.grid;
+    public int getOptimalTripDistance(){
+        return this.optimalTotalDistance;
     }
 
     /**
-     * Getter::Sorted Places Array.
-     * @return Place[] sorted array.
+     *Applies the appropriate level of optimization for the trip.
+     * @return Trip Object that has been optimized.
      */
-    public Integer[] getSortedArray(){
-        return this.sortedPlaces;
+    public Trip getOptimalTrip(){
+        if(this.trip.options.optimization.equalsIgnoreCase("short")) {
+            NearestNeighbor nn = new NearestNeighbor(this.sortedPlaces, this.grid.distanceGrid);
+            nn.nearestNeighbor();
+            nn.getOptimalTrip(this.optimalIndices);
+            nn.getLegDistances(this.optimalLegs);
+            this.optimalTotalDistance = nn.getTotalDistance();
+            return buildNewTrip();
+        }else{
+            return null;
+        }
     }
 
     /**
-    *Method currently does nothing.
-    */
-    public Trip getOptimalTrip(){/*
-        NearestNeighbor nn = new NearestNeighbor(this);
-        int index = nn.optimizeNearestNeighbor();
-        Place[] optimalTrip = nn.getTripPlaceArray(index);
-        Integer[] optimalDistances = nn.getDistanceArray(index);
-        this.trip.setPlace(optimalTrip);
-        this.trip.setDistances(new ArrayList<>(Arrays.asList(optimalDistances[index])));
-        return this.trip;
-    */
-        return null;
+     * Helper method that builds the optimized trip object to return.
+     * @return Trip object.
+     */
+    private Trip buildNewTrip(){
+        ArrayList<Place> optimal = new ArrayList<>();
+        for(int i = 0; i < this.trip.places.size(); i++){
+            optimal.add(this.trip.places.get(this.optimalIndices[i]));
+        }
+        ArrayList<Integer> legs = new ArrayList<>(Arrays.asList(this.optimalLegs));
+        return new Trip( this.trip.title, this.trip.options, optimal, legs);
     }
 
-        /**
+    /**
      * Method to set up Distance object grid.
-     *//*
+     */
     private void setGrid(){
         if(this.trip.options.units.equalsIgnoreCase("user defined")){
-            Double rad = this.trip.options.unitRadius;
-            String uName = this.trip.options.unitName;
-            this.grid = new DistanceGrid(this.sortedPlaces, this.trip.options.units, uName, rad);
+            this.grid = new DistanceGrid(this.trip.places, this.trip.options.units, this.trip.options.unitRadius, sortedPlaces);
         }else {
-            this.grid = new DistanceGrid(this.sortedPlaces, this.trip.options.units);
+            this.grid = new DistanceGrid(this.trip.places, this.trip.options.units, sortedPlaces);
         }
-        this.grid.buildGrid(0,0);
+        this.grid.buildGrid();
     }
-
-    *//**
-     * Method to convert ArrayList to Array and call MergeSortPlace class.
-     * @param original ArrayList of Places.
-     * @return Place[] Array of Places sorted by longitude.
-     *//*
-    private Place[] setSortedArray(ArrayList<Place> original){
-        Place[] toSort = new Place[original.size()];
-        toSort = original.toArray(toSort);
-        return MergeSortPlace.sort(toSort);
-    }*/
-}
+ }

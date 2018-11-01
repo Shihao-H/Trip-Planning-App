@@ -80,6 +80,7 @@ public class NearestNeighbor {
             System.arraycopy(from, 0, to, 0, from.length);
         }
     }
+
     /**
      * Recursive helper method.
      * Recursively finds a trip using nearest neighbor.
@@ -89,22 +90,16 @@ public class NearestNeighbor {
      * @return int the total distance integer.
      */
     private int innerLoop(int counter, int currentLocation, Integer[] temp) {
-
         temp[counter] = currentLocation;
         this.notVisited[currentLocation] = false;
         if(counter < temp.length-1) {
-
             int next = findNearestPlace(currentLocation);
-
             this.notVisited[next] = false;
             this.legDistance[counter] = distanceGrid[currentLocation][next];
             return distanceGrid[currentLocation][next] + innerLoop(counter + 1, next, temp);
         }else {
-
             this.legDistance[counter] = this.distanceGrid[currentLocation][temp[0]];
             setNotVisited();
-
-
             return this.distanceGrid[currentLocation][temp[0]];
         }
     }
