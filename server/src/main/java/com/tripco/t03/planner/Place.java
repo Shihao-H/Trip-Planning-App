@@ -6,6 +6,12 @@ public class Place {
     public String userDefined;
     public Double latitude;
     public Double longitude;
+    public String airportType;
+    public String elevation;
+    public String continent;
+    public String country;
+    public String region;
+    public String municipality;
 
     /**
      * Default constructor
@@ -47,6 +53,34 @@ public class Place {
         this.userDefined = userDefined;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    /**
+     * Constructor for place with all attributes.
+     * @param id
+     * @param name
+     * @param latitude
+     * @param longitude
+     * @param type
+     * @param elevation
+     * @param continent
+     * @param country
+     * @param region
+     * @param municipality
+     */
+    public Place(String id, String name, Double latitude, Double longitude,
+                 String type, String elevation, String continent, String country,
+                 String region, String municipality){
+        this.id = id;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.airportType = type;
+        this.elevation = elevation;
+        this.continent = continent;
+        this.country = country;
+        this.region = region;
+        this.municipality = municipality;
     }
 
     /**

@@ -22,7 +22,8 @@ public class Driver {
 
     /**
      * The find method is meant to get access to the database and execute queries.
-     *
+     * @param match String phrase to match.
+     * @param limit integer number of mx results to be shown.
      */
     public static void find(String match, int limit){
         if(limit == 0)
@@ -55,7 +56,10 @@ public class Driver {
 
     /**
      * This function is meant to print the JSON on the terminal/ console to log.
-     *
+     * @param count
+     * @param query
+     * @param match
+     * @param limit
      */
     private static void printJson(ResultSet count, ResultSet query, String match, int limit)
             throws SQLException {
