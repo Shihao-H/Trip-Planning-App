@@ -12,11 +12,6 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestPlace {
-
-  @Test
-  public void testEmptyPlace() {
-    assertNull(p.name);
-  }
   
   Place place;
 
@@ -24,6 +19,13 @@ public class TestPlace {
   @Before
   public void initialize() {
     place = new Place("dnvr", "Denver", 1.0, 0.0);
+  }
+  
+  @Test
+  public void testEmptyPlace() {
+    Place p = new Place();
+    
+    assertNull(p.name);
   }
 
 //  @Test
