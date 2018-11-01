@@ -51,6 +51,7 @@ public class Optimize {
         else if(this.trip.options.optimization.equalsIgnoreCase("shortest")){
             return null;
         }
+        return null;
     }
 
     /**

@@ -14,7 +14,8 @@ public class ThreeOpt {
         this.distanceGrid = distanceGrid;
     }
 
-    public void opt2Reverse2(int i,int k,int[] indexes)
+
+    public void opt2Reverse2(Integer i,Integer k,Integer[] indexes)
     {
         while(i < k) {
             int temp = indexes[i];
@@ -24,7 +25,7 @@ public class ThreeOpt {
         }
     }
 
-    public int findminIndex(int[] delta)
+    public Integer findminIndex(Integer[] delta)
     {
         int min = delta[0];
         int index=0;
@@ -39,9 +40,9 @@ public class ThreeOpt {
         return index;
     }
 
-    public int[] Section(int i, int j, int[] places)
+    public Integer[] Section(Integer i, Integer j, Integer[] places)
     {
-        int[] section = new int[j-i+1];
+        Integer[] section = new Integer[j-i+1];
         int cout=0;
         for(int k = i; k <= j; k++)
         {
@@ -51,20 +52,20 @@ public class ThreeOpt {
         return section;
     }
 
-    public int[] ReverseArray(int[] arr)
+    public Integer[] ReverseArray(Integer[] arr)
     {
         for(int i = 0; i < arr.length / 2; i++)
         {
-            int temp = arr[i];
+            Integer temp = arr[i];
             arr[i] = arr[arr.length - i - 1];
             arr[arr.length - i - 1] = temp;
         }
         return arr;
     }
 
-    public int[] Combine(int[] a,int[] b)
+    public Integer[] Combine(Integer[] a,Integer[] b)
     {
-        int[] newPath = new int[a.length+b.length];
+        Integer[] newPath = new Integer[a.length+b.length];
         for(int i=0;i<a.length;i++){
             newPath[i]=a[i];
         }
@@ -77,7 +78,7 @@ public class ThreeOpt {
         return newPath;
     }
 
-    public int[] Replace(int i, int j, int[] temp, int[] bestpath)
+    public Integer[] Replace(Integer i, Integer j, Integer[] temp, Integer[] bestpath)
     {
         int index=0;
         for(int k = i; k <= j; k++)
@@ -90,22 +91,22 @@ public class ThreeOpt {
 
     public void ThreeOpt()
     {
-        final int n = places.size();
-        Place[] initialPath = new Place[n];
-        for(int k=0;k<n;k++)
-        {
-            initialPath[k]=this.places.get(k);
-        }
-        String units=this.options.units;
-        String unitName=this.options.unitName;
-        Double uniRadius=this.options.unitRadius;
-        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
-        grid.buildGrid();
-        int[] indexes = new int[n];
-        for(int k=0;k<n;k++)
-        {
-            indexes[k]=k;
-        }
+        final int n = this.sortedIndexes.length;
+//        Place[] initialPath = new Place[n];
+//        for(int k=0;k<n;k++)
+//        {
+//            initialPath[k]=this.places.get(k);
+//        }
+//        String units=this.options.units;
+//        String unitName=this.options.unitName;
+//        Double uniRadius=this.options.unitRadius;
+//        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
+//        grid.buildGrid();
+//        int[] indexes = new int[n];
+//        for(int k=0;k<n;k++)
+//        {
+//            indexes[k]=k;
+//        }
         if (n > 6) {
             boolean improvement = true;
             while (improvement) {
@@ -116,65 +117,65 @@ public class ThreeOpt {
 //                            Place o1, o2, d1, d2, p1, p2;
                             int o1, o2, d1, d2, p1, p2;
                             if (k == n - 1) {
-                                o1 = indexes[i];
-                                o2 = indexes[i + 1];
-                                d1 = indexes[j];
-                                d2 = indexes[j+1];
-                                p1 = indexes[k];
-                                p2 = indexes[0];
+                                o1 = this.sortedIndexes[i];
+                                o2 = this.sortedIndexes[i + 1];
+                                d1 = this.sortedIndexes[j];
+                                d2 = this.sortedIndexes[j+1];
+                                p1 = this.sortedIndexes[k];
+                                p2 = this.sortedIndexes[0];
                             } else {
-                                o1 = indexes[i];
-                                o2 = indexes[i + 1];
-                                d1 = indexes[j];
-                                d2 = indexes[j + 1];
-                                p1 = indexes[k];
-                                p2 = indexes[k+1];
+                                o1 = this.sortedIndexes[i];
+                                o2 = this.sortedIndexes[i + 1];
+                                d1 = this.sortedIndexes[j];
+                                d2 = this.sortedIndexes[j + 1];
+                                p1 = this.sortedIndexes[k];
+                                p2 = this.sortedIndexes[k+1];
                             }
-                            int[] delta = new int[7];
-                            delta[0]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][d2];
-                            delta[1]= -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[d1][p1] + grid.distanceGrid[d2][p2];
-                            delta[2]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][p1] + grid.distanceGrid[o2][p2];
-                            delta[3]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][p1]+ grid.distanceGrid[d2][p2];
-                            delta[4]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][p1] + grid.distanceGrid[d2][o2]+ grid.distanceGrid[d1][p2];
-                            delta[5]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d2] + grid.distanceGrid[p1][d1]+ grid.distanceGrid[o2][p2];
-                            delta[6]= -grid.distanceGrid[o1][o2] -grid.distanceGrid[d1][d2] -grid.distanceGrid[p1][p2] + grid.distanceGrid[o1][d2] + grid.distanceGrid[p1][o2]+ grid.distanceGrid[d1][p2];
-                            int minIndex = findminIndex(delta);
+                            Integer[] delta = new Integer[7];
+                            delta[0]= -this.distanceGrid[o1][o2] -this.distanceGrid[d1][d2] + this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
+                            delta[1]= -this.distanceGrid[d1][d2] -this.distanceGrid[p1][p2] + this.distanceGrid[d1][p1] + this.distanceGrid[d2][p2];
+                            delta[2]= -this.distanceGrid[o1][o2] -this.distanceGrid[p1][p2] + this.distanceGrid[o1][p1] + this.distanceGrid[o2][p2];
+                            delta[3]= -this.distanceGrid[o1][o2] -this.distanceGrid[d1][d2] -this.distanceGrid[p1][p2] + this.distanceGrid[o1][d1] + this.distanceGrid[o2][p1]+ this.distanceGrid[d2][p2];
+                            delta[4]= -this.distanceGrid[o1][o2] -this.distanceGrid[d1][d2] -this.distanceGrid[p1][p2] + this.distanceGrid[o1][p1] + this.distanceGrid[d2][o2]+ this.distanceGrid[d1][p2];
+                            delta[5]= -this.distanceGrid[o1][o2] -this.distanceGrid[d1][d2] -this.distanceGrid[p1][p2] + this.distanceGrid[o1][d2] + this.distanceGrid[p1][d1]+ this.distanceGrid[o2][p2];
+                            delta[6]= -this.distanceGrid[o1][o2] -this.distanceGrid[d1][d2] -this.distanceGrid[p1][p2] + this.distanceGrid[o1][d2] + this.distanceGrid[p1][o2]+ this.distanceGrid[d1][p2];
+                            Integer minIndex = findminIndex(delta);
                             if (delta[minIndex] < 0) {
                                 if(minIndex==0) {
-                                    opt2Reverse2(i + 1, j, indexes);
+                                    opt2Reverse2(i + 1, j, sortedIndexes);
                                 }
                                 else if(minIndex==1) {
-                                    opt2Reverse2(j + 1, k, indexes);
+                                    opt2Reverse2(j + 1, k, sortedIndexes);
                                 }
                                 else if(minIndex==2) {
-                                    opt2Reverse2(i + 1, k, indexes);
+                                    opt2Reverse2(i + 1, k, sortedIndexes);
                                 }
                                 else if(minIndex==3)
                                 {
-                                    opt2Reverse2(i + 1, j, indexes);
-                                    opt2Reverse2(j + 1, k, indexes);
+                                    opt2Reverse2(i + 1, j, sortedIndexes);
+                                    opt2Reverse2(j + 1, k, sortedIndexes);
                                 }
                                 else if(minIndex==4)
                                 {
-                                    int[] temp=Section(j+1,k,indexes);
+                                    Integer[] temp=Section(j+1,k,sortedIndexes);
                                     temp=ReverseArray(temp);
-                                    int[] temp2=Section(i+1,j,indexes);
+                                    Integer[] temp2=Section(i+1,j,sortedIndexes);
                                     temp=Combine(temp,temp2);
-                                    indexes=Replace(i+1,k,temp,indexes);
+                                    sortedIndexes=Replace(i+1,k,temp,sortedIndexes);
                                 }
                                 else if(minIndex==5)
                                 {
-                                    int[] temp=Section(i+1,j,indexes);
+                                    Integer[] temp=Section(i+1,j,sortedIndexes);
                                     temp=ReverseArray(temp);
-                                    int[] temp2=Section(j+1,k,indexes);
+                                    Integer[] temp2=Section(j+1,k,sortedIndexes);
                                     temp=Combine(temp2,temp);
-                                    indexes=Replace(i+1,k,temp,indexes);
+                                    sortedIndexes=Replace(i+1,k,temp,sortedIndexes);
                                 }
                                 else {
-                                    int[] temp=Section(i+1,j,indexes);
-                                    int[] temp2=Section(j+1,k,indexes);
+                                    Integer[] temp=Section(i+1,j,sortedIndexes);
+                                    Integer[] temp2=Section(j+1,k,sortedIndexes);
                                     temp=Combine(temp2,temp);
-                                    indexes=Replace(i+1,k,temp,indexes);
+                                    sortedIndexes=Replace(i+1,k,temp,sortedIndexes);
                                 }
                                 improvement = true;
                             }
@@ -183,6 +184,5 @@ public class ThreeOpt {
                 }
             }
         }
-        updatePlaces(indexes,initialPath);
     }
 }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TwoOpt {
-    private Integer[] sortedIndexes;
-    private Integer[][] distanceGrid;
+    public Integer[] sortedIndexes;
+    public Integer[][] distanceGrid;
 
     /**
      * Constructor for NearestNeighbor Object.
@@ -17,10 +17,10 @@ public class TwoOpt {
         this.distanceGrid = distanceGrid;
     }
 
-
-    public void opt2Reverse2(int i,int k,int[] indexes)
+    public void opt2Reverse2(Integer i,Integer k,Integer[] indexes)
     {
-        while(i < k) {
+        while(i < k)
+        {
             int temp = indexes[i];
             indexes[i] = indexes[k];
             indexes[k] = temp;
@@ -28,24 +28,24 @@ public class TwoOpt {
         }
     }
 
-    public static void TwoOpt ()
+    public void TwoOpt ()
     {
-        final int n = places.size();
+        int n = this.sortedIndexes.length;
         Place[] initialPath = new Place[n];
-        for(int k=0;k<n;k++)
-        {
-            initialPath[k]=this.places.get(k);
-        }
-        String units=this.options.units;
-        String unitName=this.options.unitName;
-        Double uniRadius=this.options.unitRadius;
-        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
-        grid.buildGrid();
-        int[] indexes = new int[n];
-        for(int k=0;k<n;k++)
-        {
-            indexes[k]=k;
-        }
+//        for(int k=0;k<n;k++)
+//        {
+//            initialPath[k]=this.places.get(k);
+//        }
+//        String units=this.options.units;
+//        String unitName=this.options.unitName;
+//        Double uniRadius=this.options.unitRadius;
+//        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
+//        grid.buildGrid();
+//        int[] indexes = new int[n];
+//        for(int k=0;k<n;k++)
+//        {
+//            indexes[k]=k;
+//        }
         if (n > 4) {
             boolean improvement = true;
             while (improvement) {
@@ -57,29 +57,29 @@ public class TwoOpt {
                         int o1, o2, d1, d2;
                         if (j == n - 1)
                         {
-                            o1 = indexes[i];
-                            o2 = indexes[i+1];
-                            d1 = indexes[j];
-                            d2 = indexes[0];
+                            o1 = sortedIndexes[i];
+                            o2 = sortedIndexes[i+1];
+                            d1 = sortedIndexes[j];
+                            d2 = sortedIndexes[0];
                         }
                         else
                         {
-                            o1 = indexes[i];
-                            o2 = indexes[i+1];
-                            d1 = indexes[j];
-                            d2 = indexes[j+1];
+                            o1 = sortedIndexes[i];
+                            o2 = sortedIndexes[i+1];
+                            d1 = sortedIndexes[j];
+                            d2 = sortedIndexes[j+1];
                         }
-                        int delta = -grid.distanceGrid[o1][o2] - grid.distanceGrid[d1][d2] + grid.distanceGrid[o1][d1] + grid.distanceGrid[o2][d2];
+                        int delta = -this.distanceGrid[o1][o2] - this.distanceGrid[d1][d2] + this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
                         if (delta < 0)
                         {
-                            opt2Reverse2(i + 1, j, indexes);
+                            opt2Reverse2(i + 1, j, sortedIndexes);
                             improvement = true;
                         }
                     }
                 }
             }
         }
-        updatePlaces(indexes,initialPath);
+//        updatePlaces(indexes,initialPath);
     }
 
 }

@@ -83,8 +83,8 @@ public class Trip {
             this.places = optTrip.places;
             this.map = optTrip.map;
             svg();
+            setRoute();
         }
-        setRoute();
         else if(this.options.optimization.equalsIgnoreCase("shorter")){
             Optimize opt = new Optimize(this);
             Trip optTrip = opt.getOptimalTrip();
@@ -93,8 +93,8 @@ public class Trip {
             this.places = optTrip.places;
             this.map = optTrip.map;
             svg();
+            setRoute();
         }
-        setRoute();
         else if(this.options.optimization.equalsIgnoreCase("shortest")){
             Optimize opt = new Optimize(this);
             Trip optTrip = opt.getOptimalTrip();
@@ -103,8 +103,8 @@ public class Trip {
             this.places = optTrip.places;
             this.map = optTrip.map;
             svg();
+            setRoute();
         }
-        setRoute();
     }
 
     /**
