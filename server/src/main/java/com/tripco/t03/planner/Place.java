@@ -36,18 +36,51 @@ public class Place {
         this.longitude = longitude;
     }
 
-    public Place(String id, String name, Double latitude, Double longitude,
-                 String type, String elevation, String continent, String country, 
-                 String region, String municipality){
-        this.id = id;
-        this.name = name;
-        this.latitude = latitude;
-        this.longitude = longitude;
+    /**
+     * Setter for attribute 'type'.
+     * @param type String.
+     */
+    public void setAttributeType(String type) {
         this.type = type;
+    }
+
+    /**
+     * Setter for attribute elevation.
+     * @param elevation String.
+     */
+    public void setAttributeElevation(String elevation) {
         this.elevation = elevation;
+    }
+
+    /**
+     * Setter for attribute continent.
+     * @param continent String
+     */
+    public void setAttributeContinent(String continent) {
         this.continent = continent;
+    }
+
+    /**
+     * Setter for attribute country.
+     * @param country String.
+     */
+    public void setAttributeCountry(String country) {
         this.country = country;
+    }
+
+    /**
+     * Setter for attribute region.
+     * @param region String.
+     */
+    public void setAttributeRegion(String region) {
         this.region = region;
+    }
+
+    /**
+     * Setter for attribute municipality.
+     * @param municipality String.
+     */
+    public void setAttributeMunicipality(String municipality){
         this.municipality = municipality;
     }
 

@@ -1,5 +1,6 @@
 package com.tripco.t03.planner;
 
+import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,13 @@ import static org.junit.Assert.*;
 @RunWith(JUnit4.class)
 public class TestPlace {
 
+  Place p = new Place();
+
+  @Test
+  public void testEmptyPlace() {
+    assertNull(p);
+  }
+
   Place place;
 
   // Setup to be done before every test in TestPlan
@@ -21,11 +29,11 @@ public class TestPlace {
     place = new Place("dnvr", "Denver", 1.0, 0.0);
   }
 
-//  @Test
-//  public void testPlace() {
-//    Place testPlace = new Place("dnvr", "Denver", 1.0, 0.0);
-//    assertEquals(true, testPlace.equals(place));
-//  }
+  @Test
+  public void testPlace() {
+    Place testPlace = new Place("dnvr", "Denver", 1.0, 0.0);
+    assertTrue(testPlace.equals(place));
+  }
   
   @Test
   public void testGetName() {
@@ -40,6 +48,48 @@ public class TestPlace {
   @Test
   public void testGetLong() {
     assertEquals(place.getLongitude(), 0.0, 1);
+  }
+
+  @Test
+  public void testSetAttributeType() {
+    place.setAttributeType("tired");
+
+    assertNotEquals(place.type, "and old");
+  }
+
+  @Test
+  public void testSetAttributeElevation() {
+    place.setAttributeElevation("too high");
+
+    assertNotNull(place.elevation);
+  }
+
+  @Test
+  public void testSetAttributeContinent() {
+    place.setAttributeContinent("not here");
+
+    assertFalse(place.continent.equals("here"));
+  }
+
+  @Test
+  public void testSetAttributeCountry(){
+    place.setAttributeCountry("This class is sucking my soul out");
+
+    assertTrue(place.country.length() == 33);
+  }
+
+  @Test
+  public void testSetAttributeRegion(){
+    place.setAttributeRegion("Do I get my diploma after this?");
+
+    assertFalse(place.region.equals("yes"));
+  }
+
+  @Test
+  public void testSetAttributeMunicipality(){
+    place.setAttributeMunicipality("Too old for this");
+
+    assertNotNull(place.municipality);
   }
 
   @Test
