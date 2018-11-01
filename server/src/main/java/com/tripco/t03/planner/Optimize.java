@@ -35,23 +35,29 @@ public class Optimize {
         return this.sortedPlaces;
     }
 
-   /* public Trip getOptimalTrip(){
+    /**
+    *Method currently does nothing.
+    */
+    public Trip getOptimalTrip(){/*
         NearestNeighbor nn = new NearestNeighbor(this);
         int index = nn.optimizeNearestNeighbor();
         Place[] optimalTrip = nn.getTripPlaceArray(index);
         Integer[] optimalDistances = nn.getDistanceArray(index);
         this.trip.setPlace(optimalTrip);
-        System.out.printf("tripDistance: %s\n", Arrays.toString(new Integer[]{optimalDistances[index]}));
         this.trip.setDistances(new ArrayList<>(Arrays.asList(optimalDistances[index])));
         return this.trip;
+    */
+        return null;
     }
 
-    *//**
+        /**
      * Method to set up Distance object grid.
      *//*
     private void setGrid(){
         if(this.trip.options.units.equalsIgnoreCase("user defined")){
-            this.grid = new DistanceGrid(this.sortedPlaces, this.trip.options.units, this.trip.options.unitName, this.trip.options.unitRadius);
+            Double rad = this.trip.options.unitRadius;
+            String uName = this.trip.options.unitName;
+            this.grid = new DistanceGrid(this.sortedPlaces, this.trip.options.units, uName, rad);
         }else {
             this.grid = new DistanceGrid(this.sortedPlaces, this.trip.options.units);
         }
