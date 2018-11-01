@@ -59,9 +59,11 @@ public class DistanceGrid {
                     Place origin = this.locations.get(indexKey[row]);
                     Place destination = this.locations.get(indexKey[column]);
                     if (this.units.equalsIgnoreCase("user defined")) {
-                        this.distanceGrid[row][column] = Calculate.optDistance(origin, destination, this.userDefinedRadius);
+                        int tenp = Calculate.optDistance(origin, destination, this.userDefinedRadius);
+                        this.distanceGrid[row][column] = temp;
                     } else {
-                        this.distanceGrid[row][column] = Calculate.calcDistance(origin, destination, this.units);
+                        int temp = Calculate.calcDistance(origin, destination, this.units);
+                        this.distanceGrid[row][column] = temp;
                     }
                     distanceGrid[column][row] = this.distanceGrid[row][column];
                 }
