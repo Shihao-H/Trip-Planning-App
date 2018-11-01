@@ -79,7 +79,7 @@ public class Place {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.airportType = type;
+        this.type = type;
         this.elevation = elevation;
         this.continent = continent;
         this.country = country;
