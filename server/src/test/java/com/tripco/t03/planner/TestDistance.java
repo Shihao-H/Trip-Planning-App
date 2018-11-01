@@ -14,8 +14,8 @@ public class TestDistance {
         Place origin = new Place("orig", "origin",18.0, -104.0);
         Place destination = new Place("dest", "destination", 39.0, 116.0);
         dist = new Distance(origin, destination, "kilometers", 12434);
-
-        assertEquals(dist.distance, 12434);
+        Double expect = new Double(12434);
+        assertEquals(dist.distance, expect);
     }
 
     @Test
@@ -112,21 +112,11 @@ public class TestDistance {
 
     Distance dis;
 
-//    @Test
-//    public void testEmptyDistance() {
-//        dis = new Distance();
-//        assertNull(dis.origin.id);
-//        assertNull(dis.origin.name);
-//        assertEquals(dis.origin.latitude, 0.0, 1);
-//        assertEquals(dis.origin.longitude, 0.0, 1);
-//        assertNull(dis.destination.id);
-//        assertNull(dis.destination.name);
-//        assertEquals(dis.destination.latitude, 0.0, 1);
-//        assertEquals(dis.destination.latitude, 0.0, 1);
-//        assertNull(dis.units);
-//        assertNull(dis.unitName);
-//        assertEquals(dis.unitRadius, 0, 1);
-//    }
+    @Test
+    public void testEmptyDistance() {
+        dis = new Distance();
+        assertNull(dis);
+    }
 
     @Test
     public void testToString() {
