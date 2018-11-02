@@ -2,10 +2,10 @@ package com.tripco.t03.server;
 
 /** The main class for the application.
  *
- * Command line arguments are of the form:
+ * <p>Command line arguments are of the form:
  * [port] [teaminfo]...
  *
- * Examples that produce the same result:
+ * <p>Examples that produce the same result:
  * 31400 t03 Team Name Here
  * 31400 "t03 Team Name Here"
  */
@@ -41,8 +41,9 @@ public class MyServer {
 
     if (args.length > 1) {
       String name = args[1];
-      for (int i = 2; i < args.length; i++)
+      for (int i = 2; i < args.length; i++) {
         name = name + " " + args[i];
+      }
       return name;
     }
     else

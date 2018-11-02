@@ -44,6 +44,14 @@ public class Trip {
         svg();
     }
 
+    /**
+     *
+     * @param title Title of the trip.
+     * @param options The options that the trip will have
+     * @param places The list of places in the trip.
+     * @param distances The list of distances between each place
+     *
+     */
     public Trip(String title, Option options, ArrayList<Place> places, ArrayList<Integer> distances){
         this.title =title;
         this.options=options;
@@ -143,23 +151,25 @@ public class Trip {
         ArrayList<Integer> dist = new ArrayList<>();
 
         if(this.options.units.equals("user defined")){
-            for (int counter = 0; counter < places.size() - 1; counter++) {
-                Distance distance = new Distance(places.get(counter), places.get(counter + 1), options.units, options.unitName, options.unitRadius);
-                distance.setDistance();
-                dist.add(distance.distance);
+            for (int count = 0; count < places.size() - 1; count++) {
+                Distance leg = new Distance(places.get(count), places.get(count + 1),
+                        options.units, options.unitName, options.unitRadius);
+                leg.setDistance();
+                dist.add(leg.distance);
             }
-            Distance distance = new Distance(places.get(places.size() - 1), places.get(0), options.units, options.unitName, options.unitRadius);
-            distance.setDistance();
-            dist.add(distance.distance);
-        }else {
-            for (int counter = 0; counter < places.size() - 1; counter++) {
-                Distance distance = new Distance(places.get(counter), places.get(counter + 1), options.units);
-                distance.setDistance();
-                dist.add(distance.distance);
+            Distance leg = new Distance(places.get(places.size() - 1), places.get(0),
+                    options.units, options.unitName, options.unitRadius);
+            leg.setDistance();
+            dist.add(leg.distance);
+        } else {
+            for (int count = 0; count < places.size() - 1; count++) {
+                Distance leg = new Distance(places.get(count), places.get(count+1), options.units);
+                leg.setDistance();
+                dist.add(leg.distance);
             }
-            Distance distance = new Distance(places.get(places.size() - 1), places.get(0), options.units);
-            distance.setDistance();
-            dist.add(distance.distance);
+            Distance leg = new Distance(places.get(places.size()-1), places.get(0), options.units);
+            leg.setDistance();
+            dist.add(leg.distance);
         }
         return dist;
     }

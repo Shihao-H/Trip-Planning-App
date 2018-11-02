@@ -24,7 +24,7 @@ public class Option {
   }
 
   /**
-   * @param units String unit type
+   * @param units String unit type.
    * Constructor for Options that are not user defined.
    */
   public Option(String units){

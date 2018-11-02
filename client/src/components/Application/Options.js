@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card, CardBody, FormGroup, ButtonGroup, Collapse, Button} from 'reactstrap'
+import {Card, CardBody, FormGroup, ButtonGroup, Input, Collapse, Button} from 'reactstrap'
 
 /* Options allows the user to change the parameters for planning
  * and rendering the trip map and itinerary.
@@ -32,34 +32,26 @@ import {Card, CardBody, FormGroup, ButtonGroup, Collapse, Button} from 'reactstr
     render() {
         const buttons = this.props.config.units.map((unit) =>
             <Button key={'distance_button_' + unit} className='btn-outline-dark unit-button'
-                    active={this.props.options.units === unit} value={unit}
-                    onClick={this.clickUserDefinedButton}>
-                    {unit.charAt(0).toUpperCase() + unit.slice(1)}
-            </Button>
-        );
+                    active={this.props.options.units === unit} value={unit} onClick={this.clickUserDefinedButton}>
+                    {unit.charAt(0).toUpperCase() + unit.slice(1)} </Button>);
         return(
             <div className={'text-center'}>
                 <Card>
-                    <CardBody>
-                        <p>Select the units you wish to use.</p>
+                    <CardBody><p>Select the units you wish to use.</p>
                         <Button onClick={this.dropdown} className = 'btn-outline-dark' size='lg'>Choose Units</Button>
                             <Collapse isOpen = {this.state.collapse}>
-                                <ButtonGroup size="lg" vertical>
-                                    {buttons}
-                                </ButtonGroup>
-                                <p>{' '}</p>
+                                <ButtonGroup size="lg" vertical> {buttons} </ButtonGroup> <p>{' '}</p>
                                 {this.state.ifDisplayUserDefinedInputFields && (
                                 <form>
                                     <FormGroup>
                                         <label>Unit Name:</label>
-                                        <input type="text" placeholder="Enter unit name" onChange={event =>
+                                        <Input type="text" placeholder="Enter unit name" onChange={event =>
                                             {this.props.updateOptions('unitName', event.target.value)}}/>
                                     </FormGroup>
                                     <FormGroup>
                                     <label>Unit Radius: </label>
-                                        <input type="text" placeholder="Enter unit radius"
-                                                onChange={event => {this.props.updateOptions('unitRadius', event.target.value)}}
-                                        />
+                                        <Input type="text" placeholder="Enter unit radius"
+                                               onChange={event => {this.props.updateOptions('unitRadius', event.target.value)}}/>
                                     </FormGroup>
                                 </form>) }
                             </Collapse>
