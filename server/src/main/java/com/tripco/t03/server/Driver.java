@@ -115,18 +115,18 @@ public class Driver {
 
         while (query.next()) {
 
-            final Place place = new Place(
-                    query.getString("id"),
-                    query.getString(1),//name
-                    Double.parseDouble(query.getString("latitude")),
-                    Double.parseDouble(query.getString("longitude")),
-                    query.getString("type"),
-                    query.getString("elevation"),
-                    query.getString(5),//continent
-                    query.getString(4),//country
-                    query.getString(3),//region
-                    query.getString("municipality")
-            );
+            final Place place = new Place(	
+                                    query.getString("id"),	
+                                    query.getString(1),//name	
+                                    Double.parseDouble(query.getString("latitude")),	
+                                    Double.parseDouble(query.getString("longitude")));	
+            
+            place.setAttributeType(query.getString("type"));	
+            place.setAttributeElevation(query.getString("elevation"));	
+            place.setAttributeContinent(query.getString(5));//continent	
+            place.setAttributeCounty(query.getString(4));//country	
+            place.setAttributeRegion(query.getString(3));//region	
+            place.setAttributeMunicipality(query.getString("municipality"));
 
             System.out.printf(" {\"id\":\"%s\", ", query.getString("id"));
             System.out.printf("\"name\":\"%s\", ", query.getString(1));
