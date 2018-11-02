@@ -53,8 +53,7 @@ public class TwoOpt {
      */
     public void opt2Reverse2(Integer place1,Integer place2,Integer[] indices)
     {
-        while(place1 < place2)
-        {
+        while(place1 < place2) {
             int temp = indices[place1];
             indices[place1] = indices[place2];
             indices[place2] = temp;
@@ -87,8 +86,8 @@ public class TwoOpt {
                             d1 = sortedIndexes[j];
                             d2 = sortedIndexes[j+1];
                         }
-                        int delta = -this.distanceGrid[o1][o2] - this.distanceGrid[d1][d2] +
-                                this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
+                        int delta = -this.distanceGrid[o1][o2] - this.distanceGrid[d1][d2]
+                                + this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
                         if (delta < 0) {
                             opt2Reverse2(i + 1, j, sortedIndexes);
                             improvement = true;

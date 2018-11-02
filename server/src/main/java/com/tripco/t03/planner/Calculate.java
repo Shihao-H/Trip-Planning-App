@@ -80,6 +80,7 @@ public class Calculate {
     /**
      * @param distance Distance object
      * @return integer value of distance between origin and destination; -1 if invalid.
+     *
      * Calls getDeltaSigma() and uses that val to find out the distance between coordinates.
      * Assigns that value to the distance variable.
      */
@@ -117,22 +118,23 @@ public class Calculate {
      */
     private static double getDeltaSigma(double orLat, double orLong, double deLat, double deLong) {
 
-        double  deltaLongitude = Math.abs(Math.toRadians(orLong - deLong));
-        double  destinationLatitude = Math.toRadians(deLat);
-        double  originLatitude = Math.toRadians(orLat);
-        double  num;
-        double  den;
+        double deltaLongitude = Math.abs(Math.toRadians(orLong - deLong));
+        double newLatitude = Math.toRadians(deLat);
+        double originLatitude = Math.toRadians(orLat);
 
-        double cosLatSinLongSqr = (Math.cos(destinationLatitude) * Math.sin(deltaLongitude));
+        double cosLatSinLongSqr = (Math.cos(newLatitude) * Math.sin(deltaLongitude));
         cosLatSinLongSqr = cosLatSinLongSqr * cosLatSinLongSqr;
 
-        double cosLatSinLatMnsSinLatCosLatCosLongSqr = (Math.cos(originLatitude) * Math.sin(destinationLatitude)
-                - Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude));
+        double cosLatSinLatMnsSinLatCosLatCosLongSqr = (Math.cos(originLatitude) * Math.sin(newLatitude)
+                - Math.sin(originLatitude) * Math.cos(newLatitude) * Math.cos(deltaLongitude));
         cosLatSinLatMnsSinLatCosLatCosLongSqr = cosLatSinLatMnsSinLatCosLatCosLongSqr * cosLatSinLatMnsSinLatCosLatCosLongSqr;
 
+        double num;
+        double den;
+
         num = Math.sqrt(cosLatSinLongSqr + cosLatSinLatMnsSinLatCosLatCosLongSqr);
-        den = Math.sin(originLatitude) * Math.sin(destinationLatitude)
-                + Math.cos(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude);
+        den = Math.sin(originLatitude) * Math.sin(newLatitude)
+                + Math.cos(originLatitude) * Math.cos(newLatitude) * Math.cos(deltaLongitude);
         return Math.atan2(num, den);
     }
 }
