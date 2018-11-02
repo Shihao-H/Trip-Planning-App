@@ -120,7 +120,6 @@ public class Driver {
                     query.getString(1),//name
                     Double.parseDouble(query.getString("latitude")),
                     Double.parseDouble(query.getString("longitude")),
-
                     query.getString("type"),
                     query.getString("elevation"),
                     query.getString(5),//continent
@@ -133,7 +132,6 @@ public class Driver {
             System.out.printf("\"name\":\"%s\", ", query.getString(1));
             System.out.printf("\"latitude\":\"%s\", ", query.getString("latitude"));
             System.out.printf("\"longitude\":\"%s\", ", query.getString("longitude"));
-
             System.out.printf("\"type\":\"%s\", ", query.getString("type"));
             System.out.printf("\"elevation\":\"%s\", ", query.getString("elevation"));
             System.out.printf("\"continent\":\"%s\", ", query.getString(5));

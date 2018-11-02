@@ -21,8 +21,8 @@ public class MyServer {
   }
 
   /** Obtain the port number from the command line arguments.  Defaults if none provided.
-   * @param args
-   * @return
+   * @param args String[].
+   * @return int.
    */
   private static int getPort(String[] args) {
 
@@ -34,7 +34,7 @@ public class MyServer {
   }
 
   /** Obtain the name from the command line arguments.  Defaults if not specified.
-   * @param args
+   * @param args String[].
    * @return a concatenation of the arguments after the port
    */
   private static String getName(String[] args) {
