@@ -40,7 +40,7 @@ public class Calculate {
     /** Handles the response for a Distance object.
      * Does the conversion from a Java class to a Json string.*
      */
-    public String getDistance () {
+    public String getDistance() {
         Gson gson = new Gson();
         return gson.toJson(distance);
     }
@@ -80,7 +80,7 @@ public class Calculate {
     /**
      * @param distance Distance object
      * @return integer value of distance between origin and destination; -1 if invalid.
-     * Calls getDeltaSigma() and uses that value to determine the distance between two lat/long coordinates
+     * Calls getDeltaSigma() and uses that value to determine the distance between coordinates
      * Assigns that value to the distance variable
      */
     public static int calcDistance(Distance distance){
@@ -108,18 +108,18 @@ public class Calculate {
     }
 
     /**
-     * @param oLat double origin latitude
-     * @param oLong double origin longitude
-     * @param dLat double destination latitude
-     * @param dLong double destination longitude
+     * @param originLat double origin latitude
+     * @param originLong double origin longitude
+     * @param destLat double destination latitude
+     * @param destLong double destination longitude
      *              calculates delta sigma for circle distance using Vincenty formula
      * @return returns floating point delta sigma value for the designated units
      */
-    private static double getDeltaSigma(double oLat, double oLong, double dLat, double dLong) {
+    private static double getDeltaSigma(double originLat, double originLong, double destLat, double destLong) {
 
-        double  deltaLongitude = Math.abs(Math.toRadians(oLong - dLong));
-        double  destinationLatitude = Math.toRadians(dLat);
-        double  originLatitude = Math.toRadians(oLat);
+        double  deltaLongitude = Math.abs(Math.toRadians(originLong - destLong));
+        double  destinationLatitude = Math.toRadians(destLat);
+        double  originLatitude = Math.toRadians(originLat);
         double  numerator;
         double  denominator;
 

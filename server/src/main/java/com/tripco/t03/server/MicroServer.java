@@ -51,9 +51,9 @@ public class MicroServer {
 
     /** A REST API that describes the server.
      *
-     * @param request
-     * @param response
-     * @return
+     * @param request Client request.
+     * @param response Server response.
+     * @return Info about this server
      */
     private String about(Request request, Response response) {
         String result;
@@ -61,18 +61,18 @@ public class MicroServer {
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result = "<html><head></head><body><h1>"+name+" Micro-server on port "+port+"</h1></body></html>";
-        }catch(Exception e){
+        }catch(Exception err){
             result = "{}";
-            getErrorMessage(e);
+            getErrorMessage(err);
         }
         return result;
     }
 
     /** A REST API that returns the current server configuration
      *
-     * @param request
-     * @param response
-     * @return
+     * @param request Client request.
+     * @param response Server response.
+     * @return What this server can do
      */
     private String config(Request request, Response response) {
         String result;
@@ -80,18 +80,18 @@ public class MicroServer {
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result = Config.getConfig();
-        }catch(Exception e){
+        }catch(Exception err){
             result = "{}";
-            getErrorMessage(e);
+            getErrorMessage(err);
         }
         return result;
     }
 
     /** A REST API that echos the client request.
      *
-     * @param request
-     * @param response
-     * @return
+     * @param request Client request.
+     * @param response Server response.
+     * @return Echoes back the request to the client
      */
     private String echo(Request request, Response response) {
         String result;
@@ -99,18 +99,18 @@ public class MicroServer {
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result = HTTP.echoRequest(request);
-        }catch(Exception e){
+        }catch(Exception err){
             result = "{}";
-            getErrorMessage(e);
+            getErrorMessage(err);
         }
         return result;
     }
 
     /** A REST API demonstrating the use of a parameter.
      *
-     * @param request
-     * @param response
-     * @return
+     * @param request Client request.
+     * @param response Server response.
+     * @return A message saying hello.
      */
     private String hello(Request request, Response response) {
         String result;
@@ -118,18 +118,18 @@ public class MicroServer {
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result =Greeting.html(request.params(":name"));
-        }catch(Exception e){
+        }catch(Exception err){
             result = "{}";
-            getErrorMessage(e);
+            getErrorMessage(err);
         }
         return result;
     }
 
     /** A REST API to support trip planning.
      *
-     * @param request
-     * @param response
-     * @return
+     * @param request Client request.
+     * @param response Server response.
+     * @return The planned trip
      */
     private String plan(Request request, Response response) {
         String result;
@@ -137,18 +137,18 @@ public class MicroServer {
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result = new Plan(request).getTrip();
-        }catch(Exception e){
+        }catch(Exception err){
             result = "{}";
-            getErrorMessage(e);
+            getErrorMessage(err);
         }
         return result;
     }
 
     /** A REST API that returns the team information associated with the server.
      *
-     * @param request
-     * @param response
-     * @return
+     * @param request Client request.
+     * @param response Server response.
+     * @return The team name
      */
     private String team(Request request, Response response) {
         String result;
@@ -156,9 +156,9 @@ public class MicroServer {
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result = name;
-        }catch(Exception e){
+        }catch(Exception err){
             result = "{}";
-            getErrorMessage(e);
+            getErrorMessage(err);
         }
         return result;
     }
@@ -175,9 +175,9 @@ public class MicroServer {
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result = new Calculate(request).getDistance();
-        }catch(Exception e){
+        }catch(Exception err){
             result = "{}";
-            getErrorMessage(e);
+            getErrorMessage(err);
         }
         return result;
     }
@@ -194,22 +194,22 @@ public class MicroServer {
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result = new Match(request).getMatch();
-        }catch(Exception e){
+        }catch(Exception err){
             result = "{}";
-            getErrorMessage(e);
+            getErrorMessage(err);
         }
         return result;
     }
 
     /**
      * Prints the error message for exceptions.
-     * @param e Exception Object.
+     * @param err Exception Object.
      */
-    private void getErrorMessage(Exception e){
-        System.out.println(e.getClass());
-        System.out.println(e.getCause());
-        System.out.println(e.getMessage());
-        System.out.println(e.getStackTrace());
+    private void getErrorMessage(Exception err){
+        System.out.println(err.getClass());
+        System.out.println(err.getCause());
+        System.out.println(err.getMessage());
+        System.out.println(err.getStackTrace());
     }
 
 }

@@ -51,49 +51,39 @@ public class TwoOpt {
      * @param k Integer.
      * @param indexes Integer array.
      */
-    public void opt2Reverse2(Integer i,Integer k,Integer[] indexes)
+    public void opt2Reverse2(Integer row,Integer k,Integer[] indexes)
     {
-        while(i < k)
+        while(row < k)
         {
-            int temp = indexes[i];
-            indexes[i] = indexes[k];
+            int temp = indexes[row];
+            indexes[row] = indexes[k];
             indexes[k] = temp;
-            i++; k--;
+            row++; k--;
         }
     }
 
     /**
      *Optimizes a list of Integers with two opt.
      */
-    public void twoOpt()
-    {
+    public void twoOpt() {
         int n = this.sortedIndexes.length;
         if (n > 4) {
             boolean improvement = true;
             while (improvement) {
                 improvement = false;
-                for (int i = 0; i <= n - 3; i++)
-                {
-                    for (int j = i + 2; j <= n - 1; j++)
-                    {
+                for (int i = 0; i <= n - 3; i++) {
+                    for (int j = i + 2; j <= n - 1; j++) {
                         int o1, o2, d1, d2;
-                        if (j == n - 1)
-                        {
-                            o1 = sortedIndexes[i];
-                            o2 = sortedIndexes[i+1];
-                            d1 = sortedIndexes[j];
-                            d2 = sortedIndexes[0];
+                        if (j == n - 1) {
+                            o1 = sortedIndexes[i]; o2 = sortedIndexes[i+1];
+                            d1 = sortedIndexes[j]; d2 = sortedIndexes[0];
                         }
-                        else
-                        {
-                            o1 = sortedIndexes[i];
-                            o2 = sortedIndexes[i+1];
-                            d1 = sortedIndexes[j];
-                            d2 = sortedIndexes[j+1];
+                        else {
+                            o1 = sortedIndexes[i]; o2 = sortedIndexes[i+1];
+                            d1 = sortedIndexes[j]; d2 = sortedIndexes[j+1];
                         }
                         int delta = -this.distanceGrid[o1][o2] - this.distanceGrid[d1][d2] + this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
-                        if (delta < 0)
-                        {
+                        if (delta < 0) {
                             opt2Reverse2(i + 1, j, sortedIndexes);
                             improvement = true;
                         }

@@ -44,6 +44,14 @@ public class Trip {
         svg();
     }
 
+    /**
+     *
+     * @param title Title of the trip.
+     * @param options The options that the trip will have
+     * @param places The list of places in the trip.
+     * @param distances The list of distances between each place
+     *
+     */
     public Trip(String title, Option options, ArrayList<Place> places, ArrayList<Integer> distances){
         this.title =title;
         this.options=options;
