@@ -1,14 +1,20 @@
 package com.tripco.t03.planner;
 
 import static org.junit.Assert.*;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class TestOptimize {
-    private Optimize opt;
+    private Optimize optimal;
     private Trip trip;
+    private int totalDistance;
 
     @Before
     public void setUp() {
@@ -34,20 +40,35 @@ public class TestOptimize {
         places.add(new Place("P14", "Ordway", 38.32, -103.79));
         trip = new Trip(opt, places);
         trip.plan();
+        Integer[] i = new Integer[trip.distances.size()];
+        trip.distances.toArray(i);
+        Stream<Integer> ss = Arrays.stream(i);
+        totalDistance = ss.reduce(0, (a, b) -> a + b);
+        System.out.printf("Total Distance: %d\n", totalDistance);
     }
 
     @Test
     public void testOptimize(){
-        opt = new Optimize(trip);
+        optimal = new Optimize(trip);
 
-        assertNotNull(opt);
+        assertNotNull(optimal);
+    }
+
+    @Test
+    public void testGetOptimalTripDistance(){
+        optimal = new Optimize(trip);
+        Trip temp = optimal.getOptimalTrip();
+        int distance = optimal.getOptimalTripDistance();
+
+        Assert.assertTrue(distance != totalDistance);
     }
 
     @Test
     public void testGetOptimalTrip(){
-        opt = new Optimize(trip);
-        Trip optTrip = opt.getOptimalTrip();
+        optimal = new Optimize(trip);
+        Trip optTrip = optimal.getOptimalTrip();
 
-        assertEquals(optTrip.places.size(), trip.places.size());
+        Assert.assertNotEquals(trip, optTrip);
     }
+
 }

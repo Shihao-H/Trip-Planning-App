@@ -1,83 +1,9 @@
-//package com.tripco.t03.planner;
-//
-//public class DistanceGrid {
-//
-////    public Distance[][] distanceGrid;
-//    public int[][] distanceGrid;
-//    private Place[] locations;
-//    private String units;
-//    private String userDefinedUnitName;
-//    private Double userDefinedRadius;
-//
-//    /**
-//     * Default constructor.
-//     */
-//    public DistanceGrid(){
-//        this.distanceGrid = null;
-//    }
-//
-//    /**
-//     * Constructor for non user defined units.
-//     * @param location Array of places.
-//     * @param units String type of units.
-//     */
-//    public DistanceGrid(Place[] location, String units){
-//        this.locations=location;
-//        this.units = units;
-////        this.distanceGrid = new Distance[locations.length][locations.length];
-//        this.distanceGrid = new int[locations.length][locations.length];
-//    }
-//
-//
-//    /**
-//     * Constructor for user defined units.
-//     * @param locations Array of places.
-//     * @param units String type of units.
-//     * @param udUnitName String name of user defined units.
-//     * @param udRadius Double radius of Earth in user defined units.
-//     */
-//    public DistanceGrid(Place[] locations, String units, String udUnitName, Double udRadius){
-//        this.locations = locations;
-//        this.units = units;
-//        this.userDefinedUnitName = udUnitName;
-//        this.userDefinedRadius = udRadius;
-////        this.distanceGrid = new Distance[locations.length][locations.length];
-//        this.distanceGrid = new int[locations.length][locations.length];
-//    }
-//
-//
-//    public void buildGrid(){
-//        for(int j=0;j<=this.locations.length-1;j++)
-//        {
-//            for(int i=0;i<=j;i++)
-//            {
-//                if(i==j)
-//                {
-//                    distanceGrid[i][j]=0;
-//                    continue;
-//                }
-//                else
-//                {
-//                    distanceGrid[i][j]=calDist(locations[i],locations[j]);
-//                    distanceGrid[j][i]=distanceGrid[i][j];
-//                }
-//            }
-//        }
-//    }
-//
-//    public int calDist(Place origin, Place destination){
-//        Distance dis=new Distance(origin, destination, this.units,
-//                this.userDefinedUnitName, this.userDefinedRadius);
-//        dis.setDistance();
-//        return dis.distance;
-//    }
 
 package com.tripco.t03.planner;
 
 import java.util.ArrayList;
 
     public class DistanceGrid {
-
         public Integer[][] distanceGrid;
         private Integer[] indexKey;
         private ArrayList<Place> locations;

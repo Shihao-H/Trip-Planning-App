@@ -28,6 +28,7 @@ public class Config {
     Filter continents = new Filter("continents", stringContinents);
     String[] strringType = {"heliport", "small_airport", "seaplane_base", "closed", "balloonport",
             "medium_airport", "large_airport"};
+
     Filter type = new Filter("type", strringType);
     filters = new Filter[2];
     filters[0] = continents;
