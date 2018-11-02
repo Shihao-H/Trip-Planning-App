@@ -6,7 +6,7 @@ public class ThreeOpt {
     private Integer[] sortedIndexes;
     private Integer[][] distanceGrid;
     private Integer[] tripDistances;
-    private Integer[] legDistance;
+
     /**
      * Constructor for NearestNeighbor Object.
      * @param sortedIndexes Integer array of sorted place indices.
@@ -18,11 +18,11 @@ public class ThreeOpt {
         this.optTrip = new Integer[this.sortedIndexes.length];
         this.minTripDistance = Integer.MAX_VALUE;
         this.tripDistances = new Integer[this.sortedIndexes.length];
-        this.legDistance = new Integer[tripDistances.length];
     }
 
     /**
      * Getter method.
+     * @param result Integer array.
      */
     public void getOptimalTrip(Integer[] result){
         System.arraycopy(this.optTrip, 0, result, 0, result.length);
@@ -30,6 +30,7 @@ public class ThreeOpt {
 
     /**
      * Getter method.
+     * @param result Integer array.
      */
     public void getLegDistances(Integer[] result){
         System.arraycopy(tripDistances, 0, result, 0, result.length);
@@ -43,6 +44,12 @@ public class ThreeOpt {
         return this.minTripDistance;
     }
 
+    /**
+     * Reverses array.
+     * @param i Integer.
+     * @param k Integer.
+     * @param indexes Integer array.
+     */
     public void opt2Reverse2(Integer i,Integer k,Integer[] indexes)
     {
         while(i < k) {
@@ -53,6 +60,11 @@ public class ThreeOpt {
         }
     }
 
+    /**
+     * Finds min index.
+     * @param delta Integer array.
+     * @return Integer.
+     */
     public Integer findminIndex(Integer[] delta)
     {
         int min = delta[0];
@@ -68,6 +80,13 @@ public class ThreeOpt {
         return index;
     }
 
+    /**
+     * Gets section.
+     * @param i Integer.
+     * @param j Integer.
+     * @param places Integer array.
+     * @return Integer array.
+     */
     public Integer[] Section(Integer i, Integer j, Integer[] places)
     {
         Integer[] section = new Integer[j-i+1];
@@ -80,6 +99,11 @@ public class ThreeOpt {
         return section;
     }
 
+    /**
+     * Reverses array.
+     * @param arr Integer array.
+     * @return Integer array.
+     */
     public Integer[] ReverseArray(Integer[] arr)
     {
         for(int i = 0; i < arr.length / 2; i++)
@@ -91,12 +115,16 @@ public class ThreeOpt {
         return arr;
     }
 
+    /**
+     * Combines arrays.
+     * @param a Integer array.
+     * @param b Integer array.
+     * @return Integer array.
+     */
     public Integer[] Combine(Integer[] a,Integer[] b)
     {
         Integer[] newPath = new Integer[a.length+b.length];
-        for(int i=0;i<a.length;i++){
-            newPath[i]=a[i];
-        }
+        System.arraycopy(a, 0, newPath, 0, a.length);
         int cout=0;
         for(int j=a.length;j<newPath.length;j++)
         {
@@ -106,6 +134,14 @@ public class ThreeOpt {
         return newPath;
     }
 
+    /**
+     * Replace method.
+     * @param i Integer.
+     * @param j Integer.
+     * @param temp Integer array.
+     * @param bestpath Integer array.
+     * @return Integer Array.
+     */
     public Integer[] Replace(Integer i, Integer j, Integer[] temp, Integer[] bestpath)
     {
         int index=0;
@@ -117,24 +153,12 @@ public class ThreeOpt {
         return bestpath;
     }
 
-    public void ThreeOpt()
+    /**
+     * OPtimizes trip with thrre opt.
+     */
+    public void threeOpt()
     {
         final int n = this.sortedIndexes.length;
-//        Place[] initialPath = new Place[n];
-//        for(int k=0;k<n;k++)
-//        {
-//            initialPath[k]=this.places.get(k);
-//        }
-//        String units=this.options.units;
-//        String unitName=this.options.unitName;
-//        Double uniRadius=this.options.unitRadius;
-//        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
-//        grid.buildGrid();
-//        int[] indexes = new int[n];
-//        for(int k=0;k<n;k++)
-//        {
-//            indexes[k]=k;
-//        }
         if (n > 6) {
             boolean improvement = true;
             while (improvement) {
@@ -142,7 +166,6 @@ public class ThreeOpt {
                 for(int i=0;i<=n-3;i++){
                     for (int j = i+1; j <= n-2; j++) {
                         for (int k = j + 1; k <= n - 1; k++) {
-//                            Place o1, o2, d1, d2, p1, p2;
                             int o1, o2, d1, d2, p1, p2;
                             if (k == n - 1) {
                                 o1 = this.sortedIndexes[i];

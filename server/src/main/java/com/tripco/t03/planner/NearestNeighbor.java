@@ -75,6 +75,11 @@ public class NearestNeighbor {
         }
     }
 
+    /**
+     * Copies array.
+     * @param from Integer array.
+     * @param to Integer array.
+     */
     private void copyArray(Integer[] from, Integer[] to){
         if(from.length == to.length) {
             System.arraycopy(from, 0, to, 0, from.length);

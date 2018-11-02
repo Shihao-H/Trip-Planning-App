@@ -7,19 +7,38 @@ public class LineDistance {
     private double centerLat = 39.0;
     private double centerLong = -105.5472;
 
-
+    /**
+     * Constructor.
+     * @param places ArrayList of places.
+     */
     public LineDistance(ArrayList<Place> places){
         this.places = places;
     }
 
+    /**
+     * Sets north boolean.
+     * @param lat double.
+     * @return true if the latitude is greater than the center lat of the state.
+     */
     private boolean setNorth(double lat) {
         return lat > centerLat;
     }
 
+    /**
+     * Sets east boolean.
+     * @param longitude double.
+     * @return boolean.
+     */
     private boolean setEast(double longitude){
         return longitude > centerLong;
     }
 
+    /**
+     * Gets the distance from the center of the state.
+     * @param lat double.
+     * @param east boolean.
+     * @return double.
+     */
     private double getLatDistFromCenter(double lat, boolean east){
         double distFromCent = lat - centerLat;
         if(east) {
@@ -29,6 +48,12 @@ public class LineDistance {
         }
     }
 
+    /**
+     * Gets distance from the center of the state.
+     * @param longitude double.
+     * @param north boolena.
+     * @return double.
+     */
     private double getLongDistFromCenter(double longitude, boolean north){
         double distFromCent = longitude-centerLong;
         if (north) {
@@ -38,6 +63,10 @@ public class LineDistance {
         }
     }
 
+    /**
+     * Gets coordinates.
+     * @return String.
+     */
     public String getCoordinates(){
         String path = " d=\"M ";
         for(int i = 0; i < this.places.size(); i++) {

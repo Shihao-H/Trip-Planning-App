@@ -1,7 +1,6 @@
 package com.tripco.t03.planner;
 
 import com.tripco.t03.server.Driver;
-
 import java.util.ArrayList;
 
 /**
@@ -20,29 +19,46 @@ public class Search {
     /**
      * This is a default constructor.
      */
-    public Search() {
-    }
-
+    public Search(){}
+    
     /**
      * This is a constructor.
-     *
      * @param match String compare match with places' names in the database.
      */
     public Search(String match) {
         this.match = match;
     }
 
-    public Search(String match, int limit) {
+    /**
+     * Constructor.
+     * @param match String.
+     * @param limit int.
+     */
+    public Search(String match, int limit)
+    {
         this.match = match;
         this.limit = limit;
     }
 
-    public Search(String match, Filter[] filters) {
+    /**
+     * Constructor.
+     * @param match String.
+     * @param filters Array of Filter objects.
+     */
+    public Search(String match, Filter[] filters)
+    {
         this.match = match;
         this.filters = filters;
     }
 
-    public Search(String match, int limit, Filter[] filters) {
+    /**
+     * Constructor.
+     * @param match String.
+     * @param limit int.
+     * @param filters Array of Filter Objects.
+     */
+    public Search(String match, int limit, Filter[] filters)
+    {
         this.match = match;
         this.limit = limit;
         this.filters = filters;

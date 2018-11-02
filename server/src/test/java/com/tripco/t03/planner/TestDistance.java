@@ -9,16 +9,14 @@ public class TestDistance {
 
     //Code in this file is from in class example of TestDistance by Dave Matthews
 
-//    @Test
-//    public void testDistance4(){
-//        Place origin = new Place("orig", "origin",18.0, -104.0);
-//        Place destination = new Place("dest", "destination", 39.0, 116.0);
-//        dist = new Distance(origin, destination, "kilometers", 12434);
-//        Distance temp = new Distance(origin, destination, "kilometers");
-//        temp.setDistance();
-//
-//        assertEquals(dist, temp);
-//    }
+    @Test
+    public void testDistance4(){
+        Place origin = new Place("orig", "origin",18.0, -104.0);
+        Place destination = new Place("dest", "destination", 39.0, 116.0);
+        dist = new Distance(origin, destination, "kilometers", 12434);
+        Integer expect = new Integer(12434);
+        assertEquals(dist.distance, expect);
+    }
 
     @Test
     public void testDistanceMiles(){

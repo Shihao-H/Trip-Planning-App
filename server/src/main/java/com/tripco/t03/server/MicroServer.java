@@ -165,9 +165,9 @@ public class MicroServer {
 
     /** A REST API for distance.
      *
-     * @param request
-     * @param response
-     * @return
+     * @param request Request Object.
+     * @param response Response Object.
+     * @return String.
      */
     private String distance(Request request, Response response) {
         String result;
@@ -201,6 +201,10 @@ public class MicroServer {
         return result;
     }
 
+    /**
+     * Prints the error message for exceptions.
+     * @param e Exception Object.
+     */
     private void getErrorMessage(Exception e){
         System.out.println(e.getClass());
         System.out.println(e.getCause());

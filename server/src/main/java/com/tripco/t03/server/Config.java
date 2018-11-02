@@ -15,6 +15,9 @@ public class Config {
   private Filter[] filters;
   private String maps;
 
+  /**
+   * Constructor.
+   */
   public Config(){
     units = new ArrayList<>(Arrays.asList("miles", "kilometers", "nautical miles", "user defined"));
     optimization = new ArrayList<>(Arrays.asList(new Optimization("none", "The trip is not optimized."),
@@ -37,6 +40,10 @@ public class Config {
     maps = "svg";
   }
 
+  /**
+   * Gets the config object.
+   * @return String.
+   */
   static String getConfig() {
     Config conf = new Config();
     Gson gson = new Gson();

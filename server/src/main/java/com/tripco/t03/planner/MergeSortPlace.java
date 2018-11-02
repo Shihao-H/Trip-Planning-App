@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class MergeSortPlace {
 
-
     /**
      * Sorts an Array of Distances by increasing longitude.
      * @param toSort Place array to be sorted.

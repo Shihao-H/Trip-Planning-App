@@ -1,6 +1,7 @@
 package com.tripco.t03.planner;
+
 public class Distance {
-    public short version = 2;
+    public short version = 4;
     public String type = "distance";
     public Place origin;
     public Place destination;
@@ -16,7 +17,7 @@ public class Distance {
     public Distance(){
         origin = new Place();
         destination = new Place();
-        this.units = null;
+        this.units = "";
         this.unitName = null;
         this.unitRadius = null;
         this.distance = null;

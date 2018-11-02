@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class TestPlace {
-  
+
   Place place;
 
   // Setup to be done before every test in TestPlan
@@ -20,19 +20,19 @@ public class TestPlace {
   public void initialize() {
     place = new Place("dnvr", "Denver", 1.0, 0.0);
   }
-  
+
   @Test
   public void testEmptyPlace() {
     Place p = new Place();
-    
+
     assertNull(p.name);
   }
 
-//  @Test
-//  public void testPlace() {
-//    Place testPlace = new Place("dnvr", "Denver", 1.0, 0.0);
-//    assertEquals(true, testPlace.equals(place));
-//  }
+  @Test
+  public void testPlace() {
+    Place testPlace = new Place("dnvr", "Denver", 1.0, 0.0);
+    assertTrue(testPlace.name.equals(place.name));
+  }
   
   @Test
   public void testGetName() {
@@ -47,6 +47,49 @@ public class TestPlace {
   @Test
   public void testGetLong() {
     assertEquals(place.getLongitude(), 0.0, 1);
+  }
+
+  @Test
+  public void testSetAttributeType() {
+    place.setAttributeType("tired");
+
+    assertNotEquals(place.type, "and old");
+  }
+
+  @Test
+  public void testSetAttributeElevation() {
+    place.setAttributeElevation("too high");
+
+    assertNotNull(place.elevation);
+  }
+
+  @Test
+  public void testSetAttributeContinent() {
+    place.setAttributeContinent("not here");
+
+    assertFalse(place.continent.equals("here"));
+  }
+
+  @Test
+  public void testSetAttributeCountry(){
+    String ofWordsExpressingMyFeelings = "This class is sucking my soul out";
+    place.setAttributeCountry(ofWordsExpressingMyFeelings);
+
+    assertTrue(place.country.equals(ofWordsExpressingMyFeelings));
+  }
+
+  @Test
+  public void testSetAttributeRegion(){
+    place.setAttributeRegion("Do I get my diploma after this?");
+
+    assertFalse(place.region.equals("yes"));
+  }
+
+  @Test
+  public void testSetAttributeMunicipality(){
+    place.setAttributeMunicipality("Too old for this");
+
+    assertNotNull(place.municipality);
   }
 
   @Test

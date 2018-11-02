@@ -1,7 +1,6 @@
 package com.tripco.t03.server;
 
 import com.tripco.t03.planner.Place;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,6 +23,8 @@ public class Driver {
 
     /**
      * The find method is meant to get access to the database and execute queries.
+     * @param match String phrase to match.
+     * @param limit integer number of mx results to be shown.
      */
     public static void find(String match, int limit, String filter) {
         if (limit == 0)
@@ -81,6 +82,10 @@ public class Driver {
 
     /**
      * This function is meant to print the JSON on the terminal/ console to log.
+     * @param count ResultSet.
+     * @param query ResultSet.
+     * @param match String.
+     * @param limit int.
      */
     private static void printJson(ResultSet count, ResultSet query, String match, int limit)
             throws SQLException {
@@ -115,17 +120,17 @@ public class Driver {
 
         while (query.next()) {
 
-            final Place place = new Place(	
-                                    query.getString("id"),	
-                                    query.getString(1),//name	
-                                    Double.parseDouble(query.getString("latitude")),	
-                                    Double.parseDouble(query.getString("longitude")));	
-            
-            place.setAttributeType(query.getString("type"));	
-            place.setAttributeElevation(query.getString("elevation"));	
-            place.setAttributeContinent(query.getString(5));//continent	
-            place.setAttributeCounty(query.getString(4));//country	
-            place.setAttributeRegion(query.getString(3));//region	
+            final Place place = new Place(
+                                    query.getString("id"),
+                                    query.getString(1),//name
+                                    Double.parseDouble(query.getString("latitude")),
+                                    Double.parseDouble(query.getString("longitude")));
+
+            place.setAttributeType(query.getString("type"));
+            place.setAttributeElevation(query.getString("elevation"));
+            place.setAttributeContinent(query.getString(5));//continent
+            place.setAttributeCountry(query.getString(4));//country
+            place.setAttributeRegion(query.getString(3));//region
             place.setAttributeMunicipality(query.getString("municipality"));
 
             System.out.printf(" {\"id\":\"%s\", ", query.getString("id"));
@@ -145,10 +150,8 @@ public class Driver {
                 System.out.print(",\n");
             }
             places.add(place);
-
         }
 
         System.out.print(" ]\n}\n");
-
     }
 }

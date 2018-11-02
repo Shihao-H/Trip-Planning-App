@@ -1,15 +1,11 @@
 package com.tripco.t03.planner;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class TwoOpt {
     private int minTripDistance;
     private Integer[] optTrip;
     private Integer[] sortedIndexes;
     private Integer[][] distanceGrid;
     private Integer[] tripDistances;
-    private Integer[] legDistance;
 
     /**
      * Constructor for NearestNeighbor Object.
@@ -22,11 +18,11 @@ public class TwoOpt {
         this.optTrip = new Integer[this.sortedIndexes.length];
         this.minTripDistance = Integer.MAX_VALUE;
         this.tripDistances = new Integer[this.sortedIndexes.length];
-        this.legDistance = new Integer[tripDistances.length];
     }
 
     /**
      * Getter method.
+     * @param result Integer array.
      */
     public void getOptimalTrip(Integer[] result){
         System.arraycopy(this.optTrip, 0, result, 0, result.length);
@@ -34,6 +30,7 @@ public class TwoOpt {
 
     /**
      * Getter method.
+     * @param result Integer array.
      */
     public void getLegDistances(Integer[] result){
         System.arraycopy(tripDistances, 0, result, 0, result.length);
@@ -48,6 +45,12 @@ public class TwoOpt {
     }
 
 
+    /**
+     * Reverses array.
+     * @param i Integer.
+     * @param k Integer.
+     * @param indexes Integer array.
+     */
     public void opt2Reverse2(Integer i,Integer k,Integer[] indexes)
     {
         while(i < k)
@@ -59,24 +62,12 @@ public class TwoOpt {
         }
     }
 
-    public void TwoOpt ()
+    /**
+     *Optimizes a list of Integers with two opt.
+     */
+    public void twoOpt()
     {
         int n = this.sortedIndexes.length;
-        Place[] initialPath = new Place[n];
-//        for(int k=0;k<n;k++)
-//        {
-//            initialPath[k]=this.places.get(k);
-//        }
-//        String units=this.options.units;
-//        String unitName=this.options.unitName;
-//        Double uniRadius=this.options.unitRadius;
-//        DistanceGrid grid=new DistanceGrid(initialPath,units,unitName,uniRadius);
-//        grid.buildGrid();
-//        int[] indexes = new int[n];
-//        for(int k=0;k<n;k++)
-//        {
-//            indexes[k]=k;
-//        }
         if (n > 4) {
             boolean improvement = true;
             while (improvement) {
@@ -110,7 +101,5 @@ public class TwoOpt {
                 }
             }
         }
-//        updatePlaces(indexes,initialPath);
     }
-
 }
