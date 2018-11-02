@@ -24,7 +24,7 @@ public class ThreeOpt {
      * Getter method.
      * @param result Integer array.
      */
-    public void getOptimalTrip(Integer[] result){
+    public void getThreeOptTrip(Integer[] result){
         System.arraycopy(this.optTrip, 0, result, 0, result.length);
     }
 
@@ -32,7 +32,7 @@ public class ThreeOpt {
      * Getter method.
      * @param result Integer array.
      */
-    public void getLegDistances(Integer[] result){
+    public void getThreeOptLegDistances(Integer[] result){
         System.arraycopy(tripDistances, 0, result, 0, result.length);
     }
 
