@@ -18,7 +18,8 @@ public class TestConfig {
                 "\"units\":[\"miles\",\"kilometers\",\"nautical miles\",\"user defined\"]," +
                 "\"optimization\":[{\"label\":\"none\",\"description\":\"The trip is not optimized.\"}," +
                 "{\"label\":\"short\",\"description\":\"Nearest neighbor.\"}," +
-                "{\"label\":\"shorter\",\"description\":\"2-opt.\"}]," +
+                "{\"label\":\"shorter\",\"description\":\"2-opt.\"}," +
+                "{\"label\":\"shortest\",\"description\":\"3-opt.\"}]," +
                 "\"attributes\":[\"name\",\"id\",\"latitude\",\"longitude\",\"type\",\"elevation\"," +
                 "\"continent\",\"country\",\"region\",\"municipality\"]," +
                 "\"filters\":[{\"name\":\"continents\",\"values\":[\"Africa\",\"Antarctica\",\"Asia\",\"Europe\",\"North America\"," +
