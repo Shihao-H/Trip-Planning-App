@@ -91,17 +91,20 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-        if(this.options.optimization.equalsIgnoreCase("short")){
+        if(this.options.optimization.equalsIgnoreCase("none")){
+            this.distances = legDistances();
+        }else {
             Optimize opt = new Optimize(this);
             Trip optTrip = opt.getOptimalTrip();
             this.title = optTrip.title;
             this.options = optTrip.options;
             this.places = new ArrayList<>();
             this.places.addAll(optTrip.places);
+            this.distances = optTrip.distances;
             svg();
-        }else {
-            this.distances = legDistances();
+            setRoute();
         }
+
         setRoute();
     }
 

@@ -55,13 +55,7 @@ public class TestDistanceGrid {
     public void testBuildGrid(){
         distGrid = new DistanceGrid(origTrip, "miles", locations);
         distGrid.buildGrid();
-        System.out.println();
-        for(int i =0; i<distGrid.distanceGrid.length; i++){
-            for(int j=0; j < distGrid.distanceGrid[i].length; j++){
-                System.out.printf("|  %d  ", distGrid.distanceGrid[i][j]);
-            }
-            System.out.println("|");
-        }
+
         Assert.assertNotNull(distGrid.distanceGrid[0][1]);
     }
 
@@ -69,13 +63,6 @@ public class TestDistanceGrid {
     public void testUserDefinedBuildGrid(){
         distGrid = new DistanceGrid(origTrip, "user defined", 92.0000, locations);
         distGrid.buildGrid();
-        System.out.println();
-        for(int i =0; i<distGrid.distanceGrid.length; i++){
-            for(int j=0; j < distGrid.distanceGrid[i].length; j++){
-                System.out.printf("|  %d  ", distGrid.distanceGrid[i][j]);
-            }
-            System.out.println("|");
-        }
 
         Assert.assertNotNull(distGrid.distanceGrid[0][1]);
     }

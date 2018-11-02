@@ -6,7 +6,6 @@ public class Place {
     public String name;
     public Double latitude;
     public Double longitude;
-
     public String type;
     public String elevation;
     public String continent;
@@ -59,34 +58,6 @@ public class Place {
         this.municipality = municipality;
     }
 
-     /**
-     * Constructor for place with all attributes.
-     * @param id
-     * @param name
-     * @param latitude
-     * @param longitude
-     * @param type
-     * @param elevation
-     * @param continent
-     * @param country
-     * @param region
-     * @param municipality
-     */
-    public Place(String id, String name, Double latitude, Double longitude,
-                 String type, String elevation, String continent, String country,
-                 String region, String municipality){
-        this.id = id;
-        this.name = name;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.type = type;
-        this.elevation = elevation;
-        this.continent = continent;
-        this.country = country;
-        this.region = region;
-        this.municipality = municipality;
-    }
-    
     /**
      * Copy constructor.
      * @param from Place object to copy.
@@ -97,6 +68,55 @@ public class Place {
         this.latitude = from.latitude;
         this.longitude = from.longitude;
     }
+
+    /**
+     * Setter for attributes.
+     * @param type String.
+     */
+    public void setAttributeType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * Setter for atrributes.
+     * @param elevation String.
+     */
+    public void setAttributeElevation(String elevation) {
+        this.elevation = elevation;
+    }
+
+    /**
+     * Setter for attributes.
+     * @param continent String.
+     */
+    public void setAttributeContinent(String continent) {
+        this.continent = continent;
+    }
+
+    /**
+     * Setter for attributes.
+     * @param county String.
+     */
+    public void setAttributeCounty(String county) {
+        this.country = country;
+    }
+
+    /**
+     * Setter for attributes.
+     * @param region String.
+     */
+    public void setAttributeRegion(String region) {
+        this.region = region;
+    }
+
+    /**
+     * Setter for attributes.
+     * @param municipality String.
+     */
+    public void setAttributeMunicipality(String municipality){
+        this.municipality = municipality;
+    }
+
     /**
      * @return name of place object.
      */

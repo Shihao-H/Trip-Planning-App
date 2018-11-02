@@ -3,6 +3,7 @@ package com.tripco.t03.planner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class Optimize {
     private Trip trip;
     private Integer[] sortedPlaces;
