@@ -47,18 +47,18 @@ public class TwoOpt {
 
     /**
      * Reverses array.
-     * @param i Integer.
-     * @param k Integer.
-     * @param indexes Integer array.
+     * @param place1 Integer.
+     * @param place2 Integer.
+     * @param indices Integer array.
      */
-    public void opt2Reverse2(Integer row,Integer k,Integer[] indexes)
+    public void opt2Reverse2(Integer place1,Integer place2,Integer[] indices)
     {
-        while(row < k)
+        while(place1 < place2)
         {
-            int temp = indexes[row];
-            indexes[row] = indexes[k];
-            indexes[k] = temp;
-            row++; k--;
+            int temp = indices[place1];
+            indices[place1] = indices[place2];
+            indices[place2] = temp;
+            place1++; place2--;
         }
     }
 
@@ -75,14 +75,19 @@ public class TwoOpt {
                     for (int j = i + 2; j <= n - 1; j++) {
                         int o1, o2, d1, d2;
                         if (j == n - 1) {
-                            o1 = sortedIndexes[i]; o2 = sortedIndexes[i+1];
-                            d1 = sortedIndexes[j]; d2 = sortedIndexes[0];
+                            o1 = sortedIndexes[i];
+                            o2 = sortedIndexes[i+1];
+                            d1 = sortedIndexes[j];
+                            d2 = sortedIndexes[0];
                         }
                         else {
-                            o1 = sortedIndexes[i]; o2 = sortedIndexes[i+1];
-                            d1 = sortedIndexes[j]; d2 = sortedIndexes[j+1];
+                            o1 = sortedIndexes[i];
+                            o2 = sortedIndexes[i+1];
+                            d1 = sortedIndexes[j];
+                            d2 = sortedIndexes[j+1];
                         }
-                        int delta = -this.distanceGrid[o1][o2] - this.distanceGrid[d1][d2] + this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
+                        int delta = -this.distanceGrid[o1][o2] - this.distanceGrid[d1][d2] +
+                                this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
                         if (delta < 0) {
                             opt2Reverse2(i + 1, j, sortedIndexes);
                             improvement = true;
