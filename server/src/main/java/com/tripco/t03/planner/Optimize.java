@@ -42,18 +42,18 @@ public class Optimize {
         nn.getOptimalTrip(this.optimalIndices);
         nn.getLegDistances(this.optimalLegs);
         this.optimalTotalDistance = nn.getTotalDistance();
-        if(this.trip.options.optimization.equalsIgnoreCase("shorter")){
+        if((this.trip.options.optimization.equalsIgnoreCase("shorter")) || (this.trip.options.optimization.equalsIgnoreCase("shortest"))){
             TwoOpt twoOpt = new TwoOpt(this.sortedPlaces, this.grid.distanceGrid);
             twoOpt.twoOpt();
-            twoOpt.getOptimalTrip(this.optimalIndices);
-            twoOpt.getLegDistances(this.optimalLegs);
+            twoOpt.getTwoOptTrip(this.optimalIndices);
+            twoOpt.getTwoOptLegDistances(this.optimalLegs);
             this.optimalTotalDistance = twoOpt.getTotalDistance();
         }
         if(this.trip.options.optimization.equalsIgnoreCase("shortest")){
             ThreeOpt threeOpt = new ThreeOpt(this.sortedPlaces, this.grid.distanceGrid);
             threeOpt.threeOpt();
-            threeOpt.getOptimalTrip(this.optimalIndices);
-            threeOpt.getLegDistances(this.optimalLegs);
+            threeOpt.getThreeOptTrip(this.optimalIndices);
+            threeOpt.getThreeOptLegDistances(this.optimalLegs);
             this.optimalTotalDistance = threeOpt.getTotalDistance();
         }
         return buildNewTrip();

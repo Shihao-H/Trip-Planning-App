@@ -24,7 +24,7 @@ public class TwoOpt {
      * Getter method.
      * @param result Integer array.
      */
-    public void getOptimalTrip(Integer[] result){
+    public void getTwoOptTrip(Integer[] result){
         System.arraycopy(this.optTrip, 0, result, 0, result.length);
     }
 
@@ -32,7 +32,7 @@ public class TwoOpt {
      * Getter method.
      * @param result Integer array.
      */
-    public void getLegDistances(Integer[] result){
+    public void getTwoOptLegDistances(Integer[] result){
         System.arraycopy(tripDistances, 0, result, 0, result.length);
     }
 

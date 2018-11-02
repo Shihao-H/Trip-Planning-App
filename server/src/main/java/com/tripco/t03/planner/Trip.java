@@ -75,13 +75,14 @@ public class Trip {
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
         } else{
-            this.distances = legDistances();
+           // this.distances = legDistances();
             Optimize opt = new Optimize(this);
             Trip optTrip = opt.getOptimalTrip();
             this.title = optTrip.title;
             this.options = optTrip.options;
             this.places = optTrip.places;
             this.map = optTrip.map;
+            this.distances=optTrip.distances;
             svg();
             setRoute();
         }
