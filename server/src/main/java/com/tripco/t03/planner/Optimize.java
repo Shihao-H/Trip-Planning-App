@@ -3,7 +3,6 @@ package com.tripco.t03.planner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 public class Optimize {
     private Trip trip;
     private Integer[] sortedPlaces;
@@ -45,9 +44,24 @@ public class Optimize {
             nn.getLegDistances(this.optimalLegs);
             this.optimalTotalDistance = nn.getTotalDistance();
             return buildNewTrip();
-        }else{
-            return null;
         }
+        else if(this.trip.options.optimization.equalsIgnoreCase("shorter")){
+            TwoOpt nn = new TwoOpt(this.sortedPlaces, this.grid.distanceGrid);
+            nn.TwoOpt();
+            nn.getOptimalTrip(this.optimalIndices);
+            nn.getLegDistances(this.optimalLegs);
+            this.optimalTotalDistance = nn.getTotalDistance();
+            return buildNewTrip();
+        }
+        else if(this.trip.options.optimization.equalsIgnoreCase("shortest")){
+            ThreeOpt nn = new ThreeOpt(this.sortedPlaces, this.grid.distanceGrid);
+            nn.ThreeOpt();
+            nn.getOptimalTrip(this.optimalIndices);
+            nn.getLegDistances(this.optimalLegs);
+            this.optimalTotalDistance = nn.getTotalDistance();
+            return buildNewTrip();
+        }
+        return null;
     }
 
     /**
@@ -74,4 +88,4 @@ public class Optimize {
         }
         this.grid.buildGrid();
     }
- }
+}

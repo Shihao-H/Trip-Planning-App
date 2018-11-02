@@ -4,23 +4,28 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The Trip class supports TFFI so it can easily be converted to/from Json by Gson.
+ *
+ */
+
 public class Trip {
 
-    public int version = 4;
+    // The variables in this class should reflect TFFI.
+    public int version = 3;
     public String type = "trip";
     public String title;
     public Option options;
     public ArrayList<Place> places;
     public ArrayList<Integer> distances;
     public String map;
-
     /**
      * Default constructor.
      */
     public Trip(){
         this.title = null;
         this.options = new Option();
-        this.places = new ArrayList<>();
+        this.places = null;
         this.distances = null;
         this.map = "";
         svg();
@@ -39,13 +44,6 @@ public class Trip {
         svg();
     }
 
-    /**
-     * Constructor that accepts a distance ArrayList.
-     * @param title String.
-     * @param options Option object.
-     * @param places ArrayList of Place Objects.
-     * @param distances ArrayList of Integers.
-     */
     public Trip(String title, Option options, ArrayList<Place> places, ArrayList<Integer> distances){
         this.title =title;
         this.options=options;
@@ -54,7 +52,6 @@ public class Trip {
         this.map = "";
         svg();
     }
-
     /**
      * @param title String user defined title for trip.
      * @param options Option Object.
@@ -67,6 +64,44 @@ public class Trip {
         this.places = places;
         this.map = "";
         svg();
+    }
+
+        /** The top level method that does planning.
+     * At this point it just adds the map and distances for the places in order.
+     * It might need to reorder the places in the future.
+     */
+    public void plan() {
+        this.distances = legDistances();
+        if(this.options.optimization.equalsIgnoreCase("short")){
+            Optimize opt = new Optimize(this);
+            Trip optTrip = opt.getOptimalTrip();
+            this.title = optTrip.title;
+            this.options = optTrip.options;
+            this.places = optTrip.places;
+            this.map = optTrip.map;
+            svg();
+            setRoute();
+        }
+        else if(this.options.optimization.equalsIgnoreCase("shorter")){
+            Optimize opt = new Optimize(this);
+            Trip optTrip = opt.getOptimalTrip();
+            this.title = optTrip.title;
+            this.options = optTrip.options;
+            this.places = optTrip.places;
+            this.map = optTrip.map;
+            svg();
+            setRoute();
+        }
+        else if(this.options.optimization.equalsIgnoreCase("shortest")){
+            Optimize opt = new Optimize(this);
+            Trip optTrip = opt.getOptimalTrip();
+            this.title = optTrip.title;
+            this.options = optTrip.options;
+            this.places = optTrip.places;
+            this.map = optTrip.map;
+            svg();
+            setRoute();
+        }
     }
 
     /**
@@ -84,28 +119,6 @@ public class Trip {
      */
     public void setDistances(ArrayList<Integer> distances){
         this.distances = distances;
-    }
-
-    /** The top level method that does planning.
-     * At this point it just adds the map and distances for the places in order.
-     * It might need to reorder the places in the future.
-     */
-    public void plan() {
-        if(this.options.optimization.equalsIgnoreCase("none")){
-            this.distances = legDistances();
-        }else {
-            Optimize opt = new Optimize(this);
-            Trip optTrip = opt.getOptimalTrip();
-            this.title = optTrip.title;
-            this.options = optTrip.options;
-            this.places = new ArrayList<>();
-            this.places.addAll(optTrip.places);
-            this.distances = optTrip.distances;
-            svg();
-            setRoute();
-        }
-
-        setRoute();
     }
 
     /**
@@ -132,18 +145,19 @@ public class Trip {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("POOP ON BUFFY INPUT STREAM!!");
         }
         this.map = fileLines;
     }
 
     /**
-     * Returns the distances between consecutive places.
+     * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
-     * @return ArrayList<Integer>.
+     * @return ArrayList<Integer>
      */
     private ArrayList<Integer> legDistances() {
+
         ArrayList<Integer> dist = new ArrayList<>();
+
         if(this.options.units.equals("user defined")){
             for (int counter = 0; counter < places.size() - 1; counter++) {
                 Distance distance = new Distance(places.get(counter), places.get(counter + 1), options.units, options.unitName, options.unitRadius);
@@ -164,52 +178,5 @@ public class Trip {
             dist.add(distance.distance);
         }
         return dist;
-    }
-
-    public void opt2Reverse(int i,int k,Place[] route) {
-        while(i < k) {
-            Place temp = route[i];
-            route[i] = route[k];
-            route[k] = temp;
-            i++; k--;
-        }
-        this.places =new ArrayList<>(Arrays.asList(route));
-    }
-
-    public void TwoOpt () {
-        final int n = places.size();
-        Place[] bestPath = new Place[n];
-        for(int k=0;k<n;k++) {
-            bestPath[k]=this.places.get(k);
-        }
-        if (n > 4) {
-            boolean improvement = true;
-            while (improvement) {
-                improvement = false;
-                for (int i = 0; i <= n - 3; i++) {
-                    for (int j = i + 2; j <= n - 1; j++) {
-                        Place o1, o2, d1, d2;
-                        if (j == n - 1) {
-                            o1 = bestPath[i];
-                            o2 = bestPath[i+1];
-                            d1 = bestPath[j];
-                            d2 = bestPath[0];
-                        }
-                        else {
-                            o1 = bestPath[i];
-                            o2 = bestPath[i+1];
-                            d1 = bestPath[j];
-                            d2 = bestPath[j+1];
-                        }
-                        int delta = -Calculate.calcDistance(o1, o2, this.options.units) - Calculate.calcDistance(d1, d2, this.options.units)
-                                + Calculate.calcDistance(o1, d1, this.options.units) + Calculate.calcDistance(o2, d2, this.options.units);
-                        if (delta < 0) {
-                            opt2Reverse(i + 1, j, bestPath);
-                            improvement = true;
-                        }
-                    }
-                }
-            }
-        }
     }
 }

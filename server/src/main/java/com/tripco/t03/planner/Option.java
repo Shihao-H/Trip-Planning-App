@@ -72,11 +72,11 @@ public class Option {
    * Compares one Option object to another Option object.
    */
   public boolean equals(Option option){
-      if((this.unitName != null) && (this.unitRadius!=0.0)) {
-        return this.unitName.equalsIgnoreCase(option.unitName) && this.unitRadius.equals(option.unitRadius) && this.units.equalsIgnoreCase(option.units);
-      }else{
-          return this.units.equalsIgnoreCase(option.units);
-      }
+    if((this.unitName != null) && (this.unitRadius!=0.0)) {
+      return this.unitName.equalsIgnoreCase(option.unitName) && this.unitRadius.equals(option.unitRadius) && this.units.equalsIgnoreCase(option.units);
+    }else{
+      return this.units.equalsIgnoreCase(option.units);
+    }
   }
 
   /**
