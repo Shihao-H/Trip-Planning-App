@@ -121,13 +121,6 @@ public class Trip {
         this.distances = distances;
     }
 
-//    public void plan() {
-//        optimize();
-//        this.map=svg();
-//        this.distances = legDistances();
-//        setRoute();
-//    }
-
     /**
      * Adds the route to the existing map.
      */
