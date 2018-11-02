@@ -8,14 +8,14 @@ import java.util.ArrayList;
  */
 public class Search {
 
-    public String type = "search";
     public int version = 4;
+    public String type = "search";
     public String match = null;
+    public Filter[] filters = null;
     public int limit = 0;
     public int found = 0;
     public ArrayList<Place> places;
-    public Filter[] filters = null;
-    
+
     /**
      * This is a default constructor.
      */
@@ -25,8 +25,7 @@ public class Search {
      * This is a constructor.
      * @param match String compare match with places' names in the database.
      */
-    public Search(String match)
-    {
+    public Search(String match) {
         this.match = match;
     }
 
@@ -68,9 +67,36 @@ public class Search {
     /**
      * The top level method that does searching.
      */
-    public void match(){
+    public void match() {
+        String query = "";
+        if ((this.filters != null) && (this.filters.length != 0)) {
+            for (int i = 0; i < this.filters.length; i++) {
+                if (this.filters[i].values.length != 0) {
+                    query += "AND (";
+                    for (int j = 0; j < this.filters[i].values.length; j++) {
+                        if (this.filters[i].name.equalsIgnoreCase("continents")) {
+                            query += this.filters[i].name + ".name = \'" + this.filters[i].values[j] + "\' ";
+                            if (j == this.filters[i].values.length - 1) {
+                                query += ")\n";
+                            } else {
+                                query += "OR\n";
+                            }
+                        }
+                        if (this.filters[i].name.equalsIgnoreCase("type")) {
+                            query += this.filters[i].name + " = \'" + this.filters[i].values[j] + "\' ";
+                            if (j == this.filters[i].values.length - 1) {
+                                query += ")\n";
+                            } else {
+                                query += "OR\n";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("This is the filter query:\n " + query);
         Driver driver = new Driver();
-        driver.find(this.match, this.limit);
+        driver.find(this.match, this.limit, query);
         this.found = driver.found;
         this.places = (ArrayList<Place>) driver.places.clone();
     }

@@ -130,5 +130,4 @@ public class TestDistance {
         assertEquals(dis.toString(), "Origin: latitude: 18.000000, longitude: 104.000000, name: origin, Destination: latitude: 25.000000, " +
                 "longitude: -105.000000, name: destination, Units: miles, Distance: 42.");
     }
-    
 }

@@ -1,6 +1,5 @@
 package com.tripco.t03.planner;
 
-
 public class Place {
     public String id;
     public String name;
