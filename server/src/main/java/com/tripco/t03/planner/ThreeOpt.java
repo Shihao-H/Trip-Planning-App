@@ -1,9 +1,12 @@
 package com.tripco.t03.planner;
 
 public class ThreeOpt {
+    private int minTripDistance;
+    private Integer[] optTrip;
     private Integer[] sortedIndexes;
     private Integer[][] distanceGrid;
-
+    private Integer[] tripDistances;
+    private Integer[] legDistance;
     /**
      * Constructor for NearestNeighbor Object.
      * @param sortedIndexes Integer array of sorted place indices.
@@ -12,8 +15,33 @@ public class ThreeOpt {
     public ThreeOpt(Integer [] sortedIndexes, Integer[][] distanceGrid){
         this.sortedIndexes = sortedIndexes;
         this.distanceGrid = distanceGrid;
+        this.optTrip = new Integer[this.sortedIndexes.length];
+        this.minTripDistance = Integer.MAX_VALUE;
+        this.tripDistances = new Integer[this.sortedIndexes.length];
+        this.legDistance = new Integer[tripDistances.length];
     }
 
+    /**
+     * Getter method.
+     */
+    public void getOptimalTrip(Integer[] result){
+        System.arraycopy(this.optTrip, 0, result, 0, result.length);
+    }
+
+    /**
+     * Getter method.
+     */
+    public void getLegDistances(Integer[] result){
+        System.arraycopy(tripDistances, 0, result, 0, result.length);
+    }
+
+    /**
+     * Getter Method.
+     * @return Integer the total distance for the optimal trip.
+     */
+    public Integer getTotalDistance(){
+        return this.minTripDistance;
+    }
 
     public void opt2Reverse2(Integer i,Integer k,Integer[] indexes)
     {

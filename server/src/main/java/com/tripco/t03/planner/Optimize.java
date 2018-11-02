@@ -46,10 +46,20 @@ public class Optimize {
             return buildNewTrip();
         }
         else if(this.trip.options.optimization.equalsIgnoreCase("shorter")){
-            return null;
+            TwoOpt nn = new TwoOpt(this.sortedPlaces, this.grid.distanceGrid);
+            nn.TwoOpt();
+            nn.getOptimalTrip(this.optimalIndices);
+            nn.getLegDistances(this.optimalLegs);
+            this.optimalTotalDistance = nn.getTotalDistance();
+            return buildNewTrip();
         }
         else if(this.trip.options.optimization.equalsIgnoreCase("shortest")){
-            return null;
+            ThreeOpt nn = new ThreeOpt(this.sortedPlaces, this.grid.distanceGrid);
+            nn.ThreeOpt();
+            nn.getOptimalTrip(this.optimalIndices);
+            nn.getLegDistances(this.optimalLegs);
+            this.optimalTotalDistance = nn.getTotalDistance();
+            return buildNewTrip();
         }
         return null;
     }
