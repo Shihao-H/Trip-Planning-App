@@ -88,9 +88,13 @@ Epics planned for this sprint.
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | *#task, ...* | *#task, ...* | *none* | 
+| 10/22/2018 | 405 | 436, 434, 416 | Getting motivated after turning in last sprint | 
+| 10/24/2018 | 436, 434, 416 | 435, 439, 438, 443 | Dealing with other homework from other classes |
+| 10/26/2018 | 435, 439, 438, 443 | 441, 442, 431, 421 | It was Friday |
+| 10/29/2018 | 441, 442, 440, 421 | 410, 406, 426, 425 | It was Monday |
+| 10/31/2018 | 410, 406, 426, 425, 413, 423 | 414, 412, 383, 422, 460 | Happy Halloween! |
+| 11/02/2018 | 414, 412, 383, 422, 460 | 458, 411, 407, 437 | Bugs and compatibility issues |
 
-*Add a new row for the scrum session after each lecture. *
 
 ## Review
 
