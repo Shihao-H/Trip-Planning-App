@@ -75,8 +75,8 @@ public class Search {
                     query += "AND (";
                     for (int j = 0; j < this.filters[i].values.length; j++) {
                         if (this.filters[i].name.equalsIgnoreCase("continents")) {
-                            query += this.filters[i].name +
-                                    ".name = \'" + this.filters[i].values[j] + "\' ";
+                            query += this.filters[i].name + ".name = \'"
+                                    + this.filters[i].values[j] + "\' ";
                             if (j == this.filters[i].values.length - 1) {
                                 query += ")\n";
                             } else {
@@ -84,8 +84,8 @@ public class Search {
                             }
                         }
                         if (this.filters[i].name.equalsIgnoreCase("type")) {
-                            query += this.filters[i].name + " = \'" +
-                                    this.filters[i].values[j] + "\' ";
+                            query += this.filters[i].name + " = \'"
+                                    + this.filters[i].values[j] + "\' ";
                             if (j == this.filters[i].values.length - 1) {
                                 query += ")\n";
                             } else {

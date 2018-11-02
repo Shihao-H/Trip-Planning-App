@@ -163,11 +163,11 @@ public class Trip {
             dist.add(leg.distance);
         } else {
             for (int count = 0; count < places.size() - 1; count++) {
-                Distance leg = new Distance(places.get(count), places.get(count + 1), options.units);
+                Distance leg = new Distance(places.get(count), places.get(count+1), options.units);
                 leg.setDistance();
                 dist.add(leg.distance);
             }
-            Distance leg = new Distance(places.get(places.size() - 1), places.get(0), options.units);
+            Distance leg = new Distance(places.get(places.size()-1), places.get(0), options.units);
             leg.setDistance();
             dist.add(leg.distance);
         }

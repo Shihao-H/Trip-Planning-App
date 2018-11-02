@@ -80,8 +80,8 @@ public class Calculate {
     /**
      * @param distance Distance object
      * @return integer value of distance between origin and destination; -1 if invalid.
-     * Calls getDeltaSigma() and uses that value to determine the distance between coordinates
-     * Assigns that value to the distance variable
+     * Calls getDeltaSigma() and uses that val to find out the distance between coordinates.
+     * Assigns that value to the distance variable.
      */
     public static int calcDistance(Distance distance){
         double radius = -1;
@@ -108,20 +108,20 @@ public class Calculate {
     }
 
     /**
-     * @param originLat double origin latitude
-     * @param originLong double origin longitude
-     * @param destLat double destination latitude
-     * @param destLong double destination longitude
+     * @param orLat double origin latitude
+     * @param orLong double origin longitude
+     * @param deLat double destination latitude
+     * @param deLong double destination longitude
      *              calculates delta sigma for circle distance using Vincenty formula
      * @return returns floating point delta sigma value for the designated units
      */
-    private static double getDeltaSigma(double originLat, double originLong, double destLat, double destLong) {
+    private static double getDeltaSigma(double orLat, double orLong, double deLat, double deLong) {
 
-        double  deltaLongitude = Math.abs(Math.toRadians(originLong - destLong));
-        double  destinationLatitude = Math.toRadians(destLat);
-        double  originLatitude = Math.toRadians(originLat);
-        double  numerator;
-        double  denominator;
+        double  deltaLongitude = Math.abs(Math.toRadians(orLong - deLong));
+        double  destinationLatitude = Math.toRadians(deLat);
+        double  originLatitude = Math.toRadians(orLat);
+        double  num;
+        double  den;
 
         double cosLatSinLongSqr = (Math.cos(destinationLatitude) * Math.sin(deltaLongitude));
         cosLatSinLongSqr = cosLatSinLongSqr * cosLatSinLongSqr;
@@ -130,9 +130,9 @@ public class Calculate {
                 - Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude));
         cosLatSinLatMnsSinLatCosLatCosLongSqr = cosLatSinLatMnsSinLatCosLatCosLongSqr * cosLatSinLatMnsSinLatCosLatCosLongSqr;
 
-        numerator = Math.sqrt(cosLatSinLongSqr + cosLatSinLatMnsSinLatCosLatCosLongSqr);
-        denominator = Math.sin(originLatitude) * Math.sin(destinationLatitude) +
-                Math.cos(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude);
-        return Math.atan2(numerator, denominator);
+        num = Math.sqrt(cosLatSinLongSqr + cosLatSinLatMnsSinLatCosLatCosLongSqr);
+        den = Math.sin(originLatitude) * Math.sin(destinationLatitude)
+                + Math.cos(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude);
+        return Math.atan2(num, den);
     }
 }

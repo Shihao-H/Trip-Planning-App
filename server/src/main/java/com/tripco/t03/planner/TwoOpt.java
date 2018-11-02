@@ -58,7 +58,8 @@ public class TwoOpt {
             int temp = indices[place1];
             indices[place1] = indices[place2];
             indices[place2] = temp;
-            place1++; place2--;
+            place1++;
+            place2--;
         }
     }
 

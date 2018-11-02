@@ -1,11 +1,11 @@
 package com.tripco.t03.server;
 
 /** The main class for the application.
- * <p>
- * Command line arguments are of the form:
+ *
+ * <p>Command line arguments are of the form:
  * [port] [teaminfo]...
- * <p>
- * Examples that produce the same result:
+ *
+ * <p>Examples that produce the same result:
  * 31400 t03 Team Name Here
  * 31400 "t03 Team Name Here"
  */

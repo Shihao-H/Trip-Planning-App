@@ -46,17 +46,18 @@ public class ThreeOpt {
 
     /**
      * Reverses array.
-     * @param i Integer.
-     * @param k Integer.
+     * @param place1 Integer.
+     * @param place2 Integer.
      * @param indexes Integer array.
      */
-    public void opt2Reverse2(Integer i,Integer k,Integer[] indexes)
+    public void opt2Reverse2(Integer place1,Integer place2,Integer[] indexes)
     {
-        while(i < k) {
-            int temp = indexes[i];
-            indexes[i] = indexes[k];
-            indexes[k] = temp;
-            i++; k--;
+        while(place1 < place2) {
+            int temp = indexes[place1];
+            indexes[place1] = indexes[place2];
+            indexes[place2] = temp;
+            place1++;
+            place2--;
         }
     }
 
