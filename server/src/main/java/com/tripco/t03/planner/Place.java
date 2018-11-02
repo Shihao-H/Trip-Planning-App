@@ -1,15 +1,11 @@
 package com.tripco.t03.planner;
 
-/**
- * Describes the places to visit in a trip in TFFI format.
- * There may be other attributes of a place, but these are required to plan a trip.
- */
+
 public class Place {
     public String id;
     public String name;
     public Double latitude;
     public Double longitude;
-
     public String type;
     public String elevation;
     public String continent;
@@ -20,14 +16,19 @@ public class Place {
     /**
      * Default constructor
      */
-    public Place(){}
+    public Place(){
+        this.id = null;
+        this.name = null;
+        this.latitude = null;
+        this.longitude = null;
+    }
 
     /**
-     * @param id identifier given by user
-     * @param name name of the place string
-     * @param latitude latitude coordinates double
-     * @param longitude longitude coordinates double
-     *                  constructs an instance of Place for the desired place
+     * Constructs an instance of Place for the desired place.
+     * @param id identifier given by user.
+     * @param name name of the place string.
+     * @param latitude latitude coordinates double.
+     * @param longitude longitude coordinates double.
      */
     public Place(String id, String name, Double latitude, Double longitude){
         this.id = id;
@@ -37,7 +38,33 @@ public class Place {
     }
 
     /**
-     * Setter for attribute 'type'.
+     * Constructor for user defined units.
+     * @param id String identifier for place.
+     * @param name String place name.
+     * @param userDefined String userDefined.
+     * @param latitude Double latitude in decimal degrees.
+     * @param longitude Double longitude in decimal degrees.
+     */
+    public Place(String id, String name, String userDefined, Double latitude, Double longitude){
+        this.id = id;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    /**
+     * Copy constructor.
+     * @param from Place object to copy.
+     */
+    public Place(Place from){
+        this.id = from.id;
+        this.name = from.name;
+        this.latitude = from.latitude;
+        this.longitude = from.longitude;
+    }
+
+    /**
+     * Setter for attributes.
      * @param type String.
      */
     public void setAttributeType(String type) {
@@ -45,7 +72,7 @@ public class Place {
     }
 
     /**
-     * Setter for attribute elevation.
+     * Setter for atrributes.
      * @param elevation String.
      */
     public void setAttributeElevation(String elevation) {
@@ -53,23 +80,23 @@ public class Place {
     }
 
     /**
-     * Setter for attribute continent.
-     * @param continent String
+     * Setter for attributes.
+     * @param continent String.
      */
     public void setAttributeContinent(String continent) {
         this.continent = continent;
     }
 
     /**
-     * Setter for attribute country.
-     * @param country String.
+     * Setter for attributes.
+     * @param county String.
      */
-    public void setAttributeCountry(String country) {
+    public void setAttributeCounty(String county) {
         this.country = country;
     }
 
     /**
-     * Setter for attribute region.
+     * Setter for attributes.
      * @param region String.
      */
     public void setAttributeRegion(String region) {
@@ -77,7 +104,7 @@ public class Place {
     }
 
     /**
-     * Setter for attribute municipality.
+     * Setter for attributes.
      * @param municipality String.
      */
     public void setAttributeMunicipality(String municipality){
@@ -85,21 +112,21 @@ public class Place {
     }
 
     /**
-     * @return name of place object
+     * @return name of place object.
      */
     public String getName(){
         return this.name;
     }
 
     /**
-     * @return latitude of place object
+     * @return latitude of place object.
      */
     public double getLatitude(){
         return this.latitude;
     }
 
     /**
-     * @return longitude of place object
+     * @return longitude of place object.
      */
     public double getLongitude(){
         return this.longitude;

@@ -1,6 +1,5 @@
 package com.tripco.t03.planner;
 
-import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,19 +13,19 @@ import static org.junit.Assert.*;
 @RunWith(JUnit4.class)
 public class TestPlace {
 
-  Place p = new Place();
-
-  @Test
-  public void testEmptyPlace() {
-    assertNull(p);
-  }
-
   Place place;
 
   // Setup to be done before every test in TestPlan
   @Before
   public void initialize() {
     place = new Place("dnvr", "Denver", 1.0, 0.0);
+  }
+
+  @Test
+  public void testEmptyPlace() {
+    Place p = new Place();
+
+    assertNull(p.name);
   }
 
   @Test

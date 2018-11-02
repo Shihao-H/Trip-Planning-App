@@ -115,7 +115,7 @@ public class TestDistance {
     @Test
     public void testEmptyDistance() {
         dis = new Distance();
-        assertNull(dis);
+        assertNull(dis.origin.name);
     }
 
     @Test
@@ -124,7 +124,7 @@ public class TestDistance {
         Place destination = new Place("dest", "destination", 25.0, -105.0);
         dis = new Distance(origin, destination, "user defined", "some", 42.0);
         assertEquals(dis.toString(), "Origin: latitude: 18.000000, longitude: 104.000000, name: origin, Destination: latitude: 25.000000, " +
-                "longitude: -105.000000, name: destination, Units: user defined, Unit Name: some, Distance: 0.");
+                "longitude: -105.000000, name: destination, Units: user defined, Unit Name: some, Distance: null.");
 
         dis = new Distance(origin, destination, "miles", 42);
         assertEquals(dis.toString(), "Origin: latitude: 18.000000, longitude: 104.000000, name: origin, Destination: latitude: 25.000000, " +

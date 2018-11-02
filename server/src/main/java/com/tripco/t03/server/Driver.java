@@ -112,6 +112,16 @@ public class Driver {
                                     Double.parseDouble(query.getString("latitude")),
                                     Double.parseDouble(query.getString("longitude")));
 
+
+            place.setAttributeType(query.getString("type"));
+            place.setAttributeElevation(query.getString("elevation"));
+            place.setAttributeContinent(query.getString(5));//continent
+            place.setAttributeCounty(query.getString(4));//country
+            place.setAttributeRegion(query.getString(3));//region
+            place.setAttributeMunicipality(query.getString("municipality"));
+
+                                    Double.parseDouble(query.getString("longitude")));
+
             place.setAttributeType(query.getString("type"));
             place.setAttributeElevation(query.getString("elevation"));
             place.setAttributeContinent(query.getString(5));//continent
