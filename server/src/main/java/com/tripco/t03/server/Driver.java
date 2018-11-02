@@ -25,38 +25,44 @@ public class Driver {
      * The find method is meant to get access to the database and execute queries.
      *
      */
-    public static void find(String match, int limit){
+    public static void find(String match, int limit, String filter){
         if(limit == 0)
             limitQuery = ""; // no limit
         else
             limitQuery = "limit " + Integer.toString(limit);
 
-        search = "SELECT world_airports.name, world_airports.municipality, region.name, country.name, continents.name, " +
-                "world_airports.id, world_airports.type, world_airports.longitude, world_airports.latitude, " +
-                "world_airports.elevation " +
-                "FROM continents \n" +
-                "INNER JOIN country ON continents.id = country.continent \n" +
-                "INNER JOIN region ON country.id = region.iso_country \n" +
-                "INNER JOIN world_airports ON region.id = world_airports.iso_region \n" +
-                "WHERE continents.name LIKE \"%" + match + "%\"  \n" +
-                "OR country.name LIKE \"%" + match + "%\"  \n" +
-                "OR region.name LIKE \"%" + match + "%\"  \n" +
-                "OR world_airports.municipality LIKE \"%" + match + "%\" \n" +
-                "OR world_airports.name LIKE \"%" + match + "%\" \n" +
-                "ORDER BY continents.name, country.name, region.name, world_airports.municipality, world_airports.name ASC \n" +
-                limitQuery;
+        search = "SELECT world_airports.name, world_airports.municipality, region.name, "
+                + "country.name, continents.name, "
+                + "world_airports.id, world_airports.type, world_airports.longitude, "
+                + "world_airports.latitude, "
+                + "world_airports.elevation "
+                + "FROM continents \n"
+                + "INNER JOIN country ON continents.id = country.continent \n"
+                + "INNER JOIN region ON country.id = region.iso_country \n"
+                + "INNER JOIN world_airports ON region.id = world_airports.iso_region \n"
+                + "WHERE (continents.name LIKE \"%" + match + "%\"  \n"
+                + "OR country.name LIKE \"%" + match + "%\"  \n"
+                + "OR region.name LIKE \"%" + match + "%\"  \n"
+                + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
+                + "OR world_airports.name LIKE \"%" + match + "%\") \n"
+                + filter
+                + "ORDER BY continents.name, country.name, region.name, world_airports.municipality, "
+                + "world_airports.name ASC "
+                + limitQuery;
 
-        count = "SELECT count(*) " +
-                "FROM continents \n" +
-                "INNER JOIN country ON continents.id = country.continent \n" +
-                "INNER JOIN region ON country.id = region.iso_country \n" +
-                "INNER JOIN world_airports ON region.id = world_airports.iso_region \n" +
-                "WHERE continents.name LIKE \"%" + match + "%\"  \n" +
-                "OR country.name LIKE \"%" + match + "%\"  \n" +
-                "OR region.name LIKE \"%" + match + "%\"  \n" +
-                "OR world_airports.municipality LIKE \"%" + match + "%\" \n" +
-                "OR world_airports.name LIKE \"%" + match + "%\" \n" +
-                "ORDER BY continents.name, country.name, region.name, world_airports.municipality, world_airports.name ASC";
+        count = "SELECT count(*) "
+                + "FROM continents \n"
+                + "INNER JOIN country ON continents.id = country.continent \n"
+                + "INNER JOIN region ON country.id = region.iso_country \n"
+                + "INNER JOIN world_airports ON region.id = world_airports.iso_region \n"
+                + "WHERE (continents.name LIKE \"%" + match + "%\"  \n"
+                + "OR country.name LIKE \"%" + match + "%\"  \n"
+                + "OR region.name LIKE \"%" + match + "%\"  \n"
+                + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
+                + "OR world_airports.name LIKE \"%" + match + "%\") \n"
+                +  filter
+                + "ORDER BY continents.name, country.name, region.name, world_airports.municipality, "
+                + "world_airports.name ASC";
 
         try {
             Class.forName(myDriver);
@@ -77,7 +83,8 @@ public class Driver {
      * This function is meant to print the JSON on the terminal/ console to log.
      *
      */
-    private static void printJson(ResultSet count, ResultSet query, String match, int limit) throws SQLException {
+    private static void printJson(ResultSet count, ResultSet query, String match, int limit)
+            throws SQLException {
 
         System.out.print("\n{\n");
         System.out.print("\"version\": 4,\n");
@@ -97,19 +104,34 @@ public class Driver {
             System.out.printf("The limit is %d.\n", limit);
 
         while (query.next()) {
-            final Place place = new Place(query.getString("id"),
-                                    query.getString("name"),
-                                    Double.parseDouble(query.getString("latitude")),
-                                    Double.parseDouble(query.getString("longitude")));
+            final Place place = new Place(
+                    query.getString("id"),
+                    query.getString(1),//name
+                    Double.parseDouble(query.getString("latitude")),
+                    Double.parseDouble(query.getString("longitude")),
+                    query.getString("type"),
+                    Double.parseDouble(query.getString("elevation")),
+                    query.getString(5),//continent
+                    query.getString(4),//country
+                    query.getString(3),//region
+                    query.getString("municipality")
+            );
+
             System.out.printf(" {\"id\":\"%s\", ", query.getString("id"));
-            System.out.printf("\"name\":\"%s\", ", query.getString("name"));
+            System.out.printf("\"name\":\"%s\", ", query.getString(1));
             System.out.printf("\"latitude\":\"%s\", ", query.getString("latitude"));
-            System.out.printf("\"longitude\":\"%s\"}", query.getString("longitude"));
+            System.out.printf("\"longitude\":\"%s\", ", query.getString("longitude"));
+            System.out.printf("\"type\":\"%s\", ", query.getString("type"));
+            System.out.printf("\"elevation\":\"%s\", ", query.getString("elevation"));
+            System.out.printf("\"continent\":\"%s\", ", query.getString(5));
+            System.out.printf("\"country\":\"%s\", ", query.getString(4));
+            System.out.printf("\"region\":\"%s\", ", query.getString(3));
+            System.out.printf("\"municipality\":\"%s\"}", query.getString("municipality"));
 
             if (--result == 0)
-                {System.out.print("\n");}
+            {System.out.print("\n");}
             else
-                {System.out.print(",\n");}
+            {System.out.print(",\n");}
             places.add(place);
         }
 
