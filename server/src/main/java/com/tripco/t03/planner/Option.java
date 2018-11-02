@@ -10,13 +10,17 @@ public class Option {
   public String unitName;
   public Double unitRadius;
   public String optimization;
+  public String[] map;
 
   /**
    * Default constructor.
    */
   public Option(){
-    units = null;
-    unitName = null;
+    this.units = null;
+    this.unitName = null;
+    this.unitRadius = null;
+    this.optimization = null;
+    this.map = null;
   }
 
   /**
@@ -26,8 +30,9 @@ public class Option {
   public Option(String units){
     this.units = units;
     this.unitName = null;
-    this.unitRadius = 0.0;
+    this.unitRadius = null;
     this.optimization = "none";
+    this.map= new String[]{"svg"};
   }
 
   /**
@@ -38,6 +43,9 @@ public class Option {
   public Option(String units, String optimization) {
     this.units = units;
     this.optimization = optimization;
+    this.unitName=null;
+    this.unitRadius=null;
+    this.map= new String[]{"svg"};
   }
 
   /**
@@ -51,6 +59,7 @@ public class Option {
     this.unitName = unitName;
     this.unitRadius = unitRadius;
     this.optimization = "none";
+    this.map= new String[]{"svg"};
   }
 
   /**
@@ -64,8 +73,9 @@ public class Option {
     this.unitName = unitName;
     this.unitRadius = unitRadius;
     this.optimization = optimization;
+    this.map= new String[]{"svg"};
   }
-
+  
   /**
    * @param option Option object.
    * @return boolean true is equal, false if not equal.
