@@ -1,6 +1,7 @@
 package com.tripco.t03.server;
 
 import com.tripco.t03.planner.Place;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class Driver {
     // db configuration information
     private static final String myDriver = "com.mysql.jdbc.Driver";
-    private static final  String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
+    private static final String myUrl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
     private static final String user = "cs314-db";
     private static final String pass = "eiK5liet1uej";
     // fill in SQL queries to count the number of records and to retrieve the data
@@ -23,10 +24,9 @@ public class Driver {
 
     /**
      * The find method is meant to get access to the database and execute queries.
-     *
      */
-    public static void find(String match, int limit, String filter){
-        if(limit == 0)
+    public static void find(String match, int limit, String filter) {
+        if (limit == 0)
             limitQuery = ""; // no limit
         else
             limitQuery = "limit " + Integer.toString(limit);
@@ -60,7 +60,7 @@ public class Driver {
                 + "OR region.name LIKE \"%" + match + "%\"  \n"
                 + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\") \n"
-                +  filter
+                + filter
                 + "ORDER BY continents.name, country.name, region.name, world_airports.municipality, "
                 + "world_airports.name ASC";
 
@@ -81,7 +81,6 @@ public class Driver {
 
     /**
      * This function is meant to print the JSON on the terminal/ console to log.
-     *
      */
     private static void printJson(ResultSet count, ResultSet query, String match, int limit)
             throws SQLException {
@@ -94,23 +93,36 @@ public class Driver {
         places = new ArrayList<Place>();
 
         count.next();
-        int result  = count.getInt(1);
-        found = result;
+        found = count.getInt(1);
         System.out.printf("%d results found.\n", found);
 
-        if(limit == 0)
+        int result = 0;
+        if (limit == 0) {
+            result = found;
+        } else {
+            if (limit < found) {
+                result = limit;
+            } else {
+                result = found;
+            }
+        }
+        System.out.printf("%d results returned.\n", result);
+
+        if (limit == 0)
             System.out.print("No limit.\n");
         else
             System.out.printf("The limit is %d.\n", limit);
 
         while (query.next()) {
+
             final Place place = new Place(
                     query.getString("id"),
                     query.getString(1),//name
                     Double.parseDouble(query.getString("latitude")),
                     Double.parseDouble(query.getString("longitude")),
+
                     query.getString("type"),
-                    Double.parseDouble(query.getString("elevation")),
+                    query.getString("elevation"),
                     query.getString(5),//continent
                     query.getString(4),//country
                     query.getString(3),//region
@@ -121,6 +133,7 @@ public class Driver {
             System.out.printf("\"name\":\"%s\", ", query.getString(1));
             System.out.printf("\"latitude\":\"%s\", ", query.getString("latitude"));
             System.out.printf("\"longitude\":\"%s\", ", query.getString("longitude"));
+
             System.out.printf("\"type\":\"%s\", ", query.getString("type"));
             System.out.printf("\"elevation\":\"%s\", ", query.getString("elevation"));
             System.out.printf("\"continent\":\"%s\", ", query.getString(5));
@@ -128,13 +141,16 @@ public class Driver {
             System.out.printf("\"region\":\"%s\", ", query.getString(3));
             System.out.printf("\"municipality\":\"%s\"}", query.getString("municipality"));
 
-            if (--result == 0)
-            {System.out.print("\n");}
-            else
-            {System.out.print(",\n");}
+            if (--result == 0) {
+                System.out.print("\n");
+            } else {
+                System.out.print(",\n");
+            }
             places.add(place);
+
         }
 
         System.out.print(" ]\n}\n");
+
     }
 }

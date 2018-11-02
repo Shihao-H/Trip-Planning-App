@@ -1,13 +1,12 @@
 package com.tripco.t03.planner;
 
-
 public class Place {
     public String id;
     public String name;
     public Double latitude;
     public Double longitude;
     public String type;
-    public Double elevation;
+    public String elevation;
     public String continent;
     public String country;
     public String region;
@@ -16,12 +15,7 @@ public class Place {
     /**
      * Default constructor
      */
-    public Place() {
-        this.id = null;
-        this.name = null;
-        this.latitude = null;
-        this.longitude = null;
-    }
+    public Place() {}
 
     /**
      * Constructs an instance of Place for the desired place.
@@ -53,7 +47,7 @@ public class Place {
      * @param municipality String the municipality where the airport is in.
      */
     public Place(String id, String name, Double latitude, Double longitude,
-                 String type, Double elevation, String continent, String country,
+                 String type, String elevation, String continent, String country,
                  String region, String municipality) {
         this.id = id;
         this.name = name;
@@ -89,11 +83,11 @@ public class Place {
     }
 
     /**
-     * Setter for atrributes.
+     * Setter for attributes.
      *
      * @param elevation Double.
      */
-    public void setAttributeElevation(Double elevation) {
+    public void setAttributeElevation(String elevation) {
         this.elevation = elevation;
     }
 

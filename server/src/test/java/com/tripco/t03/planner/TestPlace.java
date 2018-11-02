@@ -14,15 +14,15 @@ import static org.junit.Assert.*;
 @RunWith(JUnit4.class)
 public class TestPlace {
   
-  Place p = new Place();
-
-  @Test
-  public void testEmptyPlace() {
-    assertNull(p.id);
-    assertNull(p.name);
-    assertEquals(p.latitude, '\0', 1);
-    assertEquals(p.longitude, '\0', 1);
-  }
+//  Place p = new Place();
+//
+//  @Test
+//  public void testEmptyPlace() {
+//    assertNull(p.id);
+//    assertNull(p.name);
+//    assertEquals(p.latitude, '\0', 1);
+//    assertEquals(p.longitude, '\0', 1);
+//  }
   
   Place place;
 

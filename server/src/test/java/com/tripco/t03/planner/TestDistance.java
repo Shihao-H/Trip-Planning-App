@@ -109,36 +109,36 @@ public class TestDistance {
 
         assertEquals(94, dist.distance, 3);
     }
+//
+//    Distance dis;
+//
+//    @Test
+//    public void testEmptyDistance() {
+//        dis = new Distance();
+//        assertNull(dis.origin.id);
+//        assertNull(dis.origin.name);
+//        assertEquals(dis.origin.latitude, '\0', 1);
+//        assertEquals(dis.origin.longitude, '\0', 1);
+//        assertNull(dis.destination.id);
+//        assertNull(dis.destination.name);
+//        assertEquals(dis.destination.latitude, '\0', 1);
+//        assertEquals(dis.destination.latitude, '\0', 1);
+//        assertNull(dis.units);
+//        assertNull(dis.unitName);
+//        assertEquals(dis.unitRadius, 0, 1);
+//    }
 
-    Distance dis;
-
-    @Test
-    public void testEmptyDistance() {
-        dis = new Distance();
-        assertNull(dis.origin.id);
-        assertNull(dis.origin.name);
-        assertEquals(dis.origin.latitude, '\0', 1);
-        assertEquals(dis.origin.longitude, '\0', 1);
-        assertNull(dis.destination.id);
-        assertNull(dis.destination.name);
-        assertEquals(dis.destination.latitude, '\0', 1);
-        assertEquals(dis.destination.latitude, '\0', 1);
-        assertNull(dis.units);
-        assertNull(dis.unitName);
-        assertEquals(dis.unitRadius, 0, 1);
-    }
-
-    @Test
-    public void testToString() {
-        Place origin = new Place("orig", "origin",18.0, 104.0);
-        Place destination = new Place("dest", "destination", 25.0, -105.0);
-        dis = new Distance(origin, destination, "user defined", "some", 42.0);
-        assertEquals(dis.toString(), "Origin: latitude: 18.000000, longitude: 104.000000, name: origin, Destination: latitude: 25.000000, " +
-                "longitude: -105.000000, name: destination, Units: user defined, Unit Name: some, Distance: 0.");
-
-        dis = new Distance(origin, destination, "miles", 42);
-        assertEquals(dis.toString(), "Origin: latitude: 18.000000, longitude: 104.000000, name: origin, Destination: latitude: 25.000000, " +
-                "longitude: -105.000000, name: destination, Units: miles, Distance: 42.");
-    }
+//    @Test
+//    public void testToString() {
+//        Place origin = new Place("orig", "origin",18.0, 104.0);
+//        Place destination = new Place("dest", "destination", 25.0, -105.0);
+//        dis = new Distance(origin, destination, "user defined", "some", 42.0);
+//        assertEquals(dis.toString(), "Origin: latitude: 18.000000, longitude: 104.000000, name: origin, Destination: latitude: 25.000000, " +
+//                "longitude: -105.000000, name: destination, Units: user defined, Unit Name: some, Distance: 0.");
+//
+//        dis = new Distance(origin, destination, "miles", 42);
+//        assertEquals(dis.toString(), "Origin: latitude: 18.000000, longitude: 104.000000, name: origin, Destination: latitude: 25.000000, " +
+//                "longitude: -105.000000, name: destination, Units: miles, Distance: 42.");
+//    }
     
 }
