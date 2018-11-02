@@ -30,18 +30,34 @@ public class Search {
         this.match = match;
     }
 
+    /**
+     * Constructor.
+     * @param match String.
+     * @param limit int.
+     */
     public Search(String match, int limit)
     {
         this.match = match;
         this.limit = limit;
     }
 
+    /**
+     * Constructor.
+     * @param match String.
+     * @param filters Array of Filter objects.
+     */
     public Search(String match, Filter[] filters)
     {
         this.match = match;
         this.filters = filters;
     }
 
+    /**
+     * Constructor.
+     * @param match String.
+     * @param limit int.
+     * @param filters Array of Filter Objects.
+     */
     public Search(String match, int limit, Filter[] filters)
     {
         this.match = match;

@@ -89,9 +89,9 @@ public class Place {
 
     /**
      * Setter for attributes.
-     * @param county String.
+     * @param country String.
      */
-    public void setAttributeCounty(String county) {
+    public void setAttributeCountry(String country) {
         this.country = country;
     }
 
@@ -144,6 +144,10 @@ public class Place {
                 && (this.id.equals(place.id));
     }
 
+    /**
+     * toString for Place object.
+     * @return String.
+     */
     public String toString(){
         return String.format("Id: %s, Name: %s, Latitude: %f, Longitude: %f",
                 this.id, this.name, this.latitude, this.longitude);

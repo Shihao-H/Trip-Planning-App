@@ -80,10 +80,10 @@ public class Driver {
 
     /**
      * This function is meant to print the JSON on the terminal/ console to log.
-     * @param count
-     * @param query
-     * @param match
-     * @param limit
+     * @param count ResultSet.
+     * @param query ResultSet.
+     * @param match String.
+     * @param limit int.
      */
     private static void printJson(ResultSet count, ResultSet query, String match, int limit) 
         throws SQLException {
@@ -116,11 +116,11 @@ public class Driver {
             place.setAttributeType(query.getString("type"));
             place.setAttributeElevation(query.getString("elevation"));
             place.setAttributeContinent(query.getString(5));//continent
-            place.setAttributeCounty(query.getString(4));//country
+            place.setAttributeCountry(query.getString(4));//country
             place.setAttributeRegion(query.getString(3));//region
             place.setAttributeMunicipality(query.getString("municipality"));
 
-                                    Double.parseDouble(query.getString("longitude")));
+                                    Double.parseDouble(query.getString("longitude"));
 
             place.setAttributeType(query.getString("type"));
             place.setAttributeElevation(query.getString("elevation"));

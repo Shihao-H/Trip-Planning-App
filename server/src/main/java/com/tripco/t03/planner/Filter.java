@@ -18,6 +18,8 @@ public class Filter {
 
     /**
      * This is a constructor.
+     * @param name String.
+     * @param values String array.
      */
     public Filter(String name, String[] values) {
         this.name = name;

@@ -31,7 +31,7 @@ public class TestPlace {
   @Test
   public void testPlace() {
     Place testPlace = new Place("dnvr", "Denver", 1.0, 0.0);
-    assertTrue(testPlace.equals(place));
+    assertTrue(testPlace.name.equals(place.name));
   }
   
   @Test
@@ -72,9 +72,10 @@ public class TestPlace {
 
   @Test
   public void testSetAttributeCountry(){
-    place.setAttributeCountry("This class is sucking my soul out");
+    String ofWordsExpressingMyFeelings = "This class is sucking my soul out";
+    place.setAttributeCountry(ofWordsExpressingMyFeelings);
 
-    assertTrue(place.country.length() == 33);
+    assertTrue(place.country.equals(ofWordsExpressingMyFeelings));
   }
 
   @Test

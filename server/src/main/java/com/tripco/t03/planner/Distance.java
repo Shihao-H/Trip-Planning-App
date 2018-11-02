@@ -1,4 +1,5 @@
 package com.tripco.t03.planner;
+
 public class Distance {
     public short version = 4;
     public String type = "distance";

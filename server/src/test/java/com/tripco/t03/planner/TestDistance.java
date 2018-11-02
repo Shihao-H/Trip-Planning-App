@@ -14,7 +14,7 @@ public class TestDistance {
         Place origin = new Place("orig", "origin",18.0, -104.0);
         Place destination = new Place("dest", "destination", 39.0, 116.0);
         dist = new Distance(origin, destination, "kilometers", 12434);
-        Double expect = new Double(12434);
+        Integer expect = new Integer(12434);
         assertEquals(dist.distance, expect);
     }
 

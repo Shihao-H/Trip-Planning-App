@@ -37,31 +37,26 @@ public class Optimize {
      * @return Trip Object that has been optimized.
      */
     public Trip getOptimalTrip(){
-        if(this.trip.options.optimization.equalsIgnoreCase("short")) {
-            NearestNeighbor nn = new NearestNeighbor(this.sortedPlaces, this.grid.distanceGrid);
-            nn.nearestNeighbor();
-            nn.getOptimalTrip(this.optimalIndices);
-            nn.getLegDistances(this.optimalLegs);
-            this.optimalTotalDistance = nn.getTotalDistance();
-            return buildNewTrip();
+        NearestNeighbor nn = new NearestNeighbor(this.sortedPlaces, this.grid.distanceGrid);
+        nn.nearestNeighbor();
+        nn.getOptimalTrip(this.optimalIndices);
+        nn.getLegDistances(this.optimalLegs);
+        this.optimalTotalDistance = nn.getTotalDistance();
+        if(this.trip.options.optimization.equalsIgnoreCase("shorter")){
+            TwoOpt twoOpt = new TwoOpt(this.sortedPlaces, this.grid.distanceGrid);
+            twoOpt.twoOpt();
+            twoOpt.getOptimalTrip(this.optimalIndices);
+            twoOpt.getLegDistances(this.optimalLegs);
+            this.optimalTotalDistance = twoOpt.getTotalDistance();
         }
-        else if(this.trip.options.optimization.equalsIgnoreCase("shorter")){
-            TwoOpt nn = new TwoOpt(this.sortedPlaces, this.grid.distanceGrid);
-            nn.TwoOpt();
-            nn.getOptimalTrip(this.optimalIndices);
-            nn.getLegDistances(this.optimalLegs);
-            this.optimalTotalDistance = nn.getTotalDistance();
-            return buildNewTrip();
+        if(this.trip.options.optimization.equalsIgnoreCase("shortest")){
+            ThreeOpt threeOpt = new ThreeOpt(this.sortedPlaces, this.grid.distanceGrid);
+            threeOpt.threeOpt();
+            threeOpt.getOptimalTrip(this.optimalIndices);
+            threeOpt.getLegDistances(this.optimalLegs);
+            this.optimalTotalDistance = threeOpt.getTotalDistance();
         }
-        else if(this.trip.options.optimization.equalsIgnoreCase("shortest")){
-            ThreeOpt nn = new ThreeOpt(this.sortedPlaces, this.grid.distanceGrid);
-            nn.ThreeOpt();
-            nn.getOptimalTrip(this.optimalIndices);
-            nn.getLegDistances(this.optimalLegs);
-            this.optimalTotalDistance = nn.getTotalDistance();
-            return buildNewTrip();
-        }
-        return null;
+        return buildNewTrip();
     }
 
     /**
