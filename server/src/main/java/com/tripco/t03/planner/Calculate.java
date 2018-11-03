@@ -39,7 +39,7 @@ public class Calculate {
     
     /**
      * Calls getDeltaSigma() and uses that value to determine the distance between two.
-     *lat/long coordinates and assigns that value to the distance variable.
+     * lat/long coordinates and assigns that value to the distance variable.
      * @param p1 Place object.
      * @param p2 Place object.
      * @param radius double radius of Earth in desired units.
