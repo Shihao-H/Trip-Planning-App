@@ -5,22 +5,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import spark.Request;
 
-/**
- * This class handles to the conversions of the JSON request/resopnse,
- * converting from the Json string in the request body to a Distance object,
- * perform calculation, and
- * converting the resulting Distance object back to a Json string
- * so it may returned as the response.
- */
 public class Calculate {
 
     private static Distance distance;
 
-
     /** Handles JSON request, creating a new Distance object from the JSON request.
      * Does the conversion from Json to a Java class before performing calculation.
      */
-    public Calculate (Request request) {
+    public Calculate(Request request) {
 
         // extract the information from the body of the request.
         JsonParser jsonParser = new JsonParser();
@@ -40,30 +32,31 @@ public class Calculate {
     /** Handles the response for a Distance object.
      * Does the conversion from a Java class to a Json string.*
      */
-    public String getDistance () {
+    public String getDistance() {
         Gson gson = new Gson();
         return gson.toJson(distance);
     }
 
     /**
-     * @param p1 Place object
-     * @param p2 Place object
+     * Calls getDeltaSigma() and uses that value to determine the distance between two.
+     *lat/long coordinates and assigns that value to the distance variable.
+     * @param p1 Place object.
+     * @param p2 Place object.
      * @param radius double radius of Earth in desired units.
      * @return integer value of distance between origin and destination; -1 if invalid.
-     * Calls getDeltaSigma() and uses that value to determine the distance between two lat/long coordinates
-     * Assigns that value to the distance variable
      */
     public static int optDistance(Place p1, Place p2, double radius){
-        return circleDistance(radius, getDeltaSigma(p1.latitude,p1.longitude,p2.latitude, p2.longitude));
+        double temp = getDeltaSigma(p1.latitude,p1.longitude,p2.latitude, p2.longitude);
+        return circleDistance(radius, temp);
     }
 
     /**
+     * Calls getDeltaSigma() and uses that value to determine the distance between two.
+     * lat/long coordinates and assigns that value to the distance variable.
      * @param origin Place object.
      * @param destination Place object.
      * @param units String designating the units for radius.
      * @return integer value of distance between origin and destination; -1 if invalid.
-     * Calls getDeltaSigma() and uses that value to determine the distance between two lat/long coordinates
-     * Assigns that value to the distance variable
      */
     public static int calcDistance(Place origin, Place destination, String units){
         double radius = -1;
@@ -74,14 +67,19 @@ public class Calculate {
         }else if(units.equalsIgnoreCase("nautical miles")) {
             radius = 3440.0;
         }
-        return circleDistance(radius, getDeltaSigma(origin.latitude,origin.longitude,destination.latitude, destination.longitude));
+        double origLat = origin.latitude;
+        double origLong = origin.longitude;
+        double destLat = destination.latitude;
+        double destLong = destination.longitude;
+        double temp = getDeltaSigma(origLat,origLong,destLat, destLong);
+        return circleDistance(radius,temp);
     }
 
     /**
-     * @param distance Distance object
+     * Calls getDeltaSigma() and uses that value to determine the distance between two.
+     * lat/long coordinates and assigns that value to the distance variable.
+     * @param distance Distance object.
      * @return integer value of distance between origin and destination; -1 if invalid.
-     * Calls getDeltaSigma() and uses that value to determine the distance between two lat/long coordinates
-     * Assigns that value to the distance variable
      */
     public static int calcDistance(Distance distance){
         double radius = -1;
@@ -94,7 +92,12 @@ public class Calculate {
         }else if(distance.units.equalsIgnoreCase("user defined")) {
             radius = distance.unitRadius;
         }
-        return circleDistance(radius, getDeltaSigma(distance.origin.latitude,distance.origin.longitude,distance.destination.latitude, distance.destination.longitude));
+        double origLat = distance.origin.latitude;
+        double origLong = distance.origin.longitude;
+        double destLat = distance.destination.latitude;
+        double destLong = distance.destination.longitude;
+        double temp = getDeltaSigma(origLat, origLong, destLat, destLong);
+        return circleDistance(radius, temp);
     }
 
     /**
@@ -108,31 +111,38 @@ public class Calculate {
     }
 
     /**
-     * @param oLat double origin latitude
-     * @param oLong double origin longitude
-     * @param dLat double destination latitude
-     * @param dLong double destination longitude
-     *              calculates delta sigma for circle distance using Vincenty formula
-     * @return returns floating point delta sigma value for the designated units
+     * Calculates delta sigma for circle distance using Vincenty formula.
+     * @param origLat double origin latitude.
+     * @param origLong double origin longitude.
+     * @param destLat double destination latitude.
+     * @param destLong double destination longitude.
+     * @return returns double delta sigma value for the designated units.
      */
-    private static double getDeltaSigma(double oLat, double oLong, double dLat, double dLong) {
+    private static double getDeltaSigma(double origLat, double origLong, double destLat, double destLong) {
 
-        double  deltaLongitude = Math.abs(Math.toRadians(oLong - dLong));
-        double  destinationLatitude = Math.toRadians(dLat);
-        double  originLatitude = Math.toRadians(oLat);
-        double  numerator;
-        double  denominator;
+        double  deltaLongitude = Math.abs(Math.toRadians(origLong - destLong));
+        double  destinationLatitude = Math.toRadians(destLat);
+        double  originLatitude = Math.toRadians(origLat);
 
-        double cosLatSinLongSqr = (Math.cos(destinationLatitude) * Math.sin(deltaLongitude));
+        double cosDestLat = Math.cos(destinationLatitude);
+        double sinDeltaLong = Math.sin(deltaLongitude);
+
+        double cosLatSinLongSqr = (cosDestLat * sinDeltaLong);
         cosLatSinLongSqr = cosLatSinLongSqr * cosLatSinLongSqr;
 
-        double cosLatSinLatMnsSinLatCosLatCosLongSqr = (Math.cos(originLatitude) * Math.sin(destinationLatitude)
-                - Math.sin(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude));
-        cosLatSinLatMnsSinLatCosLatCosLongSqr = cosLatSinLatMnsSinLatCosLatCosLongSqr * cosLatSinLatMnsSinLatCosLatCosLongSqr;
+        double cosOrigLat = Math.cos(originLatitude);
+        double sinDestLat = Math.sin(destinationLatitude);
+        double sinOrigLat = Math.sin(originLatitude);
+        double cosDeltaLong =  Math.cos(deltaLongitude);
 
-        numerator = Math.sqrt(cosLatSinLongSqr + cosLatSinLatMnsSinLatCosLatCosLongSqr);
-        denominator = Math.sin(originLatitude) * Math.sin(destinationLatitude) +
-                Math.cos(originLatitude) * Math.cos(destinationLatitude) * Math.cos(deltaLongitude);
+        double cosLatSinLatMnsSinLatCosLatCosLongSqr = (cosOrigLat * sinDestLat
+                - sinOrigLat * cosDestLat * cosDeltaLong);
+        cosLatSinLatMnsSinLatCosLatCosLongSqr = cosLatSinLatMnsSinLatCosLatCosLongSqr
+                * cosLatSinLatMnsSinLatCosLatCosLongSqr;
+
+        double numerator = Math.sqrt(cosLatSinLongSqr + cosLatSinLatMnsSinLatCosLatCosLongSqr);
+        double denominator = sinOrigLat * sinDestLat
+               + cosOrigLat * cosDestLat * cosDeltaLong;
         return Math.atan2(numerator, denominator);
     }
 }
