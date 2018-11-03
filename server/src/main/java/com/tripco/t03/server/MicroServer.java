@@ -37,7 +37,7 @@ public class MicroServer {
         String path = "/public/";
         Spark.staticFileLocation(path);
         get("/", (req, res) -> {res.redirect("index.html");
-        return null;
+            return null;
         });
 
         // register all micro-services and the function that services them.
