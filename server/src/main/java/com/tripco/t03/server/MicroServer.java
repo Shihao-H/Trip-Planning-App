@@ -6,6 +6,9 @@ import com.tripco.t03.planner.Plan;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
+
+import java.util.Arrays;
+
 import static spark.Spark.get;
 import static spark.Spark.port;
 import static spark.Spark.post;
@@ -18,7 +21,6 @@ public class MicroServer {
 
     private int    port;
     private String name;
-    private String path = "/public/";
 
     /** Creates a micro-server to load static files and provide REST APIs.
      *
@@ -32,7 +34,8 @@ public class MicroServer {
         port(port);
 
         // serve the static files: index.html and bundle.js
-        Spark.staticFileLocation(this.path);
+        String path = "/public/";
+        Spark.staticFileLocation(path);
         get("/", (req, res) -> {res.redirect("index.html");
         return null;
         });
@@ -148,8 +151,8 @@ public class MicroServer {
         return result;
     }
 
-    /** A REST API to support trip planning.
-     *
+    /**
+     * A REST API to support trip planning.
      * @param request Client request.
      * @param response Server response.
      * @return The planned trip
@@ -184,8 +187,8 @@ public class MicroServer {
         return result;
     }
 
-    /** A REST API for search.
-     *
+    /**
+     * A REST API for search.
      * @param request should be {a single string}.
      * @param response no idea what is this.
      * @return should be a list of places.
@@ -202,6 +205,11 @@ public class MicroServer {
         return result;
     }
 
+    /**
+     * Helper method to assign application/json to response.
+     * Assigns Access-Control- Allow-Origin to response header.
+     * @param response Response.
+     */
     private void setAppJsonResponse(Response response){
         response.type("application/json");
         response.header("Access-Control-Allow-Origin", "*");
@@ -215,7 +223,6 @@ public class MicroServer {
         System.out.println(err.getClass());
         System.out.println(err.getCause());
         System.out.println(err.getMessage());
-        System.out.println(err.getStackTrace());
+        System.out.println(Arrays.toString(err.getStackTrace()));
     }
-
 }
