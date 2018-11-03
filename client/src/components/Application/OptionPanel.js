@@ -18,8 +18,7 @@ class OptionPanel extends Component {
             <Card>
                 <CardBody><p className="lead">Options</p></CardBody>
                 <Container id="Plan">
-                    <Row>
-                        <Col>
+                    <Row><Col>
                             <Options config={this.props.config} options={this.props.options}
                             updateOptions={this.props.updateOptions}/>
                         </Col>
@@ -35,8 +34,7 @@ class OptionPanel extends Component {
                         <Col>
                             <InterOperate host={this.props.host} otherTeams={this.props.otherTeams}
                                 updateHost={this.props.updateHost} updateOtherTeams={this.props.updateOtherTeams}/>
-                        </Col>
-                    </Row>
+                        </Col></Row>
                 </Container>
             </Card>
         )

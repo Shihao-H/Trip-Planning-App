@@ -60,7 +60,7 @@ public class Distance {
      * @param orig trip origin Place object
      * @param dest trip destination Place object
      * @param units String designation of unit type
-     *Creates a distance object with data.
+     * Creates a distance object with data.
      */
     public Distance(Place orig, Place dest, String units, int distance){
         this.origin = orig;
@@ -72,7 +72,7 @@ public class Distance {
     }
 
     /**
-     * Sets distance element to circle distance between origin and destination by calling calcDistance
+     * Sets dist element to circle dist between origin and dest by calling calcDistance
      */
     public void setDistance(){
         this.distance = Calculate.calcDistance(this);
