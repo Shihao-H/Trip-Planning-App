@@ -9,21 +9,18 @@ import spark.Spark;
 
 import java.util.Arrays;
 
-import static spark.Spark.get;
-import static spark.Spark.port;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
-
-/** A simple micro-server for the web.  Just what we need, nothing more.
- *
+/**
+ * A simple micro-server for the web.  Just what we need, nothing more.
  */
 public class MicroServer {
 
     private int    port;
     private String name;
-
-    /** Creates a micro-server to load static files and provide REST APIs.
-     *
+    
+    /**
+     * Creates a micro-server to load static files and provide REST APIs.
      * @param port Which port to start the server on
      * @param name Name of the server
      */
@@ -93,9 +90,9 @@ public class MicroServer {
         }
         return result;
     }
-
-    /** A REST API that echos the client request.
-     *
+    
+    /**
+     * A REST API that echos the client request.
      * @param request Client request.
      * @param response Server response.
      * @return Echoes back the request to the client
@@ -112,9 +109,9 @@ public class MicroServer {
         }
         return result;
     }
-
-    /** A REST API demonstrating the use of a parameter.
-     *
+    
+    /**
+     * A REST API demonstrating the use of a parameter.
      * @param request Client request.
      * @param response Server response.
      * @return A message saying hello.

@@ -6,29 +6,29 @@ import com.google.gson.JsonParser;
 import spark.Request;
 
 public class Calculate {
-    
+
     private static Distance distance;
-    
+
     /** Handles JSON request, creating a new Distance object from the JSON request.
      * Does the conversion from Json to a Java class before performing calculation.
      */
     public Calculate(Request request) {
-    
+
         // extract the information from the body of the request.
         JsonParser jsonParser = new JsonParser();
         JsonElement requestBody = jsonParser.parse(request.body());
-    
+
         // convert the body of the request to a Java class.
         Gson gson = new Gson();
         distance = gson.fromJson(requestBody, Distance.class);
-    
+
         // perform calculation.
         distance.setDistance();
-    
+
         // log something.
         System.out.println(distance.toString());
     }
-    
+
     /** Handles the response for a Distance object.
      * Does the conversion from a Java class to a Json string.*
      */
@@ -36,10 +36,10 @@ public class Calculate {
         Gson gson = new Gson();
         return gson.toJson(distance);
     }
-    
+
     /**
      * Calls getDeltaSigma() and uses that value to determine the distance between two.
-     * lat/long coordinates and assigns that value to the distance variable.
+     *lat/long coordinates and assigns that value to the distance variable.
      * @param p1 Place object.
      * @param p2 Place object.
      * @param radius double radius of Earth in desired units.
@@ -49,7 +49,7 @@ public class Calculate {
         double temp = getDeltaSigma(p1.latitude,p1.longitude,p2.latitude, p2.longitude);
         return circleDistance(radius, temp);
     }
-    
+
     /**
      * Calls getDeltaSigma() and uses that value to determine the distance between two.
      * lat/long coordinates and assigns that value to the distance variable.
@@ -74,7 +74,7 @@ public class Calculate {
         double temp = getDeltaSigma(origLat,origLong,destLat, destLong);
         return circleDistance(radius,temp);
     }
-    
+
     /**
      * Calls getDeltaSigma() and uses that value to determine the distance between two.
      * lat/long coordinates and assigns that value to the distance variable.
@@ -99,7 +99,7 @@ public class Calculate {
         double temp = getDeltaSigma(origLat, origLong, destLat, destLong);
         return circleDistance(radius, temp);
     }
-    
+
     /**
      * Calculates the final circle distance value.
      * @param radius radius of earth in desired units
@@ -109,7 +109,7 @@ public class Calculate {
     private static int circleDistance(double radius, double deltaSigma){
         return (int)Math.round((radius*deltaSigma));
     }
-    
+
     /**
      * Calculates delta sigma for circle distance using Vincenty formula.
      * @param origLat double origin latitude.
@@ -119,31 +119,30 @@ public class Calculate {
      * @return returns double delta sigma value for the designated units.
      */
     private static double getDeltaSigma(double origLat, double origLong, double destLat, double destLong) {
-    
+
         double  deltaLongitude = Math.abs(Math.toRadians(origLong - destLong));
         double  destinationLatitude = Math.toRadians(destLat);
         double  originLatitude = Math.toRadians(origLat);
-    
+
         double cosDestLat = Math.cos(destinationLatitude);
         double sinDeltaLong = Math.sin(deltaLongitude);
-    
+
         double cosLatSinLongSqr = (cosDestLat * sinDeltaLong);
         cosLatSinLongSqr = cosLatSinLongSqr * cosLatSinLongSqr;
-    
+
         double cosOrigLat = Math.cos(originLatitude);
         double sinDestLat = Math.sin(destinationLatitude);
         double sinOrigLat = Math.sin(originLatitude);
         double cosDeltaLong =  Math.cos(deltaLongitude);
-    
+
         double cosLatSinLatMnsSinLatCosLatCosLongSqr = (cosOrigLat * sinDestLat
-                                                        - sinOrigLat * cosDestLat
-                                                          * cosDeltaLong);
+                - sinOrigLat * cosDestLat * cosDeltaLong);
         cosLatSinLatMnsSinLatCosLatCosLongSqr = cosLatSinLatMnsSinLatCosLatCosLongSqr
-                                                * cosLatSinLatMnsSinLatCosLatCosLongSqr;
-        
+                * cosLatSinLatMnsSinLatCosLatCosLongSqr;
+
         double numerator = Math.sqrt(cosLatSinLongSqr + cosLatSinLatMnsSinLatCosLatCosLongSqr);
         double denominator = sinOrigLat * sinDestLat
-                             + cosOrigLat * cosDestLat * cosDeltaLong;
+               + cosOrigLat * cosDestLat * cosDeltaLong;
         return Math.atan2(numerator, denominator);
     }
 }
