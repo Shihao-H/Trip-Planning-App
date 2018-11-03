@@ -46,7 +46,7 @@ export class SearchBox extends Component {
         else
         {
             let empty = [];
-            empty.push(<tr key={'empty_string'}></tr>);
+            empty.push(<tr key={'empty_string'}/>);
             return empty;
         }
 
