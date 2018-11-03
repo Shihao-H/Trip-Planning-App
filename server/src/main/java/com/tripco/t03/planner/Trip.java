@@ -22,6 +22,7 @@ public class Trip {
     /**
      * Default constructor.
      */
+
     public Trip(){
         this.title = null;
         this.options = new Option();
@@ -45,27 +46,28 @@ public class Trip {
     }
 
     /**
-     *
      * @param title Title of the trip.
      * @param options The options that the trip will have
      * @param places The list of places in the trip.
-     * @param distances The list of distances between each place
+     * @param dist The list of distances between each place
      *
      */
-    public Trip(String title, Option options, ArrayList<Place> places, ArrayList<Integer> distances){
+    public Trip(String title, Option options, ArrayList<Place> places, ArrayList<Integer> dist){
         this.title =title;
         this.options=options;
         this.places=places;
-        this.distances=distances;
+        this.distances=dist;
         this.map = "";
         svg();
     }
+
     /**
      * @param title String user defined title for trip.
      * @param options Option Object.
      * @param places ArrayList of Place objects.
      * Constructor with title.
      */
+
     public Trip(String title, Option options, ArrayList<Place> places){
         this.title=title;
         this.options = options;
@@ -119,7 +121,8 @@ public class Trip {
     public void setRoute() {
         LineDistance ld = new LineDistance(this.places);
         String route = ld.getCoordinates();
-        this.map = this.map.substring(0, this.map.length()-16) + route + this.map.substring(this.map.length()-16);
+        this.map = this.map.substring(0, this.map.length()-16) + route
+                + this.map.substring(this.map.length()-16);
     }
 
     /**
@@ -128,8 +131,8 @@ public class Trip {
     public void svg() {
         String fileLines = "" ;
         try {
-            InputStream thisSVGwillNOTwin =Trip.class.getResourceAsStream("/CObackground.svg");
-            BufferedReader buffy = new BufferedReader(new InputStreamReader(thisSVGwillNOTwin));
+            InputStream thisSvgWillNotWin =Trip.class.getResourceAsStream("/CObackground.svg");
+            BufferedReader buffy = new BufferedReader(new InputStreamReader(thisSvgWillNotWin));
             if(buffy.ready()){
                 while(buffy.ready()){
                     fileLines= fileLines + buffy.readLine();
@@ -144,33 +147,51 @@ public class Trip {
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
-     * @return ArrayList<Integer>
+     * @return An arrayList of type Integer
      */
     private ArrayList<Integer> legDistances() {
 
         ArrayList<Integer> dist = new ArrayList<>();
 
         if(this.options.units.equals("user defined")){
-            for (int count = 0; count < places.size() - 1; count++) {
-                Distance leg = new Distance(places.get(count), places.get(count + 1),
-                        options.units, options.unitName, options.unitRadius);
-                leg.setDistance();
-                dist.add(leg.distance);
-            }
-            Distance leg = new Distance(places.get(places.size() - 1), places.get(0),
+            dist = makeUserDefTrip();
+        } else {
+            dist = makeNormalTrip();
+        }
+        return dist;
+    }
+
+    private ArrayList<Integer> makeUserDefTrip() {
+
+        ArrayList<Integer> dist = new ArrayList<>();
+
+        for (int count = 0; count < places.size() - 1; count++) {
+            Distance leg = new Distance(places.get(count), places.get(count + 1),
                     options.units, options.unitName, options.unitRadius);
             leg.setDistance();
             dist.add(leg.distance);
-        } else {
-            for (int count = 0; count < places.size() - 1; count++) {
-                Distance leg = new Distance(places.get(count), places.get(count+1), options.units);
-                leg.setDistance();
-                dist.add(leg.distance);
-            }
-            Distance leg = new Distance(places.get(places.size()-1), places.get(0), options.units);
+        }
+        Distance leg = new Distance(places.get(places.size() - 1), places.get(0),
+                options.units, options.unitName, options.unitRadius);
+        leg.setDistance();
+        dist.add(leg.distance);
+
+        return dist;
+    }
+
+    private ArrayList<Integer> makeNormalTrip() {
+
+        ArrayList<Integer> dist = new ArrayList<>();
+
+        for (int count = 0; count < places.size() - 1; count++) {
+            Distance leg = new Distance(places.get(count), places.get(count+1), options.units);
             leg.setDistance();
             dist.add(leg.distance);
         }
+        Distance leg = new Distance(places.get(places.size()-1), places.get(0), options.units);
+        leg.setDistance();
+        dist.add(leg.distance);
+
         return dist;
     }
 }
