@@ -17,7 +17,7 @@ public class Driver {
     private static String limitQuery = "";
     public static ArrayList<Place> places;
     public static int found = 0;
-
+    
     /**
      * The find method is meant to get access to the database and execute queries.
      * @param match String phrase to match.
@@ -91,7 +91,7 @@ public class Driver {
                 + "ORDER BY continents.name, country.name, region.name, "
                 + "world_airports.municipality, world_airports.name ASC";
     }
-
+    
     /**
      * This function is meant to print the JSON on the terminal/ console to log.
      * @param count ResultSet.
@@ -109,10 +109,10 @@ public class Driver {
         places = new ArrayList<>();
         while (query.next()) {
             final Place place = new Place(
-                                    query.getString("id"),
-                                    query.getString(1),//name
-                                    Double.parseDouble(query.getString("latitude")),
-                                    Double.parseDouble(query.getString("longitude")));
+                    query.getString("id"),
+                    query.getString(1),//name
+                    Double.parseDouble(query.getString("latitude")),
+                    Double.parseDouble(query.getString("longitude")));
             place.setAttributeType(query.getString("type"));
             place.setAttributeElevation(query.getString("elevation"));
             place.setAttributeContinent(query.getString(5));//continent
