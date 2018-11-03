@@ -7,7 +7,11 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 
-import static spark.Spark.*;
+import java.util.Arrays;
+
+import static spark.Spark.get;
+import static spark.Spark.port;
+import static spark.Spark.post;
 
 
 /** A simple micro-server for the web.  Just what we need, nothing more.
@@ -17,7 +21,6 @@ public class MicroServer {
 
     private int    port;
     private String name;
-    private String path = "/public/";
 
     /** Creates a micro-server to load static files and provide REST APIs.
      *
@@ -31,8 +34,11 @@ public class MicroServer {
         port(port);
 
         // serve the static files: index.html and bundle.js
-        Spark.staticFileLocation(this.path);
-        get("/", (req, res) -> {res.redirect("index.html"); return null;});
+        String path = "/public/";
+        Spark.staticFileLocation(path);
+        get("/", (req, res) -> {res.redirect("index.html");
+            return null;
+        });
 
         // register all micro-services and the function that services them.
         // start with HTTP GET
@@ -49,8 +55,8 @@ public class MicroServer {
         System.out.println("\n\nServer running on port: " + this.port + "\n\n");
     }
 
-    /** A REST API that describes the server.
-     *
+    /**
+     * A REST API that describes the server.
      * @param request Client request.
      * @param response Server response.
      * @return Info about this server
@@ -60,7 +66,8 @@ public class MicroServer {
         response.type("text/html");
         response.header("Access-Control-Allow-Origin", "*");
         try{
-            result = "<html><head></head><body><h1>"+name+" Micro-server on port "+port+"</h1></body></html>";
+            result = "<html><head></head><body><h1>"+name+" Micro-server on port "
+                    +port+"</h1></body></html>";
         }catch(Exception err){
             result = "{}";
             getErrorMessage(err);
@@ -68,8 +75,8 @@ public class MicroServer {
         return result;
     }
 
-    /** A REST API that returns the current server configuration
-     *
+    /**
+     * A REST API that returns the current server configuration.
      * @param request Client request.
      * @param response Server response.
      * @return What this server can do
@@ -125,27 +132,8 @@ public class MicroServer {
         return result;
     }
 
-    /** A REST API to support trip planning.
-     *
-     * @param request Client request.
-     * @param response Server response.
-     * @return The planned trip
-     */
-    private String plan(Request request, Response response) {
-        String result;
-        response.type("application/json");
-        response.header("Access-Control-Allow-Origin", "*");
-        try{
-            result = new Plan(request).getTrip();
-        }catch(Exception err){
-            result = "{}";
-            getErrorMessage(err);
-        }
-        return result;
-    }
-
-    /** A REST API that returns the team information associated with the server.
-     *
+    /**
+     * A REST API that returns the team information associated with the server.
      * @param request Client request.
      * @param response Server response.
      * @return The team name
@@ -163,16 +151,33 @@ public class MicroServer {
         return result;
     }
 
-    /** A REST API for distance.
-     *
+    /**
+     * A REST API to support trip planning.
+     * @param request Client request.
+     * @param response Server response.
+     * @return The planned trip
+     */
+    private String plan(Request request, Response response) {
+        String result;
+        setAppJsonResponse(response);
+        try{
+            result = new Plan(request).getTrip();
+        }catch(Exception err){
+            result = "{}";
+            getErrorMessage(err);
+        }
+        return result;
+    }
+
+    /**
+     * A REST API for distance.
      * @param request Request Object.
      * @param response Response Object.
      * @return String.
      */
     private String distance(Request request, Response response) {
         String result;
-        response.type("application/json");
-        response.header("Access-Control-Allow-Origin", "*");
+        setAppJsonResponse(response);
         try{
             result = new Calculate(request).getDistance();
         }catch(Exception err){
@@ -182,16 +187,15 @@ public class MicroServer {
         return result;
     }
 
-    /** A REST API for search.
-     *
+    /**
+     * A REST API for search.
      * @param request should be {a single string}.
      * @param response no idea what is this.
      * @return should be a list of places.
      */
     private String search(Request request, Response response) {
         String result;
-        response.type("application/json");
-        response.header("Access-Control-Allow-Origin", "*");
+        setAppJsonResponse(response);
         try{
             result = new Match(request).getMatch();
         }catch(Exception err){
@@ -202,6 +206,16 @@ public class MicroServer {
     }
 
     /**
+     * Helper method to assign application/json to response.
+     * Assigns Access-Control- Allow-Origin to response header.
+     * @param response Response.
+     */
+    private void setAppJsonResponse(Response response){
+        response.type("application/json");
+        response.header("Access-Control-Allow-Origin", "*");
+    }
+
+    /**
      * Prints the error message for exceptions.
      * @param err Exception Object.
      */
@@ -209,7 +223,6 @@ public class MicroServer {
         System.out.println(err.getClass());
         System.out.println(err.getCause());
         System.out.println(err.getMessage());
-        System.out.println(err.getStackTrace());
+        System.out.println(Arrays.toString(err.getStackTrace()));
     }
-
 }
