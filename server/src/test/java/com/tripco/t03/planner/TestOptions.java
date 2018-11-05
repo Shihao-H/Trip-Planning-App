@@ -23,16 +23,18 @@ public class TestOptions {
     
     }
     
-    private String buildJsonRequest(String units){
-        return String.format("{\"units\": \"%s\"}", units);
+    private String buildJsonRequest(){
+        return String.format("{\"units\": \"%s\"}", "nautical miles");
     }
     
-    private String buildJsonRequest2(String units, String unitName, double radius){
-        return String.format("{\"units\": \"%s\", " + "\"unitName\": \"%s\", " + "\"unitRadius\":%f}", units, unitName, radius);
+    private String buildJsonRequest2(){
+        return String.format("{\"units\": \"%s\", " + "\"unitName\": \"%s\", "
+                             + "\"unitRadius\":%f}", "user defined", "nonsense", 70.0);
     }
     
-    private String buildJsonRequest3(String units, String optimization){
-        return String.format("{\"units\": \"%s\", " + "\"optimization\": \"%s\"}", units, optimization);
+    private String buildJsonRequest3(){
+        return String.format("{\"units\": \"%s\", " + "\"optimization\": \"%s\"}", "miles",
+                             "none");
     }
     
     @Test
@@ -49,7 +51,7 @@ public class TestOptions {
     
     @Test
     public void testUnits(){
-        json = buildJsonRequest("nautical miles");
+        json = buildJsonRequest();
         opt = gson.fromJson(json, Option.class);
 
         assertEquals(opt.units, "nautical miles");
@@ -57,7 +59,7 @@ public class TestOptions {
 
     @Test
     public void testUnitName(){
-        json = buildJsonRequest2("user defined", "nonsense", 70.0);
+        json = buildJsonRequest2();
         opt = gson.fromJson(json, Option.class);
 
         assertNotNull(opt.unitName);
@@ -65,7 +67,7 @@ public class TestOptions {
 
     @Test
     public void testUnitRadius(){
-        json = buildJsonRequest2("user defined", "nonsense", 70.0);
+        json = buildJsonRequest2();
         opt = gson.fromJson(json, Option.class);
 
         assertNotNull(opt.unitRadius);
@@ -73,7 +75,7 @@ public class TestOptions {
 
     @Test
     public void testUnitOptimization(){
-        json = buildJsonRequest3("miles", "none");
+        json = buildJsonRequest3();
         opt = gson.fromJson(json, Option.class);
 
         assertNotNull(opt.optimization);
