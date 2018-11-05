@@ -41,10 +41,12 @@ public class Match {
     public Match(Search search){
         this.search = search;
     }
+    
     /** Handles the response for a Search object.
      * Does the conversion from a Java class to a Json string.*
      */
     public String getMatch() {
+        
         Gson gson = new Gson();
         return gson.toJson(search);
     }
