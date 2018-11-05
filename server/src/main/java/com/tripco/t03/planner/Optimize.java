@@ -45,8 +45,8 @@ public class Optimize {
         nn.getLegDistances(this.optimalLegs);
         this.optimalTotalDistance = nn.getTotalDistance();
         System.out.printf("Nearest Neighbor Distance: %d\n", this.optimalTotalDistance);
-        if((this.trip.options.optimization.equalsIgnoreCase("shorter")) ||
-           (this.trip.options.optimization.equalsIgnoreCase("shortest"))){
+        if((this.trip.options.optimization.equalsIgnoreCase("shorter")) 
+           || (this.trip.options.optimization.equalsIgnoreCase("shortest"))){
             System.arraycopy(this.optimalIndices, 0, this.twoOptIndices, 0,
                              twoOptIndices.length);
             TwoOpt twoOpt = new TwoOpt(this.twoOptIndices, this.grid.distanceGrid);
