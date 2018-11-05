@@ -65,6 +65,8 @@ class Trip extends Component {
                                  otherTeams={this.props.otherTeams} updateDisplay={this.props.updateDisplay}
                                  updateDisplayUserDefined={this.props.updateDisplayUserDefined}
                                  updateHost={this.props.updateHost} updateOptions={this.props.updateOptions}
+                                 updateAttributes={this.props.updateAttributes}
+                                 checkAttributes={this.props.checkAttributes}
                                  updateOtherTeams={this.props.updateOtherTeams}/>
                     <Row>
                         <Col>
@@ -76,6 +78,8 @@ class Trip extends Component {
                                 attributes={this.props.attributes}
                                 display={this.props.display}
                                 selectAll={this.props.selectAll}
+                                updateAttributes={this.props.updateAttributes}
+
                                 selected={this.props.selected}
                                 trip={this.props.trip}
                                 places={this.props.trip.places}

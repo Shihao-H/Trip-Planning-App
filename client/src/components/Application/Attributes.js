@@ -1,7 +1,7 @@
-import {Col, Card, CardBody, FormGroup, Input, Label } from "reactstrap";
+import {Col, Card, CardBody, FormGroup, Input, Label, Form} from "reactstrap";
 import React, {Component} from 'react'
 
-class Attributes extends Component{
+class Attributes extends Component {
     constructor(props) {
         super(props);
     }
@@ -9,25 +9,28 @@ class Attributes extends Component{
     render() {
 
         const checkboxes = this.props.config.attributes.map((attribute) =>
-            <div>
-            <Label>
-                <Input type={"checkbox"} value={attribute.charAt(0).toUpperCase() + attribute.slice(1)} />
-                    {attribute.charAt(0).toUpperCase() + attribute.slice(1)}
-            </Label>
-            </div>
+            <Form key={"check_" + attribute}>
+                <Input type={"checkbox"}
+                       key={"checkbox_" + attribute}
+                       value={attribute}
+                       onChange={event => {
+                           this.props.updateAttributes(event.target.value)
+                       }}/>
+                {attribute.charAt(0).toUpperCase() + attribute.slice(1)}
+            </Form>
         );
 
         return (
-                <Card>
-                    <CardBody>
-                            <p>Select attributes to display.</p>
-                        <Col>
-                           <FormGroup>
-                               {checkboxes}
-                           </FormGroup>
-                        </Col>
-                    </CardBody>
-                </Card>
+            <Card>
+                <CardBody>
+                    <p>Select attributes to display.</p>
+                    <Col>
+                        <FormGroup>
+                            {checkboxes}
+                        </FormGroup>
+                    </Col>
+                </CardBody>
+            </Card>
         )
     };
 }

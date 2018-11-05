@@ -53,8 +53,7 @@ class Application extends Component {
                 UserDefinedDisplay: false
             },
             attributes:[
-                "id","name","latitude","longitude","type","elevation","continent",
-                "country", "region", "municipality"
+                "id","name","latitude","longitude"
             ]
         };
         this.updateMap = this.updateMap.bind(this);
@@ -71,11 +70,29 @@ class Application extends Component {
         this.updateDisplay = this.updateDisplay.bind(this);
         this.updateDisplayUserDefined = this.updateDisplayUserDefined.bind(this);
         this.updateAttributes = this.updateAttributes.bind(this);
+        this.checkAttributes = this.checkAttributes.bind(this);
     }
 
-    updateAttributes(){
-
+    updateAttributes(value){
+        let attributes = this.state.attributes;
+        var index = attributes.indexOf(value);
+        if(index > -1){
+            attributes.splice(index, 1);
+        } else {
+            if(value === "name") attributes.unshift(value);
+            else attributes.push(value);
+        }
+       this.setState(attributes);
     }
+
+    checkAttributes(value){
+        if(this.state.attributes.includes(value)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     componentWillMount()
     {
@@ -176,6 +193,8 @@ class Application extends Component {
                               selected={this.state.selected} trip={this.state.trip}
                               attributes={this.state.attributes}
                               clearConfig={this.state.clearConfig} LoadFile={this.LoadFile}
+                              updateAttributes={this.updateAttributes}
+                              checkAttributes={this.checkAttributes}
                               updateHost={this.updateHost} updateTrip={this.updateTrip}
                               updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
                               updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}

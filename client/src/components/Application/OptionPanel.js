@@ -32,7 +32,9 @@ class OptionPanel extends Component {
                             <Attributes config={this.props.config} trip={this.props.trip}
                                         attributes={this.props.attributes}
                                         display={this.props.display} updateDisplay={this.props.updateDisplay}
-                            updateDisplayUserDefined={this.props.updateDisplayUserDefined}/>
+                                        updateAttributes={this.props.updateAttributes}
+                                        checkAttributes={this.props.checkAttributes}
+                                        updateDisplayUserDefined={this.props.updateDisplayUserDefined}/>
                         </Col>
                         <Col>
                             <InterOperate host={this.props.host} otherTeams={this.props.otherTeams}
