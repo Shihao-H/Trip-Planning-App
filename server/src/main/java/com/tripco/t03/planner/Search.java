@@ -87,11 +87,9 @@ public class Search {
     public String getQuery(){
         String query = "";
         for (int i = 0; i < this.filters.length; i++) {
-            if (this.filters[i].values.length != 0) {
-                query += "AND (";
-                for (int j = 0; j < this.filters[i].values.length; j++) {
-                    query += addFilters(i, j);
-                }
+            query += "AND (";
+            for (int j = 0; j < this.filters[i].values.length; j++) {
+                query += addFilters(i, j);
             }
         }
         System.out.println("This is the filter query:\n " + query);
