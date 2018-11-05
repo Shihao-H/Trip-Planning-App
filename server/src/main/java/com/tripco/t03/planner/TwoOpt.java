@@ -1,31 +1,32 @@
 package com.tripco.t03.planner;
 
 public class TwoOpt {
-    private int minTripDistance;
-    private Integer[] optTrip;
-    private Integer[] sortedIndexes;
+    private int totalDistance;
+
+    private Integer[] sortedIndices;
     private Integer[][] distanceGrid;
     private Integer[] tripDistances;
 
     /**
-     * Constructor for NearestNeighbor Object.
-     * @param sortedIndexes Integer array of sorted place indices.
+     * Constructor for TwoOpt Object.
+     * @param sortedIndices Integer array of sorted place indices.
      * @param distanceGrid 2D Integer array of all the distances.
      */
-    public TwoOpt(Integer [] sortedIndexes, Integer[][] distanceGrid){
-        this.sortedIndexes = sortedIndexes;
+    public TwoOpt(Integer [] sortedIndices, Integer[][] distanceGrid){
+        this.sortedIndices = new Integer[sortedIndices.length];
+        System.arraycopy(sortedIndices, 0, this.sortedIndices,
+                         0, this.sortedIndices.length);
         this.distanceGrid = distanceGrid;
-        this.optTrip = new Integer[this.sortedIndexes.length];
-        this.minTripDistance = Integer.MAX_VALUE;
-        this.tripDistances = new Integer[this.sortedIndexes.length];
+        this.totalDistance = 0;
+        this.tripDistances = new Integer[this.sortedIndices.length];
     }
-
+    
     /**
-     * Getter method.
-     * @param result Integer array.
+     * Getter.
+     * @param result Integer[].
      */
-    public void getTwoOptTrip(Integer[] result){
-        System.arraycopy(this.optTrip, 0, result, 0, result.length);
+    public void getSortedIndices(Integer[] result){
+       System.arraycopy(this.sortedIndices, 0, result, 0, result.length);
     }
 
     /**
@@ -41,60 +42,65 @@ public class TwoOpt {
      * @return Integer the total distance for the optimal trip.
      */
     public Integer getTotalDistance(){
-        return this.minTripDistance;
+        for(Integer leg: this.tripDistances){
+            this.totalDistance += leg;
+        }
+        return this.totalDistance;
     }
 
+    private void setLegDistances(){
+        int jam = 0;
+        for(int i = 0; i < sortedIndices.length - 1; i++, jam++){
+            this.tripDistances[jam] = this.distanceGrid[sortedIndices[i]][sortedIndices[i + 1]];
+        }
+        this.tripDistances[jam] = this.distanceGrid[sortedIndices[jam]][sortedIndices[0]];
+        
+        
+    }
 
     /**
      * Reverses array.
-     * @param place1 Integer.
-     * @param place2 Integer.
-     * @param indices Integer array.
+     * @param index1 Integer.
+     * @param index2 Integer.
+     * @param originalTrip Integer array.
      */
-    public void opt2Reverse2(Integer place1,Integer place2,Integer[] indices)
+    public void opt2Reverse2(Integer index1,Integer index2,Integer[] originalTrip)
     {
-        while(place1 < place2) {
-            int temp = indices[place1];
-            indices[place1] = indices[place2];
-            indices[place2] = temp;
-            place1++;
-            place2--;
+        while(index1 < index2) {
+            int temp = originalTrip[index1];
+            originalTrip[index1] = originalTrip[index2];
+            originalTrip[index2] = temp;
+            index1++;
+            index2--;
         }
     }
 
     /**
      *Optimizes a list of Integers with two opt.
      */
-    public void twoOpt() {
-        int n = this.sortedIndexes.length;
-        if (n > 4) {
-            boolean improvement = true;
-            while (improvement) {
-                improvement = false;
-                for (int i = 0; i <= n - 3; i++) {
-                    for (int j = i + 2; j <= n - 1; j++) {
-                        int o1, o2, d1, d2;
-                        if (j == n - 1) {
-                            o1 = sortedIndexes[i];
-                            o2 = sortedIndexes[i+1];
-                            d1 = sortedIndexes[j];
-                            d2 = sortedIndexes[0];
-                        }
-                        else {
-                            o1 = sortedIndexes[i];
-                            o2 = sortedIndexes[i+1];
-                            d1 = sortedIndexes[j];
-                            d2 = sortedIndexes[j+1];
-                        }
-                        int delta = -this.distanceGrid[o1][o2] - this.distanceGrid[d1][d2]
-                                + this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
-                        if (delta < 0) {
-                            opt2Reverse2(i + 1, j, sortedIndexes);
-                            improvement = true;
-                        }
+    public void twoOpt(Integer[] result) {
+        int ned = this.sortedIndices.length - 1;
+        
+        boolean improvement = true;
+        while (improvement) {
+            improvement = false;
+            for (int i = 0; i <= ned - 3; i++) {
+                for (int j = i + 2; j <= ned - 1; j++) {
+                    int o1 = sortedIndices[i];
+                    int o2 = sortedIndices[i + 1];
+                    int d1 = sortedIndices[j];
+                    int d2 = sortedIndices[j + 1];
+                    int delta =
+                            ((-1)*this.distanceGrid[o1][o2]) - this.distanceGrid[d1][d2]
+                            + this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
+                    if (delta < 0) {
+                        opt2Reverse2(i + 1, j, sortedIndices);
+                        improvement = true;
                     }
                 }
             }
         }
+        System.arraycopy(this.sortedIndices, 0, result, 0, result.length);
+        setLegDistances();
     }
 }
