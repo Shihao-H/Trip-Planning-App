@@ -51,7 +51,11 @@ class Application extends Component {
                 Total: true,
                 UserDefined: null,
                 UserDefinedDisplay: false
-            }
+            },
+            attributes:[
+                "id","name","latitude","longitude","type","elevation","continent",
+                "country", "region", "municipality"
+            ]
         };
         this.updateMap = this.updateMap.bind(this);
         this.updateTrip = this.updateTrip.bind(this);
@@ -66,6 +70,11 @@ class Application extends Component {
         this.updateHost=this.updateHost.bind(this);
         this.updateDisplay = this.updateDisplay.bind(this);
         this.updateDisplayUserDefined = this.updateDisplayUserDefined.bind(this);
+        this.updateAttributes = this.updateAttributes.bind(this);
+    }
+
+    updateAttributes(){
+
     }
 
     componentWillMount()
@@ -165,6 +174,7 @@ class Application extends Component {
                               host={this.state.host} otherTeams={this.state.otherTeams}
                               search={this.state.search} selectAll={this.state.selectAll}
                               selected={this.state.selected} trip={this.state.trip}
+                              attributes={this.state.attributes}
                               clearConfig={this.state.clearConfig} LoadFile={this.LoadFile}
                               updateHost={this.updateHost} updateTrip={this.updateTrip}
                               updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}

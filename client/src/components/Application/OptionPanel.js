@@ -4,6 +4,7 @@ import Attributes from "./Attributes"
 import InterOperate from "./InterOperate"
 import Optimization from "./Optimization";
 import Options from "./Options";
+import Trip from "./Trip";
 
 /* Renders the Plan.
  * Holds Clear, Load, Plan, Save.
@@ -28,7 +29,9 @@ class OptionPanel extends Component {
                             updateOptions={this.props.updateOptions} updateSearch={this.props.updateSearch}/>
                         </Col>
                         <Col>
-                            <Attributes display={this.props.display} updateDisplay={this.props.updateDisplay}
+                            <Attributes config={this.props.config} trip={this.props.trip}
+                                        attributes={this.props.attributes}
+                                        display={this.props.display} updateDisplay={this.props.updateDisplay}
                             updateDisplayUserDefined={this.props.updateDisplayUserDefined}/>
                         </Col>
                         <Col>

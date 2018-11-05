@@ -25,7 +25,7 @@ public class TestConfig {
                 "\"filters\":[{\"name\":\"continents\",\"values\":[\"Africa\",\"Antarctica\",\"Asia\",\"Europe\",\"North America\"," +
                 "\"Oceania\",\"South America\"]}," +
                 "{\"name\":\"type\",\"values\":[\"heliport\",\"small_airport\",\"seaplane_base\",\"closed\",\"balloonport\"," +
-                "\"medium_airport\",\"large_airport\"]}],\"maps\":\"svg\"}";
+                "\"medium_airport\",\"large_airport\"]}],\"maps\":[\"svg\",\"kml\"]}";
     }
 
     @Test

@@ -12,8 +12,8 @@ public class Config {
   private ArrayList<String> units;
   private ArrayList<Optimization> optimization;
   private ArrayList<String> attributes;
-  private Filter[] filters;
-  private String maps;
+  private ArrayList<Filter> filters;
+  private ArrayList<String> maps;
 
   /**
    * Constructor.
@@ -29,15 +29,12 @@ public class Config {
     String[] stringContinents = {"Africa", "Antarctica", "Asia", "Europe", "North America", "Oceania",
             "South America"};
     Filter continents = new Filter("continents", stringContinents);
-    String[] strringType = {"heliport", "small_airport", "seaplane_base", "closed", "balloonport",
+    String[] stringType = {"heliport", "small_airport", "seaplane_base", "closed", "balloonport",
             "medium_airport", "large_airport"};
+    Filter type = new Filter("type", stringType);
+    filters = new ArrayList<>(Arrays.asList(continents, type));
+    maps = new ArrayList<>(Arrays.asList("svg", "kml"));
 
-    Filter type = new Filter("type", strringType);
-    filters = new Filter[2];
-    filters[0] = continents;
-    filters[1] = type;
-
-    maps = "svg";
   }
 
   /**

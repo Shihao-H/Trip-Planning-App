@@ -60,6 +60,7 @@ class Trip extends Component {
                         </Col>
                     </Row>
                     <OptionPanel config={this.props.config} display={this.props.display}
+                                 attributes={this.props.attributes}
                                  host={this.props.host} options={this.props.trip.options}
                                  otherTeams={this.props.otherTeams} updateDisplay={this.props.updateDisplay}
                                  updateDisplayUserDefined={this.props.updateDisplayUserDefined}
@@ -71,10 +72,13 @@ class Trip extends Component {
                         </Col>
                         <Col>
                             <Itinerary
+                                config={this.props.config}
+                                attributes={this.props.attributes}
                                 display={this.props.display}
                                 selectAll={this.props.selectAll}
                                 selected={this.props.selected}
                                 trip={this.props.trip}
+                                places={this.props.trip.places}
                                 updateOptions={this.props.updateOptions}
                                 updatePlaces={this.props.updatePlaces}
                                 updateSelectAll={this.props.updateSelectAll}
