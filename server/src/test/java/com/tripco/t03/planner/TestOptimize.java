@@ -8,17 +8,20 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class TestOptimize {
     private Optimize optimal;
+    private Trip userDef;
+    private Trip shorter;
     private Trip trip;
     private int totalDistance;
 
     @Before
     public void setUp() {
         Option opt = new Option("miles");
+        Option optShorter = new Option("miles", "shorter");
+        Option optUserDef = new Option("user defined","metal meters", 666.666);
         ArrayList<Place> places = new ArrayList<>();
         places.add(new Place("P1", "three", 18.0, -104.0));
         places.add(new Place("P2", "one", 41.000155556, -109.05));
@@ -44,7 +47,10 @@ public class TestOptimize {
         trip.distances.toArray(i);
         Stream<Integer> ss = Arrays.stream(i);
         totalDistance = ss.reduce(0, (a, b) -> a + b);
-        System.out.printf("Total Distance: %d\n", totalDistance);
+        userDef = new Trip(optUserDef, places);
+        userDef.plan();
+        shorter = new Trip(optShorter, places);
+        shorter.plan();
     }
 
     @Test
@@ -57,12 +63,30 @@ public class TestOptimize {
     @Test
     public void testGetOptimalTripDistance(){
         optimal = new Optimize(trip);
-        Trip temp = optimal.getOptimalTrip();
+        optimal.getOptimalTrip();
         int distance = optimal.getOptimalTripDistance();
 
         Assert.assertTrue(distance != totalDistance);
     }
+    
+    @Test
+    public void testOptimizeUserDefined(){
+        optimal = new Optimize(userDef);
+        optimal.getOptimalTrip();
+        int dist = optimal.getOptimalTripDistance();
+        
+        Assert.assertNotEquals(dist, totalDistance);
+    }
 
+    @Test
+    public void testOptimizeShorter(){
+        optimal = new Optimize(shorter);
+        optimal.getOptimalTrip();
+        int dist = optimal.getOptimalTripDistance();
+        
+        Assert.assertNotEquals(dist, totalDistance);
+    }
+    
     @Test
     public void testGetOptimalTrip(){
         optimal = new Optimize(trip);

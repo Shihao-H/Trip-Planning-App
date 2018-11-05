@@ -15,7 +15,7 @@ public class Option {
   /**
    * Default constructor.
    */
-  public Option(){
+  Option(){
     this.units = null;
     this.unitName = null;
     this.unitRadius = null;
@@ -27,7 +27,7 @@ public class Option {
    * @param units String unit type.
    * Constructor for Options that are not user defined.
    */
-  public Option(String units){
+  Option(String units){
     this.units = units;
     this.unitName = null;
     this.unitRadius = null;
@@ -40,7 +40,7 @@ public class Option {
    * @param units String unit type.
    * @param optimization String optimization type.
    */
-  public Option(String units, String optimization) {
+  Option(String units, String optimization) {
     this.units = units;
     this.optimization = optimization;
     this.unitName=null;
@@ -54,7 +54,7 @@ public class Option {
    * @param unitRadius double radius of Earth in user defined units.
    * Constructor for user defined units.
    */
-  public Option(String units, String unitName, Double unitRadius){
+  Option(String units, String unitName, Double unitRadius){
     this.units  = units;
     this.unitName = unitName;
     this.unitRadius = unitRadius;
@@ -66,22 +66,21 @@ public class Option {
    * @param units String unit type.
    * @param unitName String name of user defined units.
    * @param unitRadius double radius of Earth in user defined units.
-   * Constructor for user defined units.
    */
-  public Option(String units, String unitName, Double unitRadius, String optimization){
+  Option(String units, String unitName, Double unitRadius, String optimization){
     this.units  = units;
     this.unitName = unitName;
     this.unitRadius = unitRadius;
     this.optimization = optimization;
     this.map= "svg";
   }
-  
+
   /**
    * @param option Option object.
    * @return boolean true is equal, false if not equal.
    * Compares one Option object to another Option object.
    */
-  public boolean equals(Option option){
+  boolean equals(Option option){
     if((this.unitName != null) && (this.unitRadius!=0.0)) {
       return this.unitName.equalsIgnoreCase(option.unitName) && this.unitRadius.equals(option.unitRadius) && this.units.equalsIgnoreCase(option.units);
     }else{

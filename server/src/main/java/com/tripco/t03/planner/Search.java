@@ -11,7 +11,7 @@ public class Search {
     public int version = 4;
     public String type = "search";
     public String match = null;
-    public Filter[] filters = null;
+    public Filter[] filters;
     public int limit = 0;
     public int found = 0;
     public ArrayList<Place> places;
@@ -48,7 +48,8 @@ public class Search {
     public Search(String match, Filter[] filters)
     {
         this.match = match;
-        this.filters = filters;
+        this.filters = new Filter[filters.length];
+        System.arraycopy(filters, 0, this.filters, 0, filters.length);
     }
 
     /**
@@ -61,7 +62,8 @@ public class Search {
     {
         this.match = match;
         this.limit = limit;
-        this.filters = filters;
+        this.filters = new Filter[filters.length];
+        System.arraycopy(filters, 0, this.filters, 0, filters.length);
     }
 
     /**
@@ -70,36 +72,51 @@ public class Search {
     public void match() {
         String query = "";
         if ((this.filters != null) && (this.filters.length != 0)) {
-            for (int i = 0; i < this.filters.length; i++) {
-                if (this.filters[i].values.length != 0) {
-                    query += "AND (";
-                    for (int j = 0; j < this.filters[i].values.length; j++) {
-                        if (this.filters[i].name.equalsIgnoreCase("continents")) {
-                            query += this.filters[i].name + ".name = \'"
-                                    + this.filters[i].values[j] + "\' ";
-                            if (j == this.filters[i].values.length - 1) {
-                                query += ")\n";
-                            } else {
-                                query += "OR\n";
-                            }
-                        }
-                        if (this.filters[i].name.equalsIgnoreCase("type")) {
-                            query += this.filters[i].name + " = \'"
-                                    + this.filters[i].values[j] + "\' ";
-                            if (j == this.filters[i].values.length - 1) {
-                                query += ")\n";
-                            } else {
-                                query += "OR\n";
-                            }
-                        }
-                    }
-                }
+            query = getQuery();
+        }
+        
+        Driver.find(this.match, this.limit, query);
+        this.found = Driver.found;
+        this.places.addAll(Driver.places);
+    }
+    
+    /**
+     * Parses Filter objects into strings for query.
+     * @return Sting.
+     */
+    public String getQuery(){
+        String query = "";
+        for (int i = 0; i < this.filters.length; i++) {
+            query += "AND (";
+            for (int j = 0; j < this.filters[i].values.length; j++) {
+                query += addFilters(i, j);
             }
         }
         System.out.println("This is the filter query:\n " + query);
-        Driver driver = new Driver();
-        driver.find(this.match, this.limit, query);
-        this.found = driver.found;
-        this.places = (ArrayList<Place>) driver.places.clone();
+        return query;
+    }
+    
+    /**
+     * Helper method for getting the Filter elements in sting.
+     * @param filter int.
+     * @param value int.
+     * @return String.
+     */
+    private String addFilters(int filter, int value){
+        String substring = "";
+        if (this.filters[filter].name.equalsIgnoreCase("continents")) {
+            substring += this.filters[filter].name + ".name = \'";
+        }
+        if (this.filters[filter].name.equalsIgnoreCase("type")){
+         substring+=this.filters[filter].name+" = \'";
+        }
+         substring += this.filters[filter].values[value] + "\' ";
+        if (value == this.filters[filter].values.length - 1) {
+            substring += ")\n";
+        } else {
+            substring += "OR\n";
+        }
+        
+        return substring;
     }
 }

@@ -29,6 +29,15 @@ public class Calculate {
         System.out.println(distance.toString());
     }
     
+    /**
+     * Constructor.
+     * @param input Distance object.
+     */
+    public Calculate(Distance input){
+        distance = input;
+        distance.setDistance();
+    }
+    
     /** Handles the response for a Distance object.
      * Does the conversion from a Java class to a Json string.*
      */
@@ -45,7 +54,7 @@ public class Calculate {
      * @param radius double radius of Earth in desired units.
      * @return integer value of distance between origin and destination; -1 if invalid.
      */
-    public static int optDistance(Place p1, Place p2, double radius){
+    static int optDistance(Place p1, Place p2, double radius){
         double temp = getDeltaSigma(p1.latitude,p1.longitude,p2.latitude, p2.longitude);
         return circleDistance(radius, temp);
     }
@@ -58,7 +67,7 @@ public class Calculate {
      * @param units String designating the units for radius.
      * @return integer value of distance between origin and destination; -1 if invalid.
      */
-    public static int calcDistance(Place origin, Place destination, String units){
+    static int calcDistance(Place origin, Place destination, String units){
         double radius = -1;
         if(units.equalsIgnoreCase("miles")) {
             radius = 3959.0;
@@ -81,7 +90,7 @@ public class Calculate {
      * @param distance Distance object.
      * @return integer value of distance between origin and destination; -1 if invalid.
      */
-    public static int calcDistance(Distance distance){
+    static int calcDistance(Distance distance){
         double radius = -1;
         if(distance.units.equalsIgnoreCase("miles")) {
             radius = 3959.0;

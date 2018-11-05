@@ -2,11 +2,11 @@ package com.tripco.t03.planner;
 
 public class TwoOpt {
     private int totalDistance;
-
+    
     private Integer[] sortedIndices;
     private Integer[][] distanceGrid;
     private Integer[] tripDistances;
-
+    
     /**
      * Constructor for TwoOpt Object.
      * @param sortedIndices Integer array of sorted place indices.
@@ -26,9 +26,9 @@ public class TwoOpt {
      * @param result Integer[].
      */
     public void getSortedIndices(Integer[] result){
-       System.arraycopy(this.sortedIndices, 0, result, 0, result.length);
+        System.arraycopy(this.sortedIndices, 0, result, 0, result.length);
     }
-
+    
     /**
      * Getter method.
      * @param result Integer array.
@@ -36,7 +36,7 @@ public class TwoOpt {
     public void getTwoOptLegDistances(Integer[] result){
         System.arraycopy(tripDistances, 0, result, 0, result.length);
     }
-
+    
     /**
      * Getter Method.
      * @return Integer the total distance for the optimal trip.
@@ -47,7 +47,7 @@ public class TwoOpt {
         }
         return this.totalDistance;
     }
-
+    
     private void setLegDistances(){
         int jam = 0;
         for(int i = 0; i < sortedIndices.length - 1; i++, jam++){
@@ -57,7 +57,7 @@ public class TwoOpt {
         
         
     }
-
+    
     /**
      * Reverses array.
      * @param index1 Integer.
@@ -74,7 +74,7 @@ public class TwoOpt {
             index2--;
         }
     }
-
+    
     /**
      *Optimizes a list of Integers with two opt.
      */
