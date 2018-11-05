@@ -11,7 +11,7 @@ public class Optimize {
     private Integer[] optimalLegs;
     private int optimalTotalDistance;
     private DistanceGrid grid;
-
+    
     /**
      * Constructor for Optimize object.
      * @param trip Trip object to optimize.
@@ -25,7 +25,7 @@ public class Optimize {
         this.twoOptIndices = new Integer[this.sortedPlaces.length];
         setGrid();
     }
-
+    
     /**
      * Getter for total distance.
      * @return int total distance for optimal trip.
@@ -33,7 +33,7 @@ public class Optimize {
     public int getOptimalTripDistance(){
         return this.optimalTotalDistance;
     }
-
+    
     /**
      *Applies the appropriate level of optimization for the trip.
      * @return Trip Object that has been optimized.
@@ -45,8 +45,8 @@ public class Optimize {
         nn.getLegDistances(this.optimalLegs);
         this.optimalTotalDistance = nn.getTotalDistance();
         System.out.printf("Nearest Neighbor Distance: %d\n", this.optimalTotalDistance);
-        if((this.trip.options.optimization.equalsIgnoreCase("shorter")) ||
-           (this.trip.options.optimization.equalsIgnoreCase("shortest"))){
+        if((this.trip.options.optimization.equalsIgnoreCase("shorter"))
+           || (this.trip.options.optimization.equalsIgnoreCase("shortest"))){
             System.arraycopy(this.optimalIndices, 0, this.twoOptIndices, 0,
                              twoOptIndices.length);
             TwoOpt twoOpt = new TwoOpt(this.twoOptIndices, this.grid.distanceGrid);
@@ -65,7 +65,7 @@ public class Optimize {
         }
         return buildNewTrip();
     }
-
+    
     /**
      * Helper method that builds the optimized trip object to return.
      * @return Trip object.
@@ -78,7 +78,7 @@ public class Optimize {
         ArrayList<Integer> legs = new ArrayList<>(Arrays.asList(this.optimalLegs));
         return new Trip( this.trip.title, this.trip.options, optimal, legs);
     }
-
+    
     /**
      * Method to set up Distance object grid.
      */
