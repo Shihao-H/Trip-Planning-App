@@ -49,11 +49,11 @@ public class TwoOpt {
     }
 
     private void setLegDistances(){
-        int j = 0;
-        for(int i = 0; i < sortedIndices.length - 1; i++, j++){
-            this.tripDistances[j] = this.distanceGrid[sortedIndices[i]][sortedIndices[i + 1]];
+        int jam = 0;
+        for(int i = 0; i < sortedIndices.length - 1; i++, jam++){
+            this.tripDistances[jam] = this.distanceGrid[sortedIndices[i]][sortedIndices[i + 1]];
         }
-        this.tripDistances[j] = this.distanceGrid[sortedIndices[j]][sortedIndices[0]];
+        this.tripDistances[jam] = this.distanceGrid[sortedIndices[jam]][sortedIndices[0]];
         
         
     }
@@ -79,13 +79,13 @@ public class TwoOpt {
      *Optimizes a list of Integers with two opt.
      */
     public void twoOpt(Integer[] result) {
-        int n = this.sortedIndices.length - 1;
+        int ned = this.sortedIndices.length - 1;
         
         boolean improvement = true;
         while (improvement) {
             improvement = false;
-            for (int i = 0; i <= n - 3; i++) {
-                for (int j = i + 2; j <= n - 1; j++) {
+            for (int i = 0; i <= ned - 3; i++) {
+                for (int j = i + 2; j <= ned - 1; j++) {
                     int o1 = sortedIndices[i];
                     int o2 = sortedIndices[i + 1];
                     int d1 = sortedIndices[j];
