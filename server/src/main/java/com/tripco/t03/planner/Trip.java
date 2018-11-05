@@ -12,13 +12,14 @@ import java.util.Arrays;
 public class Trip {
 
     // The variables in this class should reflect TFFI.
-    public int version = 3;
+    public int version = 4;
     public String type = "trip";
     public String title;
     public Option options;
     public ArrayList<Place> places;
     public ArrayList<Integer> distances;
     public String map;
+    public double totalDist;
     /**
      * Default constructor.
      */
@@ -84,6 +85,7 @@ public class Trip {
 
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
+            System.out.printf("Trip Distance: %d\n", this.totalDist);
         } else{
            // this.distances = legDistances();
             Optimize opt = new Optimize(this);
@@ -163,6 +165,7 @@ public class Trip {
 
     private ArrayList<Integer> makeUserDefTrip() {
 
+        this.totalDist = 0;
         ArrayList<Integer> dist = new ArrayList<>();
 
         for (int count = 0; count < places.size() - 1; count++) {
@@ -170,27 +173,32 @@ public class Trip {
                     options.units, options.unitName, options.unitRadius);
             leg.setDistance();
             dist.add(leg.distance);
+            totalDist += leg.distance;
         }
         Distance leg = new Distance(places.get(places.size() - 1), places.get(0),
                 options.units, options.unitName, options.unitRadius);
         leg.setDistance();
         dist.add(leg.distance);
+        totalDist += leg.distance;
 
         return dist;
     }
 
     private ArrayList<Integer> makeNormalTrip() {
-
+    
+        this.totalDist = 0;
         ArrayList<Integer> dist = new ArrayList<>();
 
         for (int count = 0; count < places.size() - 1; count++) {
             Distance leg = new Distance(places.get(count), places.get(count+1), options.units);
             leg.setDistance();
             dist.add(leg.distance);
+            totalDist += leg.distance;
         }
         Distance leg = new Distance(places.get(places.size()-1), places.get(0), options.units);
         leg.setDistance();
         dist.add(leg.distance);
+        totalDist += leg.distance;
 
         return dist;
     }

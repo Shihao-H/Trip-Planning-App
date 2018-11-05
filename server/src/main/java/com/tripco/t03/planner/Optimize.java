@@ -7,6 +7,7 @@ public class Optimize {
     private Trip trip;
     private Integer[] sortedPlaces;
     private Integer[] optimalIndices;
+    private Integer[] twoOptIndices;
     private Integer[] optimalLegs;
     private int optimalTotalDistance;
     private DistanceGrid grid;
@@ -21,6 +22,7 @@ public class Optimize {
         this.sortedPlaces = MergeSortPlace.sort(this.trip.places);
         this.optimalIndices = new Integer[this.sortedPlaces.length];
         this.optimalLegs = new Integer[this.sortedPlaces.length];
+        this.twoOptIndices = new Integer[this.sortedPlaces.length];
         setGrid();
     }
 
@@ -42,12 +44,17 @@ public class Optimize {
         nn.getOptimalTrip(this.optimalIndices);
         nn.getLegDistances(this.optimalLegs);
         this.optimalTotalDistance = nn.getTotalDistance();
-        if((this.trip.options.optimization.equalsIgnoreCase("shorter")) || (this.trip.options.optimization.equalsIgnoreCase("shortest"))){
-            TwoOpt twoOpt = new TwoOpt(this.sortedPlaces, this.grid.distanceGrid);
-            twoOpt.twoOpt();
-            twoOpt.getTwoOptTrip(this.optimalIndices);
+        System.out.printf("Nearest Neighbor Distance: %d\n", this.optimalTotalDistance);
+        if((this.trip.options.optimization.equalsIgnoreCase("shorter")) ||
+           (this.trip.options.optimization.equalsIgnoreCase("shortest"))){
+            System.arraycopy(this.optimalIndices, 0, this.twoOptIndices, 0,
+                             twoOptIndices.length);
+            TwoOpt twoOpt = new TwoOpt(this.twoOptIndices, this.grid.distanceGrid);
+            twoOpt.twoOpt(this.optimalIndices);
+            twoOpt.getSortedIndices(this.optimalIndices);
             twoOpt.getTwoOptLegDistances(this.optimalLegs);
             this.optimalTotalDistance = twoOpt.getTotalDistance();
+            System.out.printf("TwoOpt Distance: %d\n", this.optimalTotalDistance);
         }
         if(this.trip.options.optimization.equalsIgnoreCase("shortest")){
             ThreeOpt threeOpt = new ThreeOpt(this.sortedPlaces, this.grid.distanceGrid);
