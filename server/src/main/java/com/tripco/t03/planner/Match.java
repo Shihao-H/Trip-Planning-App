@@ -33,7 +33,14 @@ public class Match {
         // search the places.
         search.match();
     }
-
+    
+    /**
+     * Constructor.
+     * @param search Search object.
+     */
+    public Match(Search search){
+        this.search = search;
+    }
     /** Handles the response for a Search object.
      * Does the conversion from a Java class to a Json string.*
      */
