@@ -39,6 +39,7 @@ public class Match {
      * @param search Search object.
      */
     public Match(Search search){
+        
         this.search = search;
     }
     
