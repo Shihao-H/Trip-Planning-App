@@ -88,16 +88,12 @@ class Itinerary extends Component {
     table() {
         let table = [];
 
-        const generateKey = (pre) => {
-            return `${ pre }_${ new Date().getTime() }`;
-        };
-
         const rows =
             this.props.attributes.map((attribute) => <tr key={"row_" + attribute}>
                     <th scope={"row"} key={"header_" + attribute}>
                         {attribute.charAt(0).toUpperCase() + attribute.slice(1)}</th>
                     {
-                        this.props.places.map((place) => <td key={generateKey(place)}>{place[attribute]}</td>)
+                        this.props.places.map((place) => <td>{place[attribute]}</td>)
                     }
                 </tr>
             );
@@ -105,7 +101,7 @@ class Itinerary extends Component {
 
         const distance = <tr key={"row_leg"}>
             <th scope={"row"} key={"header_leg"}>Leg Distances</th>
-            {this.props.trip.distances.map((distance) => <td key={generateKey(distance)}>{distance}</td>)}
+            {this.props.trip.distances.map((distance) => <td>{distance}</td>)}
         </tr>;
         table.push(distance);
 
