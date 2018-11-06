@@ -13,11 +13,12 @@ import static org.junit.Assert.*;
 @RunWith(JUnit4.class)
 public class TestPlace {
 
-  Place place;
+  private Place place;
 
   // Setup to be done before every test in TestPlan
   @Before
   public void initialize() {
+    
     place = new Place("dnvr", "Denver", 1.0, 0.0);
   }
 
@@ -31,7 +32,15 @@ public class TestPlace {
   @Test
   public void testPlace() {
     Place testPlace = new Place("dnvr", "Denver", 1.0, 0.0);
-    assertTrue(testPlace.name.equals(place.name));
+      assertEquals(testPlace.name, place.name);
+  }
+  
+  @Test
+  public void testPlaceCopy(){
+    Place place1 = new Place("H1", "Home", 41.050505, -120.666666);
+    Place copy = new Place(place1);
+    
+    assertEquals(place1.name, copy.name);
   }
   
   @Test
@@ -66,23 +75,23 @@ public class TestPlace {
   @Test
   public void testSetAttributeContinent() {
     place.setAttributeContinent("not here");
-
-    assertFalse(place.continent.equals("here"));
+    
+      assertNotEquals("here", place.continent);
   }
 
   @Test
   public void testSetAttributeCountry(){
     String ofWordsExpressingMyFeelings = "This class is sucking my soul out";
     place.setAttributeCountry(ofWordsExpressingMyFeelings);
-
-    assertTrue(place.country.equals(ofWordsExpressingMyFeelings));
+    
+      assertEquals(place.country, ofWordsExpressingMyFeelings);
   }
 
   @Test
   public void testSetAttributeRegion(){
     place.setAttributeRegion("Do I get my diploma after this?");
-
-    assertFalse(place.region.equals("yes"));
+    
+      assertNotEquals("yes", place.region);
   }
 
   @Test
