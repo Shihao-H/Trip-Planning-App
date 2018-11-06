@@ -1,4 +1,4 @@
-import {Button, Card, CardBody, Collapse} from "reactstrap";
+import { Button, Card, CardBody, Collapse, Input, InputGroupAddon, InputGroup} from "reactstrap";
 import React, {Component} from 'react'
 import {Table} from 'reactstrap';
 
@@ -10,13 +10,13 @@ class Itinerary extends Component {
         };
 
         this.dropdown = this.dropdown.bind(this);
-        this.createTable = this.createTable.bind(this);
         this.toggle = this.toggle.bind(this);
         this.toggleSelectAll = this.toggleSelectAll.bind(this);
         this.clickDeleteButton = this.clickDeleteButton.bind(this);
         this.clickReverseButton = this.clickReverseButton.bind(this);
         this.clickChangeStartButton = this.clickChangeStartButton.bind(this);
         this.clear = this.clear.bind(this);
+        this.table = this.table.bind(this);
     }
 
     dropdown() {
@@ -33,7 +33,7 @@ class Itinerary extends Component {
         let newSelected = {};
 
         if (this.props.selectAll === false) {
-            this.props.trip.places.forEach(place => {
+            this.props.places.forEach(place => {
                 newSelected[place.id] = true;
             });
         }
@@ -46,7 +46,7 @@ class Itinerary extends Component {
         if (this.props.selectAll === true) {
             this.clear();
         } else {
-            let temp = this.props.trip.places;
+            let temp = this.props.places;
             var i = temp.length;
             while (i--) {
                 if (this.props.selected[temp[i].id] === true) {
@@ -58,12 +58,12 @@ class Itinerary extends Component {
     }
 
     clickReverseButton() {
-        var reverse = this.props.trip.places.reverse();
+        var reverse = this.props.places.reverse();
         this.props.updateTrip('places', reverse);
     }
 
     clickChangeStartButton() {
-        let temp = this.props.trip.places;
+        let temp = this.props.places;
         var i = temp.length;
         while (i--) {
             if (this.props.selected[temp[i].id] === true) {
@@ -88,8 +88,40 @@ class Itinerary extends Component {
     table() {
         let table = [];
 
+        const toggle =
+            <th key='checkAll' className="checkPlace">
+                <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                        <Input addon
+                               type="checkbox"
+                               aria-label="Checkbox for following text input"
+                               value={this.props.selectAll}
+                               key={"checkAll"}
+                               checked={this.props.selectAll}
+                               onChange={this.toggleSelectAll}/>
+                    </InputGroupAddon>
+                </InputGroup>
+            </th>;
+        const each =
+            this.props.places.map((place) =>
+                <td key={'check' + place.id} className="checkPlace">
+                    <InputGroupAddon addonType="prepend">
+                        <Input addon
+                               type="checkbox"
+                               key={"check" + place.id}
+                               checked={this.props.selected[place.id]}
+                               value={place.id}
+                               onChange={(event) => {
+                                   this.toggle(event.target.value)
+                               }}/>
+                    </InputGroupAddon>
+                </td>);
+        table.push(toggle);
+        table.push(each);
+
         const rows =
-            this.props.attributes.map((attribute) => <tr key={"row_" + attribute}>
+            this.props.attributes.map((attribute) =>
+                <tr key={"row_" + attribute}>
                     <th scope={"row"} key={"header_" + attribute}>
                         {attribute.charAt(0).toUpperCase() + attribute.slice(1)}</th>
                     {
@@ -99,112 +131,14 @@ class Itinerary extends Component {
             );
         table.push(rows);
 
-        const distance = <tr key={"row_leg"}>
-            <th scope={"row"} key={"header_leg"}>Leg Distances</th>
-            {this.props.trip.distances.map((distance) => <td>{distance}</td>)}
-        </tr>;
+        const distance =
+            <tr key={"row_leg"}>
+                <th scope={"row"} key={"header_leg"}>Leg Distances</th>
+                {this.props.trip.distances.map((distance) => <td>{distance}</td>)}
+            </tr>;
         table.push(distance);
 
         return table;
-    }
-
-
-    createTable() {
-        let table = [];
-        let children = [];
-        let total_distance = 0;
-
-        if (this.props.trip.places.length === 0) {
-            if (this.props.display.Name === true)
-                children.push(<th key='default_destination'>{"Place"}</th>);
-            if (this.props.display.Id === true)
-                children.push(<th key='default_id'>{"ID"}</th>);
-            if (this.props.display.UserDefinedDisplay === true)
-                children.push(<th key='default_user'>{this.props.display.UserDefined}</th>);
-            if (this.props.display.Latitude === true)
-                children.push(<th key='default_latitude'>{"Latitude"}</th>);
-            if (this.props.display.Longitude === true)
-                children.push(<th key='default_longitude'>{"Longitude"}</th>);
-            if (this.props.display.Leg === true)
-                children.push(<th key='default_leg distance'>{"Leg distance"}</th>);
-            if (this.props.display.Total === true)
-                children.push(<th key='default_total distance'>{"Total distance"}</th>);
-            table.push(<tr key='default header'>{children}</tr>);
-            return table
-        } else {
-            if (this.props.display.Name === true || this.props.display.Id === true
-                || this.props.display.Latitude === true || this.props.display.Longitude === true
-                || this.props.display.Leg === true || this.props.display.Total === true || this.props.display.UserDefinedDisplay === true) {
-                children.push(<th key='checkAll' className="checkPlace">
-                    <form>
-                        <input type="checkbox" name="checkAll" id={"checkAll"} checked={this.props.selectAll}
-                               value={this.props.selectAll}
-                               onChange={this.toggleSelectAll}/>
-                    </form>
-                </th>);
-            }
-            if (this.props.display.Name === true)
-                children.push(<th key='destination'>{"Place"}</th>);
-            if (this.props.display.Id === true)
-                children.push(<th key='id'>{"ID"}</th>);
-            if (this.props.display.UserDefinedDisplay === true)
-                children.push(<th key='user'>{this.props.display.UserDefined}</th>);
-            if (this.props.display.Latitude === true)
-                children.push(<th key='latitude'>{"Latitude"}</th>);
-            if (this.props.display.Longitude === true)
-                children.push(<th key='longitude'>{"Longitude"}</th>);
-            if (this.props.display.Leg === true)
-                children.push(<th key='leg distance'>{"Leg distance"}</th>);
-            if (this.props.display.Total === true)
-                children.push(<th key='total distance'>{"Total distance"}</th>);
-            table.push(<tr key='first row'>{children}</tr>);
-
-            let cell = [];
-            for (let i = 0; i < this.props.trip.places.length; i++) {
-                cell = [];
-                if (this.props.display.Name === true || this.props.display.Id === true
-                    || this.props.display.Latitude === true || this.props.display.Longitude === true
-                    || this.props.display.Leg === true || this.props.display.Total === true || this.props.display.UserDefinedDisplay === true) {
-                    cell.push(<th key={'check' + i} className="checkPlace">
-                        <form>
-                            <input type="checkbox" name="checkOne" id={"checkOne" + i}
-                                   checked={this.props.selected[this.props.trip.places[i].id]}
-                                   value={this.props.trip.places[i].id}
-                                   onChange={(event) => {
-                                       this.toggle(event.target.value)
-                                   }}/>
-                        </form>
-                    </th>);
-                }
-                if (this.props.display.Name === true)
-                    cell.push(<th key={'destination' + i}>{this.props.trip.places[i].name}</th>);
-                if (this.props.display.Id === true)
-                    cell.push(<th key={'id' + i}>{this.props.trip.places[i].id}</th>);
-                if (this.props.display.UserDefinedDisplay === true)
-                    cell.push(<th key={'user' + i}>{this.props.trip.places[i].userDefined}</th>);
-                if (this.props.display.Latitude === true)
-                    cell.push(<th key={'latitude' + i}>{this.props.trip.places[i].latitude}</th>);
-                if (this.props.display.Longitude === true)
-                    cell.push(<th key={'longitude' + i}>{this.props.trip.places[i].longitude}</th>);
-
-                if (this.props.trip.distances.length === 0) {
-                    if (this.props.display.Leg === true)
-                        cell.push(<th key={'leg distance' + i}>{'0'}</th>);
-                    if (this.props.display.Total === true)
-                        cell.push(<th key={'total distance' + i}>{'0'}</th>);
-                } else {
-                    if (this.props.display.Leg === true)
-                        cell.push(<th key={'leg distance' + i}>{this.props.trip.distances[i]}</th>);
-                    total_distance = total_distance + this.props.trip.distances[i];
-                    if (this.props.display.Total === true)
-                        cell.push(<th key={'total distance' + i}>{total_distance}</th>);
-                }
-
-                table.push(<tr key={'row' + i}>{cell}</tr>);
-            }
-
-            return table;
-        }
     }
 
     render() {
@@ -215,14 +149,10 @@ class Itinerary extends Component {
                 <Collapse isOpen={this.state.collapse}>
                     <Card>
                         <CardBody>
+                            <p>{this.props.trip.title}</p>
                             <Table className="Table" responsive hover>
                                 <tbody className="Body">{this.table()}</tbody>
                             </Table>
-                            <p>{this.props.trip.title}</p>
-                            <Table className="Table" responsive hover>
-                                <tbody className="Body">{this.createTable()}</tbody>
-                            </Table>
-
                             <Button size='lg' key={'delete_button'} className='btn-outline-dark delete-button'
                                     onClick={this.clickDeleteButton}>Delete selected location
                             </Button><br/><br/>
