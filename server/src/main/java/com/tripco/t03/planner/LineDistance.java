@@ -57,43 +57,33 @@ public class LineDistance {
         for (int i = 0; i < this.coordinates.length; i++) {
             if (i != this.coordinates.length - 1) {
                 if (this.coordinates[i][0] - this.coordinates[i + 1][0] < -180) {
-                    this.lines += "<polyline points=\""
-                            + (this.coordinates[i][0] + 360) + "," + this.coordinates[i][1] + " "
-                            + this.coordinates[i + 1][0] + "," + this.coordinates[i + 1][1] + " "
-                            + "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\""
-                            + "<polyline points=\""
-                            + this.coordinates[i][0] + "," + this.coordinates[i][1] + " "
-                            + (this.coordinates[i + 1][0] - 360) + "," + this.coordinates[i + 1][1] + " "
-                            + "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\"";
+                    drawLine((this.coordinates[i][0] + 360), this.coordinates[i][1],
+                            this.coordinates[i + 1][0], this.coordinates[i + 1][1]);
+                    drawLine(this.coordinates[i][0], this.coordinates[i][1],
+                            (this.coordinates[i + 1][0] - 360), this.coordinates[i + 1][1]);
                 } else if (this.coordinates[i][0] - this.coordinates[i + 1][0] > 180) {
-                    this.lines += "<polyline points=\""
-                            + this.coordinates[i][0] + "," + this.coordinates[i][1] + " "
-                            + (this.coordinates[i + 1][0] + 360) + "," + this.coordinates[i + 1][1] + " "
-                            + "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\""
-                            + "<polyline points=\""
-                            + (this.coordinates[i][0] - 360) + "," + this.coordinates[i][1] + " "
-                            + this.coordinates[i + 1][0] + "," + this.coordinates[i + 1][1] + " "
-                            + "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\"";
+                    drawLine(this.coordinates[i][0], this.coordinates[i][1],
+                            (this.coordinates[i + 1][0] + 360), this.coordinates[i + 1][1]);
+                    drawLine((this.coordinates[i][0] - 360), this.coordinates[i][1],
+                            this.coordinates[i + 1][0], this.coordinates[i + 1][1]);
+                } else {
+                    drawLine(this.coordinates[i][0], this.coordinates[i][1],
+                            this.coordinates[i + 1][0], this.coordinates[i + 1][1]);
                 }
+            } else {
+                drawLine(this.coordinates[i][0], this.coordinates[i][1],
+                        this.coordinates[0][0], this.coordinates[0][1]);
             }
-
-
-            if (i != 0 && i != this.coordinates.length) {
-                if (this.coordinates[i][0] - this.coordinates[i - 1][0] < -180) {
-                    this.lines += this.coordinates[i][0] + "," + this.coordinates[i][1] + " ";
-                    continue;
-                } else if (this.coordinates[i][0] - this.coordinates[i - 1][0] > 180) {
-                    this.lines += this.coordinates[i][0] + "," + this.coordinates[i][1] + " ";
-                    continue;
-                }
-            } else if (i == this.coordinates.length - 1) {
-
-            }
-            this.lines += this.coordinates[i][0] + "," + this.coordinates[i][1] + " ";
         }
-        this.lines += "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\" id=\"route\"/>";
         this.lines += "</svg>";
         this.lines += "</g>";
+    }
+
+    public void drawLine(int x1, int y1, int x2, int y2) {
+        this.lines += "<polyline points=\""
+                + x1 + "," + y1 + " "
+                + x2 + "," + y2 + " "
+                + "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\"";
     }
 
     public String getBackground() {

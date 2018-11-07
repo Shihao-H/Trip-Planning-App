@@ -81,7 +81,6 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
         } else{
@@ -92,10 +91,9 @@ public class Trip {
             this.options = optTrip.options;
             this.places = optTrip.places;
             this.distances=optTrip.distances;
-            LineDistance worldMap = new LineDistance(this.places);
-            this.map = worldMap.getMap();
-
         }
+        LineDistance worldMap = new LineDistance(this.places);
+        this.map = worldMap.getMap();
     }
 
     /**
