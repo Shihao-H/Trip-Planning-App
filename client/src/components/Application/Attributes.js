@@ -13,6 +13,7 @@ class Attributes extends Component {
                 <Input type={"checkbox"}
                        key={"checkbox_" + attribute}
                        value={attribute}
+                       checked={this.props.display[this.props.config.attributes.indexOf(attribute)]}
                        onChange={event => {
                            this.props.updateAttributes(event.target.value)
                        }}/>
