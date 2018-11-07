@@ -2,9 +2,8 @@ package com.tripco.t03.server;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
+import static org.junit.Assert.*;
 
 public class TestConfig {
 
@@ -35,6 +34,6 @@ public class TestConfig {
 
     @Test
     public void testFalseConfig(){
-        assertFalse(config == null);
+        assertNotNull(config);
     }
 }

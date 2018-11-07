@@ -13,20 +13,14 @@ public class Calculate {
      * Does the conversion from Json to a Java class before performing calculation.
      */
     public Calculate(Request request) {
-        
-        // extract the information from the body of the request.
-        JsonParser jsonParser = new JsonParser();
-        JsonElement requestBody = jsonParser.parse(request.body());
-        
+    
+        JsonElement requestBody = jsonHandler(request);
         // convert the body of the request to a Java class.
         Gson gson = new Gson();
         distance = gson.fromJson(requestBody, Distance.class);
         
         // perform calculation.
         distance.setDistance();
-        
-        // log something.
-        System.out.println(distance.toString());
     }
     
     /**
@@ -36,6 +30,19 @@ public class Calculate {
     public Calculate(Distance input){
         distance = input;
         distance.setDistance();
+    }
+    
+    /**
+    * A method written to cut code climate duplication that failed.
+    * @param request Request.
+    * @return JsonElement.
+    */
+    public static JsonElement jsonHandler(Request request){
+    
+        // extract the information from the body of the request.
+        JsonParser jsonParser = new JsonParser();
+        JsonElement requestBody = jsonParser.parse(request.body());
+        return requestBody;
     }
     
     /** Handles the response for a Distance object.
