@@ -126,12 +126,12 @@ public class LineDistance {
      */
     public String getBackground() {
         this.backgroundMap();
-        this.map = "<svg width=\"1024\" height=\"512\" xmlns=\"http://www.w3.org/2000/svg\" " +
-                "xmlns:svg=\"http://www.w3.org/2000/svg\">" +
-                "<g>" +
-                this.background +
-                "</g>" +
-                "</svg>";
+        this.map = "<svg width=\"1024\" height=\"512\" xmlns=\"http://www.w3.org/2000/svg\" "
+                + "xmlns:svg=\"http://www.w3.org/2000/svg\">"
+                + "<g>"
+                + this.background
+                + "</g>"
+                + "</svg>";
         return this.map;
     }
 
@@ -140,13 +140,13 @@ public class LineDistance {
      */
     public String getMap() {
         this.AddLines();
-        this.map = "<svg width=\"1024\" height=\"512\" xmlns=\"http://www.w3.org/2000/svg\" " +
-                "xmlns:svg=\"http://www.w3.org/2000/svg\">" +
-                "<g>" +
-                this.background +
-                this.lines +
-                "</g>" +
-                "</svg>";
+        this.map = "<svg width=\"1024\" height=\"512\" xmlns=\"http://www.w3.org/2000/svg\" "
+                + "xmlns:svg=\"http://www.w3.org/2000/svg\">"
+                + "<g>"
+                + this.background
+                + this.lines
+                + "</g>"
+                + "</svg>";
         return this.map;
     }
 
