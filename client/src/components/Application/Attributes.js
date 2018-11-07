@@ -22,16 +22,18 @@ class Attributes extends Component {
         );
 
         return (
-            <Card>
-                <CardBody>
-                    <p>Select attributes to display.</p>
-                    <Col>
-                        <FormGroup>
-                            {checkboxes}
-                        </FormGroup>
-                    </Col>
-                </CardBody>
-            </Card>
+            <div>
+                <Card>
+                    <CardBody>
+                        <p>Select attributes to display.</p>
+                        <Col>
+                            <FormGroup>
+                                {checkboxes}
+                            </FormGroup>
+                        </Col>
+                    </CardBody>
+                </Card>
+            </div>
         )
     };
 }

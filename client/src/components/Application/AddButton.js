@@ -31,7 +31,7 @@ export class AddButton extends Component {
                 className="btn-outline-dark"
                 size="sm"
             >
-                Add to trip
+                Add
             </Button>
         )
     }
