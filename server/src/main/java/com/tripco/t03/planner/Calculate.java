@@ -32,6 +32,11 @@ public class Calculate {
         distance.setDistance();
     }
     
+    /**
+    * A method written to cut code climate duplication that failed.
+    * @param request Request.
+    * @return JsonElement.
+    */
     public static JsonElement jsonHandler(Request request){
     
         // extract the information from the body of the request.
