@@ -24,9 +24,6 @@ public class Calculate {
         
         // perform calculation.
         distance.setDistance();
-        
-        // log something.
-        System.out.println(distance.toString());
     }
     
     /**

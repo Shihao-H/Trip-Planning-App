@@ -92,7 +92,6 @@ public class Search {
                 query += addFilters(i, j);
             }
         }
-        System.out.println("This is the filter query:\n " + query);
         return query;
     }
     

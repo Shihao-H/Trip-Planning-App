@@ -44,7 +44,6 @@ class Optimize {
         nn.getOptimalTrip(this.optimalIndices);
         nn.getLegDistances(this.optimalLegs);
         this.optimalTotalDistance = nn.getTotalDistance();
-        System.out.printf("Nearest Neighbor Distance: %d\n", this.optimalTotalDistance);
         if(this.trip.options.optimization.equalsIgnoreCase("shorter")){
             System.arraycopy(this.optimalIndices, 0, this.twoOptIndices, 0,
                              twoOptIndices.length);
@@ -53,7 +52,6 @@ class Optimize {
             twoOpt.getSortedIndices(this.optimalIndices);
             twoOpt.getTwoOptLegDistances(this.optimalLegs);
             this.optimalTotalDistance = twoOpt.getTotalDistance();
-            System.out.printf("TwoOpt Distance: %d\n", this.optimalTotalDistance);
         }
         return buildNewTrip();
     }

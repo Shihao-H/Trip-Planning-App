@@ -85,7 +85,6 @@ public class Trip {
 
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
-            System.out.printf("Trip Distance: %f\n", this.totalDist);
         } else{
            // this.distances = legDistances();
             Optimize opt = new Optimize(this);
@@ -141,7 +140,7 @@ public class Trip {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
         this.map = fileLines;
     }

@@ -7,8 +7,6 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 
-import java.util.Arrays;
-
 import static spark.Spark.*;
 
 /**
@@ -48,8 +46,7 @@ public class MicroServer {
         post("/plan", this::plan);
         post("/distance", this::distance);
         post("/search", this::search);
-
-        System.out.println("\n\nServer running on port: " + this.port + "\n\n");
+        
     }
 
     /**
@@ -67,7 +64,6 @@ public class MicroServer {
                     +port+"</h1></body></html>";
         }catch(Exception err){
             result = "{}";
-            getErrorMessage(err);
         }
         return result;
     }
@@ -86,7 +82,6 @@ public class MicroServer {
             result = Config.getConfig();
         }catch(Exception err){
             result = "{}";
-            getErrorMessage(err);
         }
         return result;
     }
@@ -105,7 +100,6 @@ public class MicroServer {
             result = HTTP.echoRequest(request);
         }catch(Exception err){
             result = "{}";
-            getErrorMessage(err);
         }
         return result;
     }
@@ -124,7 +118,6 @@ public class MicroServer {
             result =Greeting.html(request.params(":name"));
         }catch(Exception err){
             result = "{}";
-            getErrorMessage(err);
         }
         return result;
     }
@@ -143,7 +136,6 @@ public class MicroServer {
             result = name;
         }catch(Exception err){
             result = "{}";
-            getErrorMessage(err);
         }
         return result;
     }
@@ -161,7 +153,6 @@ public class MicroServer {
             result = new Plan(request).getTrip();
         }catch(Exception err){
             result = "{}";
-            getErrorMessage(err);
         }
         return result;
     }
@@ -179,7 +170,6 @@ public class MicroServer {
             result = new Calculate(request).getDistance();
         }catch(Exception err){
             result = "{}";
-            getErrorMessage(err);
         }
         return result;
     }
@@ -197,7 +187,6 @@ public class MicroServer {
             result = new Match(request).getMatch();
         }catch(Exception err){
             result = "{}";
-            getErrorMessage(err);
         }
         return result;
     }
@@ -210,16 +199,5 @@ public class MicroServer {
     private void setAppJsonResponse(Response response){
         response.type("application/json");
         response.header("Access-Control-Allow-Origin", "*");
-    }
-
-    /**
-     * Prints the error message for exceptions.
-     * @param err Exception Object.
-     */
-    private void getErrorMessage(Exception err){
-        System.out.println(err.getClass());
-        System.out.println(err.getCause());
-        System.out.println(err.getMessage());
-        System.out.println(Arrays.toString(err.getStackTrace()));
     }
 }
