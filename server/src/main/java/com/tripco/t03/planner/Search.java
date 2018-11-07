@@ -70,33 +70,24 @@ public class Search {
     public void match() {
         String query = "";
         if ((this.filters != null) && (this.filters.length != 0)) {
-            for (int i = 0; i < this.filters.length; i++) {
-                if (this.filters[i].values.length != 0) {
-                    query += "AND (";
-                    for (int j = 0; j < this.filters[i].values.length; j++) {
-                        if (this.filters[i].name.equalsIgnoreCase("continents")) {
-                            query += this.filters[i].name + ".name = \'"
-                                    + this.filters[i].values[j] + "\' ";
-                            if (j == this.filters[i].values.length - 1) {
-                                query += ")\n";
-                            } else {
-                                query += "OR\n";
-                            }
-                        }
-                        if (this.filters[i].name.equalsIgnoreCase("type")) {
-                            query += this.filters[i].name + " = \'"
-                                    + this.filters[i].values[j] + "\' ";
-                            if (j == this.filters[i].values.length - 1) {
-                                query += ")\n";
-                            } else {
-                                query += "OR\n";
-                            }
-                        }
+            int filterSize = this.filters.length;
+            for (int i = 0; i < filterSize; i++) {
+                int valueSize = this.filters[i].values.length;
+                if (valueSize != 0) {
+                    query += "AND ";
+                    if (this.filters[i].name.equalsIgnoreCase("continents")) {
+                        query += this.filters[i].name + ".name IN (";
+                    } else {
+                        query += this.filters[i].name + " IN (";
                     }
+                    for (int j = 0; j < valueSize-1; j++) {
+                        query += "\"" + this.filters[i].values[j] + "\", ";
+                    }
+                    query += "\"" + this.filters[i].values[valueSize -1] + "\")\n";
                 }
             }
         }
-        System.out.println("This is the filter query:\n " + query);
+        System.out.println("This is the filter query:\n" + query);
         Driver driver = new Driver();
         driver.find(this.match, this.limit, query);
         this.found = driver.found;
