@@ -95,7 +95,6 @@ public class MicroServer {
             result = LineDistance.getDefaultMap();
         }catch(Exception err){
             result = "{}";
-            getErrorMessage(err);
         }
         return result;
     }
