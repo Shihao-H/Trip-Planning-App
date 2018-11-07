@@ -23,7 +23,8 @@ public class Driver {
      * @param match String phrase to match.
      * @param limit integer number of mx results to be shown.
      */
-    public static void find(String match, int limit, String filter) throws ClassNotFoundException, SQLException {
+    public static void find(String match, int limit, String filter) 
+        throws ClassNotFoundException, SQLException {
         if (limit == 0) {
             limitQuery = ""; // no limit
         } else {
