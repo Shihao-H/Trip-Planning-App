@@ -157,7 +157,6 @@ public class MicroServer {
      * @return The planned trip
      */
     private String plan(Request request, Response response) {
-        
         setAppJsonResponse(response);
         try{
             result = new Plan(request).getTrip();

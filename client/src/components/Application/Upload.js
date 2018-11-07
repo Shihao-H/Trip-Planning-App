@@ -44,6 +44,7 @@ class Upload extends Component {
             request(obj,'plan').then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
+                console.log(Fi.places);
                 this.props.updateTrip('places',Fi.places);
                 this.props.updateTrip('map', Fi.map);
             });
@@ -51,9 +52,7 @@ class Upload extends Component {
             request(obj,'plan', this.props.otherTeams, this.props.host).then((Fi)=>
             {
                 this.props.updateTrip('distances',Fi.distances);
-                console.log(Fi.distances);
                 this.props.updateTrip('places',Fi.places);
-                console.log(Fi.places);
                 this.props.updateTrip('map', Fi.map);
             });
         }
@@ -76,7 +75,6 @@ class Upload extends Component {
                     <Button
                         size='lg'
                         className='btn-dark btn-outline-dark'
-                        type="submit"
                         onClick={this.handleSubmit}>Plan</Button>
                 </Col>
             </Row>
