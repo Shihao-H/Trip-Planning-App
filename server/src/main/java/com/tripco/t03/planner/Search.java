@@ -1,6 +1,8 @@
 package com.tripco.t03.planner;
 
 import com.tripco.t03.server.Driver;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -69,7 +71,7 @@ public class Search {
     /**
      * The top level method that does searching.
      */
-    public void match() {
+    public void match() throws SQLException, ClassNotFoundException {
         String query = "";
         if ((this.filters != null) && (this.filters.length != 0)) {
             query = getQuery();

@@ -5,6 +5,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import spark.Request;
 
+import java.sql.SQLException;
+
 /**
  * This class handles to the conversions of the search request/ resopnse,
  * converting from the Json string in the request body to a Search object,
@@ -20,7 +22,7 @@ public class Match {
      * Does the conversion from Json to a Java class before searching the places.
      * @param request should be {a single string}.
      */
-    public Match(Request request) {
+    public Match(Request request) throws SQLException, ClassNotFoundException {
 
         // extract the information from the body of the request.
         JsonElement requestBody = Calculate.jsonHandler(request);
