@@ -36,6 +36,14 @@ public class Place {
         this.longitude = longitude;
     }
 
+    /**
+     * Constructs an instance of Place for the desired place.
+     * @param country country given by user string.
+     * @param id identifier given by user.
+     * @param name name of the place string.
+     * @param latitude latitude coordinates double.
+     * @param longitude longitude coordinates double.
+     */
     public Place(String country, String id, String name, Double latitude, Double longitude){
         this.country=country;
         this.id = id;
