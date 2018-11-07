@@ -2,29 +2,29 @@ package com.tripco.t03.planner;
 
 import java.util.Arrays;
 
-public class NearestNeighbor {
+class NearestNeighbor {
 
     private boolean[] notVisited;
-    private int minTripDistance;
+    private long minTripDistance;
     private Integer[] optTrip;
     private Integer[] sortedIndexes;
-    private Integer[][] distanceGrid;
-    private Integer[] tripDistances;
-    private Integer[] legDistance;
+    private Long[][] distanceGrid;
+    private Long[] tripDistances;
+    private Long[] legDistance;
 
     /**
      * Constructor for NearestNeighbor Object.
      * @param sortedIndexes Integer array of sorted place indices.
      * @param distanceGrid 2D Integer array of all the distances.
      */
-    public NearestNeighbor(Integer [] sortedIndexes, Integer[][] distanceGrid){
+    NearestNeighbor(Integer[] sortedIndexes, Long[][] distanceGrid){
         this.sortedIndexes = sortedIndexes;
         this.distanceGrid = distanceGrid;
         this.optTrip = new Integer[this.sortedIndexes.length];
-        this.minTripDistance = Integer.MAX_VALUE;
-        this.tripDistances = new Integer[this.sortedIndexes.length];
+        this.minTripDistance = Long.MAX_VALUE;
+        this.tripDistances = new Long[this.sortedIndexes.length];
         this.notVisited = new boolean[sortedIndexes.length];
-        this.legDistance = new Integer[tripDistances.length];
+        this.legDistance = new Long[tripDistances.length];
         setNotVisited();
     }
 
@@ -38,14 +38,14 @@ public class NearestNeighbor {
     /**
      * Getter method.
      */
-    public void getOptimalTrip(Integer[] result){
+    void getOptimalTrip(Integer[] result){
         System.arraycopy(this.optTrip, 0, result, 0, result.length);
     }
 
     /**
      * Getter method.
      */
-    public void getLegDistances(Integer[] result){
+    void getLegDistances(Long[] result){
         System.arraycopy(tripDistances, 0, result, 0, result.length);
     }
 
@@ -53,7 +53,7 @@ public class NearestNeighbor {
      * Getter Method.
      * @return Integer the total distance for the optimal trip.
      */
-    public Integer getTotalDistance(){
+    Long getTotalDistance(){
         return this.minTripDistance;
     }
 
@@ -63,26 +63,17 @@ public class NearestNeighbor {
      * Sets the shortest trip leg distances to tripDistance.
      * Sets the total distance to minTripDistance.
      */
-    public void nearestNeighbor(){
+    void nearestNeighbor(){
         Integer[] nextTrip = new Integer[this.sortedIndexes.length];
         for(int i = 0; i< sortedIndexes.length; i++){
-            int newDistance = innerLoop(0, i, nextTrip);
+            long newDistance = innerLoop(0, i, nextTrip);
             if(newDistance < this.minTripDistance){
                 this.minTripDistance = newDistance;
-                copyArray(this.legDistance, this.tripDistances);
-                copyArray(nextTrip, this.optTrip);
+                System.arraycopy(this.legDistance, 0, this.tripDistances, 0,
+                                 this.tripDistances.length);
+                System.arraycopy(nextTrip, 0, this.optTrip,
+                                 0, this.optTrip.length);
             }
-        }
-    }
-
-    /**
-     * Copies array.
-     * @param from Integer array.
-     * @param to Integer array.
-     */
-    private void copyArray(Integer[] from, Integer[] to){
-        if(from.length == to.length) {
-            System.arraycopy(from, 0, to, 0, from.length);
         }
     }
 
@@ -94,7 +85,7 @@ public class NearestNeighbor {
      * @param temp Integer array of the current trip being buiilt.
      * @return int the total distance integer.
      */
-    private int innerLoop(int counter, int currentLocation, Integer[] temp) {
+    private Long innerLoop(int counter, int currentLocation, Integer[] temp) {
         temp[counter] = currentLocation;
         this.notVisited[currentLocation] = false;
         if(counter < temp.length-1) {
@@ -115,7 +106,7 @@ public class NearestNeighbor {
      * @return startPlace to the nearest place.
      */
     private int findNearestPlace(int from){
-        Integer minDist = Integer.MAX_VALUE;
+        Long minDist = Long.MAX_VALUE;
         int result = 0;
         for(int i = 0; i < sortedIndexes.length; i++ ) {
             if(i != from) {

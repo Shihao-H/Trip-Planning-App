@@ -17,9 +17,9 @@ public class Trip {
     public String title;
     public Option options;
     public ArrayList<Place> places;
-    public ArrayList<Integer> distances;
+    public ArrayList<Long> distances;
     public String map;
-    public double totalDist;
+    private Long totalDist;
     /**
      * Default constructor.
      */
@@ -53,7 +53,7 @@ public class Trip {
      * @param dist The list of distances between each place
      *
      */
-    public Trip(String title, Option options, ArrayList<Place> places, ArrayList<Integer> dist){
+    public Trip(String title, Option options, ArrayList<Place> places, ArrayList<Long> dist){
         this.title =title;
         this.options=options;
         this.places=places;
@@ -110,16 +110,16 @@ public class Trip {
 
     /**
      * Setter for distances ArrayList.
-     * @param distances ArrayList of Integers.
+     * @param distances ArrayList of Longs.
      */
-    public void setDistances(ArrayList<Integer> distances){
+    public void setDistances(ArrayList<Long> distances){
         this.distances = distances;
     }
 
     /**
      * Adds the route to the existing map.
      */
-    public void setRoute() {
+    void setRoute() {
         LineDistance ld = new LineDistance(this.places);
         String route = ld.getCoordinates();
         this.map = this.map.substring(0, this.map.length()-16) + route
@@ -148,11 +148,11 @@ public class Trip {
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
-     * @return An arrayList of type Integer
+     * @return An arrayList of type Long
      */
-    private ArrayList<Integer> legDistances() {
+    private ArrayList<Long> legDistances() {
 
-        ArrayList<Integer> dist = new ArrayList<>();
+        ArrayList<Long> dist;
 
         if(this.options.units.equals("user defined")){
             dist = makeUserDefTrip();
@@ -162,10 +162,10 @@ public class Trip {
         return dist;
     }
 
-    private ArrayList<Integer> makeUserDefTrip() {
+    private ArrayList<Long> makeUserDefTrip() {
 
-        this.totalDist = 0;
-        ArrayList<Integer> dist = new ArrayList<>();
+        this.totalDist = 0L;
+        ArrayList<Long> dist = new ArrayList<>();
 
         for (int count = 0; count < places.size() - 1; count++) {
             Distance leg = new Distance(places.get(count), places.get(count + 1),
@@ -183,10 +183,10 @@ public class Trip {
         return dist;
     }
 
-    private ArrayList<Integer> makeNormalTrip() {
+    private ArrayList<Long> makeNormalTrip() {
     
-        this.totalDist = 0;
-        ArrayList<Integer> dist = new ArrayList<>();
+        this.totalDist = 0L;
+        ArrayList<Long> dist = new ArrayList<>();
 
         for (int count = 0; count < places.size() - 1; count++) {
             Distance leg = new Distance(places.get(count), places.get(count+1), options.units);

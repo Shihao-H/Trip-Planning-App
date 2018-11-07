@@ -15,7 +15,7 @@ public class TestOptimize {
     private Trip userDef;
     private Trip shorter;
     private Trip trip;
-    private int totalDistance;
+    private long totalDistance;
 
     @Before
     public void setUp() {
@@ -43,10 +43,10 @@ public class TestOptimize {
         places.add(new Place("P14", "Ordway", 38.32, -103.79));
         trip = new Trip(opt, places);
         trip.plan();
-        Integer[] i = new Integer[trip.distances.size()];
+        Long[] i = new Long[trip.distances.size()];
         trip.distances.toArray(i);
-        Stream<Integer> ss = Arrays.stream(i);
-        totalDistance = ss.reduce(0, (a, b) -> a + b);
+        Stream<Long> ss = Arrays.stream(i);
+        totalDistance = ss.reduce(0L, (a, b) -> a + b);
         userDef = new Trip(optUserDef, places);
         userDef.plan();
         shorter = new Trip(optShorter, places);
@@ -64,7 +64,7 @@ public class TestOptimize {
     public void testGetOptimalTripDistance(){
         optimal = new Optimize(trip);
         optimal.getOptimalTrip();
-        int distance = optimal.getOptimalTripDistance();
+        long distance = optimal.getOptimalTripDistance();
 
         Assert.assertTrue(distance != totalDistance);
     }
@@ -73,7 +73,7 @@ public class TestOptimize {
     public void testOptimizeUserDefined(){
         optimal = new Optimize(userDef);
         optimal.getOptimalTrip();
-        int dist = optimal.getOptimalTripDistance();
+        long dist = optimal.getOptimalTripDistance();
         
         Assert.assertNotEquals(dist, totalDistance);
     }
@@ -82,7 +82,7 @@ public class TestOptimize {
     public void testOptimizeShorter(){
         optimal = new Optimize(shorter);
         optimal.getOptimalTrip();
-        int dist = optimal.getOptimalTripDistance();
+        long dist = optimal.getOptimalTripDistance();
         
         Assert.assertNotEquals(dist, totalDistance);
     }

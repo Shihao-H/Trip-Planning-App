@@ -8,8 +8,8 @@ class Optimize {
     private Integer[] sortedPlaces;
     private Integer[] optimalIndices;
     private Integer[] twoOptIndices;
-    private Integer[] optimalLegs;
-    private int optimalTotalDistance;
+    private Long[] optimalLegs;
+    private Long optimalTotalDistance;
     private DistanceGrid grid;
 
     /**
@@ -21,16 +21,16 @@ class Optimize {
         this.sortedPlaces = new Integer[trip.places.size()];
         this.sortedPlaces = MergeSortPlace.sort(this.trip.places);
         this.optimalIndices = new Integer[this.sortedPlaces.length];
-        this.optimalLegs = new Integer[this.sortedPlaces.length];
+        this.optimalLegs = new Long[this.sortedPlaces.length];
         this.twoOptIndices = new Integer[this.sortedPlaces.length];
         setGrid();
     }
 
     /**
      * Getter for total distance.
-     * @return int total distance for optimal trip.
+     * @return Long total distance for optimal trip.
      */
-    int getOptimalTripDistance(){
+    Long getOptimalTripDistance(){
         return this.optimalTotalDistance;
     }
 
@@ -65,7 +65,7 @@ class Optimize {
         for(int i = 0; i < this.trip.places.size(); i++){
             optimal.add(this.trip.places.get(this.optimalIndices[i]));
         }
-        ArrayList<Integer> legs = new ArrayList<>(Arrays.asList(this.optimalLegs));
+        ArrayList<Long> legs = new ArrayList<>(Arrays.asList(this.optimalLegs));
         return new Trip( this.trip.title, this.trip.options, optimal, legs);
     }
 

@@ -7,23 +7,21 @@ import java.util.Arrays;
 
 public class TestTwoOpt {
     
-    public TwoOpt opt;
-    public Integer[] trip;
-    public Integer[] expected;
-    public Integer[][] distanceGrid;
-    public int minDistance;
-    public Integer[] expectedLeg;
+    private TwoOpt opt;
+    private Integer[] trip;
+    private Integer[] expected;
+    private Long[][] distanceGrid;
+    private Long[] expectedLeg;
     
     @Before
     public void setup(){
         trip = new Integer[]{0, 2, 1, 3};
-        distanceGrid = new Integer[][]{{0, 5, 8, 4},
-                                       {5, 0, 4, 8},
-                                       {8, 4, 0, 5},
-                                       {4, 8, 5, 0}};
-        minDistance = 24;
+        distanceGrid = new Long[][]{{0L, 5L, 8L, 4L},
+                                       {5L, 0L, 4L, 8L},
+                                       {8L, 4L, 0L, 5L},
+                                       {4L, 8L, 5L, 0L}};
         expected = new Integer[]{0, 1, 2, 3};
-        expectedLeg = new Integer[]{5, 4, 5, 4};
+        expectedLeg = new Long[]{5L, 4L, 5L, 4L};
     }
     
     @Test
@@ -57,7 +55,7 @@ public class TestTwoOpt {
         Integer[] result = new Integer[trip.length];
         opt.twoOpt(result);
     
-        int distance = opt.getTotalDistance();
+        long distance = opt.getTotalDistance();
         Assert.assertEquals(distance, 18);
     }
     
@@ -73,7 +71,7 @@ public class TestTwoOpt {
     @Test
     public void testTwoOptLegDistances(){
         opt = new TwoOpt(trip, distanceGrid);
-        Integer[] result = new Integer[trip.length];
+        Long[] result = new Long[trip.length];
         opt.twoOpt(expected);
         opt.getTwoOptLegDistances(result);
         
