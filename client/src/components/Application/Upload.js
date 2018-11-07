@@ -28,10 +28,10 @@ class Upload extends Component {
                 this.props.updateOptions('unitName',obj.options.unitName);
             }
             this.props.updateTrip('places',obj.places);
-            get_map().then(
-              map => {
-                  this.props.updateTrip("map", map.map);
-              }
+            get('map').then(
+                map => {
+                    this.props.updateTrip("map", map.map);
+                }
             );
         };
         this.props.updateSelected(new Map());
