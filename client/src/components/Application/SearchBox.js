@@ -21,7 +21,8 @@ export class SearchBox extends Component {
         {
             request(obj,'search').then((Fi)=>
             {
-                this.props.updateSearch('places',Fi.places);
+                let limit = Fi.places.slice(0,6);
+                this.props.updateSearch('places',limit);
             });
         }
     }

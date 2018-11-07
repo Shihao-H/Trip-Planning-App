@@ -13,7 +13,7 @@ public class Search {
     public int version = 4;
     public String type = "search";
     public String match = null;
-    public Filter[] filters;
+    public Filter[] filters = null;
     public int limit = 0;
     public int found = 0;
     public ArrayList<Place> places;
@@ -74,50 +74,28 @@ public class Search {
     public void match() throws SQLException, ClassNotFoundException {
         String query = "";
         if ((this.filters != null) && (this.filters.length != 0)) {
-            query = getQuery();
-        }
-        
-        Driver.find(this.match, this.limit, query);
-        this.found = Driver.found;
-        this.places.addAll(Driver.places);
-    }
-    
-    /**
-     * Parses Filter objects into strings for query.
-     * @return Sting.
-     */
-    public String getQuery(){
-        String query = "";
-        for (int i = 0; i < this.filters.length; i++) {
-            query += "AND (";
-            for (int j = 0; j < this.filters[i].values.length; j++) {
-                query += addFilters(i, j);
+            int filterSize = this.filters.length;
+            for (int i = 0; i < filterSize; i++) {
+                int valueSize = this.filters[i].values.length;
+                if (valueSize != 0) {
+                    query += "AND ";
+                    if (this.filters[i].name.equalsIgnoreCase("continents")) {
+                        query += this.filters[i].name + ".name IN (";
+                    } else {
+                        query += this.filters[i].name + " IN (";
+                    }
+                    for (int j = 0; j < valueSize-1; j++) {
+                        query += "\"" + this.filters[i].values[j] + "\", ";
+                    }
+                    query += "\"" + this.filters[i].values[valueSize -1] + "\")\n";
+                }
             }
         }
-        return query;
-    }
-    
-    /**
-     * Helper method for getting the Filter elements in sting.
-     * @param filter int.
-     * @param value int.
-     * @return String.
-     */
-    private String addFilters(int filter, int value){
-        String substring = "";
-        if (this.filters[filter].name.equalsIgnoreCase("continents")) {
-            substring += this.filters[filter].name + ".name = \'";
-        }
-        if (this.filters[filter].name.equalsIgnoreCase("type")){
-         substring+=this.filters[filter].name+" = \'";
-        }
-         substring += this.filters[filter].values[value] + "\' ";
-        if (value == this.filters[filter].values.length - 1) {
-            substring += ")\n";
-        } else {
-            substring += "OR\n";
-        }
-        
-        return substring;
+
+        System.out.println("This is the filter query:\n" + query);
+        Driver driver = new Driver();
+        driver.find(this.match, this.limit, query);
+        this.found = driver.found;
+        this.places = (ArrayList<Place>) driver.places.clone();
     }
 }

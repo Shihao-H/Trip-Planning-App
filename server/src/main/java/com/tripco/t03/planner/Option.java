@@ -10,7 +10,7 @@ public class Option {
   public String unitName;
   public Double unitRadius;
   public String optimization;
-  public String map;
+  public String[] map;
 
   /**
    * Default constructor.
@@ -19,8 +19,8 @@ public class Option {
     this.units = null;
     this.unitName = null;
     this.unitRadius = null;
-    this.optimization = null;
-    this.map = null;
+    this.optimization = "none";
+    this.map =  new String[]{"svg"};
   }
 
   /**
@@ -32,7 +32,7 @@ public class Option {
     this.unitName = null;
     this.unitRadius = null;
     this.optimization = "none";
-    this.map= "svg";
+    this.map= new String[]{"svg"};
   }
 
   /**
@@ -45,7 +45,7 @@ public class Option {
     this.optimization = optimization;
     this.unitName=null;
     this.unitRadius=null;
-    this.map= "svg";
+    this.map= new String[]{"svg"};
   }
 
   /**
@@ -59,7 +59,7 @@ public class Option {
     this.unitName = unitName;
     this.unitRadius = unitRadius;
     this.optimization = "none";
-    this.map= "svg";
+    this.map= new String[]{"svg"};
   }
 
   /**
@@ -72,7 +72,7 @@ public class Option {
     this.unitName = unitName;
     this.unitRadius = unitRadius;
     this.optimization = optimization;
-    this.map= "svg";
+    this.map= new String[]{"svg"};
   }
 
   /**

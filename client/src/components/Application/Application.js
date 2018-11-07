@@ -1,57 +1,69 @@
 import React, {Component} from 'react';
 import Map from './Map';
-import defaultSvg from "../../../../images/CObackground.svg";
 import {Card, CardBody, Container} from 'reactstrap';
-import { get_config } from '../../api/api';
+import {get} from '../../api/api';
 import DistanceCal from "./DistanceCal";
 import Info from './Info';
 import Trip from "./Trip"
-import OptionPanel from "./OptionPanel";
-
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
  */
 class Application extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            config:null,
+            config: null,
             trip: {
-                version: 3,
+                version: 4,
                 type: "trip",
                 title: "",
-                options : {
+                options: {
                     units: "miles",
                     unitName: "",
                     unitRadius: 0.00,
-                    optimization:"none"
+                    optimization: "none"
                 },
                 places: [],
                 distances: [],
-                map: '<svg width="1920" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
+                map: '<svg width="1920" height="960" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">\n' +
+                    '<g>\n' +
+                    '<g id="s4">\n' +
+                    '<svg id="s1" height="960" width="1920"\n' +
+                    'xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg">\n' +
+                    '<title>Layer 1</title>\n' +
+                    '<rect fill="rgb(119, 204, 119)" stroke="black" x="0" y="0" width="1920" height="960" id="s3"/>\n' +
+                    '</svg>\n' +
+                    '</g>\n' +
+                    '<g id="s9">\n' +
+                    '<svg id="s5" height="480" width="960" y="240" x="480"\n' +
+                    'xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg">\n' +
+                    '<title>Layer 2</title>\n' +
+                    '<polygon points="4,4 956,4 956,476 4,476"\n' +
+                    'fill="none" stroke-width="8" stroke="brown" id="s8"/>\n' +
+                    '<polyline points="0,0 960,480 480,0 0,480 960,0 480,480 0,0"\n' +
+                    'fill="none" stroke-width="4" stroke="blue" id="s7"/>\n' +
+                    '</svg>\n' +
+                    '</g>\n' +
+                    '</g>\n' +
+                    '</svg>'
             },
             search: {
-                version   : 3,
-                type      : "search",
-                match     : "",
-                limit     : 0,
-                places    : []
+                version: 3,
+                type: "search",
+                match: "",
+                limit: 0,
+                places: []
             },
             selected: new Map(),
             selectAll: false,
             otherTeams: null,
             host: null,
-            display: {
-                Name: true,
-                Id: true,
-                Latitude: true,
-                Longitude: true,
-                Leg: true,
-                Total: true,
-                UserDefined: null,
-                UserDefinedDisplay: false
-            }
+            attributes: [
+                "id", "name", "latitude", "longitude"
+            ],
+            display: [true, true, true, true,
+                false, false, false, false, false, false]
         };
         this.updateMap = this.updateMap.bind(this);
         this.updateTrip = this.updateTrip.bind(this);
@@ -62,15 +74,15 @@ class Application extends Component {
         this.updateUpload = this.updateUpload.bind(this);
         this.updateSelected = this.updateSelected.bind(this);
         this.updateSelectAll = this.updateSelectAll.bind(this);
-        this.updateOtherTeams=this.updateOtherTeams.bind(this);
-        this.updateHost=this.updateHost.bind(this);
-        this.updateDisplay = this.updateDisplay.bind(this);
-        this.updateDisplayUserDefined = this.updateDisplayUserDefined.bind(this);
+        this.updateOtherTeams = this.updateOtherTeams.bind(this);
+        this.updateHost = this.updateHost.bind(this);
+
+        this.updateAttributes = this.updateAttributes.bind(this);
+        this.checkAttributes = this.checkAttributes.bind(this);
     }
 
-    componentWillMount()
-    {
-        get_config().then(
+    componentWillMount() {
+        get('config').then(
             config => {
                 this.setState({
                     config: config
@@ -79,53 +91,79 @@ class Application extends Component {
         );
     }
 
-    updateTrip(field, value)
-    {
+    updateAttributes(value) {
+        let attributes = this.state.attributes;
+        let config = this.state.config;
+        let index = attributes.indexOf(value);
+        if (index > -1) {
+            attributes.splice(index, 1);
+        } else {
+            attributes.push(value);
+            attributes.sort(function (a, b) {
+                let indexA = config.attributes.indexOf(a);
+                let indexB = config.attributes.indexOf(b);
+                return (indexA < indexB) ? -1 : 1;
+            });
+        }
+        this.setState(attributes);
+        this.checkAttributes(value);
+    }
+
+    checkAttributes(value) {
+        let config = this.state.config;
+        let index = config.attributes.indexOf(value);
+        let display = this.state.display;
+        if (this.state.attributes.includes(value)) {
+            display[index] = true;
+            this.setState(display);
+        } else {
+            display[index] = false;
+            this.setState(display);
+        }
+    }
+
+
+    updateTrip(field, value) {
         let trip = this.state.trip;
         trip[field] = value;
         this.setState(trip);
     }
 
-    clearConfig()
-    {
+    clearConfig() {
         this.setState({'config': null});
     }
 
-    updateBasedOnResponse(value)
-    {
+    updateBasedOnResponse(value) {
         this.setState({'trip': value});
     }
 
-    updateOptions(option, value)
-    {
+    updateOptions(option, value) {
         let trip = this.state.trip;
         trip.options[option] = value;
         this.setState(trip);
     }
 
-    updateUpload(option, value)
-    {
+    updateUpload(option, value) {
         let trip = this.state.trip;
         trip.upload[option] = value;
         this.setState(trip);
     }
 
-    updateSearch(field, value)
-    {
+    updateSearch(field, value) {
         let search = this.state.search;
         search[field] = value;
         this.setState(search);
     }
 
-    updateSelected(value){
+    updateSelected(value) {
         this.setState({selected: value});
     }
 
-    updateSelectAll(value){
+    updateSelectAll(value) {
         this.setState({selectAll: value});
     }
 
-    updateMap(value){
+    updateMap(value) {
         let trip = this.state.trip;
         trip.map = value;
         this.setState(trip);
@@ -142,42 +180,33 @@ class Application extends Component {
 
     }
 
-    updateDisplay(value){
-        let display = this.state.display;
-        display[value] = !display[value];
-        this.setState({display: display});
-        this.updateSelectAll(false);
-    }
-
-    updateDisplayUserDefined(value){
-        let display = this.state.display;
-        display.UserDefined = value;
-        this.setState({display: display});
-        this.updateSelectAll(false);
-    }
-
     render() {
-        if (!this.state.config) {return <div/>}
+        if (!this.state.config) {
+            return <div/>
+        }
         return (
             <Container id="Application"><Card><CardBody>
-                        <Info/>
-                        <Trip config={this.state.config} display={this.state.display}
-                              host={this.state.host} otherTeams={this.state.otherTeams}
-                              search={this.state.search} selectAll={this.state.selectAll}
-                              selected={this.state.selected} trip={this.state.trip}
-                              clearConfig={this.state.clearConfig} LoadFile={this.LoadFile}
-                              updateHost={this.updateHost} updateTrip={this.updateTrip}
-                              updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
-                              updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
-                              updateSelected={this.updateSelected} updateMap={this.updateMap}
-                              map={this.state.map} updateDisplay={this.updateDisplay}
-                              updateDisplayUserDefined={this.updateDisplayUserDefined}
-                        />
-                        <DistanceCal config={this.state.config} options={this.state.trip.options}
-                                     search={this.state.search} trip={this.state.trip}
-                                     updateOptions={this.updateOptions} updateSearch={this.updateSearch}
-                                     updateTrip={this.updateTrip}/>
-                    </CardBody></Card></Container>
+                <Info/>
+                <Trip config={this.state.config} display={this.state.display}
+                      distances={this.state.trip.distances}
+                      host={this.state.host} otherTeams={this.state.otherTeams}
+                      search={this.state.search} selectAll={this.state.selectAll}
+                      selected={this.state.selected} trip={this.state.trip}
+                      attributes={this.state.attributes}
+                      clearConfig={this.state.clearConfig} LoadFile={this.LoadFile}
+                      updateAttributes={this.updateAttributes}
+                      checkAttributes={this.checkAttributes}
+                      updateHost={this.updateHost} updateTrip={this.updateTrip}
+                      updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
+                      updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
+                      updateSelected={this.updateSelected} updateMap={this.updateMap}
+                      map={this.state.trip.map}
+                />
+                <DistanceCal config={this.state.config} options={this.state.trip.options}
+                             search={this.state.search} trip={this.state.trip}
+                             updateOptions={this.updateOptions} updateSearch={this.updateSearch}
+                             updateTrip={this.updateTrip}/>
+            </CardBody></Card></Container>
         )
     }
 }

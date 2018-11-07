@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {CardBody,Card,Button,Row,Col} from 'reactstrap'
-import {request} from '../../api/api';
+import {get, request} from '../../api/api';
 
 class Upload extends Component {
     constructor(props) {
@@ -15,7 +15,6 @@ class Upload extends Component {
         let fileReader = new FileReader();
         fileReader.readAsText(file);
         fileReader.onload = (event) =>{
-
             let obj=JSON.parse(event.target.result);
             this.props.updateTrip('title', obj.title);
             this.props.updateOptions('units', obj.options.units);
@@ -28,8 +27,12 @@ class Upload extends Component {
                 this.props.updateOptions('unitRadius',obj.options.unitRadius);
                 this.props.updateOptions('unitName',obj.options.unitName);
             }
-            this.props.updateTrip('places', obj.places);
-            this.props.updateTrip('map', obj.map);
+            this.props.updateTrip('places',obj.places);
+            get('map').then(
+                map => {
+                    this.props.updateTrip("map", map.map);
+                }
+            );
         };
         this.props.updateSelected(new Map());
         this.props.updateSelectAll(false);
@@ -44,7 +47,6 @@ class Upload extends Component {
                 this.props.updateTrip('distances',Fi.distances);
                 this.props.updateTrip('places',Fi.places);
                 this.props.updateTrip('map', Fi.map);
-                this.props.updateOptions('optimization', Fi.options.optimization);
             });
         } else {
             request(obj,'plan', this.props.otherTeams, this.props.host + ".cs.colostate.edu").then((Fi)=>
@@ -52,7 +54,6 @@ class Upload extends Component {
                 this.props.updateTrip('distances',Fi.distances);
                 this.props.updateTrip('places',Fi.places);
                 this.props.updateTrip('map', Fi.map);
-                this.props.updateOptions('optimization', Fi.options.optimization);
             });
         }
     }

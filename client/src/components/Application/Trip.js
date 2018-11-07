@@ -60,23 +60,31 @@ class Trip extends Component {
                         </Col>
                     </Row>
                     <OptionPanel config={this.props.config} display={this.props.display}
+                                 attributes={this.props.attributes}
                                  host={this.props.host} options={this.props.trip.options}
                                  otherTeams={this.props.otherTeams} updateDisplay={this.props.updateDisplay}
                                  updateDisplayUserDefined={this.props.updateDisplayUserDefined}
                                  updateHost={this.props.updateHost} updateOptions={this.props.updateOptions}
+                                 updateAttributes={this.props.updateAttributes}
+                                 checkAttributes={this.props.checkAttributes}
                                  updateOtherTeams={this.props.updateOtherTeams}/>
                     <Row>
                         <Col>
-                            <Map updateMap={this.props.updateMap} map={this.props.map}/>
+                            <Map  map={this.props.map}/>
                         </Col>
                         <Col>
                             <Itinerary
-                                display={this.props.display}
+                                config={this.props.config}
+                                attributes={this.props.attributes}
+                                distances={this.props.distances}
                                 selectAll={this.props.selectAll}
+                                updateAttributes={this.props.updateAttributes}
+
                                 selected={this.props.selected}
                                 trip={this.props.trip}
+                                places={this.props.trip.places}
                                 updateOptions={this.props.updateOptions}
-                                updatePlaces={this.props.updatePlaces}
+
                                 updateSelectAll={this.props.updateSelectAll}
                                 updateSelected={this.props.updateSelected}
                                 updateTrip={this.props.updateTrip}/>

@@ -1,6 +1,5 @@
 package com.tripco.t03.planner;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,8 +28,7 @@ public class Trip {
         this.options = new Option();
         this.places = null;
         this.distances = null;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
     /**
@@ -42,8 +40,7 @@ public class Trip {
         this.title = null;
         this.options = options;
         this.places = places;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
     /**
@@ -58,8 +55,7 @@ public class Trip {
         this.options=options;
         this.places=places;
         this.distances=dist;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
     /**
@@ -73,8 +69,7 @@ public class Trip {
         this.title=title;
         this.options = options;
         this.places = places;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
         /** The top level method that does planning.
@@ -82,7 +77,6 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
         } else{
@@ -92,15 +86,15 @@ public class Trip {
             this.title = optTrip.title;
             this.options = optTrip.options;
             this.places = optTrip.places;
-            this.map = optTrip.map;
-            this.distances=optTrip.distances;
-            svg();
-            setRoute();
+            this.distances = optTrip.distances;
         }
+        LineDistance worldMap = new LineDistance(this.places);
+        this.map = worldMap.getMap();
     }
 
     /**
      * Setter for places ArrayList.
+     *
      * @param newPlaces Array of Places.
      */
     public void setPlace(Place[] newPlaces) {
@@ -116,33 +110,13 @@ public class Trip {
         this.distances = distances;
     }
 
-    /**
-     * Adds the route to the existing map.
-     */
-    void setRoute() {
-        LineDistance ld = new LineDistance(this.places);
-        String route = ld.getCoordinates();
-        this.map = this.map.substring(0, this.map.length()-16) + route
-                + this.map.substring(this.map.length()-16);
-    }
 
     /**
      * Creates an SVG containing the background and the legs of the trip.
      */
-    public void svg() {
-        String fileLines = "" ;
-        try {
-            InputStream thisSvgWillNotWin =Trip.class.getResourceAsStream("/CObackground.svg");
-            BufferedReader buffy = new BufferedReader(new InputStreamReader(thisSvgWillNotWin));
-            if(buffy.ready()){
-                while(buffy.ready()){
-                    fileLines= fileLines + buffy.readLine();
-                }
-            }
-        } catch (IOException e) {
-            System.err.print(e.getCause());
-        }
-        this.map = fileLines;
+    public String svg() {
+        LineDistance worldMap = new LineDistance();
+        return worldMap.getBackground();
     }
 
     /**
@@ -153,7 +127,6 @@ public class Trip {
     private ArrayList<Long> legDistances() {
 
         ArrayList<Long> dist;
-
         if(this.options.units.equals("user defined")){
             dist = makeUserDefTrip();
         } else {
@@ -184,7 +157,7 @@ public class Trip {
     }
 
     private ArrayList<Long> makeNormalTrip() {
-    
+
         this.totalDist = 0L;
         ArrayList<Long> dist = new ArrayList<>();
 

@@ -1,6 +1,7 @@
 package com.tripco.t03.server;
 
 import com.tripco.t03.planner.Calculate;
+import com.tripco.t03.planner.LineDistance;
 import com.tripco.t03.planner.Match;
 import com.tripco.t03.planner.Plan;
 import spark.Request;
@@ -42,6 +43,7 @@ public class MicroServer {
         get("/echo", this::echo);
         get("/hello/:name", this::hello);
         get("/team", this::team);
+        get("/map", this::map);
         // client is sending data, so a HTTP POST is used instead of a GET
         get("/config", this::config);
         post("/plan", this::plan);
@@ -84,7 +86,19 @@ public class MicroServer {
         }
         return result;
     }
-    
+
+    private String map(Request request, Response response) {
+        String result;
+        response.type("text/plain");
+        response.header("Access-Control-Allow-Origin", "*");
+        try{
+            result = LineDistance.getDefaultMap();
+        }catch(Exception err){
+            result = "{}";
+        }
+        return result;
+    }
+
     /**
      * A REST API that echos the client request.
      * @param request Client request.
