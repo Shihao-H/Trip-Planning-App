@@ -1,4 +1,4 @@
-import Map from "../src/components/Application/Map";
+import Map from "../src/components/Application/MapSvg";
 
 test('Check Map Constructor', () => {
     const obj = new Map();

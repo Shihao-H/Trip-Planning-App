@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Map from './Map';
 import {Card, CardBody, Container} from 'reactstrap';
 import {get} from '../../api/api';
 import DistanceCal from "./DistanceCal";
@@ -22,7 +21,8 @@ class Application extends Component {
                     units: "miles",
                     unitName: "",
                     unitRadius: 0.00,
-                    optimization: "none"
+                    optimization: "none",
+                    map: "svg"
                 },
                 places: [],
                 distances: [],
@@ -52,7 +52,7 @@ class Application extends Component {
                 version: 3,
                 type: "search",
                 match: "",
-                limit: 0,
+                found: 0,
                 places: []
             },
             selected: new Map(),
@@ -196,6 +196,7 @@ class Application extends Component {
                       clearConfig={this.state.clearConfig} LoadFile={this.LoadFile}
                       updateAttributes={this.updateAttributes}
                       checkAttributes={this.checkAttributes}
+                      options={this.state.trip.options}
                       updateHost={this.updateHost} updateTrip={this.updateTrip}
                       updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
                       updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}

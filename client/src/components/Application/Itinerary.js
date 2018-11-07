@@ -183,6 +183,7 @@ class Itinerary extends Component {
                             <Table className="Table" responsive hover>
                                 <tbody className="Body">{this.createTable()}</tbody>
                             </Table>
+                            <br/>
                             <Button size='lg' key={'delete_button'} className='btn-outline-dark delete-button'
                                     onClick={this.clickDeleteButton}>Delete selected location
                             </Button><br/><br/>
