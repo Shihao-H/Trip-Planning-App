@@ -26,7 +26,27 @@ class Application extends Component {
                 },
                 places: [],
                 distances: [],
-                map: '<svg width="1920" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g></g></svg>'
+                map:'<svg width="1920" height="960" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">\n' +
+                    '<g>\n' +
+                    '<g id="s4">\n' +
+                    '<svg id="s1" height="960" width="1920"\n' +
+                    'xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg">\n' +
+                    '<title>Layer 1</title>\n' +
+                    '<rect fill="rgb(119, 204, 119)" stroke="black" x="0" y="0" width="1920" height="960" id="s3"/>\n' +
+                    '</svg>\n' +
+                    '</g>\n' +
+                    '<g id="s9">\n' +
+                    '<svg id="s5" height="480" width="960" y="240" x="480"\n' +
+                    'xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg">\n' +
+                    '<title>Layer 2</title>\n' +
+                    '<polygon points="4,4 956,4 956,476 4,476"\n' +
+                    'fill="none" stroke-width="8" stroke="brown" id="s8"/>\n' +
+                    '<polyline points="0,0 960,480 480,0 0,480 960,0 480,480 0,0"\n' +
+                    'fill="none" stroke-width="4" stroke="blue" id="s7"/>\n' +
+                    '</svg>\n' +
+                    '</g>\n' +
+                    '</g>\n' +
+                    '</svg>'
             },
             search: {
                 version   : 3,
@@ -204,7 +224,7 @@ class Application extends Component {
                               updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
                               updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
                               updateSelected={this.updateSelected} updateMap={this.updateMap}
-                              map={this.state.map} updateDisplay={this.updateDisplay}
+                              map={this.state.trip.map} updateDisplay={this.updateDisplay}
                               updateDisplayUserDefined={this.updateDisplayUserDefined}
                         />
                         <DistanceCal config={this.state.config} options={this.state.trip.options}

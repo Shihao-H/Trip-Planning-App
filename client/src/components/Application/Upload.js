@@ -29,7 +29,6 @@ class Upload extends Component {
                 this.props.updateOptions('unitName',obj.options.unitName);
             }
             this.props.updateTrip('places', obj.places);
-            this.props.updateTrip('map', obj.map);
         };
         this.props.updateSelected(new Map());
         this.props.updateSelectAll(false);
@@ -44,7 +43,6 @@ class Upload extends Component {
                 this.props.updateTrip('distances',Fi.distances);
                 this.props.updateTrip('places',Fi.places);
                 this.props.updateTrip('map', Fi.map);
-                this.props.updateOptions('optimization', Fi.options.optimization);
             });
         } else {
             request(obj,'plan', this.props.otherTeams, this.props.host + ".cs.colostate.edu").then((Fi)=>
@@ -52,7 +50,6 @@ class Upload extends Component {
                 this.props.updateTrip('distances',Fi.distances);
                 this.props.updateTrip('places',Fi.places);
                 this.props.updateTrip('map', Fi.map);
-                this.props.updateOptions('optimization', Fi.options.optimization);
             });
         }
     }

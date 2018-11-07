@@ -25,7 +25,7 @@ export class Map extends Component {
                             <Collapse isOpen = {this.state.collapse}>
                             <Card>
                             <CardBody>
-                                <img src={"data:image/svg+xml," + this.props.map} className={'Map'} alt={"Map of Colorado"}/>
+                                <img src={"data:image/svg+xml," + this.props.map} className={'Map'} alt={"Map"}/>
                             </CardBody>
                         </Card>
                     </Collapse>

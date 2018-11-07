@@ -12,13 +12,13 @@ import java.util.Arrays;
 public class Trip {
 
     // The variables in this class should reflect TFFI.
-    public int version = 3;
+    public int version = 4;
     public String type = "trip";
     public String title;
     public Option options;
     public ArrayList<Place> places;
     public ArrayList<Integer> distances;
-    public String map;
+    public String map = svg();
     /**
      * Default constructor.
      */
@@ -28,8 +28,7 @@ public class Trip {
         this.options = new Option();
         this.places = null;
         this.distances = null;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
     /**
@@ -41,8 +40,7 @@ public class Trip {
         this.title = null;
         this.options = options;
         this.places = places;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
     /**
@@ -57,8 +55,7 @@ public class Trip {
         this.options=options;
         this.places=places;
         this.distances=dist;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
     /**
@@ -72,8 +69,7 @@ public class Trip {
         this.title=title;
         this.options = options;
         this.places = places;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
         /** The top level method that does planning.
@@ -84,16 +80,16 @@ public class Trip {
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
         } else{
-           // this.distances = legDistances();
             Optimize opt = new Optimize(this);
             Trip optTrip = opt.getOptimalTrip();
             this.title = optTrip.title;
             this.options = optTrip.options;
             this.places = optTrip.places;
             this.distances=optTrip.distances;
+            this.map = optTrip.map;
         }
-        LineDistance worldMap = new LineDistance(this.places);
-        this.map = worldMap.getMap();
+//        LineDistance worldMap = new LineDistance(this.places);
+//        this.map = worldMap.getBackground();
     }
 
     /**
@@ -117,9 +113,9 @@ public class Trip {
     /**
      * Creates an SVG containing the background and the legs of the trip.
      */
-    public void svg() {
+    public String svg() {
         LineDistance worldMap = new LineDistance(this.places);
-        this.map = worldMap.getBackground();
+        return worldMap.getBackground();
     }
 
     /**
