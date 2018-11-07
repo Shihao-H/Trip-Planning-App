@@ -15,7 +15,6 @@ class Upload extends Component {
         let fileReader = new FileReader();
         fileReader.readAsText(file);
         fileReader.onload = (event) =>{
-
             let obj=JSON.parse(event.target.result);
             this.props.updateTrip('title', obj.title);
             this.props.updateOptions('units', obj.options.units);
@@ -28,7 +27,11 @@ class Upload extends Component {
                 this.props.updateOptions('unitRadius',obj.options.unitRadius);
                 this.props.updateOptions('unitName',obj.options.unitName);
             }
-            this.props.updateTrip('places', obj.places);
+            request(obj,'map').then((Fi)=>
+            {
+                this.props.updateTrip('map', Fi.map);
+                console.log(Fi.map);
+            });
         };
         this.props.updateSelected(new Map());
         this.props.updateSelectAll(false);

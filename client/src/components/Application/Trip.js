@@ -70,13 +70,13 @@ class Trip extends Component {
                                  updateOtherTeams={this.props.updateOtherTeams}/>
                     <Row>
                         <Col>
-                            <Map updateMap={this.props.updateMap} map={this.props.map}/>
+                            <Map  map={this.props.map}/>
                         </Col>
                         <Col>
                             <Itinerary
                                 config={this.props.config}
                                 attributes={this.props.attributes}
-                                display={this.props.display}
+
                                 selectAll={this.props.selectAll}
                                 updateAttributes={this.props.updateAttributes}
 
@@ -84,7 +84,7 @@ class Trip extends Component {
                                 trip={this.props.trip}
                                 places={this.props.trip.places}
                                 updateOptions={this.props.updateOptions}
-                                updatePlaces={this.props.updatePlaces}
+
                                 updateSelectAll={this.props.updateSelectAll}
                                 updateSelected={this.props.updateSelected}
                                 updateTrip={this.props.updateTrip}/>

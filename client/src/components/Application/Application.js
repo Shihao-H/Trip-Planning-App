@@ -15,7 +15,7 @@ class Application extends Component {
         this.state = {
             config:null,
             trip: {
-                version: 3,
+                version: 4,
                 type: "trip",
                 title: "",
                 options : {
@@ -59,16 +59,6 @@ class Application extends Component {
             selectAll: false,
             otherTeams: null,
             host: null,
-            display: {
-                Name: true,
-                Id: true,
-                Latitude: true,
-                Longitude: true,
-                Leg: true,
-                Total: true,
-                UserDefined: null,
-                UserDefinedDisplay: false
-            },
             attributes:[
                 "id","name","latitude","longitude"
             ]
@@ -84,8 +74,7 @@ class Application extends Component {
         this.updateSelectAll = this.updateSelectAll.bind(this);
         this.updateOtherTeams=this.updateOtherTeams.bind(this);
         this.updateHost=this.updateHost.bind(this);
-        this.updateDisplay = this.updateDisplay.bind(this);
-        this.updateDisplayUserDefined = this.updateDisplayUserDefined.bind(this);
+
         this.updateAttributes = this.updateAttributes.bind(this);
         this.checkAttributes = this.checkAttributes.bind(this);
     }
@@ -107,9 +96,6 @@ class Application extends Component {
         }
        this.setState(attributes);
     }
-
-
-
 
     checkAttributes(value){
         if(this.state.attributes.includes(value)){
@@ -193,20 +179,6 @@ class Application extends Component {
 
     }
 
-    updateDisplay(value){
-        let display = this.state.display;
-        display[value] = !display[value];
-        this.setState({display: display});
-        this.updateSelectAll(false);
-    }
-
-    updateDisplayUserDefined(value){
-        let display = this.state.display;
-        display.UserDefined = value;
-        this.setState({display: display});
-        this.updateSelectAll(false);
-    }
-
     render() {
         if (!this.state.config) {return <div/>}
         return (
@@ -224,8 +196,7 @@ class Application extends Component {
                               updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
                               updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
                               updateSelected={this.updateSelected} updateMap={this.updateMap}
-                              map={this.state.trip.map} updateDisplay={this.updateDisplay}
-                              updateDisplayUserDefined={this.updateDisplayUserDefined}
+                              map={this.state.trip.map}
                         />
                         <DistanceCal config={this.state.config} options={this.state.trip.options}
                                      search={this.state.search} trip={this.state.trip}

@@ -19,8 +19,8 @@ public class Option {
     this.units = null;
     this.unitName = null;
     this.unitRadius = null;
-    this.optimization = null;
-    this.map = null;
+    this.optimization = "none";
+    this.map =  new String[]{"svg"};
   }
 
   /**
