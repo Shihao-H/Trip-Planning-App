@@ -12,10 +12,12 @@ class InterOperate extends Component{
                 <CardBody>
                     <p>Select another team's site.</p>
                         Host name:<br/>
+                        black-bottle.cs.colostate.edu
+                    <br/>
                         <Input
                             style={{width: "100%"}}
                             type="text"
-                            placeholder="black-bottle"
+                            placeholder="black-bottle.cs.colostate.edu"
                             onChange={this.props.updateHost}
                         />
                         <br/>

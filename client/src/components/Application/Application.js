@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Card, CardBody, Container} from 'reactstrap';
-import {get, get_port} from '../../api/api';
+import {get} from '../../api/api';
 import DistanceCal from "./DistanceCal";
 import Info from './Info';
 import Trip from "./Trip"
@@ -57,8 +57,8 @@ class Application extends Component {
             },
             selected: new Map(),
             selectAll: false,
-            otherTeams: get_port,
-            host: location.hostname,
+            otherTeams: null,
+            host: null,
             attributes: [
                 "id", "name", "latitude", "longitude"
             ],
