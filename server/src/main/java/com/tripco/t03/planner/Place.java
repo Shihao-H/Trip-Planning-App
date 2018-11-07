@@ -37,21 +37,6 @@ public class Place {
     }
 
     /**
-     * Constructor for user defined units.
-     * @param id String identifier for place.
-     * @param name String place name.
-     * @param userDefined String userDefined.
-     * @param latitude Double latitude in decimal degrees.
-     * @param longitude Double longitude in decimal degrees.
-     */
-    public Place(String id, String name, String userDefined, Double latitude, Double longitude){
-        this.id = id;
-        this.name = name;
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    /**
      * Copy constructor.
      * @param from Place object to copy.
      */
@@ -60,6 +45,12 @@ public class Place {
         this.name = from.name;
         this.latitude = from.latitude;
         this.longitude = from.longitude;
+        this.type = from.type;
+        this.elevation = from.elevation;
+        this.continent = from.continent;
+        this.country = from.country;
+        this.region = from.region;
+        this.municipality = from.municipality;
     }
 
     /**
@@ -129,18 +120,6 @@ public class Place {
      */
     public double getLongitude(){
         return this.longitude;
-    }
-
-    /**
-     * @param place Place object.
-     * @return true if equal, false if not equal.
-     * Compares two Place objects for equality.
-     */
-    public boolean equals(Place place){
-        return (this.longitude == place.longitude)
-                && (this.latitude == place.latitude)
-                && (this.name.equals(place.name))
-                && (this.id.equals(place.id));
     }
 
     /**
