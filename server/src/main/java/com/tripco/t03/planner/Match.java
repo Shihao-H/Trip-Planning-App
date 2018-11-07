@@ -1,11 +1,10 @@
 package com.tripco.t03.planner;
 
+import java.sql.SQLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import spark.Request;
-
-import java.sql.SQLException;
 
 /**
  * This class handles to the conversions of the search request/ resopnse,
