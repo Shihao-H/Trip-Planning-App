@@ -1,9 +1,11 @@
 package com.tripco.t03.planner;
 
-import java.io.*;
-import java.util.ArrayList;
-
 import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class LineDistance {
     private Double left = -180.0;
@@ -37,8 +39,10 @@ public class LineDistance {
         for (int i = 0; i < places.size(); i++) {
             Place placeOut = places.get(i);
             this.places[i] = placeOut.longitude;
-            this.coordinates[i][0] = (int) ((placeOut.longitude - left) / (right - left) * (width - 0.0) + 0.0); //x
-            this.coordinates[i][1] = (int) ((placeOut.latitude - top) / (bottom - top) * (height - 0.0) + 0.0); //y
+            this.coordinates[i][0] = (int) ((placeOut.longitude - left)
+                    / (right - left) * (width - 0.0) + 0.0); //x
+            this.coordinates[i][1] = (int) ((placeOut.latitude - top)
+                    / (bottom - top) * (height - 0.0) + 0.0); //y
         }
     }
 
@@ -64,12 +68,12 @@ public class LineDistance {
     /**
      * This function is for calculating the route layer.
      */
-    private void AddLines() {
+    private void addLines() {
         this.backgroundMap();
         this.lines = "<g id=\"l2\">";
-        this.lines += "<svg id=\"lines\" height=\"512\" width=\"1024\" y=\"0\" x=\"0\" " +
-                "xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\">" +
-                "<title>lines</title>";
+        this.lines += "<svg id=\"lines\" height=\"512\" width=\"1024\" y=\"0\" x=\"0\" "
+                + "xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\">"
+                + "<title>lines</title>";
         for (int i = 0; i < this.coordinates.length; i++) {
             if (i != this.coordinates.length - 1) {
                 check(this.places[i], this.places[i + 1], i, i + 1);
@@ -101,23 +105,23 @@ public class LineDistance {
      *
      * @param x1 double origin's longitude.
      * @param x2 double destination's y longitude.
-     * @param i integer origin's index.
-     * @param j integer destination's index.
+     * @param i1 integer origin's index.
+     * @param i2 integer destination's index.
      */
-    public void check(double x1, double x2, int i, int j) {
+    public void check(double x1, double x2, int i1, int i2) {
         if (x1 - x2 < -180.0) {
-            drawLine((this.coordinates[i][0] + 1024), this.coordinates[i][1],
-                    this.coordinates[j][0], this.coordinates[j][1]);
-            drawLine(this.coordinates[i][0], this.coordinates[i][1],
-                    (this.coordinates[j][0] - 1024), this.coordinates[j][1]);
+            drawLine((this.coordinates[i1][0] + 1024), this.coordinates[i1][1],
+                    this.coordinates[i2][0], this.coordinates[i2][1]);
+            drawLine(this.coordinates[i1][0], this.coordinates[i1][1],
+                    (this.coordinates[i2][0] - 1024), this.coordinates[i2][1]);
         } else if (x1 - x2 > 180.0) {
-            drawLine(this.coordinates[i][0], this.coordinates[i][1],
-                    (this.coordinates[j][0] + 1024), this.coordinates[j][1]);
-            drawLine((this.coordinates[i][0] - 1024), this.coordinates[i][1],
-                    this.coordinates[j][0], this.coordinates[j][1]);
+            drawLine(this.coordinates[i1][0], this.coordinates[i1][1],
+                    (this.coordinates[i2][0] + 1024), this.coordinates[i2][1]);
+            drawLine((this.coordinates[i1][0] - 1024), this.coordinates[i1][1],
+                    this.coordinates[i2][0], this.coordinates[i2][1]);
         } else {
-            drawLine(this.coordinates[i][0], this.coordinates[i][1],
-                    this.coordinates[j][0], this.coordinates[j][1]);
+            drawLine(this.coordinates[i1][0], this.coordinates[i1][1],
+                    this.coordinates[i2][0], this.coordinates[i2][1]);
         }
     }
 
@@ -139,7 +143,7 @@ public class LineDistance {
      * This function is to get the complete map.
      */
     public String getMap() {
-        this.AddLines();
+        this.addLines();
         this.map = "<svg width=\"1024\" height=\"512\" xmlns=\"http://www.w3.org/2000/svg\" "
                 + "xmlns:svg=\"http://www.w3.org/2000/svg\">"
                 + "<g>"
