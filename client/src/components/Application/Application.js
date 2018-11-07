@@ -97,11 +97,6 @@ class Application extends Component {
         let index = attributes.indexOf(value);
         if (index > -1) {
             attributes.splice(index, 1);
-            attributes.sort(function (a, b) {
-                let indexA = config.attributes.indexOf(a);
-                let indexB = config.attributes.indexOf(b);
-                return (indexA < indexB) ? -1 : 1;
-            });
         } else {
             attributes.push(value);
             attributes.sort(function (a, b) {
