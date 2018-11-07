@@ -1,5 +1,6 @@
 package com.tripco.t03.planner;
 
+import java.sql.SQLException;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -20,12 +21,10 @@ public class Match {
      * Does the conversion from Json to a Java class before searching the places.
      * @param request should be {a single string}.
      */
-    public Match(Request request) {
+    public Match(Request request) throws SQLException, ClassNotFoundException {
 
         // extract the information from the body of the request.
-        JsonParser jsonParser = new JsonParser();
-        JsonElement requestBody = jsonParser.parse(request.body());
-
+        JsonElement requestBody = Calculate.jsonHandler(request);
         // convert the body of the request to a Java class.
         Gson gson = new Gson();
         search = gson.fromJson(requestBody, Search.class);

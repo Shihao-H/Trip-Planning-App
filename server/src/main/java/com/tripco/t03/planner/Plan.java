@@ -24,9 +24,8 @@ public class Plan {
   public Plan (Request request) {
 
     // extract the information from the body of the request.
-    JsonParser jsonParser = new JsonParser();
-    JsonElement requestBody = jsonParser.parse(request.body());
-
+    JsonElement requestBody = Calculate.jsonHandler(request);
+  
     // convert the body of the request to a Java class.
     Gson gson = new Gson();
     trip = gson.fromJson(requestBody, Trip.class);

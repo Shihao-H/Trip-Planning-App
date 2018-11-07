@@ -79,7 +79,6 @@ public class Trip {
     public void plan() {
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
-            System.out.printf("Trip Distance: %d\n", this.totalDist);
         } else{
            // this.distances = legDistances();
             Optimize opt = new Optimize(this);

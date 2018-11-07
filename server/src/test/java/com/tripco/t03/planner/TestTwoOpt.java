@@ -3,7 +3,6 @@ package com.tripco.t03.planner;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.Arrays;
 
 public class TestTwoOpt {
@@ -86,20 +85,5 @@ public class TestTwoOpt {
         opt.twoOpt(result);
         
         Assert.assertEquals(Arrays.toString(result), Arrays.toString(expected));
-    }
-    @Test
-    public void getSortedIndices() {
-    }
-    @Test
-    public void getTwoOptLegDistances() {
-    }
-    @Test
-    public void getTotalDistance() {
-    }
-    @Test
-    public void opt2Reverse2() {
-    }
-    @Test
-    public void twoOpt() {
     }
 }

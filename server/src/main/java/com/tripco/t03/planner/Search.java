@@ -1,6 +1,8 @@
 package com.tripco.t03.planner;
 
 import com.tripco.t03.server.Driver;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -69,7 +71,7 @@ public class Search {
     /**
      * The top level method that does searching.
      */
-    public void match() {
+    public void match() throws SQLException, ClassNotFoundException {
         String query = "";
         if ((this.filters != null) && (this.filters.length != 0)) {
             int filterSize = this.filters.length;
@@ -89,6 +91,7 @@ public class Search {
                 }
             }
         }
+
         System.out.println("This is the filter query:\n" + query);
         Driver driver = new Driver();
         driver.find(this.match, this.limit, query);
