@@ -52,9 +52,9 @@ public class Calculate {
      * @param p1 Place object.
      * @param p2 Place object.
      * @param radius double radius of Earth in desired units.
-     * @return integer value of distance between origin and destination; -1 if invalid.
+     * @return long value of distance between origin and destination; -1 if invalid.
      */
-    static int optDistance(Place p1, Place p2, double radius){
+    static long optDistance(Place p1, Place p2, double radius){
         double temp = getDeltaSigma(p1.latitude,p1.longitude,p2.latitude, p2.longitude);
         return circleDistance(radius, temp);
     }
@@ -65,9 +65,9 @@ public class Calculate {
      * @param origin Place object.
      * @param destination Place object.
      * @param units String designating the units for radius.
-     * @return integer value of distance between origin and destination; -1 if invalid.
+     * @return long value of distance between origin and destination; -1 if invalid.
      */
-    static int calcDistance(Place origin, Place destination, String units){
+    static long calcDistance(Place origin, Place destination, String units){
         double radius = -1;
         if(units.equalsIgnoreCase("miles")) {
             radius = 3959.0;
@@ -88,9 +88,9 @@ public class Calculate {
      * Calls getDeltaSigma() and uses that value to determine the distance between two.
      * lat/long coordinates and assigns that value to the distance variable.
      * @param distance Distance object.
-     * @return integer value of distance between origin and destination; -1 if invalid.
+     * @return long value of distance between origin and destination; -1 if invalid.
      */
-    static int calcDistance(Distance distance){
+    static long calcDistance(Distance distance){
         double radius = -1;
         if(distance.units.equalsIgnoreCase("miles")) {
             radius = 3959.0;
@@ -113,10 +113,10 @@ public class Calculate {
      * Calculates the final circle distance value.
      * @param radius radius of earth in desired units
      * @param deltaSigma delta sigma from Vincenty formula
-     * @return int final distance between two points.
+     * @return long final distance between two points.
      * */
-    private static int circleDistance(double radius, double deltaSigma){
-        return (int)Math.round((radius*deltaSigma));
+    private static long circleDistance(double radius, double deltaSigma){
+        return Math.round((radius * deltaSigma));
     }
     
     /**
@@ -137,7 +137,7 @@ public class Calculate {
         double sinDeltaLong = Math.sin(deltaLongitude);
         
         double cosLatSinLongSqr = (cosDestLat * sinDeltaLong);
-        cosLatSinLongSqr = cosLatSinLongSqr * cosLatSinLongSqr;
+        cosLatSinLongSqr *= cosLatSinLongSqr;
         
         double cosOrigLat = Math.cos(originLatitude);
         double sinDestLat = Math.sin(destinationLatitude);

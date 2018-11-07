@@ -53,7 +53,7 @@ public class TestCalculate {
     public void testKiloPlace(){
         Place origin = new Place("orig", "origin",40.582778, 105.055);
         Place destination = new Place("dest", "destination", 36.169722, 115.140278);
-        int distance = Calculate.calcDistance(origin, destination, "kilometers");
+        long distance = Calculate.calcDistance(origin, destination, "kilometers");
     
         assertEquals(1005, distance, 1);
     }
@@ -73,7 +73,7 @@ public class TestCalculate {
     public void testNauticalPlace(){
         Place origin = new Place("orig", "origin",40.582778, 105.055);
         Place destination = new Place("dest", "destination", 36.169722, 115.140278);
-        int distance = Calculate.calcDistance(origin, destination, "nautical miles");
+        long distance = Calculate.calcDistance(origin, destination, "nautical miles");
         
         assertEquals(543, distance, 1);
     }

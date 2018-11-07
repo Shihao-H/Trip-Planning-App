@@ -1,31 +1,31 @@
 package com.tripco.t03.planner;
 
-public class TwoOpt {
-    private int totalDistance;
+class TwoOpt {
     
+    private long totalDistance;
     private Integer[] sortedIndices;
-    private Integer[][] distanceGrid;
-    private Integer[] tripDistances;
+    private Long[][] distanceGrid;
+    private Long[] tripDistances;
     
     /**
      * Constructor for TwoOpt Object.
      * @param sortedIndices Integer array of sorted place indices.
      * @param distanceGrid 2D Integer array of all the distances.
      */
-    public TwoOpt(Integer [] sortedIndices, Integer[][] distanceGrid){
+    TwoOpt(Integer[] sortedIndices, Long[][] distanceGrid){
         this.sortedIndices = new Integer[sortedIndices.length];
         System.arraycopy(sortedIndices, 0, this.sortedIndices,
                          0, this.sortedIndices.length);
         this.distanceGrid = distanceGrid;
         this.totalDistance = 0;
-        this.tripDistances = new Integer[this.sortedIndices.length];
+        this.tripDistances = new Long[this.sortedIndices.length];
     }
     
     /**
      * Getter.
      * @param result Integer[].
      */
-    public void getSortedIndices(Integer[] result){
+    void getSortedIndices(Integer[] result){
         System.arraycopy(this.sortedIndices, 0, result, 0, result.length);
     }
     
@@ -33,7 +33,7 @@ public class TwoOpt {
      * Getter method.
      * @param result Integer array.
      */
-    public void getTwoOptLegDistances(Integer[] result){
+    void getTwoOptLegDistances(Long[] result){
         System.arraycopy(tripDistances, 0, result, 0, result.length);
     }
     
@@ -41,8 +41,8 @@ public class TwoOpt {
      * Getter Method.
      * @return Integer the total distance for the optimal trip.
      */
-    public Integer getTotalDistance(){
-        for(Integer leg: this.tripDistances){
+    Long getTotalDistance(){
+        for(Long leg: this.tripDistances){
             this.totalDistance += leg;
         }
         return this.totalDistance;
@@ -64,7 +64,7 @@ public class TwoOpt {
      * @param index2 Integer.
      * @param originalTrip Integer array.
      */
-    public void opt2Reverse2(Integer index1,Integer index2,Integer[] originalTrip)
+    void opt2Reverse2(Integer index1, Integer index2, Integer[] originalTrip)
     {
         while(index1 < index2) {
             int temp = originalTrip[index1];
@@ -78,7 +78,7 @@ public class TwoOpt {
     /**
      *Optimizes a list of Integers with two opt.
      */
-    public void twoOpt(Integer[] result) {
+    void twoOpt(Integer[] result) {
         int ned = this.sortedIndices.length - 1;
         
         boolean improvement = true;
@@ -90,7 +90,7 @@ public class TwoOpt {
                     int o2 = sortedIndices[i + 1];
                     int d1 = sortedIndices[j];
                     int d2 = sortedIndices[j + 1];
-                    int delta =
+                    long delta =
                             ((-1)*this.distanceGrid[o1][o2]) - this.distanceGrid[d1][d2]
                             + this.distanceGrid[o1][d1] + this.distanceGrid[o2][d2];
                     if (delta < 0) {

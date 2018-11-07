@@ -52,12 +52,12 @@ public class TestTrip {
   @Test
   public void testDistances() {
       trip = new Trip(opt, places);
-      ArrayList<Integer> expectedDistances = new ArrayList<>();
-      Collections.addAll(expectedDistances, 366, 1593, 7726, 6225);
+      ArrayList<Long> expectedDistances = new ArrayList<>();
+      Collections.addAll(expectedDistances, 366L, 1593L, 7726L, 6225L);
       // Call the equals() method of the first object on the second object.
       trip.plan();
-      int expTotalDist = 0;
-      int totalDistance = 0;
+      long expTotalDist = 0;
+      long totalDistance = 0;
       for(int i = 0; i< expectedDistances.size(); i++) {
                   expTotalDist = expTotalDist+ expectedDistances.get(i);
                   totalDistance = totalDistance + trip.distances.get(i);
@@ -77,10 +77,10 @@ public class TestTrip {
 
       trip.plan();
 
-      ArrayList<Integer> expectedDistances = new ArrayList<>();
-      Collections.addAll(expectedDistances, 366, 1593, 7726, 6225);
-      int expTotalDist = 0;
-      int totalDistance = 0;
+      ArrayList<Long> expectedDistances = new ArrayList<>();
+      Collections.addAll(expectedDistances, 366L, 1593L, 7726L, 6225L);
+      long expTotalDist = 0;
+      long totalDistance = 0;
       for(int i = 0; i< expectedDistances.size(); i++) {
           expTotalDist = expTotalDist+ expectedDistances.get(i);
           totalDistance = totalDistance + trip.distances.get(i);
