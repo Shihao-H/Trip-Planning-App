@@ -142,16 +142,16 @@ class Itinerary extends Component {
         const distance =
             <tr key={"row_leg"}>
                 <th scope={"row"} key={"header_leg"}>Leg Distances</th>
-                {this.props.distances.map((distance) => <td>{distance}</td>)}
+                {this.props.trip.distances.map((distance) => <td>{distance}</td>)}
             </tr>;
         return distance;
     }
 
     tableTotal(){
         let totalDistance = [];
-        for(let i = 0; i < this.props.distances.length; i ++){
-            if(i == 0) totalDistance[0] = this.props.distances[0];
-            else totalDistance[i] = totalDistance[i-1] + this.props.distances[i];
+        for(let i = 0; i < this.props.trip.distances.length; i ++){
+            if(i == 0) totalDistance[0] = this.props.trip.distances[0];
+            else totalDistance[i] = totalDistance[i-1] + this.props.trip.distances[i];
         }
         const total =
             <tr key={"row_total"}>

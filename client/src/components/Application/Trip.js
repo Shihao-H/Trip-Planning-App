@@ -76,13 +76,12 @@ class Trip extends Component {
                     <Row>
                         <Col>
                             <MapSvg map={this.props.map} options={this.props.options}
-                                 trip={this.props.trip}/>
+                                    trip={this.props.trip}/>
                         </Col>
                         <Col>
                             <Itinerary
                                 config={this.props.config}
                                 attributes={this.props.attributes}
-                                distances={this.props.distances}
                                 selectAll={this.props.selectAll}
                                 updateAttributes={this.props.updateAttributes}
                                 selected={this.props.selected}
