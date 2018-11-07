@@ -11,14 +11,8 @@ export async function request(body, type, port=get_port(), host=location.hostnam
   }).then(response => {return response.json()}).catch(err => {console.error(err)});
 }
 
-export async function get_config(body, type, port=get_port(), host=location.hostname) {
-  return fetch('http://' + host + ":" + port + '/config', {
+export async function get(type, port=get_port(), host=location.hostname) {
+  return fetch('http://' + host + ":" + port + '/' + type, {
     method:"GET"
   }).then(response => {return response.json()}).catch(err => {console.error(err)});
-}
-
-export async function get_map(body, type, port=get_port(), host=location.hostname) {
-    return fetch('http://' + host + ":" + port + '/map', {
-        method:"GET"
-    }).then(response => {return response.json()}).catch(err => {console.error(err)});
 }
