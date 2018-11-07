@@ -79,20 +79,35 @@ class Application extends Component {
         this.checkAttributes = this.checkAttributes.bind(this);
     }
 
-    updateAttributes(value){
-        objArray.sort(function(a, b) {
-            var textA = a.DepartmentName.toUpperCase();
-            var textB = b.DepartmentName.toUpperCase();
-            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-        });
+    componentWillMount()
+    {
+        get_config().then(
+            config => {
+                this.setState({
+                    config: config
+                })
+            }
+        );
+    }
 
+    updateAttributes(value){
         let attributes = this.state.attributes;
-        var index = attributes.indexOf(value);
+        let config = this.state.config;
+        let index = attributes.indexOf(value);
         if(index > -1){
             attributes.splice(index, 1);
+            attributes.sort(function(a, b) {
+                let indexA = config.attributes.indexOf(a);
+                let indexB = config.attributes.indexOf(b);
+                return (indexA < indexB) ? -1 : 1;
+            });
         } else {
-            if(value === "name") attributes.unshift(value);
-            else attributes.push(value);
+            attributes.push(value);
+            attributes.sort(function(a, b) {
+                let indexA = config.attributes.indexOf(a);
+                let indexB = config.attributes.indexOf(b);
+                return (indexA < indexB) ? -1 : 1;
+            });
         }
        this.setState(attributes);
     }
@@ -105,16 +120,7 @@ class Application extends Component {
         }
     }
 
-    componentWillMount()
-    {
-        get_config().then(
-            config => {
-                this.setState({
-                    config: config
-                })
-            }
-        );
-    }
+
 
     updateTrip(field, value)
     {
