@@ -185,6 +185,7 @@ class Application extends Component {
             <Container id="Application"><Card><CardBody>
                         <Info/>
                         <Trip config={this.state.config} display={this.state.display}
+                              distances={this.state.trip.distances}
                               host={this.state.host} otherTeams={this.state.otherTeams}
                               search={this.state.search} selectAll={this.state.selectAll}
                               selected={this.state.selected} trip={this.state.trip}

@@ -76,7 +76,7 @@ class Trip extends Component {
                             <Itinerary
                                 config={this.props.config}
                                 attributes={this.props.attributes}
-
+                                distances={this.props.distances}
                                 selectAll={this.props.selectAll}
                                 updateAttributes={this.props.updateAttributes}
 
