@@ -5,7 +5,8 @@ class Itinerary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapse: true
+            collapse: true,
+            table:[]
         };
 
         this.dropdown = this.dropdown.bind(this);
@@ -15,7 +16,10 @@ class Itinerary extends Component {
         this.clickReverseButton = this.clickReverseButton.bind(this);
         this.clickChangeStartButton = this.clickChangeStartButton.bind(this);
         this.clear = this.clear.bind(this);
-        this.table = this.table.bind(this);
+        this.tableToggle = this.tableToggle.bind(this);
+        this.tableEach = this.tableEach.bind(this);
+        this.tableRow = this.tableRow.bind(this);
+        this.tableDistance = this.tableDistance.bind(this);
     }
 
     dropdown() {
@@ -84,9 +88,7 @@ class Itinerary extends Component {
     }
 
 
-    table() {
-        let table = [];
-
+    tableToggle(){
         const toggle =
             <th key='checkAll' className="checkPlace">
                 <InputGroup>
@@ -101,6 +103,10 @@ class Itinerary extends Component {
                     </InputGroupAddon>
                 </InputGroup>
             </th>;
+        this.state.table.push(toggle);
+    }
+
+    tableEach(){
         const each =
             this.props.places.map((place) =>
                 <td key={'check' + place.id} className="checkPlace">
@@ -115,9 +121,10 @@ class Itinerary extends Component {
                                }}/>
                     </InputGroupAddon>
                 </td>);
-        table.push(toggle);
-        table.push(each);
+        this.state.table.push(each);
+    }
 
+    tableRow(){
         const rows =
             this.props.attributes.map((attribute) =>
                 <tr key={"row_" + attribute}>
@@ -128,14 +135,16 @@ class Itinerary extends Component {
                     }
                 </tr>
             );
-        table.push(rows);
+        this.state.table.push(rows);
+    }
 
+    tableDistance(){
         const distance =
             <tr key={"row_leg"}>
                 <th scope={"row"} key={"header_leg"}>Leg Distances</th>
                 {this.props.distances.map((distance) => <td>{distance}</td>)}
             </tr>;
-        table.push(distance);
+        this.state.table.push(distance);
 
         let totalDistance = [];
         for(let i = 0; i < this.props.distances.length; i ++){
@@ -147,9 +156,7 @@ class Itinerary extends Component {
                 <th scope={"row"} key={"header_total"}>Total Distances</th>
                 {totalDistance.map((total) => <td>{total}</td>)}
             </tr>;
-        table.push(total);
-
-        return table;
+        this.state.table.push(total);
     }
 
     render() {
@@ -162,7 +169,7 @@ class Itinerary extends Component {
                         <CardBody>
                             <p>{this.props.trip.title}</p>
                             <Table className="Table" responsive hover>
-                                <tbody className="Body">{this.table()}</tbody>
+                                <tbody className="Body">{this.state.table}</tbody>
                             </Table>
                             <Button size='lg' key={'delete_button'} className='btn-outline-dark delete-button'
                                     onClick={this.clickDeleteButton}>Delete selected location
