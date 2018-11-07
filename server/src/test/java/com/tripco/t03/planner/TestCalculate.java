@@ -1,6 +1,8 @@
 package com.tripco.t03.planner;
 
+import com.google.gson.Gson;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestCalculate {
@@ -46,7 +48,36 @@ public class TestCalculate {
 
         assertEquals(1005, dist.distance, 1);
     }
+    
+    @Test
+    public void testKiloPlace(){
+        Place origin = new Place("orig", "origin",40.582778, 105.055);
+        Place destination = new Place("dest", "destination", 36.169722, 115.140278);
+        long distance = Calculate.calcDistance(origin, destination, "kilometers");
+    
+        assertEquals(1005, distance, 1);
+    }
 
+    @Test
+    public void testNautical(){
+        Place origin = new Place("orig", "origin",40.582778, 105.055);
+        Place destination = new Place("dest", "destination", 36.169722, 115.140278);
+        dist = new Distance(origin, destination, "nautical miles");
+    
+        dist.setDistance();
+    
+        assertEquals(543.0, dist.distance, 1);
+    }
+    
+    @Test
+    public void testNauticalPlace(){
+        Place origin = new Place("orig", "origin",40.582778, 105.055);
+        Place destination = new Place("dest", "destination", 36.169722, 115.140278);
+        long distance = Calculate.calcDistance(origin, destination, "nautical miles");
+        
+        assertEquals(543, distance, 1);
+    }
+    
     @Test
     public void testUD(){
         Place origin = new Place("orig", "origin",40.582778, 105.055);
@@ -56,5 +87,21 @@ public class TestCalculate {
         dist.setDistance();
 
         assertEquals(3303889, dist.distance, 3);
+    }
+    
+    @Test
+    public void testGetDistance(){
+        Place origin = new Place("orig", "origin",40.582778, 105.055);
+        Place destination = new Place("dest", "destination", 36.169722, 115.140278);
+        dist = new Distance(origin, destination, "nautical miles");
+    
+        Calculate calc = new Calculate(dist);
+    
+        String json = calc.getDistance();
+        Gson gson = new Gson();
+        
+        Distance newDist = gson.fromJson(json, Distance.class);
+        
+        assertEquals(newDist.origin.name, dist.origin.name);
     }
 }

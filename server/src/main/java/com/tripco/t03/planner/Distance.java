@@ -8,7 +8,7 @@ public class Distance {
     public String units;
     public String unitName;
     public Double unitRadius;
-    public Integer distance;
+    public Long distance;
     
     /**
      * Create a default distance object. Declares and initializes default Place objects for
@@ -60,8 +60,9 @@ public class Distance {
      * @param orig trip origin Place object
      * @param dest trip destination Place object
      * @param units String designation of unit type
+     * @param distance Long.
      */
-    public Distance(Place orig, Place dest, String units, int distance) {
+    public Distance(Place orig, Place dest, String units, Long distance) {
         this.origin = orig;
         this.destination = dest;
         this.units = units;
@@ -75,24 +76,5 @@ public class Distance {
      */
     public void setDistance() {
         this.distance = Calculate.calcDistance(this);
-    }
-    
-    /**
-     * Returns the string format for a distance variable.
-     * @return String.
-     */
-    public String toString() {
-        String out;
-        if (this.units.equals("user defined")) {
-            out = String.format(" Units: %s, Unit Name: %s, Distance: %d.", this.units,
-                                this.unitName, this.distance);
-        } else {
-            out = String.format(" Units: %s, Distance: %d.", this.units, this.distance);
-        }
-        return String.format("Origin: latitude: %f, longitude: %f, name: %s, Destination: "
-                             + "latitude: %f, longitude: %f, name: %s,",
-                             origin.getLatitude(), origin.getLongitude(), origin.getName(),
-                             destination.getLatitude(), destination.getLongitude(),
-                             destination.getName()) + out;
     }
 }

@@ -3,32 +3,34 @@ package com.tripco.t03.planner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Optimize {
+class Optimize {
     private Trip trip;
     private Integer[] sortedPlaces;
     private Integer[] optimalIndices;
-    private Integer[] optimalLegs;
-    private int optimalTotalDistance;
+    private Integer[] twoOptIndices;
+    private Long[] optimalLegs;
+    private Long optimalTotalDistance;
     private DistanceGrid grid;
 
     /**
      * Constructor for Optimize object.
      * @param trip Trip object to optimize.
      */
-    public Optimize(Trip trip) {
+    Optimize(Trip trip) {
         this.trip = trip;
         this.sortedPlaces = new Integer[trip.places.size()];
         this.sortedPlaces = MergeSortPlace.sort(this.trip.places);
         this.optimalIndices = new Integer[this.sortedPlaces.length];
-        this.optimalLegs = new Integer[this.sortedPlaces.length];
+        this.optimalLegs = new Long[this.sortedPlaces.length];
+        this.twoOptIndices = new Integer[this.sortedPlaces.length];
         setGrid();
     }
 
     /**
      * Getter for total distance.
-     * @return int total distance for optimal trip.
+     * @return Long total distance for optimal trip.
      */
-    public int getOptimalTripDistance(){
+    Long getOptimalTripDistance(){
         return this.optimalTotalDistance;
     }
 
@@ -36,25 +38,22 @@ public class Optimize {
      *Applies the appropriate level of optimization for the trip.
      * @return Trip Object that has been optimized.
      */
-    public Trip getOptimalTrip(){
+    Trip getOptimalTrip(){
         NearestNeighbor nn = new NearestNeighbor(this.sortedPlaces, this.grid.distanceGrid);
         nn.nearestNeighbor();
         nn.getOptimalTrip(this.optimalIndices);
         nn.getLegDistances(this.optimalLegs);
         this.optimalTotalDistance = nn.getTotalDistance();
-        if((this.trip.options.optimization.equalsIgnoreCase("shorter")) || (this.trip.options.optimization.equalsIgnoreCase("shortest"))){
-            TwoOpt twoOpt = new TwoOpt(this.sortedPlaces, this.grid.distanceGrid);
-            twoOpt.twoOpt();
-            twoOpt.getTwoOptTrip(this.optimalIndices);
+        System.out.printf("Nearest Neighbor Distance: %d\n", this.optimalTotalDistance);
+        if(this.trip.options.optimization.equalsIgnoreCase("shorter")){
+            System.arraycopy(this.optimalIndices, 0, this.twoOptIndices, 0,
+                             twoOptIndices.length);
+            TwoOpt twoOpt = new TwoOpt(this.twoOptIndices, this.grid.distanceGrid);
+            twoOpt.twoOpt(this.optimalIndices);
+            twoOpt.getSortedIndices(this.optimalIndices);
             twoOpt.getTwoOptLegDistances(this.optimalLegs);
             this.optimalTotalDistance = twoOpt.getTotalDistance();
-        }
-        if(this.trip.options.optimization.equalsIgnoreCase("shortest")){
-            ThreeOpt threeOpt = new ThreeOpt(this.sortedPlaces, this.grid.distanceGrid);
-            threeOpt.threeOpt();
-            threeOpt.getThreeOptTrip(this.optimalIndices);
-            threeOpt.getThreeOptLegDistances(this.optimalLegs);
-            this.optimalTotalDistance = threeOpt.getTotalDistance();
+            System.out.printf("TwoOpt Distance: %d\n", this.optimalTotalDistance);
         }
         return buildNewTrip();
     }
@@ -68,7 +67,7 @@ public class Optimize {
         for(int i = 0; i < this.trip.places.size(); i++){
             optimal.add(this.trip.places.get(this.optimalIndices[i]));
         }
-        ArrayList<Integer> legs = new ArrayList<>(Arrays.asList(this.optimalLegs));
+        ArrayList<Long> legs = new ArrayList<>(Arrays.asList(this.optimalLegs));
         return new Trip( this.trip.title, this.trip.options, optimal, legs);
     }
 

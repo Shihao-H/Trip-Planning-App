@@ -48,7 +48,8 @@ public class Search {
     public Search(String match, Filter[] filters)
     {
         this.match = match;
-        this.filters = filters;
+        this.filters = new Filter[filters.length];
+        System.arraycopy(filters, 0, this.filters, 0, filters.length);
     }
 
     /**
@@ -61,7 +62,8 @@ public class Search {
     {
         this.match = match;
         this.limit = limit;
-        this.filters = filters;
+        this.filters = new Filter[filters.length];
+        System.arraycopy(filters, 0, this.filters, 0, filters.length);
     }
 
     /**

@@ -3,8 +3,8 @@ package com.tripco.t03.planner;
 
 import java.util.ArrayList;
 
-    public class DistanceGrid {
-        public Integer[][] distanceGrid;
+    class DistanceGrid {
+        Long[][] distanceGrid;
         private Integer[] indexKey;
         private ArrayList<Place> locations;
         private String units;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
         /**
          * Default constructor.
          */
-        public DistanceGrid(){
+        DistanceGrid(){
             this.distanceGrid = null;
         }
 
@@ -22,11 +22,11 @@ import java.util.ArrayList;
          * @param location Array of places.
          * @param units String type of units.
          */
-        public DistanceGrid(ArrayList<Place> location, String units, Integer[] key){
+        DistanceGrid(ArrayList<Place> location, String units, Integer[] key){
             this.locations = new ArrayList<>();
             this.locations.addAll(location);
             this.units = units;
-            this.distanceGrid = new Integer[locations.size()][locations.size()];
+            this.distanceGrid = new Long[locations.size()][locations.size()];
             this.indexKey=key;
             this.setSamePlace();
         }
@@ -37,12 +37,12 @@ import java.util.ArrayList;
          * @param units String type of units.
          * @param udRadius Double radius of Earth in user defined units.
          */
-        public DistanceGrid(ArrayList<Place> locations, String units, Double udRadius, Integer[] key){
+        DistanceGrid(ArrayList<Place> locations, String units, Double udRadius, Integer[] key){
             this.locations = new ArrayList<>();
             this.locations.addAll(locations);
             this.units = units;
             this.userDefinedRadius = udRadius;
-            this.distanceGrid = new Integer[locations.size()][locations.size()];
+            this.distanceGrid = new Long[locations.size()][locations.size()];
             this.indexKey = key;
             this.setSamePlace();
         }
@@ -50,7 +50,7 @@ import java.util.ArrayList;
         /**
          * Builds 2D array of Distance objects.
          */
-        public void buildGrid() {
+        void buildGrid() {
             int row = 0;
             while (row < this.distanceGrid.length) {
                 int column = row+1;
@@ -59,10 +59,12 @@ import java.util.ArrayList;
                         Place origin = this.locations.get(indexKey[row]);
                         Place destination = this.locations.get(indexKey[column]);
                         if (this.units.equalsIgnoreCase("user defined")) {
-                            int temp = Calculate.optDistance(origin, destination, this.userDefinedRadius);
+                            long temp = Calculate.optDistance(origin, destination,
+                                                           this.userDefinedRadius);
                             this.distanceGrid[row][column] = temp;
                         } else {
-                            int temp = Calculate.calcDistance(origin, destination, this.units);
+                            Long temp = Calculate.calcDistance(origin, destination,
+                                                               this.units);
                             this.distanceGrid[row][column] = temp;
                         }
                         distanceGrid[column][row] = this.distanceGrid[row][column];
@@ -79,7 +81,7 @@ import java.util.ArrayList;
          */
         private void setSamePlace(){
             for (int i = 0; i < this.distanceGrid.length; i++) {
-                distanceGrid[i][i] = Integer.MAX_VALUE;
+                distanceGrid[i][i] = Long.MAX_VALUE;
             }
         }
     }
