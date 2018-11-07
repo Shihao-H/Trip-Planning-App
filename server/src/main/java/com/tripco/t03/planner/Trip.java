@@ -1,6 +1,5 @@
 package com.tripco.t03.planner;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,8 +28,7 @@ public class Trip {
         this.options = new Option();
         this.places = null;
         this.distances = null;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
     /**
@@ -42,8 +40,7 @@ public class Trip {
         this.title = null;
         this.options = options;
         this.places = places;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
     /**
@@ -58,8 +55,7 @@ public class Trip {
         this.options=options;
         this.places=places;
         this.distances=dist;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
     /**
@@ -73,8 +69,7 @@ public class Trip {
         this.title=title;
         this.options = options;
         this.places = places;
-        this.map = "";
-        svg();
+        this.map = svg();
     }
 
         /** The top level method that does planning.
@@ -82,7 +77,6 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
             System.out.printf("Trip Distance: %d\n", this.totalDist);
@@ -95,7 +89,6 @@ public class Trip {
             this.places = optTrip.places;
             this.distances = optTrip.distances;
         }
-        System.out.println("plan has called");
         LineDistance worldMap = new LineDistance(this.places);
         this.map = worldMap.getMap();
     }
@@ -135,7 +128,6 @@ public class Trip {
     private ArrayList<Long> legDistances() {
 
         ArrayList<Long> dist;
-
         if(this.options.units.equals("user defined")){
             dist = makeUserDefTrip();
         } else {

@@ -69,12 +69,5 @@ public class TestSearch {
                           && (search.limit > 0)
                           && (search.filters !=null));
     }
-    
-    @Test
-    public void testGetQuery(){
-        search = new Search(match, limit, filter);
-        String query = search.getQuery();
-        
-        Assert.assertNotNull(query);
-    }
+
 }

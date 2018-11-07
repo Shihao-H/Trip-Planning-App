@@ -36,6 +36,14 @@ public class Place {
         this.longitude = longitude;
     }
 
+    public Place(String country, String id, String name, Double latitude, Double longitude){
+        this.country=country;
+        this.id = id;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     /**
      * Copy constructor.
      * @param from Place object to copy.

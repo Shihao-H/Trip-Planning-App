@@ -72,10 +72,8 @@ public class LineDistance {
                 "<title>lines</title>";
         for (int i = 0; i < this.coordinates.length; i++) {
             if (i != this.coordinates.length - 1) {
-                System.out.println("four");
                 check(this.places[i], this.places[i + 1], i, i + 1);
             } else {
-                System.out.println("five");
                 check(this.places[i], this.places[0], i, 0);
             }
         }
@@ -108,20 +106,16 @@ public class LineDistance {
      */
     public void check(double x1, double x2, int i, int j) {
         if (x1 - x2 < -180.0) {
-            System.out.println("one");
             drawLine((this.coordinates[i][0] + 1024), this.coordinates[i][1],
                     this.coordinates[j][0], this.coordinates[j][1]);
             drawLine(this.coordinates[i][0], this.coordinates[i][1],
                     (this.coordinates[j][0] - 1024), this.coordinates[j][1]);
         } else if (x1 - x2 > 180.0) {
-            System.out.println("two");
             drawLine(this.coordinates[i][0], this.coordinates[i][1],
                     (this.coordinates[j][0] + 1024), this.coordinates[j][1]);
             drawLine((this.coordinates[i][0] - 1024), this.coordinates[i][1],
                     this.coordinates[j][0], this.coordinates[j][1]);
         } else {
-            System.out.println("three");
-            System.out.println(x1-x2);
             drawLine(this.coordinates[i][0], this.coordinates[i][1],
                     this.coordinates[j][0], this.coordinates[j][1]);
         }
