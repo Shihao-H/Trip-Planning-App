@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {CardBody,Card,Button,Row,Col} from 'reactstrap'
-import {request} from '../../api/api';
+import {get_config, get_map, request} from '../../api/api';
 
 class Upload extends Component {
     constructor(props) {
@@ -27,11 +27,12 @@ class Upload extends Component {
                 this.props.updateOptions('unitRadius',obj.options.unitRadius);
                 this.props.updateOptions('unitName',obj.options.unitName);
             }
-            request(obj,'map').then((Fi)=>
-            {
-                this.props.updateTrip('map', Fi.map);
-                console.log(Fi.map);
-            });
+            this.props.updateTrip('places',obj.places);
+            get_map().then(
+              map => {
+                  this.props.updateTrip("map", map.map);
+              }
+            );
         };
         this.props.updateSelected(new Map());
         this.props.updateSelectAll(false);

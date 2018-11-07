@@ -16,3 +16,9 @@ export async function get_config(body, type, port=get_port(), host=location.host
     method:"GET"
   }).then(response => {return response.json()}).catch(err => {console.error(err)});
 }
+
+export async function get_map(body, type, port=get_port(), host=location.hostname) {
+    return fetch('http://' + host + ":" + port + '/map', {
+        method:"GET"
+    }).then(response => {return response.json()}).catch(err => {console.error(err)});
+}

@@ -95,7 +95,7 @@ public class MicroServer {
 
     private String map(Request request, Response response) {
         String result;
-        response.type("application/json");
+        response.type("text/plain");
         response.header("Access-Control-Allow-Origin", "*");
         try{
             result = LineDistance.getDefaultMap();
