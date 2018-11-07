@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
 import Map from './Map';
-import defaultSvg from "../../../../images/CObackground.svg";
 import {Card, CardBody, Container} from 'reactstrap';
 import { get_config } from '../../api/api';
 import DistanceCal from "./DistanceCal";
 import Info from './Info';
 import Trip from "./Trip"
-import OptionPanel from "./OptionPanel";
-
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -74,6 +71,12 @@ class Application extends Component {
     }
 
     updateAttributes(value){
+        objArray.sort(function(a, b) {
+            var textA = a.DepartmentName.toUpperCase();
+            var textB = b.DepartmentName.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
+
         let attributes = this.state.attributes;
         var index = attributes.indexOf(value);
         if(index > -1){
@@ -85,6 +88,9 @@ class Application extends Component {
        this.setState(attributes);
     }
 
+
+
+
     checkAttributes(value){
         if(this.state.attributes.includes(value)){
             return true;
@@ -92,7 +98,6 @@ class Application extends Component {
             return false;
         }
     }
-
 
     componentWillMount()
     {

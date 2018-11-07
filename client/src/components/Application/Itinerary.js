@@ -1,6 +1,5 @@
-import { Button, Card, CardBody, Collapse, Input, InputGroupAddon, InputGroup} from "reactstrap";
+import {Table, Button, Card, CardBody, Collapse, Input, InputGroupAddon, InputGroup} from "reactstrap";
 import React, {Component} from 'react'
-import {Table} from 'reactstrap';
 
 class Itinerary extends Component {
     constructor(props) {

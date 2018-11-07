@@ -1,4 +1,4 @@
-import {Col, Card, CardBody, FormGroup, Input, Label, Form} from "reactstrap";
+import {Col, Card, CardBody, FormGroup, Input, Form} from "reactstrap";
 import React, {Component} from 'react'
 
 class Attributes extends Component {

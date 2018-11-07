@@ -91,10 +91,10 @@ public class Trip {
             this.title = optTrip.title;
             this.options = optTrip.options;
             this.places = optTrip.places;
-            this.map = optTrip.map;
             this.distances=optTrip.distances;
-            svg();
-            setRoute();
+            LineDistance worldMap = new LineDistance(this.places);
+            this.map = worldMap.getMap();
+
         }
     }
 
@@ -115,33 +115,13 @@ public class Trip {
         this.distances = distances;
     }
 
-    /**
-     * Adds the route to the existing map.
-     */
-    public void setRoute() {
-        LineDistance ld = new LineDistance(this.places);
-        String route = ld.getCoordinates();
-        this.map = this.map.substring(0, this.map.length()-16) + route
-                + this.map.substring(this.map.length()-16);
-    }
 
     /**
      * Creates an SVG containing the background and the legs of the trip.
      */
     public void svg() {
-        String fileLines = "" ;
-        try {
-            InputStream thisSvgWillNotWin =Trip.class.getResourceAsStream("/CObackground.svg");
-            BufferedReader buffy = new BufferedReader(new InputStreamReader(thisSvgWillNotWin));
-            if(buffy.ready()){
-                while(buffy.ready()){
-                    fileLines= fileLines + buffy.readLine();
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        this.map = fileLines;
+        LineDistance worldMap = new LineDistance(this.places);
+        this.map = worldMap.getBackground();
     }
 
     /**
