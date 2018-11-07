@@ -82,7 +82,7 @@ class Application extends Component {
     }
 
     componentWillMount() {
-        get_config().then(
+        get('config').then(
             config => {
                 this.setState({
                     config: config
