@@ -23,9 +23,7 @@ public class Match {
     public Match(Request request) {
 
         // extract the information from the body of the request.
-        JsonParser jsonParser = new JsonParser();
-        JsonElement requestBody = jsonParser.parse(request.body());
-
+        JsonElement requestBody = Calculate.jsonHandler(request);
         // convert the body of the request to a Java class.
         Gson gson = new Gson();
         search = gson.fromJson(requestBody, Search.class);

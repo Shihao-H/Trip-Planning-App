@@ -16,6 +16,7 @@ public class MicroServer {
 
     private int    port;
     private String name;
+    private String result;
     
     /**
      * Creates a micro-server to load static files and provide REST APIs.
@@ -56,7 +57,6 @@ public class MicroServer {
      * @return Info about this server
      */
     private String about(Request request, Response response) {
-        String result;
         response.type("text/html");
         response.header("Access-Control-Allow-Origin", "*");
         try{
@@ -75,7 +75,6 @@ public class MicroServer {
      * @return What this server can do
      */
     private String config(Request request, Response response) {
-        String result;
         response.type("application/json");
         response.header("Access-Control-Allow-Origin", "*");
         try{
@@ -93,7 +92,6 @@ public class MicroServer {
      * @return Echoes back the request to the client
      */
     private String echo(Request request, Response response) {
-        String result;
         response.type("application/json");
         response.header("Access-Control-Allow-Origin", "*");
         try{
@@ -111,7 +109,6 @@ public class MicroServer {
      * @return A message saying hello.
      */
     private String hello(Request request, Response response) {
-        String result;
         response.type("text/html");
         response.header("Access-Control-Allow-Origin", "*");
         try{
@@ -129,7 +126,6 @@ public class MicroServer {
      * @return The team name
      */
     private String team(Request request, Response response) {
-        String result;
         response.type("text/plain");
         response.header("Access-Control-Allow-Origin", "*");
         try{
@@ -147,7 +143,7 @@ public class MicroServer {
      * @return The planned trip
      */
     private String plan(Request request, Response response) {
-        String result;
+        
         setAppJsonResponse(response);
         try{
             result = new Plan(request).getTrip();
@@ -164,7 +160,6 @@ public class MicroServer {
      * @return String.
      */
     private String distance(Request request, Response response) {
-        String result;
         setAppJsonResponse(response);
         try{
             result = new Calculate(request).getDistance();
@@ -181,7 +176,6 @@ public class MicroServer {
      * @return should be a list of places.
      */
     private String search(Request request, Response response) {
-        String result;
         setAppJsonResponse(response);
         try{
             result = new Match(request).getMatch();

@@ -23,7 +23,7 @@ public class Driver {
      * @param match String phrase to match.
      * @param limit integer number of mx results to be shown.
      */
-    public static void find(String match, int limit, String filter) {
+    public static void find(String match, int limit, String filter) throws ClassNotFoundException, SQLException {
         if (limit == 0) {
             limitQuery = ""; // no limit
         } else {
@@ -31,17 +31,13 @@ public class Driver {
         }
         setSearch(match, filter);
         setCount(match, filter);
-        try {
-            Class.forName(myDriver);
-            try (Connection conn = DriverManager.getConnection(myUrl, user, pass);
-                 Statement stCount = conn.createStatement();
-                 Statement stQuery = conn.createStatement();
-                 ResultSet rsCount = stCount.executeQuery(count);
-                 ResultSet rsQuery = stQuery.executeQuery(search)) {
-            }
-        } catch (Exception ignored) {
-
-        }
+      
+        Class.forName(myDriver);
+        Connection conn = DriverManager.getConnection(myUrl, user, pass);
+        Statement stCount = conn.createStatement();
+        Statement stQuery = conn.createStatement();
+        ResultSet rsCount = stCount.executeQuery(count);
+        ResultSet rsQuery = stQuery.executeQuery(search);
     }
     
     /**

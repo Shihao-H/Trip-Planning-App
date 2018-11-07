@@ -140,7 +140,7 @@ public class Trip {
                 }
             }
         } catch (IOException e) {
-
+            System.err.print(e.getCause());
         }
         this.map = fileLines;
     }
