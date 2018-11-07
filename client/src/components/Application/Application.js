@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Map from './Map';
 import {Card, CardBody, Container} from 'reactstrap';
-import {get_config} from '../../api/api';
+import {get} from '../../api/api';
 import DistanceCal from "./DistanceCal";
 import Info from './Info';
 import Trip from "./Trip"

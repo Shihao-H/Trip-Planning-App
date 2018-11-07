@@ -5,8 +5,7 @@ class Itinerary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapse: true,
-            table:[]
+            collapse: true
         };
 
         this.dropdown = this.dropdown.bind(this);
@@ -20,6 +19,8 @@ class Itinerary extends Component {
         this.tableEach = this.tableEach.bind(this);
         this.tableRow = this.tableRow.bind(this);
         this.tableDistance = this.tableDistance.bind(this);
+        this.tableTotal = this.tableTotal.bind(this);
+        this.createTable = this.createTable.bind(this);
     }
 
     dropdown() {
@@ -87,7 +88,6 @@ class Itinerary extends Component {
         this.props.updateTrip('places', []);
     }
 
-
     tableToggle(){
         const toggle =
             <th key='checkAll' className="checkPlace">
@@ -103,7 +103,7 @@ class Itinerary extends Component {
                     </InputGroupAddon>
                 </InputGroup>
             </th>;
-        this.state.table.push(toggle);
+       return toggle;
     }
 
     tableEach(){
@@ -121,7 +121,7 @@ class Itinerary extends Component {
                                }}/>
                     </InputGroupAddon>
                 </td>);
-        this.state.table.push(each);
+       return each;
     }
 
     tableRow(){
@@ -135,17 +135,19 @@ class Itinerary extends Component {
                     }
                 </tr>
             );
-        this.state.table.push(rows);
+       return rows;
     }
 
-    tableDistance(){
+    tableDistance() {
         const distance =
             <tr key={"row_leg"}>
                 <th scope={"row"} key={"header_leg"}>Leg Distances</th>
                 {this.props.distances.map((distance) => <td>{distance}</td>)}
             </tr>;
-        this.state.table.push(distance);
+        return distance;
+    }
 
+    tableTotal(){
         let totalDistance = [];
         for(let i = 0; i < this.props.distances.length; i ++){
             if(i == 0) totalDistance[0] = this.props.distances[0];
@@ -156,7 +158,17 @@ class Itinerary extends Component {
                 <th scope={"row"} key={"header_total"}>Total Distances</th>
                 {totalDistance.map((total) => <td>{total}</td>)}
             </tr>;
-        this.state.table.push(total);
+        return total;
+    }
+
+    createTable(){
+        let table = [];
+        table.push(this.tableToggle());
+        table.push(this.tableEach());
+        table.push(this.tableRow());
+        table.push(this.tableDistance());
+        table.push(this.tableTotal());
+        return table;
     }
 
     render() {
@@ -169,7 +181,7 @@ class Itinerary extends Component {
                         <CardBody>
                             <p>{this.props.trip.title}</p>
                             <Table className="Table" responsive hover>
-                                <tbody className="Body">{this.state.table}</tbody>
+                                <tbody className="Body">{this.createTable()}</tbody>
                             </Table>
                             <Button size='lg' key={'delete_button'} className='btn-outline-dark delete-button'
                                     onClick={this.clickDeleteButton}>Delete selected location

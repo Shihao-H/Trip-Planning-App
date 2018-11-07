@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {CardBody,Card,Button,Row,Col} from 'reactstrap'
-import {get_config, get_map, request} from '../../api/api';
+import {get, request} from '../../api/api';
 
 class Upload extends Component {
     constructor(props) {
