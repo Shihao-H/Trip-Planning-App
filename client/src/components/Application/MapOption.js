@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import {Button, ButtonGroup, Card, CardBody, Collapse} from "reactstrap";
 
-class Optimization extends Component {
+class MapOption extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapse: false,
-            ifDisplayUserDefinedInputFields: false,
+            collapse: false
         };
         this.dropdown = this.dropdown.bind(this);
         this.clickButton = this.clickButton.bind(this);
@@ -17,27 +16,27 @@ class Optimization extends Component {
     }
 
     clickButton(event) {
-        this.props.updateOptions('optimization', event.target.value);
+        this.props.updateOptions('mapForOption', event.target.value);
     }
 
     render() {
-        const buttons = this.props.config.optimization.map((optimization) =>
-            <Button key={'optimization_button_' + optimization.label}
+        const buttons = this.props.config.maps.map((map) =>
+            <Button key={'optimization_button_' + map}
                     className='btn-outline-dark optimization-button'
-                    active={this.props.options.optimization === optimization.label}
-                    value={optimization.label}
+                    active={this.props.options.mapForOption === map}
+                    value={map}
                     onClick={this.clickButton}>
-                {optimization.label.charAt(0).toUpperCase() + optimization.label.slice(1)}
+                {map}
             </Button>
         );
         return (
             <div className={'text-center'}>
                 <Card>
                     <CardBody>
-                        <p>Select the optimizations you wish to use.</p>
+                        <p>Select the map you wish to use.</p>
                         <Button size='lg'
                                 onClick={this.dropdown}
-                                className='btn-outline-dark'>Optimization</Button>
+                                className='btn-outline-dark'>Map</Button>
                         <Collapse isOpen={this.state.collapse}>
                             <br/>
                             <ButtonGroup size="lg" vertical>{buttons}</ButtonGroup>
@@ -49,4 +48,4 @@ class Optimization extends Component {
     };
 }
 
-export default Optimization;
+export default MapOption;

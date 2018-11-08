@@ -91,8 +91,6 @@ public class Search {
                 }
             }
         }
-
-        System.out.println("This is the filter query:\n" + query);
         Driver driver = new Driver();
         driver.find(this.match, this.limit, query);
         this.found = driver.found;
