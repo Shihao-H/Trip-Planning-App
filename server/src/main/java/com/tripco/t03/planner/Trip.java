@@ -77,16 +77,16 @@ public class Trip {
      * It might need to reorder the places in the future.
      */
     public void plan() {
-//        if(this.options.optimization.equalsIgnoreCase("none")){
-//            this.distances = legDistances();
-//        } else{
-//            Optimize opt = new Optimize(this);
-//            Trip optTrip = opt.getOptimalTrip();
-//            this.title = optTrip.title;
-//            this.options = optTrip.options;
-//            this.places = optTrip.places;
-//            this.distances = optTrip.distances;
-//        }
+        if(this.options.optimization.equalsIgnoreCase("none")){
+            this.distances = legDistances();
+        } else{
+            Optimize opt = new Optimize(this);
+            Trip optTrip = opt.getOptimalTrip();
+            this.title = optTrip.title;
+            this.options = optTrip.options;
+            this.places = optTrip.places;
+            this.distances = optTrip.distances;
+        }
         if(this.options.optimization.equals("short")){
             nearestNeighbor();
         }
@@ -177,114 +177,4 @@ public class Trip {
 
         return dist;
     }
-
-    /////////////////////////////////////////////////
-    private void nearestNeighbor(){
-
-        int size = this.places.size();
-        long distance[][] = new long[size][size];
-        Place[] copyToArray = this.places.toArray(new Place[size]);
-
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < size; j++){
-                if (i == j){
-                    distance[i][j] = Integer.MAX_VALUE;
-                } else if (i > j){
-                    distance[i][j] = distance[j][i];
-                } else {
-                    Distance calc;
-                    if (this.options.units.equals("user defined")) {
-                        calc = new Distance(copyToArray[i], copyToArray[j], options.units, options.unitName, options.unitRadius);
-                        calc.setDistance();
-                        distance[i][j] = calc.distance;
-                    } else {
-                        calc = new Distance(copyToArray[i], copyToArray[j], options.units);
-                        calc.setDistance();
-                        distance[i][j] = calc.distance;
-                    }
-                }
-            }
-        }
-
-        ////////////////////////////////////////////////////////
-
-        boolean visit[];
-        int total[] = new int[size];
-        for(int k = 0; k < size; k++){
-            visit = new boolean[size];
-            visit[k] = true;
-            int start = k;
-            while(unvisitedCityLeft(visit)){
-                int index = getMin(distance[start], visit, total, k);
-                start = index;
-
-            }
-            total[k] += distance[start][k];
-        }
-
-        ///////////////////////////////////////////
-
-        this.places = new ArrayList<Place>();
-        int k = getMinValue(total);
-        this.places.add(copyToArray[k]);
-        visit = new boolean[size];
-        visit[k] = true;
-        int start = k;
-        while(unvisitedCityLeft(visit)){
-            int index = getMin(distance[start], visit, total, k);
-            start = index;
-            this.places.add(copyToArray[index]);
-        }
-
-    }
-
-    public boolean unvisitedCityLeft(boolean[] visit){
-        boolean flag = false;
-        for(int i = 0; i < visit.length; i++){
-            if(visit[i] == false)
-                return true;
-        }
-        return flag;
-    }
-
-    public int getMin(long[] numbers, boolean[] visit, int[] total, int k){
-        long minValue = -1;
-        int i, index = -1;
-
-        for(i = 0;i < numbers.length; i++){
-            if(visit[i] == false){
-                minValue = numbers[i];
-                index = i;
-                break;
-            }
-        }
-
-        while(i < numbers.length){
-            if(numbers[i] < minValue){
-                if(visit[i] == false){
-                    minValue = numbers[i];
-                    index = i;
-                }
-            }
-            i++;
-        }
-
-        visit[index] = true;
-        total[k] += minValue;
-        return index;
-    }
-
-    public int getMinValue(int[] numbers){
-        int minValue = numbers[0];
-        int index = 0;
-        for(int i=1;i<numbers.length;i++){
-            if(numbers[i] < minValue){
-                minValue = numbers[i];
-                index = i;
-            }
-        }
-        return index;
-    }
-    ///////////////////////////////////////////////////
-
 }
