@@ -20,7 +20,7 @@ class Clear extends Component{
         this.props.updateSearch('match',"");
         this.props.updateSearch('places',[]);
         this.props.updateSearch('limit',0);
-        this.props.LoadFile(null);
+        document.getElementById('fileInput').value=null;
     }
 
 

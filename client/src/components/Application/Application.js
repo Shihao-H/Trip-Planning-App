@@ -53,7 +53,8 @@ class Application extends Component {
                 type: "search",
                 match: "",
                 found: 0,
-                places: []
+                places: [],
+                filters:[]
             },
             selected: new Map(),
             selectAll: false,
