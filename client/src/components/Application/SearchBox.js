@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Button, Card, CardBody, Table, Input, Form, Row, Col, Label} from "reactstrap";
 import {request} from '../../api/api';
 import AddButton from "./AddButton";
+import AddAllButton from "./AddAllButton"
 
 export class SearchBox extends Component {
     constructor(props) {
@@ -87,27 +88,31 @@ export class SearchBox extends Component {
     }
 
     addPlaces() {
+        let i = 0;
         const places =
             <tr key={"row_places"}>
                 <th scope={"row"} key={"header_places"}>
                     {"Results"}
                 </th>
                 {
-                    this.props.search.places.map((place) => <td>{place.name}</td>)
+                    this.props.search.places.map((place) => <td key={"place_" + place.name + i++}>{place.name}</td>)
                 }
             </tr>;
         return places;
     }
 
     addButtons() {
+        let i = 0;
         const buttons =
             <tr key={"row_buttons"}>
                 <th scope={"row"} key={"header_buttons"}>
-                    {"Add to trip"}
+                    <AddAllButton updateTrip={this.props.updateTrip}
+                                  trip={this.props.trip} search={this.props.search}
+                                  config={this.props.config}/>
                 </th>
                 {
                     this.props.search.places.map((place) =>
-                        <td><AddButton newPlace={place} updateTrip={this.props.updateTrip}
+                        <td key={"but_" + place.name + i++}><AddButton newPlace={place} updateTrip={this.props.updateTrip}
                                        trip={this.props.trip} search={this.props.search}
                                        config={this.props.config}/>
                         </td>)
