@@ -80,7 +80,6 @@ public class Trip {
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
         } else{
-           // this.distances = legDistances();
             Optimize opt = new Optimize(this);
             Trip optTrip = opt.getOptimalTrip();
             this.title = optTrip.title;

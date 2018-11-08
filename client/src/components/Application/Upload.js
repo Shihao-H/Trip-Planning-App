@@ -69,6 +69,7 @@ class Upload extends Component {
                         Submit your trip!
                         <br/>
                         <input type="file" maxLength={"40px"} ref={this.fileInput}
+                               id="fileInput"
                                onChange={(event) => this.LoadFile(event)}/>
                         <small className="form-text text-muted">
                             Upload a file that contains a Trip<br/>object in the TFFI format.

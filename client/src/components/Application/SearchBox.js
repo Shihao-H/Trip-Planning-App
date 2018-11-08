@@ -1,26 +1,87 @@
 import React, {Component} from 'react'
-import {Button, Card, CardBody, Table, Input, Form, Label} from "reactstrap";
+import {Button, Card, CardBody, Table, Input, Form, Row, Col, Label} from "reactstrap";
 import {request} from '../../api/api';
 import AddButton from "./AddButton";
-
 
 export class SearchBox extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            temp: []
+        };
+        for (let filter of this.props.config.filters) {
+            let values = {};
+            for (let valueName of filter.values) {
+                values[valueName] = false;
+            }
+            this.state.temp[filter.name] = {'values': values};
+        }
+
         this.handleSearch = this.handleSearch.bind(this);
         this.addButtons = this.addButtons.bind(this);
         this.addPlaces = this.addPlaces.bind(this);
         this.createTable = this.createTable.bind(this);
+        this.getTempValues = this.getTempValues.bind(this);
+        this.mapFilters = this.mapFilters.bind(this);
+        this.check = this.check.bind(this);
     }
 
-    handleSearch(event) {
-        event.preventDefault();
-        this.props.updateSearch('places', []);
-        let obj = this.props.search;
-        if (obj.match !== "") {
-            request(obj, 'search').then((Fi) => {
-                this.props.updateSearch('places', Fi.places);
-                this.props.updateSearch('found', Fi.found);
+    getTempValues() {
+        let filters = [];
+        for (let filterName in this.state.temp) {
+            let filter = this.state.temp[filterName];
+            let values = [];
+            for (let valueName in filter.values) {
+                if (filter.values[valueName]) {
+                    values.push(valueName);
+                }
+            }
+            if (values.length > 0) {
+                filters.push({'name': filterName, 'values': values});
+            }
+        }
+        return filters;
+    }
+
+    check(event) {
+        let filterName = event.target.value;
+        let checked = event.target.checked;
+        let valueName = event.target.name;
+        this.state.temp[filterName].values[valueName] = checked;
+    }
+
+    mapFilters() {
+        let myFilters = this.props.config.filters.map((filter) =>
+            <Col xs={"6"} key={filter.name}>
+                <Card>
+                    <CardBody>
+                        {filter.values.map((ConcreteValue) =>
+                            <div key={ConcreteValue}>
+                                <Label check key={ConcreteValue}>
+                                    <Input name={ConcreteValue} type="checkbox" value={filter.name}
+                                           onChange={this.check}/>
+                                    {ConcreteValue.charAt(0).toUpperCase() + ConcreteValue.slice(1)}
+                                </Label>
+                            </div>
+                        )}
+                    </CardBody>
+                </Card>
+            </Col>);
+
+        return myFilters;
+    }
+
+    handleSearch()
+    {
+        this.props.updateSearch('places',[]);
+        let obj = Object.assign({}, this.props.search);
+        obj.filters = this.getTempValues();
+        if(obj.match!=="")
+        {
+            request(obj,'search').then((Fi)=>
+            {
+                this.props.updateSearch('places',Fi.places);
+                this.props.updateSearch('found',Fi.found);
             });
         }
     }
@@ -78,6 +139,11 @@ export class SearchBox extends Component {
                                        this.props.updateSearch('match', event.target.value)
                                    }}/>
                         </Form>
+                        <CardBody>
+                            <Row>
+                                {this.mapFilters()}
+                            </Row>
+                        </CardBody>
                         <Button onClick={this.handleSearch} className='btn-dark btn-outline-dark'
                                 type="button" size='lg'>Search</Button><br/><br/>
                         {<p>{this.props.search.found + " results found."}</p>}
@@ -86,7 +152,6 @@ export class SearchBox extends Component {
                             {this.createTable()}
                             </tbody>
                         </Table>
-
                     </CardBody>
                 </Card>
             </div>);
