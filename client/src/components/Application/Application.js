@@ -22,7 +22,7 @@ class Application extends Component {
                     unitName: "",
                     unitRadius: 0.00,
                     optimization: "none",
-                    map: "svg"
+                    mapForOption: "svg"
                 },
                 places: [],
                 distances: [],

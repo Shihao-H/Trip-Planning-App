@@ -57,9 +57,7 @@ export class MapSvg extends Component {
                 <Collapse isOpen={this.state.collapse}>
                     <Card>
                         <CardBody>
-
-                            {this.props.options.map === "svg" ? this.svg() : this.kml()}
-
+                            {this.props.options.mapForOption === "svg" ? this.svg() : this.kml()}
                         </CardBody>
                     </Card>
                 </Collapse>

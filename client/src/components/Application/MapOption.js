@@ -16,14 +16,14 @@ class MapOption extends Component {
     }
 
     clickButton(event) {
-        this.props.updateOptions('map', event.target.value);
+        this.props.updateOptions('mapForOption', event.target.value);
     }
 
     render() {
         const buttons = this.props.config.maps.map((map) =>
             <Button key={'optimization_button_' + map}
                     className='btn-outline-dark optimization-button'
-                    active={this.props.options.map === map}
+                    active={this.props.options.mapForOption === map}
                     value={map}
                     onClick={this.clickButton}>
                 {map}
