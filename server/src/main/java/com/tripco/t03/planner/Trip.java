@@ -87,10 +87,6 @@ public class Trip {
             this.places = optTrip.places;
             this.distances = optTrip.distances;
         }
-        if(this.options.optimization.equals("short")){
-            nearestNeighbor();
-        }
-        this.distances = legDistances();
         LineDistance worldMap = new LineDistance(this.places);
         this.map = worldMap.getMap();
     }
