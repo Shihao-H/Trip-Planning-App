@@ -1,7 +1,7 @@
 import {Input, Card, CardBody} from "reactstrap";
 import React, {Component} from 'react'
 
-class InterOperate extends Component{
+class InterOperate extends Component {
     constructor(props) {
         super(props);
     }
@@ -10,24 +10,23 @@ class InterOperate extends Component{
         return (
             <Card>
                 <CardBody>
-                    <p>Select another team's site.</p>
-                        Host name:<br/>
-                        black-bottle.cs.colostate.edu
+                    <p>{"Select another team's site."}</p>
+                    <p>{"Host name:"}</p>
+                    <p>{"black-bottle.cs.colostate.edu"}</p>
+                    <Input
+                        style={{width: "100%"}}
+                        type="text"
+                        placeholder="black-bottle.cs.colostate.edu"
+                        onChange={this.props.updateHost}
+                    />
                     <br/>
-                        <Input
-                            style={{width: "100%"}}
-                            type="text"
-                            placeholder="black-bottle.cs.colostate.edu"
-                            onChange={this.props.updateHost}
-                        />
-                        <br/>
-                        Port:<br/>
-                        <Input
-                            style={{width: "100%"}}
-                            type="text"
-                            placeholder="31403"
-                            onChange={this.props.updateOtherTeams}
-                        />
+                    <p>{"Port:"}</p>
+                    <Input
+                        style={{width: "100%"}}
+                        type="text"
+                        placeholder="31403"
+                        onChange={this.props.updateOtherTeams}
+                    />
                 </CardBody>
             </Card>
         )
