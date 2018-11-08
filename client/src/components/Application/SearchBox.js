@@ -52,7 +52,7 @@ export class SearchBox extends Component {
     }
 
     mapFilters() {
-        let myFilters = this.props.config.filters.map((filter) =>
+        return this.props.config.filters.map((filter) =>
             <Col xs={"6"} key={filter.name}>
                 <Card>
                     <CardBody>
@@ -68,8 +68,6 @@ export class SearchBox extends Component {
                     </CardBody>
                 </Card>
             </Col>);
-
-        return myFilters;
     }
 
     handleSearch()
@@ -89,36 +87,34 @@ export class SearchBox extends Component {
 
     addPlaces() {
         let i = 0;
-        const places =
-            <tr key={"row_places"}>
-                <th scope={"row"} key={"header_places"}>
-                    {"Results"}
-                </th>
-                {
-                    this.props.search.places.map((place) => <td key={"place_" + place.name + i++}>{place.name}</td>)
-                }
-            </tr>;
-        return places;
+        return <tr key={"row_places"}>
+            <th scope={"row"} key={"header_places"}>
+                {"Results"}
+            </th>
+            {
+                this.props.search.places.map((place) =>
+                    <td key={"place_" + place.name + i++}>{place.name}</td>)
+            }
+        </tr>;
     }
 
     addButtons() {
         let i = 0;
-        const buttons =
-            <tr key={"row_buttons"}>
-                <th scope={"row"} key={"header_buttons"}>
-                    <AddAllButton updateTrip={this.props.updateTrip}
-                                  trip={this.props.trip} search={this.props.search}
-                                  config={this.props.config}/>
-                </th>
-                {
-                    this.props.search.places.map((place) =>
-                        <td key={"but_" + place.name + i++}><AddButton newPlace={place} updateTrip={this.props.updateTrip}
-                                       trip={this.props.trip} search={this.props.search}
-                                       config={this.props.config}/>
-                        </td>)
-                }
-            </tr>;
-        return buttons;
+        return <tr key={"row_buttons"}>
+            <th scope={"row"} key={"header_buttons"}>
+                <AddAllButton updateTrip={this.props.updateTrip}
+                              trip={this.props.trip} search={this.props.search}
+                              config={this.props.config}/>
+            </th>
+            {
+                this.props.search.places.map((place) =>
+                    <td key={"but_" + place.name + i++}>
+                        <AddButton newPlace={place} updateTrip={this.props.updateTrip}
+                                   trip={this.props.trip} search={this.props.search}
+                                   config={this.props.config}/>
+                    </td>)
+            }
+        </tr>;
     }
 
     createTable() {
@@ -133,29 +129,21 @@ export class SearchBox extends Component {
             <div className={'text-center'}>
                 <Card>
                     <CardBody>
-                        <Label>
-                            Search for a new location
-                        </Label>
-                        <Form>
-                            <Input type="text"
-                                   placeholder=""
-                                   style={{width: "100%"}}
-                                   onChange={event => {
-                                       this.props.updateSearch('match', event.target.value)
-                                   }}/>
+                        <Label>Search for a new location</Label>
+                        <Form><Input type="text"
+                                     placeholder=""
+                                     style={{width: "100%"}}
+                                     onChange={event =>
+                                     {this.props.updateSearch('match', event.target.value)}}/>
                         </Form>
                         <CardBody>
-                            <Row>
-                                {this.mapFilters()}
-                            </Row>
+                            <Row>{this.mapFilters()}</Row>
                         </CardBody>
                         <Button onClick={this.handleSearch} className='btn-dark btn-outline-dark'
                                 type="button" size='lg'>Search</Button><br/><br/>
                         {<p>{this.props.search.found + " results found."}</p>}
                         <Table responsive hover>
-                            <tbody className="searchTable">
-                            {this.createTable()}
-                            </tbody>
+                            <tbody className="searchTable">{this.createTable()}</tbody>
                         </Table>
                     </CardBody>
                 </Card>
