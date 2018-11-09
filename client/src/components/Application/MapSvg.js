@@ -31,22 +31,24 @@ export class MapSvg extends Component {
             })
         }
 
-        return (
-           <div style={{width: "1024", height: "512"}}>
-            <Map
-                style={{width: "1000", height: "500"}}
-                google={this.props.google} zoom={3}
-                 initialCenter={{
-                     lat: 40.5853, lng: -105.0844
-                 }}>
-                <Polyline
-                    path={coordinates}
-                    strokeColor="#ff1e19"
-                    strokeOpacity={0.8}
-                    strokeWeight={2}/>
-            </Map>
-           </div>
+        let map = (
+            <div style={{width: "1024", height: "512"}}>
+                <Map
+                    style={{width: "1000", height: "500"}}
+                    google={this.props.google} zoom={3}
+                    initialCenter={{
+                        lat: 40.5853, lng: -105.0844
+                    }}>
+                    <Polyline
+                        path={coordinates}
+                        strokeColor="#ff1e19"
+                        strokeOpacity={0.8}
+                        strokeWeight={2}/>
+                </Map>
+            </div>
         );
+
+        return map;
     }
 
 

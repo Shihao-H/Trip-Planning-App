@@ -89,67 +89,59 @@ class Itinerary extends Component {
     }
 
     tableToggle(){
-        const toggle =
-            <th key='checkAll' className="checkPlace">
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                        <Input addon
-                               type="checkbox"
-                               aria-label="Checkbox for following text input"
-                               value={this.props.selectAll}
-                               key={"checkAll"}
-                               checked={this.props.selectAll}
-                               onChange={this.toggleSelectAll}/>
-                    </InputGroupAddon>
-                </InputGroup>
-            </th>;
-       return toggle;
+       return <th key='checkAll' className="checkPlace">
+           <InputGroup>
+               <InputGroupAddon addonType="prepend">
+                   <Input addon
+                          type="checkbox"
+                          aria-label="Checkbox for following text input"
+                          value={this.props.selectAll}
+                          key={"checkAll"}
+                          checked={this.props.selectAll}
+                          onChange={this.toggleSelectAll}/>
+               </InputGroupAddon>
+           </InputGroup>
+       </th>;
     }
 
     tableEach(){
         let i = 0;
-        const each =
-            this.props.places.map((place) =>
-                <th key={'check' + place.id + i++} className="checkPlace">
-                    <InputGroupAddon addonType="prepend">
-                        <Input addon
-                               type="checkbox"
-                               key={"check" + place.id}
-                               checked={this.props.selected[place.id]}
-                               value={place.id}
-                               onChange={(event) => {
-                                   this.toggle(event.target.value)
-                               }}/>
-                    </InputGroupAddon>
-                </th>);
-       return each;
+       return this.props.places.map((place) =>
+           <th key={'check' + place.id + i++} className="checkPlace">
+               <InputGroupAddon addonType="prepend">
+                   <Input addon
+                          type="checkbox"
+                          key={"check" + place.id}
+                          checked={this.props.selected[place.id]}
+                          value={place.id}
+                          onChange={(event) => {
+                              this.toggle(event.target.value)
+                          }}/>
+               </InputGroupAddon>
+           </th>);
     }
 
     tableRow(){
         let i = 0;
-        const rows =
-            this.props.attributes.map((attribute) =>
-                <tr key={"row_" + attribute}>
-                    <th scope={"row"} key={"header_" + attribute}>
-                        {attribute.charAt(0).toUpperCase() + attribute.slice(1)}</th>
-                    {
-                        this.props.places.map((place) => <td
-                        key={"place_" + i++}>{place[attribute]}</td>)
-                    }
-                </tr>
-            );
-       return rows;
+       return this.props.attributes.map((attribute) =>
+           <tr key={"row_" + attribute}>
+               <th scope={"row"} key={"header_" + attribute}>
+                   {attribute.charAt(0).toUpperCase() + attribute.slice(1)}</th>
+               {
+                   this.props.places.map((place) => <td
+                       key={"place_" + i++}>{place[attribute]}</td>)
+               }
+           </tr>
+       );
     }
 
     tableDistance() {
         let i = 0;
-        const distance =
-            <tr key={"row_leg"}>
-                <th scope={"row"} key={"header_leg"}>Leg Distances</th>
-                {this.props.trip.distances.map((distance) => <td
+        return <tr key={"row_leg"}>
+            <th scope={"row"} key={"header_leg"}>Leg Distances</th>
+            {this.props.trip.distances.map((distance) => <td
                 key={"distance_" + i++}>{distance}</td>)}
-            </tr>;
-        return distance;
+        </tr>;
     }
 
     tableTotal(){
@@ -159,13 +151,11 @@ class Itinerary extends Component {
             if(i === 0) totalDistance[0] = this.props.trip.distances[0];
             else totalDistance[i] = totalDistance[i-1] + this.props.trip.distances[i];
         }
-        const total =
-            <tr key={"row_total"}>
-                <th scope={"row"} key={"header_total"}>Total Distances</th>
-                {totalDistance.map((total) => <td
+        return <tr key={"row_total"}>
+            <th scope={"row"} key={"header_total"}>Total Distances</th>
+            {totalDistance.map((total) => <td
                 key={"total_" + i++}>{total}</td>)}
-            </tr>;
-        return total;
+        </tr>;
     }
 
     createTable(){
