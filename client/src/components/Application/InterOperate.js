@@ -1,4 +1,4 @@
-import {Input, Card, CardBody} from "reactstrap";
+import {Input, Card, CardBody, Button} from "reactstrap";
 import React, {Component} from 'react'
 
 class InterOperate extends Component {
@@ -27,6 +27,12 @@ class InterOperate extends Component {
                         placeholder="31403"
                         onChange={this.props.updateOtherTeams}
                     />
+                    <br/>
+                    <Button
+                        size='lg'
+                        className="btn-save btn-dark btn-outline-dark"
+                        onClick={this.props.updateInterOperate}
+                        type="button">{"Begin inter operate!"}</Button>
                 </CardBody>
             </Card>
         )

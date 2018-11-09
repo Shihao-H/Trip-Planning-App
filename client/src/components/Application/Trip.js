@@ -65,12 +65,13 @@ class Trip extends Component {
                             <OptionPanel config={this.props.config} display={this.props.display}
                                          attributes={this.props.attributes}
                                          host={this.props.host} options={this.props.trip.options}
-                                         otherTeams={this.props.otherTeams} updateDisplay={this.props.updateDisplay}
-                                         updateDisplayUserDefined={this.props.updateDisplayUserDefined}
-                                         updateHost={this.props.updateHost} updateOptions={this.props.updateOptions}
+                                         otherTeams={this.props.otherTeams}
+                                         updateOptions={this.props.updateOptions}
                                          updateAttributes={this.props.updateAttributes}
                                          checkAttributes={this.props.checkAttributes}
-                                         updateOtherTeams={this.props.updateOtherTeams}/>
+                                         updateHost={this.props.updateHost}
+                                         updateOtherTeams={this.props.updateOtherTeams}
+                                         updateInterOperate={this.props.updateInterOperate}/>
                         </Col>
                     </Row>
                     <Row>

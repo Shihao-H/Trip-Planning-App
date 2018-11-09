@@ -51,13 +51,13 @@ export class Add extends Component {
                         <p>Add your own location</p>
                         <Input type="text" placeholder="Trip Title"
                                onChange={(e) => this.updatePlaces('title', e.target.value)}/>
-                        <Input type="text" placeholder="Trip ID"
+                        <Input type="text" placeholder="Place ID"
                                onChange={(e) => this.updatePlaces('id', e.target.value)}/>
-                        <Input type="text" placeholder="Place eg:Denver"
+                        <Input type="text" placeholder="Place name: Denver"
                                onChange={(e) => this.updatePlaces('name', e.target.value)}/>
-                        <Input type="text" placeholder="Latitude eg:39.12"
+                        <Input type="text" placeholder="Latitude: 39.12"
                                onChange={(e) => this.updatePlaces('latitude', e.target.value)}/>
-                        <Input type="text" placeholder="Longitude eg:127.23"
+                        <Input type="text" placeholder="Longitude: 127.23"
                                onChange={(e) => this.updatePlaces('longitude', e.target.value)}/>
                         <br/>
                         <Button size='lg' className='btn-dark btn-outline-dark'

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, Card, CardBody} from 'reactstrap';
+import {Row, Col, Card, CardBody} from 'reactstrap';
 import Attributes from "./Attributes"
 import InterOperate from "./InterOperate"
 import Optimization from "./Optimization";
@@ -57,6 +57,7 @@ class OptionPanel extends Component {
                             <Col xs={"6"}>
                                 <InterOperate host={this.props.host} otherTeams={this.props.otherTeams}
                                               updateHost={this.props.updateHost}
+                                              updateInterOperate={this.props.updateInterOperate}
                                               updateOtherTeams={this.props.updateOtherTeams}/>
                             </Col>
                         </Row>

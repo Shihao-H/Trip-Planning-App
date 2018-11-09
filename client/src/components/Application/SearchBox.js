@@ -8,7 +8,8 @@ export class SearchBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            temp: []
+            temp: [],
+            returnNumber: 0
         };
         for (let filter of this.props.config.filters) {
             let values = {};
@@ -52,7 +53,7 @@ export class SearchBox extends Component {
     }
 
     mapFilters() {
-        return this.props.config.filters.map((filter) =>
+        let myFilters = this.props.config.filters.map((filter) =>
             <Col xs={"6"} key={filter.name}>
                 <Card>
                     <CardBody>
@@ -68,19 +69,23 @@ export class SearchBox extends Component {
                     </CardBody>
                 </Card>
             </Col>);
+
+        return myFilters;
     }
 
-    handleSearch()
-    {
-        this.props.updateSearch('places',[]);
+    handleSearch() {
+        this.props.updateSearch('places', []);
         let obj = Object.assign({}, this.props.search);
         obj.filters = this.getTempValues();
-        if(obj.match!=="")
-        {
-            request(obj,'search').then((Fi)=>
-            {
-                this.props.updateSearch('places',Fi.places);
-                this.props.updateSearch('found',Fi.found);
+        if (obj.match !== "") {
+            request(obj, 'search').then((Fi) => {
+                let response = [];
+                if (Fi.places.length > 20) {
+                    response = Fi.places.slice(0, 20);
+                }
+                this.props.updateSearch('places', response);
+                this.props.updateSearch('found', Fi.found);
+                this.setState({returnNumber: response.length});
             });
         }
     }
@@ -129,21 +134,30 @@ export class SearchBox extends Component {
             <div className={'text-center'}>
                 <Card>
                     <CardBody>
-                        <Label>Search for a new location</Label>
-                        <Form><Input type="text"
-                                     placeholder=""
-                                     style={{width: "100%"}}
-                                     onChange={event =>
-                                     {this.props.updateSearch('match', event.target.value)}}/>
+                        <Label>
+                            Search for a new location
+                        </Label>
+                        <Form>
+                            <Input type="text"
+                                   placeholder=""
+                                   style={{width: "100%"}}
+                                   onChange={event => {
+                                       this.props.updateSearch('match', event.target.value)
+                                   }}/>
                         </Form>
                         <CardBody>
-                            <Row>{this.mapFilters()}</Row>
+                            <Row>
+                                {this.mapFilters()}
+                            </Row>
                         </CardBody>
                         <Button onClick={this.handleSearch} className='btn-dark btn-outline-dark'
                                 type="button" size='lg'>Search</Button><br/><br/>
-                        {<p>{this.props.search.found + " results found."}</p>}
+                        {<p>{"Showing " + this.state.returnNumber + " of " +
+                        this.props.search.found + " results."}</p>}
                         <Table responsive hover>
-                            <tbody className="searchTable">{this.createTable()}</tbody>
+                            <tbody className="searchTable">
+                            {this.createTable()}
+                            </tbody>
                         </Table>
                     </CardBody>
                 </Card>
