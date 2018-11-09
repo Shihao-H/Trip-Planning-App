@@ -43,17 +43,19 @@ class Upload extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        let obj = this.props.trip;
-        if (this.props.otherTeams === null || this.props.host === null) {
-            request(obj, 'plan').then((Fi) => {
-                this.props.updateTrip('distances', Fi.distances);
-                this.props.updateTrip('places', Fi.places);
+        let obj=this.props.trip;
+        if(this.props.otherTeams === null || this.props.host === null){
+            request(obj,'plan').then((Fi)=>
+            {
+                this.props.updateTrip('distances',Fi.distances);
+                this.props.updateTrip('places',Fi.places);
                 this.props.updateTrip('map', Fi.map);
             });
         } else {
-            request(obj, 'plan', this.props.otherTeams, this.props.host).then((Fi) => {
-                this.props.updateTrip('distances', Fi.distances);
-                this.props.updateTrip('places', Fi.places);
+            request(obj,'plan', this.props.otherTeams, this.props.host).then((Fi)=>
+            {
+                this.props.updateTrip('distances',Fi.distances);
+                this.props.updateTrip('places',Fi.places);
                 this.props.updateTrip('map', Fi.map);
             });
         }
