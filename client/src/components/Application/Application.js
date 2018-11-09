@@ -54,7 +54,7 @@ class Application extends Component {
                 match: "",
                 found: 0,
                 places: [],
-                filters:[]
+                filters: []
             },
             selected: new Map(),
             selectAll: false,
@@ -75,11 +75,12 @@ class Application extends Component {
         this.updateUpload = this.updateUpload.bind(this);
         this.updateSelected = this.updateSelected.bind(this);
         this.updateSelectAll = this.updateSelectAll.bind(this);
-        this.updateOtherTeams = this.updateOtherTeams.bind(this);
-        this.updateHost = this.updateHost.bind(this);
-
+        this.updateInterOperate = this.updateInterOperate.bind(this);
         this.updateAttributes = this.updateAttributes.bind(this);
         this.checkAttributes = this.checkAttributes.bind(this);
+        this.updateHost = this.updateHost.bind(this);
+        this.updateOtherTeams = this.updateOtherTeams.bind(this);
+        this.updateConfig = this.updateConfig.bind(this);
     }
 
     componentWillMount() {
@@ -88,6 +89,32 @@ class Application extends Component {
                 this.setState({
                     config: config
                 })
+            }
+        );
+    }
+
+    updateConfig(option, value) {
+        let config = this.state.config;
+        config[option] = value;
+        this.setState(config);
+    }
+
+    updateInterOperate() {
+        get('config', this.state.otherTeams, this.state.host).then(
+            newConfig => {
+                this.updateConfig('optimization', newConfig.optimization);
+                this.updateConfig('attributes', newConfig.attributes);
+                if (newConfig.filters) {
+                    this.updateConfig('filters', newConfig.filters);
+                } else {
+                    this.updateConfig('filters', [{"name": "none", "values": ["This team does not support filters."]}]);
+                }
+                if (newConfig.maps) {
+                    this.updateConfig('maps', newConfig.maps);
+                } else {
+                    this.updateConfig('maps', ["svg"]);
+                }
+
             }
         );
     }
@@ -197,8 +224,10 @@ class Application extends Component {
                       updateAttributes={this.updateAttributes}
                       checkAttributes={this.checkAttributes}
                       options={this.state.trip.options}
-                      updateHost={this.updateHost} updateTrip={this.updateTrip}
-                      updateOptions={this.updateOptions} updateOtherTeams={this.updateOtherTeams}
+                      updateInterOperate={this.updateInterOperate}
+                      updateHost={this.updateHost} updateOtherTeams={this.updateOtherTeams}
+                      updateTrip={this.updateTrip}
+                      updateOptions={this.updateOptions}
                       updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
                       updateSelected={this.updateSelected} updateMap={this.updateMap}
                       map={this.state.trip.map}

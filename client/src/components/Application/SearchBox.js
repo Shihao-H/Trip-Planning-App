@@ -52,11 +52,6 @@ export class SearchBox extends Component {
     }
 
     mapFilters() {
-        if(!this.props.config.filters){
-            let defaultFilters = [{"name" : "This team has no filters!",
-                "values": "This team has no filters!"}];
-            this.props.updateConfig('filters', defaultFilters);
-        }
         let myFilters = this.props.config.filters.map((filter) =>
             <Col xs={"6"} key={filter.name}>
                 <Card>
@@ -77,21 +72,18 @@ export class SearchBox extends Component {
         return myFilters;
     }
 
-    handleSearch()
-    {
-        this.props.updateSearch('places',[]);
+    handleSearch() {
+        this.props.updateSearch('places', []);
         let obj = Object.assign({}, this.props.search);
         obj.filters = this.getTempValues();
-        if(obj.match!=="")
-        {
-            request(obj,'search').then((Fi)=>
-            {
+        if (obj.match !== "") {
+            request(obj, 'search').then((Fi) => {
                 let response = [];
-                if(Fi.places.length > 20){
-                    response = Fi.places.slice(0,20);
+                if (Fi.places.length > 20) {
+                    response = Fi.places.slice(0, 20);
                 }
-                this.props.updateSearch('places',response);
-                this.props.updateSearch('found',Fi.found);
+                this.props.updateSearch('places', response);
+                this.props.updateSearch('found', Fi.found);
                 this.setState({returnNumber: response.length});
             });
         }
@@ -158,7 +150,7 @@ export class SearchBox extends Component {
                         <Button onClick={this.handleSearch} className='btn-dark btn-outline-dark'
                                 type="button" size='lg'>Search</Button><br/><br/>
                         {<p>{"Showing " + this.state.returnNumber + " of " +
-                            this.props.search.found + " results."}</p>}
+                        this.props.search.found + " results."}</p>}
                         <Table responsive hover>
                             <tbody className="searchTable">
                             {this.createTable()}
