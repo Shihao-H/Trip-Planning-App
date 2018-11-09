@@ -7,7 +7,8 @@ export class SearchBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            temp: []
+            temp: [],
+            returnNumber: 0
         };
         for (let filter of this.props.config.filters) {
             let values = {};
@@ -51,6 +52,11 @@ export class SearchBox extends Component {
     }
 
     mapFilters() {
+        if(!this.props.config.filters){
+            let defaultFilters = [{"name" : "This team has no filters!",
+                "values": "This team has no filters!"}];
+            this.props.updateConfig('filters', defaultFilters);
+        }
         let myFilters = this.props.config.filters.map((filter) =>
             <Col xs={"6"} key={filter.name}>
                 <Card>
@@ -80,8 +86,13 @@ export class SearchBox extends Component {
         {
             request(obj,'search').then((Fi)=>
             {
-                this.props.updateSearch('places',Fi.places);
+                let response = [];
+                if(Fi.places.length > 20){
+                    response = Fi.places.slice(0,20);
+                }
+                this.props.updateSearch('places',response);
                 this.props.updateSearch('found',Fi.found);
+                this.setState({returnNumber: response.length});
             });
         }
     }
@@ -146,7 +157,8 @@ export class SearchBox extends Component {
                         </CardBody>
                         <Button onClick={this.handleSearch} className='btn-dark btn-outline-dark'
                                 type="button" size='lg'>Search</Button><br/><br/>
-                        {<p>{this.props.search.found + " results found."}</p>}
+                        {<p>{"Showing " + this.state.returnNumber + " of " +
+                            this.props.search.found + " results."}</p>}
                         <Table responsive hover>
                             <tbody className="searchTable">
                             {this.createTable()}
