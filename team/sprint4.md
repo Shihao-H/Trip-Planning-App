@@ -75,13 +75,14 @@ Epics planned for this sprint.
 
 | Statistic | Planned | Completed |
 | --- | ---: | ---: |
-| Epics | *7* | *total* |
-| Tasks |  *21*   | *total* | 
-| Story Points |  *35*  | *total* | 
+| Epics | *7* | *6* |
+| Tasks |  *21*   | *77* | 
+| Story Points |  *35*  | *146* | 
 
 *Although in the previous sprint, we ended up with 76 issues and 130 story points, we plan to have 28 issues and 35 story points for this sprint, because we are familiar with all the stuff and we are confident when we plan.*
 
-*Enter the `# Completed` at the end of the sprint.  Include a discussion about any difference in the number planned versus completed tasks and story points.*
+*Just like last sprint, many little extra add-ons and addendums were tacked on to make sure we covered everything possible
+for this sprint.*
 
 
 ## Scrums
@@ -108,17 +109,25 @@ will agree with us that this is the best trip planning experience from the WOPR'
 
 #### Completed Epics in Sprint Backlog 
 
-*Describe the solution based on the completed epics and list the epics below.*
+*Not including our epics that should always be done, clients should expect to make trips even shorter. They should also
+be able to include many options of what they can see on the itinerary, making their experience a little more personalized.
+What if they want to travel worldwide you ask? They can do that as well! Also, google maps has been implemented, so if 
+they would like, users can choose to view a kml map, making moving around the globe much easier. We included epic #234 in
+this sprint specifically because we had an actualy goal to achieve for it this time, namely 50% minimum coverage.*
 
-* *## epic title: comments*
-* 
+* *#393 User: I'd like even shorter trips*
+* *#403 User: I want to choose what information is displayed in the itinerary and map.*
+* *#394 User: I want to plan trips worldwide.*
+* *#395 User: I want to view my trip in other tools.*
+* *#396 User: I want trip planning to be fast.*
+* *#234 TripCo: All code must be tested.*
 
 #### Incomplete Epics in Sprint Backlog 
 
-*Describe capabilities not included in the release and list the epics below with an explanation.*
+*We were not able to implement trips using the 3-opt algorithm. Therefore, clients can't request trip distances that are
+more optimized than 2-opt.*
 
-* *## epic title: explanation*
-*
+* *#397 User: I want the fastest trips possible: This was 3-opt, and we didn't have enough time to tackle it... yet!*
 
 #### What Went Well
 
