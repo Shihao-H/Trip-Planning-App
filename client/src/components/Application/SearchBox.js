@@ -53,7 +53,7 @@ export class SearchBox extends Component {
     }
 
     mapFilters() {
-        return this.props.config.filters.map((filter) =
+        return this.props.config.filters.map((filter) =>
             <Col xs={"6"} key={filter.name}>
                 <Card>
                     <CardBody>
