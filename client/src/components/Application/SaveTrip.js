@@ -25,7 +25,7 @@ class SaveTrip extends Component {
 
     SaveMap() {
         let ele = document.createElement('a');
-        ele.setAttribute('href', this.props.map);
+        ele.setAttribute('href', 'data:text/plain;charset=ytf-8,' + this.props.map);
         ele.setAttribute('download', 'download.svg');
         document.body.appendChild(ele);
         ele.click();
