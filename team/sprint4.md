@@ -100,7 +100,11 @@ Epics planned for this sprint.
 
 ## Review
 
-*An introductory paragraph describing the overall results of the sprint.*
+*For Sprint 4, team WOPR once again worked better and more fluidly to create a website that they are proud of. We made
+a button that can save maps, a filter for our search so users can better narrow down what they're looking for, an add
+all button in case the client has time and money, a better and more intuitive itinerary, and a brand new KML interactive
+google map with trips displayed on it. There are many other nuanced details that were added as well, and we hope users
+will agree with us that this is the best trip planning experience from the WOPR's yet.*
 
 #### Completed Epics in Sprint Backlog 
 
@@ -118,21 +122,28 @@ Epics planned for this sprint.
 
 #### What Went Well
 
-*Describe what went well during the sprint in general terms followed by a more detailed list.*
+*Learning and growing since "The Sprint 3 incident", team WOPR's communication was leagues better than at the start of
+the semester (or since getting hired). Team meetings are regularly attended by all, and serious time and effort was put
+into making sure everthing was working in tip top shape.*
 
-* *something*
-*
+* *Communication on slack*
+* *Helping each other out on particularly difficult code*
+* *Getting epics done like it's nobody's business*
 
 #### Problems Encountered and Resolutions
 
-*Describe what problems occurred during the sprint in general terms followed by a more detailed list.*
+*Other classes, homework, and jobs once again reared their ugly heads to try and deter us from getting everything done.
+Luckily, we were able to use our time (reasonably) well and made sure our tasks were finished.*
 
-* *something*
-*
+* *Classes*
+* *Homework*
+* *Exams*
 
 ## Retrospective
 
-*An introductory paragraph for your retrospective.*
+*Looking back on this sprint, the WOPR members are pleased, if not surprised that goals were met, tests were made, searches
+were searched, and compared to the first sprint, the last 3 weeks went by with relatively minor speed bumps. We hope we
+can bring this work ethic and tenacity into the final sprint, and finish this project with a bang.*
 
 #### What we changed this sprint
 
