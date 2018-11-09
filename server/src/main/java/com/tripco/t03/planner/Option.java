@@ -10,7 +10,7 @@ public class Option {
   public String unitName;
   public Double unitRadius;
   public String optimization;
-  public String[] map;
+  public String map;
 
   /**
    * Default constructor.
@@ -20,7 +20,7 @@ public class Option {
     this.unitName = null;
     this.unitRadius = null;
     this.optimization = "none";
-    this.map =  new String[]{"svg"};
+    this.map = "svg";
   }
 
   /**
@@ -32,7 +32,7 @@ public class Option {
     this.unitName = null;
     this.unitRadius = null;
     this.optimization = "none";
-    this.map= new String[]{"svg"};
+    this.map= "svg";
   }
 
   /**
@@ -45,7 +45,19 @@ public class Option {
     this.optimization = optimization;
     this.unitName=null;
     this.unitRadius=null;
-    this.map= new String[]{"svg"};
+    this.map= "svg";
+  }
+
+  /**
+   * Constructor for basic unit with optimization.
+   * @param units String unit type.
+   * @param optimization String optimization type.
+   * @param map String map type.
+   */
+  Option(String units, String optimization, String map){
+    this.units  = units;
+    this.optimization = optimization;
+    this.map= map;
   }
 
   /**
@@ -59,7 +71,7 @@ public class Option {
     this.unitName = unitName;
     this.unitRadius = unitRadius;
     this.optimization = "none";
-    this.map= new String[]{"svg"};
+    this.map= "svg";
   }
 
   /**
@@ -72,7 +84,23 @@ public class Option {
     this.unitName = unitName;
     this.unitRadius = unitRadius;
     this.optimization = optimization;
-    this.map= new String[]{"svg"};
+    this.map= "svg";
+  }
+
+
+  /**
+   * @param units String unit type.
+   * @param unitName String name of user defined units.
+   * @param unitRadius double radius of Earth in user defined units.
+   * @param optimization String optimization type.
+   * @param map String map type.
+   */
+  Option(String units, String unitName, Double unitRadius, String optimization, String map){
+    this.units  = units;
+    this.unitName = unitName;
+    this.unitRadius = unitRadius;
+    this.optimization = optimization;
+    this.map = map;
   }
 
   /**

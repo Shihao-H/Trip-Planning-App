@@ -18,9 +18,10 @@ public class LineDistance {
     private String background = "";
     private String lines = "";
     private String map = "";
+    private String kmlCoordinates="";
 
     private int[][] coordinates;
-    private Double[] places;
+    private Double[][] places;
 
     /**
      * Default Constructor.
@@ -35,10 +36,11 @@ public class LineDistance {
      */
     public LineDistance(ArrayList<Place> places) {
         this.coordinates = new int[places.size()][2];
-        this.places = new Double[places.size()];
+        this.places = new Double[places.size()][2];
         for (int i = 0; i < places.size(); i++) {
             Place placeOut = places.get(i);
-            this.places[i] = placeOut.longitude;
+            this.places[i][0] = placeOut.longitude;
+            this.places[i][1] = placeOut.latitude;
             this.coordinates[i][0] = (int) ((placeOut.longitude - left)
                     / (right - left) * (width - 0.0) + 0.0); //x
             this.coordinates[i][1] = (int) ((placeOut.latitude - top)
@@ -76,9 +78,9 @@ public class LineDistance {
                 + "<title>lines</title>";
         for (int i = 0; i < this.coordinates.length; i++) {
             if (i != this.coordinates.length - 1) {
-                check(this.places[i], this.places[i + 1], i, i + 1);
+                check(this.places[i][0], this.places[i + 1][0], i, i + 1);
             } else {
-                check(this.places[i], this.places[0], i, 0);
+                check(this.places[i][0], this.places[0][0], i, 0);
             }
         }
         this.lines += "</svg>";
@@ -140,9 +142,9 @@ public class LineDistance {
     }
 
     /**
-     * This function is to get the complete map.
+     * This function is to get the complete svg map.
      */
-    public String getMap() {
+    public String getSvgMap() {
         this.addLines();
         this.map = "<svg width=\"1024\" height=\"512\" xmlns=\"http://www.w3.org/2000/svg\" "
                 + "xmlns:svg=\"http://www.w3.org/2000/svg\">"
@@ -153,6 +155,64 @@ public class LineDistance {
                 + "</svg>";
         return this.map;
     }
+
+    public void getKmlCoordinates(){
+        for (int i = 0; i < this.coordinates.length; i++) {
+            if (i != this.coordinates.length - 1) {
+                kmlCheck(this.places[i][0], this.places[i + 1][0], this.places[i][1], this.places[i+1][1]);
+            } else {
+                kmlCheck(this.places[i][0], this.places[0][0], this.places[i][1], this.places[0][1]);
+            }
+        }
+    }
+
+    public void kmlCheck(double x1, double x2, double y1, double y2){
+        if (x1 - x2 < -180.0) {
+            this.kmlCoordinates += x2 + "," + y2 + " " + x1 + "," + y1 + "\n";
+        } else if (x1 - x2 > 180.0) {
+            this.kmlCoordinates += x1 + "," + y1 + " " + x2 + "," + y2 + "\n";
+        } else {
+           this.kmlCoordinates += x1 + "," + y1 + " " + x2 + "," + y2 + "\n";
+        }
+    }
+
+    /**
+     * This function is to get the complete kml map.
+     */
+    public String getKmlMap() {
+        System.out.println("come here!");
+        getKmlCoordinates();
+        this.map =
+               "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n"
+                    +   "  <Document>\n"
+                     +  "    <name>Paths</name>\n"
+                      + "    <Style id=\"yellowLineGreenPoly\">\n"
+                       +"      <LineStyle>\n"
+                       +"        <color>7f00ffff</color>\n"
+                       +"        <width>4</width>\n"
+                       +"      </LineStyle>\n"
+                       +"      <PolyStyle>\n"
+                       +"        <color>7f00ff00</color>\n"
+                       +"      </PolyStyle>\n"
+                       +"    </Style>\n"
+                       +"    <Placemark>\n"
+                       +"      <name>Absolute Extruded</name>\n"
+                       +"      <LineString>\n"
+                       +"        <extrude>1</extrude>\n"
+                       +"        <tessellate>1</tessellate>\n"
+                       +"        <altitudeMode>absolute</altitudeMode>\n"
+                       +"        <coordinates> "
+                                   + kmlCoordinates
+                       +"        </coordinates>\n"
+                       +"      </LineString>\n"
+                       +"    </Placemark>\n"
+                       +"  </Document>\n"
+                       +"</kml>";
+        System.out.println("kml:\n" + this.map);
+        return this.map;
+    }
+
+
 
     /**
      * Gets the LineDistance object.
@@ -165,4 +225,5 @@ public class LineDistance {
         Gson gson = new Gson();
         return gson.toJson(worldMap);
     }
+
 }
