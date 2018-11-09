@@ -51,7 +51,7 @@ class Itinerary extends Component {
             this.clear();
         } else {
             let temp = this.props.places;
-            var i = temp.length;
+            let i = temp.length;
             while (i--) {
                 if (this.props.selected[temp[i].id] === true) {
                     temp.splice(i, 1);
@@ -62,13 +62,13 @@ class Itinerary extends Component {
     }
 
     clickReverseButton() {
-        var reverse = this.props.places.reverse();
+        let reverse = this.props.places.reverse();
         this.props.updateTrip('places', reverse);
     }
 
     clickChangeStartButton() {
         let temp = this.props.places;
-        var i = temp.length;
+        let i = temp.length;
         while (i--) {
             if (this.props.selected[temp[i].id] === true) {
                 temp.splice(0, 0, temp[i]);
@@ -107,9 +107,10 @@ class Itinerary extends Component {
     }
 
     tableEach(){
+        let i = 0;
         const each =
             this.props.places.map((place) =>
-                <td key={'check' + place.id} className="checkPlace">
+                <th key={'check' + place.id + i++} className="checkPlace">
                     <InputGroupAddon addonType="prepend">
                         <Input addon
                                type="checkbox"
@@ -120,18 +121,20 @@ class Itinerary extends Component {
                                    this.toggle(event.target.value)
                                }}/>
                     </InputGroupAddon>
-                </td>);
+                </th>);
        return each;
     }
 
     tableRow(){
+        let i = 0;
         const rows =
             this.props.attributes.map((attribute) =>
                 <tr key={"row_" + attribute}>
                     <th scope={"row"} key={"header_" + attribute}>
                         {attribute.charAt(0).toUpperCase() + attribute.slice(1)}</th>
                     {
-                        this.props.places.map((place) => <td>{place[attribute]}</td>)
+                        this.props.places.map((place) => <td
+                        key={"place_" + i++}>{place[attribute]}</td>)
                     }
                 </tr>
             );
@@ -139,24 +142,28 @@ class Itinerary extends Component {
     }
 
     tableDistance() {
+        let i = 0;
         const distance =
             <tr key={"row_leg"}>
                 <th scope={"row"} key={"header_leg"}>Leg Distances</th>
-                {this.props.trip.distances.map((distance) => <td>{distance}</td>)}
+                {this.props.trip.distances.map((distance) => <td
+                key={"distance_" + i++}>{distance}</td>)}
             </tr>;
         return distance;
     }
 
     tableTotal(){
+        let i = 0;
         let totalDistance = [];
         for(let i = 0; i < this.props.trip.distances.length; i ++){
-            if(i == 0) totalDistance[0] = this.props.trip.distances[0];
+            if(i === 0) totalDistance[0] = this.props.trip.distances[0];
             else totalDistance[i] = totalDistance[i-1] + this.props.trip.distances[i];
         }
         const total =
             <tr key={"row_total"}>
                 <th scope={"row"} key={"header_total"}>Total Distances</th>
-                {totalDistance.map((total) => <td>{total}</td>)}
+                {totalDistance.map((total) => <td
+                key={"total_" + i++}>{total}</td>)}
             </tr>;
         return total;
     }

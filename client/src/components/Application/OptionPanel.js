@@ -14,29 +14,37 @@ class OptionPanel extends Component {
         super(props);
     }
 
+    render2()
+    {
+        return(
+        <Row>
+            <Col xs={"4"}>
+                <Options config={this.props.config} options={this.props.options}
+                         updateOptions={this.props.updateOptions}/>
+            </Col>
+            <Col xs={"4"}>
+                <Optimization config={this.props.config} options={this.props.options}
+                              search={this.props.search} trip={this.props.trip}
+                              updateOptions={this.props.updateOptions}
+                              updateSearch={this.props.updateSearch}/>
+            </Col>
+            <Col xs={"4"}>
+                <MapOption config={this.props.config} options={this.props.options}
+                           trip={this.props.trip}
+                           updateOptions={this.props.updateOptions}/>
+            </Col>
+        </Row>
+        )
+    }
+
+
     render() {
         return (
             <div>
                 <Card>
                     <CardBody>
                         <p>Options</p>
-                        <Row>
-                            <Col xs={"4"}>
-                                <Options config={this.props.config} options={this.props.options}
-                                         updateOptions={this.props.updateOptions}/>
-                            </Col>
-                            <Col xs={"4"}>
-                                <Optimization config={this.props.config} options={this.props.options}
-                                              search={this.props.search} trip={this.props.trip}
-                                              updateOptions={this.props.updateOptions}
-                                              updateSearch={this.props.updateSearch}/>
-                            </Col>
-                            <Col xs={"4"}>
-                                <MapOption config={this.props.config} options={this.props.options}
-                                           trip={this.props.trip}
-                                           updateOptions={this.props.updateOptions}/>
-                            </Col>
-                        </Row>
+                        {this.render2()}
                     </CardBody>
                 </Card>
                 <Card>
