@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Button} from "reactstrap";
-import {request} from "../../api/api";
 
 
 export class AddButton extends Component {

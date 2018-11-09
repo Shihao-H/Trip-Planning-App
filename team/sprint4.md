@@ -75,13 +75,14 @@ Epics planned for this sprint.
 
 | Statistic | Planned | Completed |
 | --- | ---: | ---: |
-| Epics | *7* | *total* |
-| Tasks |  *21*   | *total* | 
-| Story Points |  *35*  | *total* | 
+| Epics | *7* | *6* |
+| Tasks |  *21*   | *77* | 
+| Story Points |  *35*  | *146* | 
 
 *Although in the previous sprint, we ended up with 76 issues and 130 story points, we plan to have 28 issues and 35 story points for this sprint, because we are familiar with all the stuff and we are confident when we plan.*
 
-*Enter the `# Completed` at the end of the sprint.  Include a discussion about any difference in the number planned versus completed tasks and story points.*
+*Just like last sprint, many little extra add-ons and addendums were tacked on to make sure we covered everything possible
+for this sprint.*
 
 
 ## Scrums
@@ -94,56 +95,85 @@ Epics planned for this sprint.
 | 10/29/2018 | 441, 442, 440, 421 | 410, 406, 426, 425 | It was Monday |
 | 10/31/2018 | 410, 406, 426, 425, 413, 423 | 414, 412, 383, 422, 460 | Happy Halloween! |
 | 11/02/2018 | 414, 412, 383, 422, 460 | 458, 411, 407, 437 | Bugs and compatibility issues |
+| 11/05/2018 | 458, 411, 407, 437, 419, 467, 500, 475 | 473, 480, 477, 481, 415, 409 | More compatibility issues |
+| 11/07/2018 | 473, 480, 477, 481, 415, 409, 418 | 427, 420, 417, 424, 519, 483, 482, 520 | Exams and homework! |
 
 
 ## Review
 
-*An introductory paragraph describing the overall results of the sprint.*
+*For Sprint 4, team WOPR once again worked better and more fluidly to create a website that they are proud of. We made
+a button that can save maps, a filter for our search so users can better narrow down what they're looking for, an add
+all button in case the client has time and money, a better and more intuitive itinerary, and a brand new KML interactive
+google map with trips displayed on it. There are many other nuanced details that were added as well, and we hope users
+will agree with us that this is the best trip planning experience from the WOPR's yet.*
 
 #### Completed Epics in Sprint Backlog 
 
-*Describe the solution based on the completed epics and list the epics below.*
+*Not including our epics that should always be done, clients should expect to make trips even shorter. They should also
+be able to include many options of what they can see on the itinerary, making their experience a little more personalized.
+What if they want to travel worldwide you ask? They can do that as well! Also, google maps has been implemented, so if 
+they would like, users can choose to view a kml map, making moving around the globe much easier. We included epic #234 in
+this sprint specifically because we had an actualy goal to achieve for it this time, namely 50% minimum coverage.*
 
-* *## epic title: comments*
-* 
+* *#393 User: I'd like even shorter trips*
+* *#403 User: I want to choose what information is displayed in the itinerary and map.*
+* *#394 User: I want to plan trips worldwide.*
+* *#395 User: I want to view my trip in other tools.*
+* *#396 User: I want trip planning to be fast.*
+* *#234 TripCo: All code must be tested.*
 
 #### Incomplete Epics in Sprint Backlog 
 
-*Describe capabilities not included in the release and list the epics below with an explanation.*
+*We were not able to implement trips using the 3-opt algorithm. Therefore, clients can't request trip distances that are
+more optimized than 2-opt.*
 
-* *## epic title: explanation*
-*
+* *#397 User: I want the fastest trips possible: This was 3-opt, and we didn't have enough time to tackle it... yet!*
 
 #### What Went Well
 
-*Describe what went well during the sprint in general terms followed by a more detailed list.*
+*Learning and growing since "The Sprint 3 incident", team WOPR's communication was leagues better than at the start of
+the semester (or since getting hired). Team meetings are regularly attended by all, and serious time and effort was put
+into making sure everthing was working in tip top shape.*
 
-* *something*
-*
+* *Communication on slack*
+* *Helping each other out on particularly difficult code*
+* *Getting epics done like it's nobody's business*
 
 #### Problems Encountered and Resolutions
 
-*Describe what problems occurred during the sprint in general terms followed by a more detailed list.*
+*Other classes, homework, and jobs once again reared their ugly heads to try and deter us from getting everything done.
+Luckily, we were able to use our time (reasonably) well and made sure our tasks were finished.*
 
-* *something*
-*
+* *Classes*
+* *Homework*
+* *Exams*
 
 ## Retrospective
 
-*An introductory paragraph for your retrospective.*
+*Looking back on this sprint, the WOPR members are pleased, if not surprised that goals were met, tests were made, searches
+were searched, and compared to the first sprint, the last 3 weeks went by with relatively minor speed bumps. We hope we
+can bring this work ethic and tenacity into the final sprint, and finish this project with a bang.*
 
 #### What we changed this sprint
 
-*Articulate specifically what you will do differently based on the retrospective from the previous sprint before the sprint starts.*
+*We kept improving our communication since last sprint. Not just with what we were working on, but most everything, which
+was nice. Asking for help was another thing we changed. We sought out help from as many resources as we could, be it Dave,
+devops, online, and especially each other.*
 
 #### What we did well
 
-*Articulate what went well at the end of the sprint.*
+*Trying not to sound pretentious, most everything went well for us for this sprint. Tasks and epics were completed, good
+questions were asked, teamwork was improved upon, members were overall pleasant to each other, despite other deadlines and
+long nights, and some **serious** cleaning of code was done.*
 
 #### What we need to work on
 
-*Articulate things you could improve at the end of the sprint.*
+*For this sprint, 3 team members were on fire with updates, changes, and time spent on the project. 1 (the writer of this)
+was not. More commits could be made and this team could be incredible. Unfortunately, it's not quite there yet. Other 
+than self deprecation, the team can try to have 99% of tasks done before the day everything is all due. There was definitely
+no crazy rush, but things could be better with time management.*
 
 #### What we will change next sprint 
 
-*Articulate the one thing you will change for the next sprint and how you will accomplish that.*
+*This team will, when creating a pull request, have whatever source code they want merged with the testing for said code,
+so code coverage will not drop. This will help getting the coverage to even greater numbers such as 60% and higher.*

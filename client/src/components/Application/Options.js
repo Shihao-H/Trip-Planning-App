@@ -28,6 +28,24 @@ class Options extends Component {
         }
     }
 
+    render2()
+    {
+        return(
+        <FormGroup>
+            <br/>
+            <Label>Unit Name:</Label>
+            <Input type="text" placeholder="Enter unit name" onChange={event => {
+                this.props.updateOptions('unitName', event.target.value)
+            }}/>
+            <Label>Unit Radius: </Label>
+            <Input type="text" placeholder="Enter unit radius"
+                   onChange={event => {
+                       this.props.updateOptions('unitRadius', event.target.value)
+                   }}/>
+        </FormGroup>
+        )
+    }
+
     render() {
         const buttons = this.props.config.units.map((unit) =>
             <Button key={'distance_button_' + unit} className='btn-outline-dark unit-button'
@@ -44,18 +62,7 @@ class Options extends Component {
                             <ButtonGroup vertical> {buttons} </ButtonGroup> <br/>
                             {this.state.ifDisplayUserDefinedInputFields && (
                                 <Form>
-                                    <FormGroup>
-                                        <br/>
-                                        <Label>Unit Name:</Label>
-                                        <Input type="text" placeholder="Enter unit name" onChange={event => {
-                                            this.props.updateOptions('unitName', event.target.value)
-                                        }}/>
-                                        <Label>Unit Radius: </Label>
-                                        <Input type="text" placeholder="Enter unit radius"
-                                               onChange={event => {
-                                                   this.props.updateOptions('unitRadius', event.target.value)
-                                               }}/>
-                                    </FormGroup>
+                                    {this.render2()}
                                 </Form>)}
                         </Collapse>
                     </CardBody>
