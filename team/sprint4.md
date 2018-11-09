@@ -147,16 +147,24 @@ can bring this work ethic and tenacity into the final sprint, and finish this pr
 
 #### What we changed this sprint
 
-*Articulate specifically what you will do differently based on the retrospective from the previous sprint before the sprint starts.*
+*We kept improving our communication since last sprint. Not just with what we were working on, but most everything, which
+was nice. Asking for help was another thing we changed. We sought out help from as many resources as we could, be it Dave,
+devops, online, and especially each other.*
 
 #### What we did well
 
-*Articulate what went well at the end of the sprint.*
+*Trying not to sound pretentious, most everything went well for us for this sprint. Tasks and epics were completed, good
+questions were asked, teamwork was improved upon, members were overall pleasant to each other, despite other deadlines and
+long nights, and some **serious** cleaning of code was done.*
 
 #### What we need to work on
 
-*Articulate things you could improve at the end of the sprint.*
+*For this sprint, 3 team members were on fire with updates, changes, and time spent on the project. 1 (the writer of this)
+was not. More commits could be made and this team could be incredible. Unfortunately, it's not quite there yet. Other 
+than self deprecation, the team can try to have 99% of tasks done before the day everything is all due. There was definitely
+no crazy rush, but things could be better with time management.*
 
 #### What we will change next sprint 
 
-*Articulate the one thing you will change for the next sprint and how you will accomplish that.*
+*This team will, when creating a pull request, have whatever source code they want merged with the testing for said code,
+so code coverage will not drop. This will help getting the coverage to even greater numbers such as 60% and higher.*
