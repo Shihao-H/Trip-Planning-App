@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Button, Card, CardBody, Table, Input, Form, Row, Col, Label} from "reactstrap";
 import {request} from '../../api/api';
 import AddButton from "./AddButton";
+import AddAllButton from "./AddAllButton"
 
 export class SearchBox extends Component {
     constructor(props) {
