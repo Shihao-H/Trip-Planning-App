@@ -90,33 +90,35 @@ export class SearchBox extends Component {
     }
 
     addPlaces() {
-        const places =
-            <tr key={"row_places"}>
-                <th scope={"row"} key={"header_places"}>
-                    {"Results"}
-                </th>
-                {
-                    this.props.search.places.map((place) => <td>{place.name}</td>)
-                }
-            </tr>;
-        return places;
+        let i = 0;
+        return <tr key={"row_places"}>
+            <th scope={"row"} key={"header_places"}>
+                {"Results"}
+            </th>
+            {
+                this.props.search.places.map((place) =>
+                    <td key={"place_" + place.name + i++}>{place.name}</td>)
+            }
+        </tr>;
     }
 
     addButtons() {
-        const buttons =
-            <tr key={"row_buttons"}>
-                <th scope={"row"} key={"header_buttons"}>
-                    {"Add to trip"}
-                </th>
-                {
-                    this.props.search.places.map((place) =>
-                        <td><AddButton newPlace={place} updateTrip={this.props.updateTrip}
-                                       trip={this.props.trip} search={this.props.search}
-                                       config={this.props.config}/>
-                        </td>)
-                }
-            </tr>;
-        return buttons;
+        let i = 0;
+        return <tr key={"row_buttons"}>
+            <th scope={"row"} key={"header_buttons"}>
+                <AddAllButton updateTrip={this.props.updateTrip}
+                              trip={this.props.trip} search={this.props.search}
+                              config={this.props.config}/>
+            </th>
+            {
+                this.props.search.places.map((place) =>
+                    <td key={"but_" + place.name + i++}>
+                        <AddButton newPlace={place} updateTrip={this.props.updateTrip}
+                                   trip={this.props.trip} search={this.props.search}
+                                   config={this.props.config}/>
+                    </td>)
+            }
+        </tr>;
     }
 
     createTable() {
