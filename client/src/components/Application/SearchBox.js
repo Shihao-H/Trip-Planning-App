@@ -82,6 +82,8 @@ export class SearchBox extends Component {
                 let response = [];
                 if (Fi.places.length > 20) {
                     response = Fi.places.slice(0, 20);
+                } else {
+                    response = Fi.places;
                 }
                 this.props.updateSearch('places', response);
                 this.props.updateSearch('found', Fi.found);
