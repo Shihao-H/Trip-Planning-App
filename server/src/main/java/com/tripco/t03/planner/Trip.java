@@ -28,7 +28,7 @@ public class Trip {
         this.options = new Option();
         this.places = null;
         this.distances = null;
-        this.map = svg();
+        this.map = "";
     }
 
     /**
@@ -40,7 +40,7 @@ public class Trip {
         this.title = null;
         this.options = options;
         this.places = places;
-        this.map = svg();
+        this.map = "";
     }
 
     /**
@@ -55,7 +55,7 @@ public class Trip {
         this.options=options;
         this.places=places;
         this.distances=dist;
-        this.map = svg();
+        this.map = "";
     }
 
     /**
@@ -69,7 +69,7 @@ public class Trip {
         this.title=title;
         this.options = options;
         this.places = places;
-        this.map = svg();
+        this.map = "";
     }
 
         /** The top level method that does planning.
@@ -88,7 +88,11 @@ public class Trip {
             this.distances = optTrip.distances;
         }
         LineDistance worldMap = new LineDistance(this.places);
-        this.map = worldMap.getMap();
+        if(this.options.map.equals("svg")){
+            this.map = worldMap.getSvgMap();}
+        else{
+            this.map = worldMap.getKmlMap();
+        }
     }
 
     /**

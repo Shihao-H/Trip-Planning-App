@@ -64,6 +64,7 @@ public class Driver {
                 + "OR country.name LIKE \"%" + match + "%\"  \n"
                 + "OR region.name LIKE \"%" + match + "%\"  \n"
                 + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
+                + "OR world_airports.id LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\") \n"
                 + filter
                 + "ORDER BY continents.name, country.name, region.name, "
@@ -86,6 +87,7 @@ public class Driver {
                 + "OR country.name LIKE \"%" + match + "%\"  \n"
                 + "OR region.name LIKE \"%" + match + "%\"  \n"
                 + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
+                + "OR world_airports.id LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\") \n"
                 + filter
                 + "ORDER BY continents.name, country.name, region.name, "

@@ -22,8 +22,8 @@ class Upload extends Component {
                 this.props.updateOptions('optimization', obj.options.optimization);
             else
                 this.props.updateOptions('optimization', 'none');
-            if (obj.options.mapForOption)
-                this.props.updateOptions('mapForOption', obj.options.mapForOption);
+            if (obj.options.map)
+                this.props.updateOptions('mapForOption', obj.options.map);
             else
                 this.props.updateOptions('mapForOption', 'svg');
             if (obj.options.units === "user defined") {
