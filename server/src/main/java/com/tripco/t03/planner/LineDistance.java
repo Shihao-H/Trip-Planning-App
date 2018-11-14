@@ -159,20 +159,12 @@ public class LineDistance {
     public void getKmlCoordinates(){
         for (int i = 0; i < this.coordinates.length; i++) {
             if (i != this.coordinates.length - 1) {
-                kmlCheck(this.places[i][0], this.places[i + 1][0], this.places[i][1], this.places[i+1][1]);
+                this.kmlCoordinates += this.places[i][0] + "," + this.places[i][1] + " "
+                        + this.places[i + 1][0] + "," + this.places[i+1][1] + "\n";
             } else {
-                kmlCheck(this.places[i][0], this.places[0][0], this.places[i][1], this.places[0][1]);
+                this.kmlCoordinates += this.places[i][0] + "," + this.places[i][1] + " "
+                        + this.places[0][0] + "," + this.places[0][1] + "\n";
             }
-        }
-    }
-
-    public void kmlCheck(double x1, double x2, double y1, double y2){
-        if (x1 - x2 < -180.0) {
-            this.kmlCoordinates += x2 + "," + y2 + " " + x1 + "," + y1 + "\n";
-        } else if (x1 - x2 > 180.0) {
-            this.kmlCoordinates += x1 + "," + y1 + " " + x2 + "," + y2 + "\n";
-        } else {
-           this.kmlCoordinates += x1 + "," + y1 + " " + x2 + "," + y2 + "\n";
         }
     }
 
