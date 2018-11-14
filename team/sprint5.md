@@ -45,8 +45,11 @@
 
 Epics planned for this sprint.
 
-* *## epic title: description*
-*
+* *536 User: Make the system easier to use.*
+* *537 User: I want trip planning to be fast.*
+* *538 User: I want the shortest trips possible.*
+* *542 User: I want an interactive map.*
+* *539 User: I want to know who to thank for this application*
 
 
 ## Metrics
@@ -68,7 +71,6 @@ Epics planned for this sprint.
 | :--- | :--- | :--- | :--- |
 | *11/12/2018* | *535* | *N/A* | *None yet!* | 
 
-*Add a new row for the scrum session after each lecture. *
 
 ## Review
 
