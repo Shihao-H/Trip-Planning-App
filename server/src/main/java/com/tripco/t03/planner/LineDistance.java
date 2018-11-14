@@ -200,7 +200,6 @@ public class LineDistance {
                        +"    </Placemark>\n"
                        +"  </Document>\n"
                        +"</kml>";
-        System.out.println("kml:\n" + this.map);
         return this.map;
     }
 
