@@ -39,24 +39,42 @@
 
 ## Plan
 
-*An introductory paragraph describing what you expect to accomplish this sprint that will achieve the goal.*
+*Sprint 5. This is where it's all been heading towards. Each of the four WOPR members is primed and ready to go for the
+final leg of their trip website. Forming is taking place, and the team is ready to push towards the final goal and put
+out their completed project. There are a total of 9 epics we will complete for this sprint. This includes the prior epics
+that were considered long standing goals to always pay attention to. Since this is the last sprint, we want to complete all
+of them now, so for epics 112, 113, 114, and 234, we plan to have no problems with other team servers, have an A or B on 
+code climate with at least 50% coverage, and have our website work well on small devices like tablets and phones. We will
+tweak our user interface so that the user experience is that much better when using our site. If the client wants to travel
+the world on their private jet and try a trip of 700+ places, our server will be ready for it without lag. For this epic,
+we plan on using concurrency to help with making threads to work on their trip in parallel. With our brand new 3-opt
+algorithm, we can also help the user plan trips that are optimized, so not to waste time and money. We already have a KML
+map working as is, but our goal is to build on that even more, letting anyone pan around, zoom, save the trip on the map,
+and even drop onto street mode to get an idea of what they can expect when visting a specific place on their excursion.
+Last but certainly not least, we will humbly let the user know who brought this website to life, and dedicated many,
+**many** hours into bringing their vision into fruition. For this, we plan to use either a tab on the site, or a splash page
+to let the client know who the people are behind the scenes.*
 
 *Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.) with a short paragraph for each.
 
 Epics planned for this sprint.
 
+* *112 TripCo: All clients and servers must interoperate!*
+* *113 TripCo: The solution must be responsive for mobile devices.*
+* *114 TripCo: All code shall be clean!*
+* *234 TripCo: All code must be tested.*
 * *536 User: Make the system easier to use.*
 * *537 User: I want trip planning to be fast.*
 * *538 User: I want the shortest trips possible.*
-* *542 User: I want an interactive map.*
 * *539 User: I want to know who to thank for this application*
+* *542 User: I want an interactive map.*
 
 
 ## Metrics
 
 | Statistic | Planned | Completed |
 | --- | ---: | ---: |
-| Epics | *total* | *total* |
+| Epics | *9* | *total* |
 | Tasks |  *total*   | *total* | 
 | Story Points |  *total*  | *total* | 
 
