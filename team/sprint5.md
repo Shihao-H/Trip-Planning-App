@@ -1,9 +1,9 @@
-# Sprint 5 - *your team number* - *your team name*
+# Sprint 5 - *t03* - *WOPR*
 
 ## Goal
 
 ### Wrap It Up!
-### Sprint Leader: *firstname lastname*
+### Sprint Leader: *Lacey Willmann*
 
 ## Definition of Done
 
@@ -66,7 +66,7 @@ Epics planned for this sprint.
 
 | Date | Tasks closed  | Tasks in progress | Impediments |
 | :--- | :--- | :--- | :--- |
-| *date* | *#task, ...* | *#task, ...* | *none* | 
+| *11/12/2018* | *535* | *N/A* | *None yet!* | 
 
 *Add a new row for the scrum session after each lecture. *
 
