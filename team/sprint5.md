@@ -19,7 +19,7 @@
 #### Test Driven Development
 * Write method headers, javadoc, unit tests, and code in that order for all methods/functions.
 * Unit tests are fully automated.
-* Code coverage is at least 50%, 70% preferred.
+* Code coverage is at least 70%.
 #### Clean Code
 * Code Climate maintainability of A or B.
 * Code adheres to Google style guides for Java and JavaScript.
@@ -56,6 +56,12 @@ Last but certainly not least, we will humbly let the user know who brought this 
 to let the client know who the people are behind the scenes.*
 
 *Include any design diagrams prepared during sprint planning (user interface, component diagram, component/state/hierarchy, etc.) with a short paragraph for each.
+
+| Page Diagram | Description |
+|:------------:|-------------|
+| ![Rearend hierarchy](../image/hierRearend.jpg) | This shows the formation of our rear end. It starts in Place and fans out from there. |
+| | |
+| | |
 
 Epics planned for this sprint.
 
