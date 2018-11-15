@@ -60,7 +60,7 @@ to let the client know who the people are behind the scenes.*
 | Page Diagram | Description |
 |:------------:|-------------|
 | ![Rearend hierarchy](../image/hierRearend.jpg) | This shows the formation of our rear end. It starts in Place and fans out from there. |
-| | |
+| ![User Interface](../image/userinterface.jpg) | This is what our goal for the end user interface is. |
 | | |
 
 Epics planned for this sprint.
