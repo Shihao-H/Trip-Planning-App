@@ -59,9 +59,9 @@ to let the client know who the people are behind the scenes.*
 
 | Page Diagram | Description |
 |:------------:|-------------|
-| ![Rearend hierarchy](../image/hierRearend.jpg) | This shows the formation of our rear end. It starts in Place and fans out from there. |
-| ![User Interface](../image/userinterface.jpg) | This is what our goal for the end user interface is. |
-| | |
+| ![Rearend hierarchy](image/hierRearend.jpeg) | This shows the formation of our rear end. It starts in Place and fans out from there. |
+| ![Client side hierarchy](image/diagram.jpeg) | This shows the relationships between the javascript files, the arrows show the movement of state between the classes. |
+| ![User Interface](image/Userinterface.jpeg) | This is what our goal for the end user interface is. |
 
 Epics planned for this sprint.
 
