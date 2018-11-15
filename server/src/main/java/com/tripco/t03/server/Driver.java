@@ -12,9 +12,9 @@ public class Driver {
     private static final String user = "cs314-db";
     private static final String pass = "eiK5liet1uej";
     // fill in SQL queries to count the number of records and to retrieve the data
-    private static String count = "";
-    private static String search = "";
-    private static String limitQuery = "";
+    public static String count = "";
+    public static String search = "";
+    public static String limitQuery = "";
     public static ArrayList<Place> places;
     public static int found = 0;
 
@@ -50,7 +50,7 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    private static void setSearch(String match, String filter) {
+    public static void setSearch(String match, String filter) {
         search = "SELECT world_airports.name, world_airports.municipality, region.name, "
                 + "country.name, continents.name, "
                 + "world_airports.id, world_airports.type, world_airports.longitude, "
@@ -77,7 +77,7 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    private static void setCount(String match, String filter) {
+    public static void setCount(String match, String filter) {
         count = "SELECT count(*) "
                 + "FROM continents \n"
                 + "INNER JOIN country ON continents.id = country.continent \n"
