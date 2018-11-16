@@ -1,6 +1,15 @@
-import DistanceCal from "../src/components/Application/DistanceCal";
+import './enzyme.config.js'                   // (1)
+import React from 'react' // (2)
+import DistanceCal from '../src/components/Application/DistanceCal'
 
-test('Check DistanceCal Constructor', () => {
-    const obj = new DistanceCal();
-    expect(obj).toBe(obj);
+test('default test', () => {
+    <DistanceCal />
+});
+
+test('default constructor', () => {
+    let cal = new DistanceCal()
+    cal.updateLoc('latitude', 12 ,false)
+    cal.updateDistance('miles', 120)
+    cal.Display()
+    cal.dropdown()
 });

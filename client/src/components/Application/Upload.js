@@ -68,7 +68,7 @@ class Upload extends Component {
                     <label><br/>
                         Submit your trip!
                         <br/>
-                        <input type="file" maxLength={"40px"} ref={this.fileInput}
+                        <input type="file" ref={this.fileInput}
                                id="fileInput"
                                onChange={(event) => this.LoadFile(event)}/>
                         <small className="form-text text-muted">
