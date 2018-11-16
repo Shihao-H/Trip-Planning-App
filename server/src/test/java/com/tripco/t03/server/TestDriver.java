@@ -34,9 +34,9 @@ public class TestDriver {
         testDriver = new Driver();
         int found = 3;
         testDriver.find(match, limit, filterQuery);
-        assertEquals(testDriver.places.size(), expected.size());
-        assertEquals(testDriver.found, found);
-        assertEquals(testDriver.limitQuery, limitQuery);
+        assertEquals(expected.size(), testDriver.places.size());
+        assertEquals(found, testDriver.found);
+        assertEquals(limitQuery, testDriver.limitQuery);
         if(testDriver.isTravis != null
                 && testDriver.isTravis.equals("true")) {
             assertEquals("jdbc:mysql://127.0.0.1/cs314", testDriver.dburl);
