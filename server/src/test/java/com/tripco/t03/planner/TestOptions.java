@@ -18,9 +18,6 @@ public class TestOptions {
     public void setup(){
         emptyOpt = new Option();
         gson = new Gson();
-    
-
-    
     }
     
     private String buildJsonRequest(){
@@ -79,6 +76,18 @@ public class TestOptions {
         opt = gson.fromJson(json, Option.class);
 
         assertNotNull(opt.optimization);
+    }
+
+    @Test
+    public void testUnitMap(){
+        testOpt = new Option("miles", "none", "svg");
+        assertNotNull(testOpt.map);
+    }
+
+    @Test
+    public void testUserDefinedUnitMap(){
+        testOpt = new Option("user defined", "meters", 1000.0, "none" , "svg");
+        assertNotNull(testOpt.map);
     }
 
     @Test

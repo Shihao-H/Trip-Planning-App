@@ -42,7 +42,13 @@ public class TestPlace {
     
     assertEquals(place1.name, copy.name);
   }
-  
+
+  @Test
+  public void testPlaceCountry(){
+    Place place = new Place("China", "H1", "Home", 41.050505, -120.666666);
+    assertNotNull(place.country);
+  }
+
   @Test
   public void testGetName() {
     assertEquals(place.getName(), "Denver");
