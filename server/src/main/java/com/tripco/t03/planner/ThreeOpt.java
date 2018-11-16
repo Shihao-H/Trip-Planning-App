@@ -21,4 +21,17 @@ public class ThreeOpt {
         return arr;
     }
 
+
+    public int[] Section(int i, int j, int[] arr)
+    {
+        int[] section = new int[j-i+1];
+        int cout=0;
+        for(int k = i; k <= j; k++)
+        {
+            section[cout]=arr[k];
+            cout++;
+        }
+        return section;
+    }
+
 }
