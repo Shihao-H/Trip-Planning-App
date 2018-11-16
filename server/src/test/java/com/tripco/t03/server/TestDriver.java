@@ -2,7 +2,6 @@ package com.tripco.t03.server;
 
 import com.tripco.t03.planner.Place;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -38,6 +37,18 @@ public class TestDriver {
         assertEquals(testDriver.places.size(), expected.size());
         assertEquals(testDriver.found, found);
         assertEquals(testDriver.limitQuery, limitQuery);
+        if(testDriver.isTravis != null
+                && testDriver.isTravis.equals("true")) {
+            assertEquals("jdbc:mysql://127.0.0.1/cs314", testDriver.dburl);
+            assertEquals("travis", testDriver.username);
+        } else if(testDriver.isDevelopment != null
+                && testDriver.isDevelopment.equals("development")) {
+            assertEquals("jdbc:mysql://127.0.0.1:some-port/cs314", testDriver.dburl);
+            assertEquals("cs314-db", testDriver.username);
+        } else {
+            assertEquals("jdbc:mysql://faure.cs.colostate.edu/cs314", testDriver.dburl);
+            assertEquals("cs314-db", testDriver.username);
+        }
     }
 
     @Test
@@ -47,13 +58,10 @@ public class TestDriver {
         testDriver = new Driver();
         int found = 3;
         testDriver.find(match, limit, filterQuery);
-        assertEquals(testDriver.places.size(), expected.size());
-        assertEquals(testDriver.found, found);
-        assertEquals(testDriver.limitQuery, limitQuery);
+        assertEquals(expected.size(),testDriver.places.size()) ;
+        assertEquals(found, testDriver.found);
+        assertEquals(limitQuery, testDriver.limitQuery);
     }
-
-    @Rule
-    public final SystemErrRule systemErrRule = new SystemErrRule().enableLog();
 
     @Test
     public void testFindException(){
@@ -61,11 +69,7 @@ public class TestDriver {
         boolean thrown = false;
         filterQuery = "AND continents IN (\"North America\")\n"
                 + "AND type IN (\"heliport\")\n";
-        System.err.println("Exception: Unknown column 'continents' in 'where clause'");
-
         testDriver.find(match, limit, filterQuery);
-        assertEquals("Exception: Unknown column 'continents' in 'where clause'", systemErrRule.getLog());
-
     }
 
     @Test
@@ -91,7 +95,7 @@ public class TestDriver {
                 + limitQuery;
         testDriver = new Driver();
         testDriver.setSearch(match, filterQuery);
-        assertEquals(testDriver.search, expected);
+        assertEquals(expected, testDriver.search);
     }
 
     @Test
@@ -112,6 +116,6 @@ public class TestDriver {
                 + "world_airports.municipality, world_airports.name ASC";
         testDriver = new Driver();
         testDriver.setCount(match, filterQuery);
-        assertEquals(testDriver.count, expected);
+        assertEquals(expected, testDriver.count);
     }
 }
