@@ -3,7 +3,6 @@ package com.tripco.t03.planner;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.Arrays;
 
 public class TestThreeOpt {
 
@@ -29,20 +28,18 @@ public class TestThreeOpt {
 
     @Test
     public void testReverse(){
-        opt = new ThreeOpt(trip, distanceGrid);
-        Integer[] result = new Integer[trip.length];
-        opt.twoOpt(result);
-
-        Assert.assertEquals(Arrays.toString(result), Arrays.toString(expected));
+        opt = new ThreeOpt(arr, grid);
+        int [] arr3=opt.ReverseArray(opt.index);
+        int[] arr2 = new int[]{3, 2, 1, 0};
+        Assert.assertArrayEquals(arr2, arr3);
     }
 
     @Test
     public void testSection(){
-        Integer[] reverseExpected = new Integer[]{3, 2, 1, 0};
-        opt = new TwoOpt(trip, distanceGrid);
-        opt.opt2Reverse2(0, 3, expected);
-
-        Assert.assertEquals(Arrays.toString(expected), Arrays.toString(reverseExpected));
+        opt = new ThreeOpt(arr, grid);
+        int [] arr4=opt.Section(0,2,opt.index);
+        int [] arr5=new int[]{0,1,2};
+        Assert.assertArrayEquals(arr4, arr5);
     }
 
 }
