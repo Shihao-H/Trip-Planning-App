@@ -28,8 +28,11 @@ export class MapSvg extends Component {
             coordinates.push({
                 lat: this.props.trip.places[i].latitude,
                 lng: this.props.trip.places[i].longitude
-            })
+            });
         }
+        coordinates.push({lat: this.props.trip.places[0].latitude,
+                          lng: this.props.trip.places[0].longitude
+        });
 
         let map = (
             <div style={{width: "1024", height: "512"}}>
