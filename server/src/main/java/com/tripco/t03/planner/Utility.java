@@ -13,6 +13,15 @@ public class Utility {
         return route;
     }
 
+    public long findDis(int[] arr, long[][] disGrid) {
+        int size=arr.length;
+        long Dis = 0;
+        for (int i = 0; i < arr.length; i++) {
+            Dis+=disGrid[arr[i]][arr[(i+1)%size]];
+        }
+        return Dis;
+    }
+
 
 
 }
