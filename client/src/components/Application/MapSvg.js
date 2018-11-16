@@ -27,12 +27,10 @@ export class MapSvg extends Component {
         for (let i = 0; i < this.props.trip.places.length; i++) {
             coordinates.push({
                 lat: this.props.trip.places[i].latitude,
-                lng: this.props.trip.places[i].longitude
-            });
+                lng: this.props.trip.places[i].longitude});
         }
         coordinates.push({lat: this.props.trip.places[0].latitude,
-                          lng: this.props.trip.places[0].longitude
-        });
+                          lng: this.props.trip.places[0].longitude});
 
         let map = (
             <div style={{width: "1024", height: "512"}}>
@@ -43,10 +41,8 @@ export class MapSvg extends Component {
                         lat: 40.5853, lng: -105.0844
                     }}>
                     <Polyline
-                        path={coordinates}
-                        strokeColor="#ff1e19"
-                        strokeOpacity={0.8}
-                        strokeWeight={2}/>
+                        path={coordinates} strokeColor="#ff1e19"
+                        strokeOpacity={0.8} strokeWeight={2}/>
                 </Map>
             </div>
         );
