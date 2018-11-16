@@ -24,6 +24,20 @@ public class TestUtility {
         Assert.assertNotNull(Uti);
     }
 
+    @Test
+    public void test2optReverse(){
+        Uti = new Utility();
+        int [] arr3=Uti.opt2Reverse(arr,1,3);
+        int[] arr2 = new int[]{0, 3, 2, 1};
+        Assert.assertArrayEquals(arr2, arr3);
+    }
 
+    @Test
+    public void testfindDis(){
+        Uti = new Utility();
+        long ori=Uti.findDis(arr,grid);
+        long fi=18L;
+        Assert.assertEquals(ori,fi);
+    }
 
 }
