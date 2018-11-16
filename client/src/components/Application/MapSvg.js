@@ -25,17 +25,17 @@ export class MapSvg extends Component {
     kml() {
         const coordinates = [];
         for (let i = 0; i < this.props.trip.places.length; i++) {
-            coordinates.push({
-                lat: this.props.trip.places[i].latitude,
-                lng: this.props.trip.places[i].longitude});
+            coordinates.push({lat: this.props.trip.places[i].latitude,
+                              lng: this.props.trip.places[i].longitude});
         }
+        if (this.props.trip.places.length > 0) {
         coordinates.push({lat: this.props.trip.places[0].latitude,
-                          lng: this.props.trip.places[0].longitude});
+                          lng: this.props.trip.places[0].longitude});}
 
         let map = (
-            <div style={{width: "1024", height: "512"}}>
+            <div style={{width: "10", height: "512"}}>
                 <Map
-                    style={{width: "1000", height: "500"}}
+                    style={{width: "95%", height: "515", display:'flex', flexFlow: 'row nowrap'}}
                     google={this.props.google} zoom={3}
                     initialCenter={{
                         lat: 40.5853, lng: -105.0844
@@ -46,7 +46,6 @@ export class MapSvg extends Component {
                 </Map>
             </div>
         );
-
         return map;
     }
 
