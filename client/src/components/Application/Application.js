@@ -186,7 +186,7 @@ class Application extends Component {
             return <div/>
         }
         return (
-            <Container id="Application"><Card><CardBody>
+            <Container id="Application">
                 <Info/>
                 <Trip config={this.state.config} display={this.state.display}
                       host={this.state.host} otherTeams={this.state.otherTeams}
@@ -207,7 +207,7 @@ class Application extends Component {
                              search={this.state.search} trip={this.state.trip}
                              updateOptions={this.updateOptions} updateSearch={this.updateSearch}
                              updateTrip={this.updateTrip}/>
-            </CardBody></Card></Container>
+            </Container>
         )
     }
 }
