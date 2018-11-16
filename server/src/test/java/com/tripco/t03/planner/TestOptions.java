@@ -81,13 +81,13 @@ public class TestOptions {
     @Test
     public void testUnitMap(){
         testOpt = new Option("miles", "none", "svg");
-        assertNotNull(opt.map);
+        assertNotNull(testOpt.map);
     }
 
     @Test
     public void testUserDefinedUnitMap(){
         testOpt = new Option("user defined", "meters", 1000.0, "none" , "svg");
-        assertNotNull(opt.map);
+        assertNotNull(testOpt.map);
     }
 
     @Test
