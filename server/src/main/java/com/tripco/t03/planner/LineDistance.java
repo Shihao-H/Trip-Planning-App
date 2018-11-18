@@ -16,12 +16,12 @@ public class LineDistance {
     private Double width = 1024.0;
 
     private String background = "";
-    private String lines = "";
+    public String lines = "";
     private String map = "";
     private String kmlCoordinates="";
 
-    private int[][] coordinates;
-    private Double[][] places;
+    public int[][] coordinates;
+    public Double[][] places;
 
     /**
      * Default Constructor.
