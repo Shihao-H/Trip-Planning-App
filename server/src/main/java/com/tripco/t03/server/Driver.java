@@ -7,16 +7,16 @@ import java.util.ArrayList;
 
 public class Driver {
     // db configuration information
-    public static String isTravis = System.getenv("TRAVIS");
-    public static String isDevelopment = System.getenv("CS314_ENV");
-    public static String dburl;
-    public static String username;
+    static String isTravis = System.getenv("TRAVIS");
+    static String isDevelopment = System.getenv("CS314_ENV");
+    static String dburl;
+    static String username;
     public static String password;
     private static final String myDriver = "com.mysql.jdbc.Driver";
     // fill in SQL queries to count the number of records and to retrieve the data
     public static String count = "";
     public static String search = "";
-    public static String limitQuery = "";
+    static String limitQuery = "";
     public static ArrayList<Place> places;
     public static int found = 0;
 
@@ -89,7 +89,7 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    public static void setSearch(String match, String filter) {
+    static void setSearch(String match, String filter) {
         search = "SELECT world_airports.name, world_airports.municipality, region.name, "
                 + "country.name, continents.name, "
                 + "world_airports.id, world_airports.type, world_airports.longitude, "
@@ -116,7 +116,7 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    public static void setCount(String match, String filter) {
+    static void setCount(String match, String filter) {
         count = "SELECT count(*) "
                 + "FROM continents \n"
                 + "INNER JOIN country ON continents.id = country.continent \n"
