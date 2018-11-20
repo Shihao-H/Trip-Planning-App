@@ -18,7 +18,6 @@ public class Trip {
     public ArrayList<Place> places;
     public ArrayList<Long> distances;
     public String map;
-    private Long totalDist;
     /**
      * Default constructor.
      */
@@ -76,7 +75,7 @@ public class Trip {
      * At this point it just adds the map and distances for the places in order.
      * It might need to reorder the places in the future.
      */
-    public void plan() {
+    public void plan() throws Exception {
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
         } else{
@@ -139,8 +138,7 @@ public class Trip {
     }
 
     private ArrayList<Long> makeUserDefTrip() {
-
-        this.totalDist = 0L;
+    
         ArrayList<Long> dist = new ArrayList<>();
 
         for (int count = 0; count < places.size() - 1; count++) {
@@ -148,33 +146,28 @@ public class Trip {
                     options.units, options.unitName, options.unitRadius);
             leg.setDistance();
             dist.add(leg.distance);
-            totalDist += leg.distance;
         }
         Distance leg = new Distance(places.get(places.size() - 1), places.get(0),
                 options.units, options.unitName, options.unitRadius);
         leg.setDistance();
         dist.add(leg.distance);
-        totalDist += leg.distance;
-
+    
         return dist;
     }
 
     private ArrayList<Long> makeNormalTrip() {
-
-        this.totalDist = 0L;
+    
         ArrayList<Long> dist = new ArrayList<>();
 
         for (int count = 0; count < places.size() - 1; count++) {
             Distance leg = new Distance(places.get(count), places.get(count+1), options.units);
             leg.setDistance();
             dist.add(leg.distance);
-            totalDist += leg.distance;
         }
         Distance leg = new Distance(places.get(places.size()-1), places.get(0), options.units);
         leg.setDistance();
         dist.add(leg.distance);
-        totalDist += leg.distance;
-
+    
         return dist;
     }
 }

@@ -41,7 +41,7 @@ public class TestTrip {
   }
 
   @Test
-  public void testDistances() {
+  public void testDistances() throws Exception {
       trip = new Trip(opt, places);
       ArrayList<Long> expectedDistances = new ArrayList<>();
       Collections.addAll(expectedDistances, 366L, 1593L, 7726L, 6225L);
@@ -57,7 +57,7 @@ public class TestTrip {
   }
 
   @Test
-  public void testUserDefined() {
+  public void testUserDefined() throws Exception {
       opt =  new Option("user defined", "yards", 3959.0);
       places = new ArrayList<>();
       places.add(new Place("P01", "one", 41.000155556, -109.05));
