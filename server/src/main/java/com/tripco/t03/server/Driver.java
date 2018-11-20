@@ -76,11 +76,11 @@ public class Driver {
      * Setter for search.
      * @param limit int.
      */
-    private void setLimit(int limit){
+    void setLimit(int limit){
         if (limit == 0) {
-            limitQuery = ""; // no limit
+            this.limitQuery = ""; // no limit
         } else {
-            limitQuery = "limit " + Integer.toString(limit);
+            this.limitQuery = "limit " + Integer.toString(limit);
         }
     }
     
@@ -108,7 +108,7 @@ public class Driver {
                 + filter
                 + "ORDER BY continents.name, country.name, region.name, "
                 + "world_airports.municipality, world_airports.name ASC "
-                + limitQuery;
+                + this.limitQuery;
     }
 
     /**
