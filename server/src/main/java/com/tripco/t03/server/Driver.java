@@ -7,25 +7,25 @@ import java.util.ArrayList;
 
 public class Driver {
     // db configuration information
-    public static String isTravis = System.getenv("TRAVIS");
-    public static String isDevelopment = System.getenv("CS314_ENV");
-    public static String dburl;
-    public static String username;
-    public static String password;
-    private static final String myDriver = "com.mysql.jdbc.Driver";
+    String isTravis = System.getenv("TRAVIS");
+    String isDevelopment = System.getenv("CS314_ENV");
+    String dburl;
+    String username;
+    public String password;
+    private final String myDriver = "com.mysql.jdbc.Driver";
     // fill in SQL queries to count the number of records and to retrieve the data
-    public static String count = "";
-    public static String search = "";
-    public static String limitQuery = "";
-    public static ArrayList<Place> places;
-    public static int found = 0;
+    public String count = "";
+    public String search = "";
+    String limitQuery = "";
+    public ArrayList<Place> places;
+    public int found = 0;
 
     /**
      * The find method is meant to get access to the database and execute queries.
      * @param match String phrase to match.
      * @param limit integer number of mx results to be shown.
      */
-    public static void find(String match, int limit, String filter) {
+    public void find(String match, int limit, String filter) {
         if(isTravis != null && isTravis.equals("true")) {
             dburl = "jdbc:mysql://127.0.0.1/cs314";
             username = "travis";
@@ -39,12 +39,7 @@ public class Driver {
             username = "cs314-db";
             password =  "eiK5liet1uej";
         }
-
-        if (limit == 0) {
-            limitQuery = ""; // no limit
-        } else {
-            limitQuery = "limit " + Integer.toString(limit);
-        }
+        setLimit(limit);
         setSearch(match, filter);
         setCount(match, filter);
         try {
@@ -76,13 +71,25 @@ public class Driver {
             System.err.println("Exception: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * Setter for search.
+     * @param limit int.
+     */
+    void setLimit(int limit){
+        if (limit == 0) {
+            this.limitQuery = ""; // no limit
+        } else {
+            this.limitQuery = "limit " + Integer.toString(limit);
+        }
+    }
+    
     /**
      * Setter for search.
      * @param match String.
      * @param filter String.
      */
-    public static void setSearch(String match, String filter) {
+    void setSearch(String match, String filter) {
         search = "SELECT world_airports.name, world_airports.municipality, region.name, "
                 + "country.name, continents.name, "
                 + "world_airports.id, world_airports.type, world_airports.longitude, "
@@ -101,7 +108,7 @@ public class Driver {
                 + filter
                 + "ORDER BY continents.name, country.name, region.name, "
                 + "world_airports.municipality, world_airports.name ASC "
-                + limitQuery;
+                + this.limitQuery;
     }
 
     /**
@@ -109,7 +116,7 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    public static void setCount(String match, String filter) {
+    void setCount(String match, String filter) {
         count = "SELECT count(*) "
                 + "FROM continents \n"
                 + "INNER JOIN country ON continents.id = country.continent \n"
