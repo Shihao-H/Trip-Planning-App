@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -18,7 +19,7 @@ public class TestOptimize {
     private long totalDistance;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         Option opt = new Option("miles");
         Option optShorter = new Option("miles", "shorter");
         Option optUserDef = new Option("user defined","metal meters", 666.666);

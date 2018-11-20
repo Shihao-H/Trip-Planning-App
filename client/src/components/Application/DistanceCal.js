@@ -8,7 +8,7 @@ export class DistanceCal extends Component {
         this.state = {
             distances: {
                 type          : "distance",
-                version       : 3,
+                version       : 5,
                 unitName      :"",
                 unitRadius    :0.0,
                 origin        : {latitude:"",
