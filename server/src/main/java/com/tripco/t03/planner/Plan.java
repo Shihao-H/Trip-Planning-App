@@ -1,9 +1,10 @@
 package com.tripco.t03.planner;
 
+import com.google.gson.JsonElement;
 
 import java.io.IOException;
+
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import spark.Request;
 
 /**
