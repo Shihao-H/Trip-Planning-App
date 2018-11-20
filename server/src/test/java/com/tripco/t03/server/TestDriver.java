@@ -93,6 +93,7 @@ public class TestDriver {
                           + "world_airports.municipality, world_airports.name ASC "
                           + limitQuery;
         testDriver = new Driver();
+        testDriver.setLimit(limit);
         testDriver.setSearch(match, filterQuery);
         assertEquals(expected, testDriver.search);
     }
