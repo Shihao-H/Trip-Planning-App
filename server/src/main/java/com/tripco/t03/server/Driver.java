@@ -39,12 +39,7 @@ public class Driver {
             username = "cs314-db";
             password =  "eiK5liet1uej";
         }
-
-        if (limit == 0) {
-            limitQuery = ""; // no limit
-        } else {
-            limitQuery = "limit " + Integer.toString(limit);
-        }
+        setLimit(limit);
         setSearch(match, filter);
         setCount(match, filter);
         try {
@@ -76,7 +71,19 @@ public class Driver {
             System.err.println("Exception: " + e.getMessage());
         }
     }
-
+    
+    /**
+     * Setter for search.
+     * @param limit int.
+     */
+    private static void setLimit(int limit){
+        if (limit == 0) {
+            limitQuery = ""; // no limit
+        } else {
+            limitQuery = "limit " + Integer.toString(limit);
+        }
+    }
+    
     /**
      * Setter for search.
      * @param match String.
