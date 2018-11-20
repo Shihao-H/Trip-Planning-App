@@ -30,7 +30,7 @@ public class TestDriver {
     }
     
     @Test
-    public void testFind(){
+    public void testFind() throws Exception{
         testDriver = new Driver();
         int found = 3;
         testDriver.find(match, limit, filterQuery);
@@ -52,7 +52,7 @@ public class TestDriver {
     }
     
     @Test
-    public void testFindWithZeroLimit(){
+    public void testFindWithZeroLimit() throws Exception{
         limit = 0;
         limitQuery = "";
         testDriver = new Driver();
@@ -64,7 +64,7 @@ public class TestDriver {
     }
     
     @Test
-    public void testFindException(){
+    public void testFindException() throws Exception{
         testDriver = new Driver();
         filterQuery = "AND continents IN (\"North America\")\n"
                       + "AND type IN (\"heliport\")\n";
