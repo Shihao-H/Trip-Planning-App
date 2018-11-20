@@ -12,7 +12,7 @@ export class Add extends Component {
                 latitude: 0.00,
                 longitude: 0.00
             }
-            }
+            };
         this.addPlace = this.addPlace.bind(this);
         this.updatePlaces = this.updatePlaces.bind(this);
     }
@@ -24,7 +24,7 @@ export class Add extends Component {
             name:this.state.place.name,
             latitude:this.state.place.latitude,
             longitude:this.state.place.longitude
-        }
+        };
         let temp=this.props.trip.places;
         temp.push(copy);
         this.props.updateTrip('places',temp);

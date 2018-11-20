@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Button, Row, Col} from 'reactstrap'
+import React, {Component} from 'react';
+import {Button, Row, Col} from 'reactstrap';
 import {get, request} from '../../api/api';
 
 class Upload extends Component {

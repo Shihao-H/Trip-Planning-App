@@ -1,5 +1,6 @@
 package com.tripco.t03.planner;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,7 +23,6 @@ public class Trip {
     /**
      * Default constructor.
      */
-
     public Trip(){
         this.title = null;
         this.options = new Option();
@@ -76,7 +76,7 @@ public class Trip {
      * At this point it just adds the map and distances for the places in order.
      * It might need to reorder the places in the future.
      */
-    public void plan() {
+    public void plan() throws IOException {
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
         } else{
@@ -117,7 +117,7 @@ public class Trip {
     /**
      * Creates an SVG containing the background and the legs of the trip.
      */
-    public String svg() {
+    public String svg() throws IOException {
         LineDistance worldMap = new LineDistance();
         return worldMap.getBackground();
     }
