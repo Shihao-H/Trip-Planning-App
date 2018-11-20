@@ -84,10 +84,10 @@ public class Search {
                     } else {
                         query += this.filters[i].name + " IN (";
                     }
-                    for (int j = 0; j < valueSize-1; j++) {
+                    for (int j = 0; j < valueSize - 1; j++) {
                         query += "\"" + this.filters[i].values[j] + "\", ";
                     }
-                    query += "\"" + this.filters[i].values[valueSize -1] + "\")\n";
+                    query += "\"" + this.filters[i].values[valueSize - 1] + "\")\n";
                 }
             }
         }

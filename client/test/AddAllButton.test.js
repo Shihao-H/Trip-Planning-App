@@ -1,3 +1,4 @@
+import './enzyme.config.js'
 import AddAllButton from "../src/components/Application/AddAllButton";
 
 test('Check AddAllButton Constructor', () => {
