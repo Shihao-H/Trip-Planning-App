@@ -16,7 +16,7 @@ class Optimize {
      * Constructor for Optimize object.
      * @param trip Trip object to optimize.
      */
-    Optimize(Trip trip) {
+    Optimize(Trip trip) throws Exception {
         this.trip = trip;
         this.sortedPlaces = new Integer[trip.places.size()];
         this.sortedPlaces = MergeSortPlace.sort(this.trip.places);
@@ -72,7 +72,7 @@ class Optimize {
     /**
      * Method to set up Distance object grid.
      */
-    private void setGrid(){
+    private void setGrid() throws Exception {
         if(this.trip.options.units.equalsIgnoreCase("user defined")){
             this.grid = new DistanceGrid(this.trip.places, this.trip.options.units, this.trip.options.unitRadius, sortedPlaces);
         }else {

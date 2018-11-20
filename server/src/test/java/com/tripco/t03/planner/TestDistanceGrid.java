@@ -5,8 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class TestDistanceGrid {
 
@@ -52,7 +50,7 @@ public class TestDistanceGrid {
     }
 
     @Test
-    public void testBuildGrid(){
+    public void testBuildGrid() throws Exception {
         distGrid = new DistanceGrid(origTrip, "miles", locations);
         distGrid.buildGrid();
 
@@ -60,10 +58,38 @@ public class TestDistanceGrid {
     }
 
     @Test
-    public void testUserDefinedBuildGrid(){
+    public void testUserDefinedBuildGrid() throws Exception {
         distGrid = new DistanceGrid(origTrip, "user defined", 92.0000, locations);
         distGrid.buildGrid();
 
         Assert.assertNotNull(distGrid.distanceGrid[0][1]);
+    }
+    
+    @Test
+    public void testKiloBuildGrid() throws Exception {
+        distGrid = new DistanceGrid(origTrip, "kilometers", locations);
+        distGrid.buildGrid();
+    
+        Assert.assertNotNull(distGrid.distanceGrid[0][1]);
+    }
+    
+    @Test
+    public void testNautMilesBuildGrid() throws Exception {
+        distGrid = new DistanceGrid(origTrip, "nautical miles", locations);
+        distGrid.buildGrid();
+    
+        Assert.assertNotNull(distGrid.distanceGrid[0][1]);
+    }
+    
+    @Test
+    public void testInvalidBuildGrid() throws Exception {
+        String message = null;
+        try {
+            distGrid = new DistanceGrid(origTrip, "invalid", locations);
+            distGrid.buildGrid();
+        } catch(Exception e){
+            message = e.getMessage();
+        }
+        Assert.assertEquals(message, "No valid units");
     }
 }
