@@ -19,10 +19,11 @@ public class Trip {
     public ArrayList<Place> places;
     public ArrayList<Long> distances;
     public String map;
+    
     /**
      * Default constructor.
      */
-    public Trip(){
+    public Trip() {
         this.title = null;
         this.options = new Option();
         this.places = null;
