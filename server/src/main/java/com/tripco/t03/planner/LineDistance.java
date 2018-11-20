@@ -196,19 +196,21 @@ public class LineDistance {
         return this.map;
     }
     
+    /**
+     * Helper method.
+     */
     private void getKmlCoordinates(){
         String coords;
         for (int i = 0; i < this.coordinates.length; i++) {
+            coords = this.kmlCoordinates + this.places[i][0] + ","
+                     + this.places[i][1];
             if (i != this.coordinates.length - 1) {
-                coords = this.kmlCoordinates + this.places[i][0] + ","
-                         + this.places[i][1] + " " + this.places[i + 1][0]
-                         + "," + this.places[i+1][1] + "\n";
+                this.kmlCoordinates = coords.concat(" " + this.places[i + 1][0]
+                         + "," + this.places[i+1][1] + "\n");
             } else {
-                coords = this.kmlCoordinates + this.places[i][0] + ","
-                         + this.places[i][1] + " " + this.places[0][0] + ","
-                         + this.places[0][1] + "\n";
+               this.kmlCoordinates = coords.concat(" " + this.places[0][0]
+                                          + "," + this.places[0][1] + "\n");
             }
-            this.kmlCoordinates =coords;
         }
     }
 
