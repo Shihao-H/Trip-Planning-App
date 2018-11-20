@@ -167,40 +167,48 @@ public class LineDistance {
      */
     String getKmlMap() {
         getKmlCoordinates();
-        this.map = "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n"
-                + "  <Document>\n    <name>Paths</name>\n"
-                + "    <Style id=\"yellowLineGreenPoly\">\n      <LineStyle>\n"
-                +"        <color>7f00ffff</color>\n        <width>4</width>\n"
-                +"      </LineStyle>\n      <PolyStyle>\n"
+        this.map =
+                "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n"
+                +   "  <Document>\n"
+                +  "    <name>Paths</name>\n"
+                + "    <Style id=\"yellowLineGreenPoly\">\n"
+                +"      <LineStyle>\n"
+                +"        <color>7f00ffff</color>\n"
+                +"        <width>4</width>\n"
+                +"      </LineStyle>\n"
+                +"      <PolyStyle>\n"
                 +"        <color>7f00ff00</color>\n"
-                +"      </PolyStyle>\n    </Style>\n"
+                +"      </PolyStyle>\n"
+                +"    </Style>\n"
                 +"    <Placemark>\n"
                 +"      <name>Absolute Extruded</name>\n"
-                +"      <LineString>\n        <extrude>1</extrude>\n"
+                +"      <LineString>\n"
+                +"        <extrude>1</extrude>\n"
                 +"        <tessellate>1</tessellate>\n"
                 +"        <altitudeMode>absolute</altitudeMode>\n"
                 +"        <coordinates> "
                 + kmlCoordinates
-                +"        </coordinates>\n      </LineString>\n"
-                +"    </Placemark>\n  </Document>\n</kml>";
+                +"        </coordinates>\n"
+                +"      </LineString>\n"
+                +"    </Placemark>\n"
+                +"  </Document>\n"
+                +"</kml>";
         return this.map;
     }
     
-    /**
-     * Helper method.
-     */
     private void getKmlCoordinates(){
         String coords;
         for (int i = 0; i < this.coordinates.length; i++) {
-            coords = this.kmlCoordinates + this.places[i][0] + ","
-                     + this.places[i][1];
             if (i != this.coordinates.length - 1) {
-                this.kmlCoordinates = coords.concat(" " + this.places[i + 1][0]
-                         + "," + this.places[i+1][1] + "\n");
+                coords = this.kmlCoordinates + this.places[i][0] + ","
+                         + this.places[i][1] + " " + this.places[i + 1][0]
+                         + "," + this.places[i+1][1] + "\n";
             } else {
-               this.kmlCoordinates = coords.concat(" " + this.places[0][0]
-                                          + "," + this.places[0][1] + "\n");
+                coords = this.kmlCoordinates + this.places[i][0] + ","
+                         + this.places[i][1] + " " + this.places[0][0] + ","
+                         + this.places[0][1] + "\n";
             }
+            this.kmlCoordinates =coords;
         }
     }
 
