@@ -1,10 +1,11 @@
 package com.tripco.t03.planner;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import spark.Request;
 
 import java.io.IOException;
+
+import com.google.gson.Gson;
+import spark.Request;
 
 /**
  * This class handles to the conversions of the trip request/resopnse,
