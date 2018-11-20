@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -18,7 +19,7 @@ public class TestOptimize {
     private long totalDistance;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws IOException {
         Option opt = new Option("miles");
         Option optShorter = new Option("miles", "shorter");
         Option optUserDef = new Option("user defined","metal meters", 666.666);
@@ -54,14 +55,14 @@ public class TestOptimize {
     }
 
     @Test
-    public void testOptimize() throws Exception {
+    public void testOptimize(){
         optimal = new Optimize(trip);
 
         assertNotNull(optimal);
     }
 
     @Test
-    public void testGetOptimalTripDistance() throws Exception {
+    public void testGetOptimalTripDistance(){
         optimal = new Optimize(trip);
         optimal.getOptimalTrip();
         long distance = optimal.getOptimalTripDistance();
@@ -70,7 +71,7 @@ public class TestOptimize {
     }
     
     @Test
-    public void testOptimizeUserDefined() throws Exception {
+    public void testOptimizeUserDefined(){
         optimal = new Optimize(userDef);
         optimal.getOptimalTrip();
         long dist = optimal.getOptimalTripDistance();
@@ -79,7 +80,7 @@ public class TestOptimize {
     }
 
     @Test
-    public void testOptimizeShorter() throws Exception {
+    public void testOptimizeShorter(){
         optimal = new Optimize(shorter);
         optimal.getOptimalTrip();
         long dist = optimal.getOptimalTripDistance();
@@ -88,7 +89,7 @@ public class TestOptimize {
     }
     
     @Test
-    public void testGetOptimalTrip() throws Exception {
+    public void testGetOptimalTrip(){
         optimal = new Optimize(trip);
         Trip optTrip = optimal.getOptimalTrip();
 

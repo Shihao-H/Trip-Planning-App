@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import spark.Request;
 
+import java.io.IOException;
+
 /**
  * This class handles to the conversions of the trip request/resopnse,
  * converting from the Json string in the request body to a Trip object,
@@ -19,7 +21,7 @@ public class Plan {
    * Does the conversion from Json to a Java class before planning the trip.
    * @param request HTTP Request.
    */
-  public Plan (Request request) throws Exception {
+  public Plan (Request request) throws IOException {
 
     // extract the information from the body of the request.
     JsonElement requestBody = Calculate.jsonHandler(request);
@@ -37,7 +39,7 @@ public class Plan {
      * Constructor that takes a JsonObject for testing.
      * @param json JsonObject.
      */
-  public Plan (String json) throws Exception {
+  public Plan (String json) throws IOException {
       Gson gson = new Gson();
       trip = gson.fromJson(json, Trip.class);
 
