@@ -168,21 +168,21 @@ public class LineDistance {
     String getKmlMap() {
         getKmlCoordinates();
         this.map = "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n"
-                + "  <Document>\n    <name>Paths</name>\n"
-                + "    <Style id=\"yellowLineGreenPoly\">\n      <LineStyle>\n"
-                +"        <color>7f00ffff</color>\n        <width>4</width>\n"
-                +"      </LineStyle>\n      <PolyStyle>\n"
-                +"        <color>7f00ff00</color>\n"
-                +"      </PolyStyle>\n    </Style>\n"
-                +"    <Placemark>\n"
-                +"      <name>Absolute Extruded</name>\n"
-                +"      <LineString>\n        <extrude>1</extrude>\n"
-                +"        <tessellate>1</tessellate>\n"
-                +"        <altitudeMode>absolute</altitudeMode>\n"
-                +"        <coordinates> "
-                + kmlCoordinates
-                +"        </coordinates>\n      </LineString>\n"
-                +"    </Placemark>\n  </Document>\n</kml>";
+                   + "  <Document>\n    <name>Paths</name>\n"
+                   + "    <Style id=\"yellowLineGreenPoly\">\n      <LineStyle>\n"
+                   +"        <color>7f00ffff</color>\n        <width>4</width>\n"
+                   +"      </LineStyle>\n      <PolyStyle>\n"
+                   +"        <color>7f00ff00</color>\n"
+                   +"      </PolyStyle>\n    </Style>\n"
+                   +"    <Placemark>\n"
+                   +"      <name>Absolute Extruded</name>\n"
+                   +"      <LineString>\n        <extrude>1</extrude>\n"
+                   +"        <tessellate>1</tessellate>\n"
+                   +"        <altitudeMode>absolute</altitudeMode>\n"
+                   +"        <coordinates> "
+                   + kmlCoordinates
+                   +"        </coordinates>\n      </LineString>\n"
+                   +"    </Placemark>\n  </Document>\n</kml>";
         return this.map;
     }
     
