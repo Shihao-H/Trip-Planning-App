@@ -102,7 +102,7 @@ public class TestDriver {
                 + "OR world_airports.id LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\") \n"
                 + filterQuery
-                + "ORDER BY continents.name, country.name, region.name, "
+                + " ORDER BY continents.name, country.name, region.name, "
                 + "world_airports.municipality, world_airports.name ASC "
                 + limitQuery;
         Driver.setSearch(match, filterQuery);
