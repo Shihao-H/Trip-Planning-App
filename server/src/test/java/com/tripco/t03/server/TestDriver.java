@@ -66,7 +66,6 @@ public class TestDriver {
     @Test
     public void testFindException(){
         testDriver = new Driver();
-        boolean thrown = false;
         filterQuery = "AND continents IN (\"North America\")\n"
                       + "AND type IN (\"heliport\")\n";
         testDriver.find(match, limit, filterQuery);
