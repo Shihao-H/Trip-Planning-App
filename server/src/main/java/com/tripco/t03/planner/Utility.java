@@ -6,15 +6,15 @@ public class Utility {
      * opt2Reverse array.
      ** @param route Integer array.
      * @param i1 Integer.
-     * @param k Integer.
+     * @param k1 Integer.
      */
-    public int[] opt2Reverse(int[] route, int i1, int k) {
-        while (i1 < k) {
+    public int[] opt2Reverse(int[] route, int i1, int k1) {
+        while (i1 < k1) {
             int temp = route[i1];
-            route[i1] = route[k];
-            route[k] = temp;
+            route[i1] = route[k1];
+            route[k1] = temp;
             i1++;
-            k--;
+            k1--;
         }
         return route;
     }
@@ -31,6 +31,5 @@ public class Utility {
         }
         return dis;
     }
-
 }
 
