@@ -19,6 +19,9 @@ public class Driver {
     public ArrayList<Place> places;
     public int found;
     
+    /**
+    *Constructor.
+    */
     public Driver() {
         limitQuery = "";
         search = "";
