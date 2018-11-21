@@ -2,7 +2,11 @@ package com.tripco.t03.server;
 
 import com.tripco.t03.planner.Place;
 
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Driver {
@@ -32,32 +36,46 @@ public class Driver {
     }
     
     /**
+     * Setter.
+     */
+    void setDburlUserName(){
+        if(isTravis != null && isTravis.equals("true")) {
+            dburl = "jdbc:mysql://127.0.0.1/cs314";
+            username = "travis";
+        } else if(isDevelopment != null && isDevelopment.equals("development")) {
+            dburl = "jdbc:mysql://127.0.0.1:some-port/cs314";
+            username = "cs314-db";
+        } else {
+            dburl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
+            username = "cs314-db";
+        }
+    }
+    
+    /**
+     * Setter.
+     */
+    void setPassword() {
+        if(isTravis != null && isTravis.equals("true")) {
+            password = null;
+        } else {
+            password = "eiK5liet1uej";
+        }
+    }
+    
+    /**
      * The find method is meant to get access to the database and execute queries.
      * @param match String phrase to match.
      * @param limit integer number of mx results to be shown.
      */
     public void find(String match, int limit, String filter) throws SQLException,
                                                                     ClassNotFoundException {
-        if(isTravis != null && isTravis.equals("true")) {
-            dburl = "jdbc:mysql://127.0.0.1/cs314";
-            username = "travis";
-            password = null;
-        } else if(isDevelopment != null && isDevelopment.equals("development")) {
-            dburl = "jdbc:mysql://127.0.0.1:some-port/cs314";
-            username = "cs314-db";
-            password = "eiK5liet1uej";
-        } else {
-            dburl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
-            username = "cs314-db";
-            password =  "eiK5liet1uej";
-        }
+        setDburlUserName();
+        setPassword();
         setLimit(limit);
         setSearch(match, filter);
         setCount(match, filter);
-        Connection connCount = getConnection();
-        Connection connQuery = getConnection();
-        ResultSet rsCount = runQuery(connCount, count);
-        ResultSet rsQuery = runQuery(connQuery, search);
+        ResultSet rsCount = runQuery(count);
+        ResultSet rsQuery = runQuery(search);
         rsCount.next();
         found = rsCount.getInt(1);
         parseQuery(rsQuery);
@@ -89,26 +107,17 @@ public class Driver {
     
     /**
      * Helper method to run query.
-     * @param conn Connection object.
      * @param query String.
      * @return ResultSet.
      * @throws SQLException upon failure.
-     */
-    private ResultSet runQuery(Connection conn, String query) throws SQLException {
-        Statement statement = conn.createStatement();
-        return statement.executeQuery(query);
-    }
-    
-    /**
-     * Helper method to get connection.
-     * @return Connection object.
-     * @throws SQLException upon failure.
      * @throws ClassNotFoundException upon failure.
      */
-    Connection getConnection() throws SQLException, ClassNotFoundException {
+    private ResultSet runQuery(String query) throws SQLException, ClassNotFoundException {
         String myDriver = "com.mysql.jdbc.Driver";
         Class.forName(myDriver);
-        return DriverManager.getConnection(dburl, username, password);
+        Connection conn = DriverManager.getConnection(dburl, username, password);
+        Statement statement = conn.createStatement();
+        return statement.executeQuery(query);
     }
     
     /**
