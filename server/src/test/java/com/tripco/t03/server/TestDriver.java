@@ -66,9 +66,16 @@ public class TestDriver {
     @Test
     public void testFindException(){
         testDriver = new Driver();
-        filterQuery = "AND continents IN (\"North America\")\n"
-                      + "AND type IN (\"heliport\")\n";
-        testDriver.find(match, limit, filterQuery);
+        String except = "";
+        try{
+            filterQuery = "AND continents IN (\"North America\")\n"
+                          + "AND type IN (\"heliport\")\n";
+            testDriver.find(match, limit, filterQuery);
+            } catch(Exception e){
+                except = e.toString();
+            }
+            Exception expected = new Exception();
+            assertEquals(except, expected.toString());
     }
     
     @Test
