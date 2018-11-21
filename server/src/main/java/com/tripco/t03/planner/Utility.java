@@ -1,7 +1,13 @@
+
 package com.tripco.t03.planner;
 
 public class Utility {
-
+    /**
+     * opt2Reverse array.
+     ** @param route Integer array.
+     * @param i1 Integer.
+     * @param k Integer.
+     */
     public int[] opt2Reverse(int[] route, int i1, int k) {
         while (i1 < k) {
             int temp = route[i1];
@@ -12,66 +18,19 @@ public class Utility {
         }
         return route;
     }
-
+    /**
+     * Find the distance for index array.
+     * @param arr Integer array.
+     * @param disGrid double long array.
+     */
     public long findDis(int[] arr, long[][] disGrid) {
         int size=arr.length;
-        long Dis = 0;
+        long dis = 0;
         for (int i = 0; i < arr.length; i++) {
-            Dis+=disGrid[arr[i]][arr[(i+1)%size]];
+            dis+=disGrid[arr[i]][arr[(i+1)%size]];
         }
-        return Dis;
+        return dis;
     }
 
-    public boolean unvisitedCityLeft(boolean[] visit) {
-        boolean flag = false;
-        for (int i = 0; i < visit.length; i++) {
-            if (!visit[i])
-                return true;
-        }
-        return flag;
-    }
-
-    private int getMin(long[] numbers, boolean[] visit, long[] total, int k) {
-        long minValue = -1;
-        int i, index = -1;
-
-        for (i = 0; i < numbers.length; i++) {
-            if (!visit[i]) {
-                minValue = numbers[i];
-                index = i;
-                break;
-            }
-        }
-
-        while (i < numbers.length) {
-            if (numbers[i] < minValue) {
-                if (!visit[i]) {
-                    minValue = numbers[i];
-                    index = i;
-                }
-            }
-            i++;
-        }
-
-        visit[index] = true;
-        total[k] += minValue;
-        return index;
-    }
-
-    public int[] StartNear(int head, long[][] disGrid, int n) {
-        int count = 0;
-        int[] arr = new int[n];
-        arr[0] = head;
-        count++;
-        long total[] = new long[n];
-        boolean[] visit = new boolean[n];
-        visit[head] = true;
-        while (unvisitedCityLeft(visit)) {
-            int index = getMin(disGrid[head], visit, total, head);
-            head = index;
-            arr[count] = index;
-            count++;
-        }
-        return arr;
-    }
 }
+
