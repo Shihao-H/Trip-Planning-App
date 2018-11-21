@@ -12,7 +12,6 @@ public class Driver {
     String dburl;
     String username;
     public String password;
-    private final String myDriver = "com.mysql.jdbc.Driver";
     // fill in SQL queries to count the number of records and to retrieve the data
     public String count = "";
     public String search = "";
@@ -25,7 +24,8 @@ public class Driver {
      * @param match String phrase to match.
      * @param limit integer number of mx results to be shown.
      */
-    public void find(String match, int limit, String filter) {
+    public void find(String match, int limit, String filter) throws SQLException,
+                                                                    ClassNotFoundException {
         if(isTravis != null && isTravis.equals("true")) {
             dburl = "jdbc:mysql://127.0.0.1/cs314";
             username = "travis";
@@ -42,34 +42,60 @@ public class Driver {
         setLimit(limit);
         setSearch(match, filter);
         setCount(match, filter);
-        try {
-            Class.forName(myDriver);
-            try (Connection conn = DriverManager.getConnection(dburl, username, password);
-                 Statement stCount = conn.createStatement();
-                 Statement stQuery = conn.createStatement();
-                 ResultSet rsCount = stCount.executeQuery(count);
-                 ResultSet rsQuery = stQuery.executeQuery(search)) {
-                 rsCount.next();
-                 found = rsCount.getInt(1);
-                 places = new ArrayList<>();
-                 while (rsQuery.next()) {
-                    final Place place = new Place(
-                            rsQuery.getString("id"),
-                            rsQuery.getString(1),//name
-                            Double.parseDouble(rsQuery.getString("latitude")),
-                            Double.parseDouble(rsQuery.getString("longitude")));
-                    place.setAttributeType(rsQuery.getString("type"));
-                    place.setAttributeElevation(rsQuery.getString("elevation"));
-                    place.setAttributeContinent(rsQuery.getString(5));//continent
-                    place.setAttributeCountry(rsQuery.getString(4));//country
-                    place.setAttributeRegion(rsQuery.getString(3));//region
-                    place.setAttributeMunicipality(rsQuery.getString("municipality"));
-                    places.add(place);
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Exception: " + e.getMessage());
+        Connection conn = getConnection();
+        ResultSet rsCount = runQuery(conn, count);
+        ResultSet rsQuery = runQuery(conn, search);
+        rsCount.next();
+        found = rsCount.getInt(1);
+        parseQuery(rsQuery);
+    }
+    
+    /**
+     * Helper method to parse query results.
+     * @param query ResultSet.
+     * @throws SQLException upon failure.
+     */
+    private void parseQuery(ResultSet query) throws SQLException {
+        places = new ArrayList<>();
+        if (query.next()) {
+            final Place place = new Place(
+                    query.getString("id"),
+                    query.getString(1),//name
+                    Double.parseDouble(query.getString("latitude")),
+                    Double.parseDouble(query.getString("longitude")));
+            place.setAttributeType(query.getString("type"));
+            place.setAttributeElevation(query.getString("elevation"));
+            place.setAttributeContinent(query.getString(5));//continent
+            place.setAttributeCountry(query.getString(4));//country
+            place.setAttributeRegion(query.getString(3));//region
+            place.setAttributeMunicipality(query.getString("municipality"));
+            places.add(place);
+            parseQuery(query);
         }
+    }
+    
+    /**
+     * Helper method to run query.
+     * @param conn Connection object.
+     * @param query String.
+     * @return ResultSet.
+     * @throws SQLException upon failure.
+     */
+    private ResultSet runQuery(Connection conn, String query) throws SQLException {
+        Statement statement = conn.createStatement();
+        return statement.executeQuery(query);
+    }
+    
+    /**
+     * Helper method to get connection.
+     * @return Connection object.
+     * @throws SQLException upon failure.
+     * @throws ClassNotFoundException upon failure.
+     */
+    Connection getConnection() throws SQLException, ClassNotFoundException {
+        String myDriver = "com.mysql.jdbc.Driver";
+        Class.forName(myDriver);
+        return DriverManager.getConnection(dburl, username, password);
     }
     
     /**
