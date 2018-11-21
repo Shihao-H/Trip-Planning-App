@@ -53,7 +53,7 @@ export class SearchBox extends Component {
     }
 
     mapFilters() {
-        let myFilters = this.props.config.filters.map((filter) =>
+        return this.props.config.filters.map((filter) =>
             <Col xs={"6"} key={filter.name}>
                 <Card>
                     <CardBody>
@@ -69,8 +69,6 @@ export class SearchBox extends Component {
                     </CardBody>
                 </Card>
             </Col>);
-
-        return myFilters;
     }
 
     handleSearch() {
@@ -136,21 +134,14 @@ export class SearchBox extends Component {
             <div className={'text-center'}>
                 <Card>
                     <CardBody>
-                        <Label>
-                            Search for a new location
-                        </Label>
+                        <Label>Search for a new location</Label>
                         <Form>
-                            <Input type="text"
-                                   placeholder=""
-                                   style={{width: "100%"}}
+                            <Input type="text" placeholder="" style={{width: "100%"}}
                                    onChange={event => {
-                                       this.props.updateSearch('match', event.target.value)
-                                   }}/>
+                                       this.props.updateSearch('match', event.target.value)}}/>
                         </Form>
                         <CardBody>
-                            <Row>
-                                {this.mapFilters()}
-                            </Row>
+                            <Row>{this.mapFilters()}</Row>
                         </CardBody>
                         <Button onClick={this.handleSearch} className='btn-dark btn-outline-dark'
                                 type="button" size='lg'>Search</Button><br/><br/>

@@ -49,7 +49,7 @@ public class Plan {
   /** Handles the response for a Trip object.
    * Does the conversion from a Java class to a Json string.*
    */
-  public String getTrip () {
+  public String getTrip() {
     Gson gson = new Gson();
     return gson.toJson(trip);
   }
