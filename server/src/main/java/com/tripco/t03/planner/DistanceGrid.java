@@ -106,6 +106,7 @@ import java.util.ArrayList;
         private long getDistance(Place origin, Place destination, double radius){
             return Calculate.optDistance(origin, destination, radius);
         }
+        
         /**
          * Helper method for setting the Distance objects with the same origin and destination to null.
          */
