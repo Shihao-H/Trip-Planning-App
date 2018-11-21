@@ -127,7 +127,7 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    private void setSearch(String match, String filter) {
+    void setSearch(String match, String filter) {
         search = "SELECT world_airports.name, world_airports.municipality, region.name, "
                 + "country.name, continents.name, "
                 + "world_airports.id, world_airports.type, world_airports.longitude, "
@@ -154,7 +154,7 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    private void setCount(String match, String filter) {
+    void setCount(String match, String filter) {
         count = "SELECT count(*) "
                 + "FROM continents \n"
                 + "INNER JOIN country ON continents.id = country.continent \n"
