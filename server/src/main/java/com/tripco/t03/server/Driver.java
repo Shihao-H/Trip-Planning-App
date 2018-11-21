@@ -7,25 +7,37 @@ import java.util.ArrayList;
 
 public class Driver {
     // db configuration information
-    static String isTravis = System.getenv("TRAVIS");
-    static String isDevelopment = System.getenv("CS314_ENV");
-    static String dburl;
-    static String username;
-    public static String password;
-    private static final String myDriver = "com.mysql.jdbc.Driver";
+    String isTravis = System.getenv("TRAVIS");
+    String isDevelopment = System.getenv("CS314_ENV");
+    String dburl;
+    String username;
+    public String password;
     // fill in SQL queries to count the number of records and to retrieve the data
-    public static String count = "";
-    public static String search = "";
-    static String limitQuery = "";
-    public static ArrayList<Place> places;
-    public static int found = 0;
-
+    public String count;
+    public String search;
+    String limitQuery;
+    public ArrayList<Place> places;
+    public int found;
+    
+    /**
+     * Constructor.
+     */
+    public Driver() {count = "";
+        search = "";
+        limitQuery = "";
+        found = 0;
+    }
+    
     /**
      * The find method is meant to get access to the database and execute queries.
      * @param match String phrase to match.
      * @param limit integer number of mx results to be shown.
      */
-    public static void find(String match, int limit, String filter) {
+    //Method `find` has a Cognitive Complexity of 7 (exceeds 5 allowed). Consider
+    // refactoring.  …
+    //Method `find` has 44 lines of code (exceeds 25 allowed). Consider refactoring.
+    public void find(String match, int limit, String filter) throws SQLException,
+                                                                    ClassNotFoundException {
         if(isTravis != null && isTravis.equals("true")) {
             dburl = "jdbc:mysql://127.0.0.1/cs314";
             username = "travis";
@@ -42,33 +54,59 @@ public class Driver {
         setLimit(limit);
         setSearch(match, filter);
         setCount(match, filter);
-        try {
-            Class.forName(myDriver);
-            try (Connection conn = DriverManager.getConnection(dburl, username, password);
-                 Statement stCount = conn.createStatement();
-                 Statement stQuery = conn.createStatement();
-                 ResultSet rsCount = stCount.executeQuery(count);
-                 ResultSet rsQuery = stQuery.executeQuery(search)) {
-                 rsCount.next();
-                 found = rsCount.getInt(1);
-                 places = new ArrayList<>();
-                 while (rsQuery.next()) {
-                    final Place place = new Place(
-                            rsQuery.getString("id"),
-                            rsQuery.getString(1),//name
-                            Double.parseDouble(rsQuery.getString("latitude")),
-                            Double.parseDouble(rsQuery.getString("longitude")));
-                    place.setAttributeType(rsQuery.getString("type"));
-                    place.setAttributeElevation(rsQuery.getString("elevation"));
-                    place.setAttributeContinent(rsQuery.getString(5));//continent
-                    place.setAttributeCountry(rsQuery.getString(4));//country
-                    place.setAttributeRegion(rsQuery.getString(3));//region
-                    place.setAttributeMunicipality(rsQuery.getString("municipality"));
-                    places.add(place);
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Exception: " + e.getMessage());
+        Connection conn = getConnection();
+        ResultSet rsCount = runQuery(conn ,count);
+        ResultSet rsQuery = runQuery(conn, search);
+        rsCount.next();
+        found = rsCount.getInt(1);
+        places = new ArrayList<>();
+        parseResults(rsQuery);
+    }
+    
+    /**
+     * Helper method to establish connection.
+     * @return Connection object.
+     * @throws SQLException if connection is not made.
+     * @throws ClassNotFoundException if forName fails.
+     */
+    Connection getConnection() throws SQLException, ClassNotFoundException {
+        String myDriver = "com.mysql.jdbc.Driver";
+        Class.forName(myDriver);
+        return DriverManager.getConnection(dburl, username, password);
+    }
+    
+    /**
+     * Helper method to run the query.
+     * @param conn Connection object.
+     * @param query Query string.
+     * @return ResultSet from Database query.
+     * @throws SQLException when query fails.
+     */
+    private ResultSet runQuery(Connection conn, String query) throws SQLException {
+        Statement statement = conn.createStatement();
+        return statement.executeQuery(query);
+    }
+    
+    /**
+     * Helper method to parse query results.
+     * @param rsQuery ResultSet.
+     * @throws SQLException upon failure.
+     */
+    private void parseResults(ResultSet rsQuery) throws SQLException {
+        if (rsQuery.next()) {
+            final Place place = new Place(
+            rsQuery.getString("id"),
+            rsQuery.getString(1),//name
+            Double.parseDouble(rsQuery.getString("latitude")),
+            Double.parseDouble(rsQuery.getString("longitude")));
+            place.setAttributeType(rsQuery.getString("type"));
+            place.setAttributeElevation(rsQuery.getString("elevation"));
+            place.setAttributeContinent(rsQuery.getString(5));//continent
+            place.setAttributeCountry(rsQuery.getString(4));//country
+            place.setAttributeRegion(rsQuery.getString(3));//region
+            place.setAttributeMunicipality(rsQuery.getString("municipality"));
+            places.add(place);
+            parseResults(rsQuery);
         }
     }
     
@@ -76,11 +114,11 @@ public class Driver {
      * Setter for search.
      * @param limit int.
      */
-    private static void setLimit(int limit){
+    void setLimit(int limit){
         if (limit == 0) {
-            limitQuery = ""; // no limit
+            this.limitQuery = ""; // no limit
         } else {
-            limitQuery = "limit " + Integer.toString(limit);
+            this.limitQuery = "limit " + Integer.toString(limit);
         }
     }
     
@@ -89,34 +127,34 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    static void setSearch(String match, String filter) {
+    void setSearch(String match, String filter) {
         search = "SELECT world_airports.name, world_airports.municipality, region.name, "
-                + "country.name, continents.name, "
-                + "world_airports.id, world_airports.type, world_airports.longitude, "
-                + "world_airports.latitude, "
-                + "world_airports.elevation "
-                + "FROM continents \n"
-                + "INNER JOIN country ON continents.id = country.continent \n"
-                + "INNER JOIN region ON country.id = region.iso_country \n"
-                + "INNER JOIN world_airports ON region.id = world_airports.iso_region \n"
-                + "WHERE (continents.name LIKE \"%" + match + "%\"  \n"
-                + "OR country.name LIKE \"%" + match + "%\"  \n"
-                + "OR region.name LIKE \"%" + match + "%\"  \n"
-                + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
-                + "OR world_airports.id LIKE \"%" + match + "%\" \n"
-                + "OR world_airports.name LIKE \"%" + match + "%\") \n"
-                + filter
-                + "ORDER BY continents.name, country.name, region.name, "
-                + "world_airports.municipality, world_airports.name ASC "
-                + limitQuery;
+                 + "country.name, continents.name, "
+                 + "world_airports.id, world_airports.type, world_airports.longitude, "
+                 + "world_airports.latitude, "
+                 + "world_airports.elevation "
+                 + "FROM continents \n"
+                 + "INNER JOIN country ON continents.id = country.continent \n"
+                 + "INNER JOIN region ON country.id = region.iso_country \n"
+                 + "INNER JOIN world_airports ON region.id = world_airports.iso_region \n"
+                 + "WHERE (continents.name LIKE \"%" + match + "%\"  \n"
+                 + "OR country.name LIKE \"%" + match + "%\"  \n"
+                 + "OR region.name LIKE \"%" + match + "%\"  \n"
+                 + "OR world_airports.municipality LIKE \"%" + match + "%\" \n"
+                 + "OR world_airports.id LIKE \"%" + match + "%\" \n"
+                 + "OR world_airports.name LIKE \"%" + match + "%\") \n"
+                 + filter
+                 + "ORDER BY continents.name, country.name, region.name, "
+                 + "world_airports.municipality, world_airports.name ASC "
+                 + this.limitQuery;
     }
-
+    
     /**
      * Setter: Sets count variable.
      * @param match String.
      * @param filter String.
      */
-    static void setCount(String match, String filter) {
+    void setCount(String match, String filter) {
         count = "SELECT count(*) "
                 + "FROM continents \n"
                 + "INNER JOIN country ON continents.id = country.continent \n"

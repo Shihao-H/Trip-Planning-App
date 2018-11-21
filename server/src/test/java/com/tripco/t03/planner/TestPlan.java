@@ -40,14 +40,14 @@ public class TestPlan {
 
 
     @Test
-    public void testPlan(){
+    public void testPlan() throws Exception {
         Plan plan = new Plan(jsonString);
 
         Assert.assertNotNull(plan);
     }
 
     @Test
-    public void testGetTrip(){
+    public void testGetTrip() throws Exception {
         Plan plan = new Plan(jsonString);
 
         Assert.assertTrue(plan.getTrip().length() > jsonString.length());
