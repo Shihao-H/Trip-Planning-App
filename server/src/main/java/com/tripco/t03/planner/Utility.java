@@ -18,6 +18,7 @@ public class Utility {
         }
         return route;
     }
+    
     /**
      * Find the distance for index array.
      * @param arr Integer array.
