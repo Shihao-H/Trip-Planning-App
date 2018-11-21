@@ -118,4 +118,13 @@ public class TestDriver {
         testDriver.setCount(match, filterQuery);
         assertEquals(expected, testDriver.count);
     }
+    
+    @Test
+    public void testSetLimit(){
+        testDriver = new Driver();
+        testDriver.setLimit(3);
+        
+        assertEquals(testDriver.limitQuery, "limit 3");
+    }
+    
 }

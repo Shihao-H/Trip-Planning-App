@@ -27,27 +27,27 @@ public class Driver {
      * Constructor.
      */
     public Driver() {
-        limitQuery = "";
-        search = "";
-        count = "";
-        found = 0;
-        isTravis = System.getenv("TRAVIS");
-        isDevelopment = System.getenv("CS314_ENV");
+        this.limitQuery = "";
+        this.search = "";
+        this.count = "";
+        this.found = 0;
+        this.isTravis = System.getenv("TRAVIS");
+        this.isDevelopment = System.getenv("CS314_ENV");
     }
     
     /**
      * Setter.
      */
     void setDburlUserName(){
-        if(isTravis != null && isTravis.equals("true")) {
-            dburl = "jdbc:mysql://127.0.0.1/cs314";
-            username = "travis";
-        } else if(isDevelopment != null && isDevelopment.equals("development")) {
-            dburl = "jdbc:mysql://127.0.0.1:some-port/cs314";
-            username = "cs314-db";
+        if(this.isTravis != null && this.isTravis.equals("true")) {
+            this.dburl = "jdbc:mysql://127.0.0.1/cs314";
+            this.username = "travis";
+        } else if(this.isDevelopment != null && this.isDevelopment.equals("development")) {
+            this.dburl = "jdbc:mysql://127.0.0.1:some-port/cs314";
+            this.username = "cs314-db";
         } else {
-            dburl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
-            username = "cs314-db";
+            this.dburl = "jdbc:mysql://faure.cs.colostate.edu/cs314";
+            this.username = "cs314-db";
         }
     }
     
@@ -55,10 +55,10 @@ public class Driver {
      * Setter.
      */
     void setPassword() {
-        if(isTravis != null && isTravis.equals("true")) {
-            password = null;
+        if(this.isTravis != null && this.isTravis.equals("true")) {
+            this.password = null;
         } else {
-            password = "eiK5liet1uej";
+            this.password = "eiK5liet1uej";
         }
     }
     
@@ -77,7 +77,8 @@ public class Driver {
         ResultSet rsCount = runQuery(count);
         ResultSet rsQuery = runQuery(search);
         rsCount.next();
-        found = rsCount.getInt(1);
+        this.found = rsCount.getInt(1);
+        this.places = new ArrayList<>();
         parseQuery(rsQuery);
     }
     
@@ -87,7 +88,6 @@ public class Driver {
      * @throws SQLException upon failure.
      */
     private void parseQuery(ResultSet query) throws SQLException {
-        places = new ArrayList<>();
         if (query.next()) {
             final Place place = new Place(
                     query.getString("id"),
@@ -100,7 +100,7 @@ public class Driver {
             place.setAttributeCountry(query.getString(4));//country
             place.setAttributeRegion(query.getString(3));//region
             place.setAttributeMunicipality(query.getString("municipality"));
-            places.add(place);
+            this.places.add(place);
             parseQuery(query);
         }
     }
@@ -115,7 +115,8 @@ public class Driver {
     private ResultSet runQuery(String query) throws SQLException, ClassNotFoundException {
         String myDriver = "com.mysql.jdbc.Driver";
         Class.forName(myDriver);
-        Connection conn = DriverManager.getConnection(dburl, username, password);
+        Connection conn = DriverManager.getConnection(this.dburl, this.username,
+                                                      this.password);
         Statement statement = conn.createStatement();
         return statement.executeQuery(query);
     }
@@ -138,7 +139,7 @@ public class Driver {
      * @param filter String.
      */
     void setSearch(String match, String filter) {
-        search = "SELECT world_airports.name, world_airports.municipality, region.name, "
+        this.search = "SELECT world_airports.name, world_airports.municipality, region.name, "
                 + "country.name, continents.name, "
                 + "world_airports.id, world_airports.type, world_airports.longitude, "
                 + "world_airports.latitude, "
@@ -154,7 +155,7 @@ public class Driver {
                 + "OR world_airports.id LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\") \n"
                 + filter
-                + " ORDER BY continents.name, country.name, region.name, "
+                + "ORDER BY continents.name, country.name, region.name, "
                 + "world_airports.municipality, world_airports.name ASC "
                 + this.limitQuery;
     }
@@ -177,7 +178,7 @@ public class Driver {
                 + "OR world_airports.id LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\") \n"
                 + filter
-                + " ORDER BY continents.name, country.name, region.name, "
+                + "ORDER BY continents.name, country.name, region.name, "
                 + "world_airports.municipality, world_airports.name ASC";
     }
 }
