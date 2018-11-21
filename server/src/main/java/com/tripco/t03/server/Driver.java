@@ -145,7 +145,7 @@ public class Driver {
                 + "OR world_airports.id LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\") \n"
                 + filter
-                + "ORDER BY continents.name, country.name, region.name, "
+                + " ORDER BY continents.name, country.name, region.name, "
                 + "world_airports.municipality, world_airports.name ASC "
                 + this.limitQuery;
     }
@@ -168,7 +168,7 @@ public class Driver {
                 + "OR world_airports.id LIKE \"%" + match + "%\" \n"
                 + "OR world_airports.name LIKE \"%" + match + "%\") \n"
                 + filter
-                + "ORDER BY continents.name, country.name, region.name, "
+                + " ORDER BY continents.name, country.name, region.name, "
                 + "world_airports.municipality, world_airports.name ASC";
     }
 }
