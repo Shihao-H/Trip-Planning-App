@@ -83,10 +83,14 @@ import java.util.ArrayList;
         private double getRadius(String units) throws Exception {
             Double result;
             switch (units){
-                case "miles": result = 3959.0; break;
-                case "kilometers": result = 6371.0; break;
-                case "nautical miles": result = 3440.0; break;
-                case "user defined": result = this.userDefinedRadius; break;
+                case "miles": result = 3959.0; 
+                    break;
+                case "kilometers": result = 6371.0; 
+                    break;
+                case "nautical miles": result = 3440.0; 
+                    break;
+                case "user defined": result = this.userDefinedRadius; 
+                    break;
                 default: throw new Exception("No valid units");
             }
             return result;
