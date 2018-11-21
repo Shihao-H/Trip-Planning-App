@@ -7,18 +7,27 @@ import java.util.ArrayList;
 
 public class Driver {
     // db configuration information
-    String isTravis = System.getenv("TRAVIS");
-    String isDevelopment = System.getenv("CS314_ENV");
-    String dburl;
-    String username;
+    private String isTravis;
+    private String isDevelopment;
+    private String dburl;
+    private String username;
     public String password;
     // fill in SQL queries to count the number of records and to retrieve the data
-    public String count = "";
-    public String search = "";
-    String limitQuery = "";
+    public String count;
+    public String search;
+    private String limitQuery;
     public ArrayList<Place> places;
-    public int found = 0;
-
+    public int found;
+    
+    public Driver() {
+        limitQuery = "";
+        search = "";
+        count = "";
+        found = 0;
+        isTravis = System.getenv("TRAVIS");
+        isDevelopment = System.getenv("CS314_ENV");
+    }
+    
     /**
      * The find method is meant to get access to the database and execute queries.
      * @param match String phrase to match.
@@ -115,7 +124,7 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    void setSearch(String match, String filter) {
+    private void setSearch(String match, String filter) {
         search = "SELECT world_airports.name, world_airports.municipality, region.name, "
                 + "country.name, continents.name, "
                 + "world_airports.id, world_airports.type, world_airports.longitude, "
@@ -142,7 +151,7 @@ public class Driver {
      * @param match String.
      * @param filter String.
      */
-    void setCount(String match, String filter) {
+    private void setCount(String match, String filter) {
         count = "SELECT count(*) "
                 + "FROM continents \n"
                 + "INNER JOIN country ON continents.id = country.continent \n"
