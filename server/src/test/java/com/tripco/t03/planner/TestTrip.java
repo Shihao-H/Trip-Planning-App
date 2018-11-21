@@ -7,7 +7,8 @@ import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 /*
   This class contains tests for the Trip class.
