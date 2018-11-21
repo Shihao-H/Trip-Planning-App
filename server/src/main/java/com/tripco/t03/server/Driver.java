@@ -7,18 +7,21 @@ import java.util.ArrayList;
 
 public class Driver {
     // db configuration information
-    private String isTravis;
-    private String isDevelopment;
-    private String dburl;
-    private String username;
+    String isTravis;
+    String isDevelopment;
+    String dburl;
+    String username;
     public String password;
     // fill in SQL queries to count the number of records and to retrieve the data
     public String count;
     public String search;
-    private String limitQuery;
+    String limitQuery;
     public ArrayList<Place> places;
     public int found;
     
+    /**
+     * Constructor.
+     */
     public Driver() {
         limitQuery = "";
         search = "";
