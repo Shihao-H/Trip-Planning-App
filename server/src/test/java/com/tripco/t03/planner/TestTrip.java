@@ -5,10 +5,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 /*
   This class contains tests for the Trip class.
@@ -42,7 +42,7 @@ public class TestTrip {
   }
 
   @Test
-  public void testDistances() throws IOException {
+  public void testDistances() throws Exception {
       trip = new Trip(opt, places);
       ArrayList<Long> expectedDistances = new ArrayList<>();
       Collections.addAll(expectedDistances, 366L, 1593L, 7726L, 6225L);
@@ -58,7 +58,7 @@ public class TestTrip {
   }
 
   @Test
-  public void testUserDefined() throws IOException {
+  public void testUserDefined() throws Exception {
       opt =  new Option("user defined", "yards", 3959.0);
       places = new ArrayList<>();
       places.add(new Place("P01", "one", 41.000155556, -109.05));
