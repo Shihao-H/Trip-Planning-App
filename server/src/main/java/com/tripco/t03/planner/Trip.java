@@ -75,7 +75,7 @@ public class Trip {
      * At this point it just adds the map and distances for the places in order.
      * It might need to reorder the places in the future.
      */
-    public void plan() throws IOException {
+    public void plan() throws Exception {
         if(this.options.optimization.equalsIgnoreCase("none")){
             this.distances = legDistances();
         } else{
