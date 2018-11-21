@@ -21,7 +21,7 @@ public class Plan {
    * Does the conversion from Json to a Java class before planning the trip.
    * @param request HTTP Request.
    */
-  public Plan(Request request) throws IOException {
+  public Plan(Request request) throws Exception {
 
     // extract the information from the body of the request.
     JsonElement requestBody = Calculate.jsonHandler(request);
@@ -39,7 +39,7 @@ public class Plan {
      * Constructor that takes a JsonObject for testing.
      * @param json JsonObject.
      */
-  public Plan(String json) throws IOException {
+  public Plan(String json) throws Exception {
       Gson gson = new Gson();
       trip = gson.fromJson(json, Trip.class);
 
