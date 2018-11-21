@@ -74,8 +74,9 @@ public class TestDriver {
             } catch(Exception e){
                 except = e.toString();
             }
-            Exception expected = new Exception();
-            assertEquals(except, expected.toString());
+            String expected = "<[com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: "
+                + "Unknown column \'continents\' in \'where clause\']>";
+            assertEquals(except, expected);
     }
     
     @Test
