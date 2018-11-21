@@ -209,9 +209,7 @@ class Application extends Component {
     }
 
     render() {
-        if (!this.state.config) {
-            return <div/>
-        }
+        if (!this.state.config) {return <div/>}
         return (
             <Container id="Application">
                 <Info/>
@@ -229,9 +227,7 @@ class Application extends Component {
                       updateTrip={this.updateTrip}
                       updateOptions={this.updateOptions}
                       updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
-                      updateSelected={this.updateSelected} updateMap={this.updateMap}
-                      map={this.state.trip.map}
-                />
+                      updateSelected={this.updateSelected} updateMap={this.updateMap} map={this.state.trip.map}/>
                 <DistanceCal config={this.state.config} options={this.state.trip.options}
                              search={this.state.search} trip={this.state.trip}
                              updateOptions={this.updateOptions} updateSearch={this.updateSearch}
