@@ -31,7 +31,7 @@ public class Driver {
             username = "travis";
             password = null;
         } else if(isDevelopment != null && isDevelopment.equals("development")) {
-            dburl = "jdbc:mysql://127.0.0.1:some-port/cs314";
+            dburl = "jdbc:mysql://127.0.0.1:8098/cs314";
             username = "cs314-db";
             password = "eiK5liet1uej";
         } else {
