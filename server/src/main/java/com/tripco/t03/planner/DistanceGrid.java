@@ -50,32 +50,63 @@ import java.util.ArrayList;
         /**
          * Builds 2D array of Distance objects.
          */
-        void buildGrid() {
-            int row = 0;
-            while (row < this.distanceGrid.length) {
-                int column = row+1;
-                while (column < this.distanceGrid[row].length) {
-                    if (this.distanceGrid[row][column] == null) {
-                        Place origin = this.locations.get(indexKey[row]);
-                        Place destination = this.locations.get(indexKey[column]);
-                        if (this.units.equalsIgnoreCase("user defined")) {
-                            long temp = Calculate.optDistance(origin, destination,
-                                                           this.userDefinedRadius);
-                            this.distanceGrid[row][column] = temp;
-                        } else {
-                            Long temp = Calculate.calcDistance(origin, destination,
-                                                               this.units);
-                            this.distanceGrid[row][column] = temp;
-                        }
-                        distanceGrid[column][row] = this.distanceGrid[row][column];
-                    }
-                    column++;
-                }
-                row++;
-
+        void buildGrid() throws Exception {
+            for(int row = 0; row < this.distanceGrid.length; row++) {
+                setDistance(row, row+1);
             }
         }
-
+    
+        /**
+         * Helper method for setting initializing distance grid.
+         * @param row int index.
+         * @param column int index.
+         */
+        private void setDistance(int row, int column) throws Exception {
+            if(column < this.distanceGrid[row].length) {
+                if(this.distanceGrid[row][column] == null) {
+                    Place origin = this.locations.get(indexKey[row]);
+                    Place destination = this.locations.get(indexKey[column]);
+                    double radius = getRadius(this.units);
+                    long temp = getDistance(origin, destination, radius);
+                    this.distanceGrid[row][column] = temp;
+                    distanceGrid[column][row] = this.distanceGrid[row][column];
+                }
+                setDistance(row, column + 1);
+            }
+        }
+        
+        /**
+         * Helper method to get radius value.
+         * @param units String.
+         * @return double Radius.
+         */
+        private double getRadius(String units) throws Exception {
+            Double result;
+            switch (units){
+                case "miles": result = 3959.0; 
+                    break;
+                case "kilometers": result = 6371.0; 
+                    break;
+                case "nautical miles": result = 3440.0; 
+                    break;
+                case "user defined": result = this.userDefinedRadius; 
+                    break;
+                default: throw new Exception("No valid units");
+            }
+            return result;
+        }
+        
+        /**
+         * Helper method to get the distance.
+         * @param origin Place object.
+         * @param destination Place object.
+         * @param radius double radius for units.
+         * @return long distance between origin and destination.
+         */
+        private long getDistance(Place origin, Place destination, double radius){
+            return Calculate.optDistance(origin, destination, radius);
+        }
+        
         /**
          * Helper method for setting the Distance objects with the same origin and destination to null.
          */

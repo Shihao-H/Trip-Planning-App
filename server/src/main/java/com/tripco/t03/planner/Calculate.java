@@ -37,12 +37,11 @@ public class Calculate {
     * @param request Request.
     * @return JsonElement.
     */
-    public static JsonElement jsonHandler(Request request){
+    static JsonElement jsonHandler(Request request){
     
         // extract the information from the body of the request.
         JsonParser jsonParser = new JsonParser();
-        JsonElement requestBody = jsonParser.parse(request.body());
-        return requestBody;
+        return jsonParser.parse(request.body());
     }
     
     /** Handles the response for a Distance object.

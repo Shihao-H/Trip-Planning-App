@@ -19,7 +19,7 @@ public class TestOptimize {
     private long totalDistance;
 
     @Before
-    public void setUp() throws IOException {
+    public void setUp() throws Exception {
         Option opt = new Option("miles");
         Option optShorter = new Option("miles", "shorter");
         Option optUserDef = new Option("user defined","metal meters", 666.666);
@@ -55,14 +55,14 @@ public class TestOptimize {
     }
 
     @Test
-    public void testOptimize(){
+    public void testOptimize() throws Exception {
         optimal = new Optimize(trip);
 
         assertNotNull(optimal);
     }
 
     @Test
-    public void testGetOptimalTripDistance(){
+    public void testGetOptimalTripDistance() throws Exception {
         optimal = new Optimize(trip);
         optimal.getOptimalTrip();
         long distance = optimal.getOptimalTripDistance();
@@ -71,7 +71,7 @@ public class TestOptimize {
     }
     
     @Test
-    public void testOptimizeUserDefined(){
+    public void testOptimizeUserDefined() throws Exception {
         optimal = new Optimize(userDef);
         optimal.getOptimalTrip();
         long dist = optimal.getOptimalTripDistance();
@@ -80,7 +80,7 @@ public class TestOptimize {
     }
 
     @Test
-    public void testOptimizeShorter(){
+    public void testOptimizeShorter() throws Exception {
         optimal = new Optimize(shorter);
         optimal.getOptimalTrip();
         long dist = optimal.getOptimalTripDistance();
@@ -89,7 +89,7 @@ public class TestOptimize {
     }
     
     @Test
-    public void testGetOptimalTrip(){
+    public void testGetOptimalTrip() throws Exception {
         optimal = new Optimize(trip);
         Trip optTrip = optimal.getOptimalTrip();
 
