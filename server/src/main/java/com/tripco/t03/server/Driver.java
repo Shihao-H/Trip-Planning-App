@@ -2,11 +2,11 @@ package com.tripco.t03.server;
 
 import com.tripco.t03.planner.Place;
 
-import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Driver {
@@ -75,10 +75,10 @@ public class Driver {
         setSearch(match, filter);
         setCount(match, filter);
         ResultSet rsCount = runQuery(count);
-        ResultSet rsQuery = runQuery(search);
         rsCount.next();
         this.found = rsCount.getInt(1);
         this.places = new ArrayList<>();
+        ResultSet rsQuery = runQuery(search);
         parseQuery(rsQuery);
     }
     
