@@ -54,9 +54,10 @@ public class Driver {
         setLimit(limit);
         setSearch(match, filter);
         setCount(match, filter);
-        Connection conn = getConnection();
-        ResultSet rsCount = runQuery(conn, count);
-        ResultSet rsQuery = runQuery(conn, search);
+        Connection connCount = getConnection();
+        Connection connQuery = getConnection();
+        ResultSet rsCount = runQuery(connCount, count);
+        ResultSet rsQuery = runQuery(connQuery, search);
         rsCount.next();
         found = rsCount.getInt(1);
         parseQuery(rsQuery);
