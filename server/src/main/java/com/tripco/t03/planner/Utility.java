@@ -47,8 +47,11 @@ public class Utility {
     }
 
     /**
-     * Check whether there is still unvisited place left or not.
+     * Find the distance for index array.
+     * @param numbers long array.
      * @param visit boolean array.
+     * @param total long array.
+     * @param k integer.
      */
     private int getMin(long[] numbers, boolean[] visit, long[] total, int k) {
         long minValue = -1;
@@ -77,21 +80,5 @@ public class Utility {
         return index;
     }
 
-    public int[] StartNear(int head, long[][] disGrid, int n) {
-        int count = 0;
-        int[] arr = new int[n];
-        arr[0] = head;
-        count++;
-        long total[] = new long[n];
-        boolean[] visit = new boolean[n];
-        visit[head] = true;
-        while (unvisitedCityLeft(visit)) {
-            int index = getMin(disGrid[head], visit, total, head);
-            head = index;
-            arr[count] = index;
-            count++;
-        }
-        return arr;
-    }
 }
 
