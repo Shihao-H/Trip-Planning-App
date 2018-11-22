@@ -51,11 +51,12 @@ public class Utility {
      * @param numbers long array.
      * @param visit boolean array.
      * @param total long array.
-     * @param k integer.
+     * @param k1 integer.
      */
     public int getMin(long[] numbers, boolean[] visit, long[] total, int k1) {
         long minValue = -1;
-        int i1, index = -1;
+        int i1; 
+        int index = -1;
 
         for (i1 = 0; i1 < numbers.length; i1++) {
             if (!visit[i1]) {
