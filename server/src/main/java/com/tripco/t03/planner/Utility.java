@@ -55,7 +55,7 @@ public class Utility {
      */
     private int getMin(long[] numbers, boolean[] visit, long[] total, int k1) {
         long minValue = -1;
-        int i, index = -1;
+        int i1, index = -1;
 
         for (i = 0; i < numbers.length; i++) {
             if (!visit[i]) {
@@ -65,14 +65,14 @@ public class Utility {
             }
         }
 
-        while (i < numbers.length) {
-            if (numbers[i] < minValue) {
-                if (!visit[i]) {
-                    minValue = numbers[i];
-                    index = i;
+        while (i1 < numbers.length) {
+            if (numbers[i1] < minValue) {
+                if (!visit[i1]) {
+                    minValue = numbers[i1];
+                    index = i1;
                 }
             }
-            i++;
+            i1++;
         }
 
         visit[index] = true;
