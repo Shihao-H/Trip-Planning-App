@@ -166,7 +166,8 @@ public class Driver {
      * @param filter String.
      */
     void setCount(String match, String filter) {
-        count = "SELECT count(*) FROM continents \n"
+        count = "SELECT count(*) "
+                + "FROM continents \n"
                 + "INNER JOIN country ON continents.id = country.continent \n"
                 + "INNER JOIN region ON country.id = region.iso_country \n"
                 + "INNER JOIN world_airports ON region.id = world_airports.iso_region \n"
