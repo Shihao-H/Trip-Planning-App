@@ -40,8 +40,8 @@ public class Utility {
     public boolean unvisitedCityLeft(boolean[] visit) {
         boolean flag = false;
         for (int i = 0; i < visit.length; i++) {
-            if (!visit[i])
-                return true;
+            if (!visit[i]){
+                return true;}
         }
         return flag;
     }
