@@ -57,10 +57,10 @@ public class Utility {
         long minValue = -1;
         int i1, index = -1;
 
-        for (i = 0; i < numbers.length; i++) {
-            if (!visit[i]) {
-                minValue = numbers[i];
-                index = i;
+        for (i1 = 0; i1 < numbers.length; i1++) {
+            if (!visit[i1]) {
+                minValue = numbers[i1];
+                index = i1;
                 break;
             }
         }
