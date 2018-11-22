@@ -53,7 +53,7 @@ public class Utility {
      * @param total long array.
      * @param k integer.
      */
-    private int getMin(long[] numbers, boolean[] visit, long[] total, int k) {
+    private int getMin(long[] numbers, boolean[] visit, long[] total, int k1) {
         long minValue = -1;
         int i, index = -1;
 
@@ -76,7 +76,7 @@ public class Utility {
         }
 
         visit[index] = true;
-        total[k] += minValue;
+        total[k1] += minValue;
         return index;
     }
 
