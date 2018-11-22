@@ -43,7 +43,7 @@ public class TestDriver {
             assertEquals("travis", testDriver.username);
         } else if(testDriver.isDevelopment != null
                   && testDriver.isDevelopment.equals("development")) {
-            assertEquals("jdbc:mysql://127.0.0.1:some-port/cs314", testDriver.dburl);
+            assertEquals("jdbc:mysql://127.0.0.1:8098/cs314", testDriver.dburl);
             assertEquals("cs314-db", testDriver.username);
         } else {
             assertEquals("jdbc:mysql://faure.cs.colostate.edu/cs314", testDriver.dburl);
