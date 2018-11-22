@@ -2,10 +2,10 @@ package com.tripco.t03.server;
 
 import com.tripco.t03.planner.Place;
 
-import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
