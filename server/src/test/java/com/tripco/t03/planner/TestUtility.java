@@ -46,6 +46,10 @@ public class TestUtility {
         boolean bool1=Uti.unvisitedCityLeft(arr);
         boolean bool2=true;
         Assert.assertEquals(bool1, bool2);
+        boolean[] arr2 = new boolean[]{true,true,true,true};
+        bool1=Uti.unvisitedCityLeft(arr2);
+        bool2=false;
+        Assert.assertEquals(bool1, bool2);
     }
 
 }
