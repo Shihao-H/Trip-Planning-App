@@ -39,5 +39,13 @@ public class TestUtility {
         long fi=18L;
         Assert.assertEquals(ori,fi);
     }
+    @Test
+    public void testunvisitedcityleft(){
+        Uti = new Utility();
+        boolean[] arr = new boolean[]{true,true,false,true};
+        boolean bool1=Uti.unvisitedCityLeft(arr);
+        boolean bool2=true;
+        Assert.assertEquals(bool1, bool2);
+    }
 
 }
