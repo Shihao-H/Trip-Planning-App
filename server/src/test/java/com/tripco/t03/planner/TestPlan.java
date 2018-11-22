@@ -42,14 +42,14 @@ public class TestPlan {
 
 
     @Test
-    public void testPlan() throws IOException {
+    public void testPlan() throws Exception {
         Plan plan = new Plan(jsonString);
 
         Assert.assertNotNull(plan);
     }
 
     @Test
-    public void testGetTrip() throws IOException {
+    public void testGetTrip() throws Exception {
         Plan plan = new Plan(jsonString);
 
         Assert.assertTrue(plan.getTrip().length() > jsonString.length());

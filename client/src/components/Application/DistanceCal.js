@@ -22,7 +22,7 @@ export class DistanceCal extends Component {
             },
             collapse: false,
             ifDisplayUserDefinedInputFields: false,
-        }
+        };
         this.updateLoc = this.updateLoc.bind(this);
         this.updateDistance = this.updateDistance.bind(this);
         this.Calculate= this.Calculate.bind(this);

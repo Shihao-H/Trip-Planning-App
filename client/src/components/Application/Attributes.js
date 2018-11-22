@@ -10,10 +10,8 @@ class Attributes extends Component {
 
         const checkboxes = this.props.config.attributes.map((attribute) =>
             <Form key={"check_" + attribute}>
-                <Input type={"checkbox"}
-                       key={"checkbox_" + attribute}
-                       value={attribute}
-                       checked={this.props.display[this.props.config.attributes.indexOf(attribute)]}
+                <Input type={"checkbox"} key={"checkbox_" + attribute}
+                       value={attribute} checked={this.props.display[this.props.config.attributes.indexOf(attribute)]}
                        onChange={event => {
                            this.props.updateAttributes(event.target.value)
                        }}/>

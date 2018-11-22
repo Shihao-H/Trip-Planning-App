@@ -28,9 +28,9 @@ public class TestDriver {
         expected.add(new Place("98TX", "Cig 402 Heliport", 27.256701, -98.0942));
         expected.add(new Place("US-VA38", "Lz Alfa Heliport", 36.793201, -75.964699));
     }
-
+    
     @Test
-    public void testFind(){
+    public void testFind() throws Exception{
         testDriver = new Driver();
         int found = 3;
         testDriver.find(match, limit, filterQuery);
@@ -38,21 +38,21 @@ public class TestDriver {
         assertEquals(found, testDriver.found);
         assertEquals(limitQuery, testDriver.limitQuery);
         if(testDriver.isTravis != null
-                && testDriver.isTravis.equals("true")) {
+           && testDriver.isTravis.equals("true")) {
             assertEquals("jdbc:mysql://127.0.0.1/cs314", testDriver.dburl);
             assertEquals("travis", testDriver.username);
         } else if(testDriver.isDevelopment != null
-                && testDriver.isDevelopment.equals("development")) {
-            assertEquals("jdbc:mysql://127.0.0.1:some-port/cs314", testDriver.dburl);
+                  && testDriver.isDevelopment.equals("development")) {
+            assertEquals("jdbc:mysql://127.0.0.1:8098/cs314", testDriver.dburl);
             assertEquals("cs314-db", testDriver.username);
         } else {
             assertEquals("jdbc:mysql://faure.cs.colostate.edu/cs314", testDriver.dburl);
             assertEquals("cs314-db", testDriver.username);
         }
     }
-
+    
     @Test
-    public void testFindWithZeroLimit(){
+    public void testFindWithZeroLimit() throws Exception{
         limit = 0;
         limitQuery = "";
         testDriver = new Driver();
@@ -62,9 +62,9 @@ public class TestDriver {
         assertEquals(found, testDriver.found);
         assertEquals(limitQuery, testDriver.limitQuery);
     }
-
+    
     @Test
-    public void testFindException(){
+    public void testFindException() throws Exception{
         testDriver = new Driver();
         String except = "";
         try{
