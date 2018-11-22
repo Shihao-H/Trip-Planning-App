@@ -103,6 +103,7 @@ public class TestDriver {
         testDriver = new Driver();
         testDriver.setLimit(limit);
         testDriver.setSearch(match, filterQuery);
+
         assertEquals(expected, testDriver.search);
     }
     

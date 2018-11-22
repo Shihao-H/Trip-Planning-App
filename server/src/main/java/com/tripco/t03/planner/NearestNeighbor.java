@@ -46,7 +46,7 @@ class NearestNeighbor {
      * Getter method.
      */
     void getLegDistances(Long[] result){
-        System.arraycopy(tripDistances, 0, result, 0, result.length);
+        System.arraycopy(this.tripDistances, 0, result, 0, result.length);
     }
 
     /**
@@ -56,7 +56,7 @@ class NearestNeighbor {
     Long getTotalDistance(){
         return this.minTripDistance;
     }
-
+    
     /**
      * Calls Nearest neighbor for all starting points.
      * Sets the shortest trip to optTrip.
@@ -65,7 +65,7 @@ class NearestNeighbor {
      */
     void nearestNeighbor(){
         Integer[] nextTrip = new Integer[this.sortedIndexes.length];
-        for(int i = 0; i< sortedIndexes.length; i++){
+        for(int i = 0; i< this.sortedIndexes.length; i++){
             long newDistance = innerLoop(0, i, nextTrip);
             if(newDistance < this.minTripDistance){
                 this.minTripDistance = newDistance;
@@ -92,7 +92,8 @@ class NearestNeighbor {
             int next = findNearestPlace(currentLocation);
             this.notVisited[next] = false;
             this.legDistance[counter] = distanceGrid[currentLocation][next];
-            return distanceGrid[currentLocation][next] + innerLoop(counter + 1, next, temp);
+            return this.distanceGrid[currentLocation][next] + innerLoop(counter + 1, next,
+                                                                       temp);
         }else {
             this.legDistance[counter] = this.distanceGrid[currentLocation][temp[0]];
             setNotVisited();
@@ -106,16 +107,37 @@ class NearestNeighbor {
      * @return startPlace to the nearest place.
      */
     private int findNearestPlace(int from){
-        Long minDist = Long.MAX_VALUE;
+        long minDist = Long.MAX_VALUE;
         int result = 0;
-        for(int i = 0; i < sortedIndexes.length; i++ ) {
-            if(i != from) {
-                if ((minDist > distanceGrid[from][i]) &&(notVisited[i])){
-                    minDist = distanceGrid[from][i];
-                    result = i;
-                }
+        int index = from+1;
+        int mod = this.sortedIndexes.length;
+        for(index = index%mod; index != from; index= (index+1)%mod) {
+            if(isMin(minDist, from, index)) {
+                result = index;
+                minDist = getDistance(from, index);
             }
         }
         return result;
+    }
+    
+    /**
+     * Helper method to get distance.
+     * @param row int.
+     * @param col int.
+     * @return long.
+     */
+    private long getDistance(int row, int col){
+        return this.distanceGrid[row][col];
+    }
+    
+    /**
+     * Helper method.
+     * @param currentMin long.
+     * @param row int.
+     * @param col int.
+     * @return boolean, true if new distance is minimum.
+     */
+    private boolean isMin(Long currentMin, int row, int col){
+        return ((currentMin > getDistance(row, col)) &&(this.notVisited[col]));
     }
 }
