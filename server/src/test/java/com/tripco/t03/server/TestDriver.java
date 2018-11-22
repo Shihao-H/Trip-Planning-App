@@ -30,7 +30,7 @@ public class TestDriver {
     }
     
     @Test
-    public void testFind(){
+    public void testFind() throws Exception{
         testDriver = new Driver();
         int found = 3;
         testDriver.find(match, limit, filterQuery);
@@ -43,7 +43,7 @@ public class TestDriver {
             assertEquals("travis", testDriver.username);
         } else if(testDriver.isDevelopment != null
                   && testDriver.isDevelopment.equals("development")) {
-            assertEquals("jdbc:mysql://127.0.0.1:some-port/cs314", testDriver.dburl);
+            assertEquals("jdbc:mysql://127.0.0.1:8098/cs314", testDriver.dburl);
             assertEquals("cs314-db", testDriver.username);
         } else {
             assertEquals("jdbc:mysql://faure.cs.colostate.edu/cs314", testDriver.dburl);
@@ -52,7 +52,7 @@ public class TestDriver {
     }
     
     @Test
-    public void testFindWithZeroLimit(){
+    public void testFindWithZeroLimit() throws Exception{
         limit = 0;
         limitQuery = "";
         testDriver = new Driver();
@@ -64,7 +64,7 @@ public class TestDriver {
     }
     
     @Test
-    public void testFindException(){
+    public void testFindException() throws Exception{
         testDriver = new Driver();
         String except = "";
         try{

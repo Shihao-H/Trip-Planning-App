@@ -82,7 +82,7 @@ class NearestNeighbor {
      * Recursively finds a trip using nearest neighbor.
      * @param counter 1st empty element in current trip.
      * @param currentLocation   last element in array.
-     * @param temp Integer array of the current trip being buiilt.
+     * @param temp Integer array of the current trip being built.
      * @return int the total distance integer.
      */
     private Long innerLoop(int counter, int currentLocation, Integer[] temp) {

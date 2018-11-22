@@ -43,8 +43,7 @@ class OptionPanel extends Component {
             <div>
                 <Card>
                     <CardBody>
-                        <p>Options</p>
-                        {this.render2()}
+                        <p>Options</p>{this.render2()}
                     </CardBody>
                 </Card>
                 <Card>

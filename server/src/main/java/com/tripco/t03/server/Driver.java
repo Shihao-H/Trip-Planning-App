@@ -43,7 +43,7 @@ public class Driver {
             this.dburl = "jdbc:mysql://127.0.0.1/cs314";
             this.username = "travis";
         } else if(this.isDevelopment != null && this.isDevelopment.equals("development")) {
-            this.dburl = "jdbc:mysql://127.0.0.1:some-port/cs314";
+            this.dburl = "jdbc:mysql://127.0.0.1:8098/cs314";
             this.username = "cs314-db";
         } else {
             this.dburl = "jdbc:mysql://faure.cs.colostate.edu/cs314";

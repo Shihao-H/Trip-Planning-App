@@ -13,26 +13,17 @@ class InterOperate extends Component {
                     <p>{"Select another team's site."}</p>
                     <p>{"Host name:"}</p>
                     <p>{"black-bottle.cs.colostate.edu"}</p>
-                    <Input
-                        style={{width: "100%"}}
-                        type="text"
-                        placeholder="black-bottle.cs.colostate.edu"
-                        onChange={this.props.updateHost}
-                    />
+                    <Input style={{width: "100%"}} type="text"
+                           placeholder="black-bottle.cs.colostate.edu"
+                           onChange={this.props.updateHost}/>
                     <br/>
                     <p>{"Port:"}</p>
-                    <Input
-                        style={{width: "100%"}}
-                        type="text"
-                        placeholder="31403"
-                        onChange={this.props.updateOtherTeams}
-                    />
+                    <Input style={{width: "100%"}} type="text"
+                           placeholder="31403" onChange={this.props.updateOtherTeams}/>
                     <br/>
-                    <Button
-                        size='lg'
-                        className="btn-save btn-dark btn-outline-dark"
-                        onClick={this.props.updateInterOperate}
-                        type="button">{"Begin inter operate!"}</Button>
+                    <Button size='lg' className="btn-save btn-dark btn-outline-dark"
+                            onClick={this.props.updateInterOperate}
+                            type="button">{"Begin inter operate!"}</Button>
                 </CardBody>
             </Card>
         )
