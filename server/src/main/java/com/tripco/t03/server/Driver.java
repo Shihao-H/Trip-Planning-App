@@ -67,6 +67,10 @@ public class Driver {
      * @param match String phrase to match.
      * @param limit integer number of mx results to be shown.
      */
+    public void find(String match, int limit, String filter) throws SQLException,
+                                                                    ClassNotFoundException {
+        setDburlUserName();
+        setPassword();
         setLimit(limit);
         setSearch(match, filter);
         setCount(match, filter);
