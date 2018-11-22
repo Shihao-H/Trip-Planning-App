@@ -30,7 +30,7 @@ public class TestDriver {
     }
     
     @Test
-    public void testFind(){
+    public void testFind() throws Exception{
         testDriver = new Driver();
         int found = 3;
         testDriver.find(match, limit, filterQuery);
@@ -52,7 +52,7 @@ public class TestDriver {
     }
     
     @Test
-    public void testFindWithZeroLimit(){
+    public void testFindWithZeroLimit() throws Exception{
         limit = 0;
         limitQuery = "";
         testDriver = new Driver();
@@ -64,11 +64,19 @@ public class TestDriver {
     }
     
     @Test
-    public void testFindException(){
+    public void testFindException() throws Exception{
         testDriver = new Driver();
-        filterQuery = "AND continents IN (\"North America\")\n"
-                      + "AND type IN (\"heliport\")\n";
-        testDriver.find(match, limit, filterQuery);
+        String except = "";
+        try{
+            filterQuery = "AND continents IN (\"North America\")\n"
+                          + "AND type IN (\"heliport\")\n";
+            testDriver.find(match, limit, filterQuery);
+            } catch(Exception e){
+                except = e.toString();
+            }
+            String expected = "com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: "
+                              + "Unknown column \'continents\' in \'where clause\'";
+            assertEquals(except, expected);
     }
     
     @Test
@@ -118,4 +126,13 @@ public class TestDriver {
         testDriver.setCount(match, filterQuery);
         assertEquals(expected, testDriver.count);
     }
+    
+    @Test
+    public void testSetLimit(){
+        testDriver = new Driver();
+        testDriver.setLimit(3);
+        
+        assertEquals(testDriver.limitQuery, "limit 3");
+    }
+    
 }
