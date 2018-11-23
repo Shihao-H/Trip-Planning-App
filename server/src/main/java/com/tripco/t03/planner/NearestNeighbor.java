@@ -109,12 +109,12 @@ class NearestNeighbor {
     private int findNearestPlace(int from){
         long minDist = Long.MAX_VALUE;
         int result = 0;
-        int i = from+1;
+        int index = from+1;
         int mod = this.sortedIndexes.length;
-        for(i = i%mod; i != from; i= (i+1)%mod) {
-            if(isMin(minDist, from, i)) {
-                result = i;
-                minDist = getDistance(from, i);
+        for(index = index%mod; index != from; index= (index+1)%mod) {
+            if(isMin(minDist, from, index)) {
+                result = index;
+                minDist = getDistance(from, index);
             }
         }
         return result;
