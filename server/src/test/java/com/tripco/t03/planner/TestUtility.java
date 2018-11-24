@@ -64,4 +64,12 @@ public class TestUtility {
         int z=2;
         Assert.assertEquals(g,z);
     }
+
+    @Test
+    public void testStartNear(){
+        Uti = new Utility();
+        int[] arr3 = Uti.StartNear(0,grid,4);
+        int[] arr4 = new int[]{20,30,10,40};
+        Assert.assertEquals(arr3,arr4);
+    }
 }
