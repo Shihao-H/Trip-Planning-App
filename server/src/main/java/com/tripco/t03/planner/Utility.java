@@ -83,18 +83,18 @@ public class Utility {
     }
 
     /**
-     * Find the array of nearest neighbor for each starting point
+     * Find the array of nearest neighbor for each starting point.
      * @param head int.
      * @param disGrid double long.
-     * @param n int.
+     * @param n1 int.
      */
-    public int[] StartNear(int head, long[][] disGrid, int n) {
+    public int[] StartNear(int head, long[][] disGrid, int n1) {
         int count = 0;
-        int[] arr = new int[n];
+        int[] arr = new int[n1];
         arr[0] = head;
         count++;
-        long total[] = new long[n];
-        boolean[] visit = new boolean[n];
+        long total[] = new long[n1];
+        boolean[] visit = new boolean[n1];
         visit[head] = true;
         while (unvisitedCityLeft(visit)) {
             int index = getMin(disGrid[head], visit, total, head);
