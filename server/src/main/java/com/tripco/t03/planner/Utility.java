@@ -93,7 +93,7 @@ public class Utility {
         int[] arr = new int[n1];
         arr[0] = head;
         count++;
-        long total[] = new long[n1];
+        long[] total = new long[n1];
         boolean[] visit = new boolean[n1];
         visit[head] = true;
         while (unvisitedCityLeft(visit)) {
