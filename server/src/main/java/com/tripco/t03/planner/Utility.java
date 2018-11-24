@@ -47,13 +47,14 @@ public class Utility {
     }
 
     /**
-     * Find the distance for index array.
+     * Find the index of the minimum value of an array.
+     * Add up the distance.
      * @param numbers long array.
      * @param visit boolean array.
      * @param total long array.
      * @param k integer.
      */
-    private int getMin(long[] numbers, boolean[] visit, long[] total, int k) {
+    public int getMin(long[] numbers, boolean[] visit, long[] total, int k) {
         long minValue = -1;
         int i, index = -1;
 
@@ -80,5 +81,27 @@ public class Utility {
         return index;
     }
 
+    /**
+     * Find the array of nearest neighbor for each starting point
+     * @param head int.
+     * @param disGrid double long.
+     * @param n int.
+     */
+    public int[] StartNear(int head, long[][] disGrid, int n) {
+        int count = 0;
+        int[] arr = new int[n];
+        arr[0] = head;
+        count++;
+        long total[] = new long[n];
+        boolean[] visit = new boolean[n];
+        visit[head] = true;
+        while (unvisitedCityLeft(visit)) {
+            int index = getMin(disGrid[head], visit, total, head);
+            head = index;
+            arr[count] = index;
+            count++;
+        }
+        return arr;
+    }
 }
 
