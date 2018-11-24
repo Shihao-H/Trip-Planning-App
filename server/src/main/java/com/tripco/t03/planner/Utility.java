@@ -18,7 +18,7 @@ public class Utility {
         }
         return route;
     }
-    
+
     /**
      * Find the distance for index array.
      * @param arr Integer array.
@@ -32,5 +32,54 @@ public class Utility {
         }
         return dis;
     }
+
+    /**
+     * Check whether there is still unvisited place left or not.
+     * @param visit boolean array.
+     */
+    public boolean unvisitedCityLeft(boolean[] visit) {
+        boolean flag = false;
+        for (int i = 0; i < visit.length; i++) {
+            if (!visit[i]){
+                return true;}
+        }
+        return flag;
+    }
+
+    /**
+     * Find the distance for index array.
+     * @param numbers long array.
+     * @param visit boolean array.
+     * @param total long array.
+     * @param k1 integer.
+     */
+    public int getMin(long[] numbers, boolean[] visit, long[] total, int k1) {
+        long minValue = -1;
+        int i1; 
+        int index = -1;
+
+        for (i1 = 0; i1 < numbers.length; i1++) {
+            if (!visit[i1]) {
+                minValue = numbers[i1];
+                index = i1;
+                break;
+            }
+        }
+
+        while (i1 < numbers.length) {
+            if (numbers[i1] < minValue) {
+                if (!visit[i1]) {
+                    minValue = numbers[i1];
+                    index = i1;
+                }
+            }
+            i1++;
+        }
+
+        visit[index] = true;
+        total[k1] += minValue;
+        return index;
+    }
+
 }
 

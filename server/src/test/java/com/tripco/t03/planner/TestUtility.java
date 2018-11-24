@@ -40,4 +40,28 @@ public class TestUtility {
         Assert.assertEquals(ori,fi);
     }
 
+    @Test
+    public void testunvisitedcityleft(){
+        Uti = new Utility();
+        boolean[] arr = new boolean[]{true,true,false,true};
+        boolean bool1=Uti.unvisitedCityLeft(arr);
+        boolean bool2=true;
+        Assert.assertEquals(bool1, bool2);
+        boolean[] arr2 = new boolean[]{true,true,true,true};
+        bool1=Uti.unvisitedCityLeft(arr2);
+        bool2=false;
+        Assert.assertEquals(bool1, bool2);
+    }
+
+    @Test
+    public void testgetMin(){
+        Uti = new Utility();
+        long[] arr = new long[]{20,30,10,40};
+        boolean[] arr2 = new boolean[]{true,false,false,true};
+        long[] arr3 = new long[]{0,0,0,0};
+        int k=0;
+        int g=Uti.getMin(arr,arr2,arr3,k);
+        int z=2;
+        Assert.assertEquals(g,z);
+    }
 }
