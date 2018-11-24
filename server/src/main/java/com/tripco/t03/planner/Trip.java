@@ -1,5 +1,6 @@
 package com.tripco.t03.planner;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -116,7 +117,7 @@ public class Trip {
     /**
      * Creates an SVG containing the background and the legs of the trip.
      */
-    public String svg() throws Exception{
+    public String svg() throws IOException {
         LineDistance worldMap = new LineDistance();
         return worldMap.getBackground();
     }
