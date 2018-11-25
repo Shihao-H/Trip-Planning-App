@@ -1,18 +1,12 @@
 package com.tripco.t03.planner;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-/**
- * The Trip class supports TFFI so it can easily be converted to/from Json by Gson.
- *
- */
 
 public class Trip {
 
     // The variables in this class should reflect TFFI.
-    public int version = 4;
+    public int version = 5;
     public String type = "trip";
     public String title;
     public Option options;
@@ -25,9 +19,9 @@ public class Trip {
      */
     public Trip() {
         this.title = null;
-        this.options = new Option();
-        this.places = null;
-        this.distances = null;
+        this.options = null;
+        this.places = new ArrayList<>();
+        this.distances = new ArrayList<>();
         this.map = "";
     }
 
@@ -41,6 +35,7 @@ public class Trip {
         this.options = options;
         this.places = places;
         this.map = "";
+        this.distances = new ArrayList<>();
     }
 
     /**
@@ -64,15 +59,15 @@ public class Trip {
      * @param places ArrayList of Place objects.
      * Constructor with title.
      */
-
     public Trip(String title, Option options, ArrayList<Place> places){
         this.title=title;
         this.options = options;
         this.places = places;
         this.map = "";
+        this.distances = new ArrayList<>();
     }
 
-        /** The top level method that does planning.
+    /** The top level method that does planning.
      * At this point it just adds the map and distances for the places in order.
      * It might need to reorder the places in the future.
      */
@@ -97,7 +92,6 @@ public class Trip {
 
     /**
      * Setter for places ArrayList.
-     *
      * @param newPlaces Array of Places.
      */
     public void setPlace(Place[] newPlaces) {
@@ -112,16 +106,7 @@ public class Trip {
     public void setDistances(ArrayList<Long> distances){
         this.distances = distances;
     }
-
-
-    /**
-     * Creates an SVG containing the background and the legs of the trip.
-     */
-    public String svg() throws IOException {
-        LineDistance worldMap = new LineDistance();
-        return worldMap.getBackground();
-    }
-
+    
     /**
      * Returns the distances between consecutive places,
      * including the return to the starting point to make a round trip.
@@ -137,7 +122,11 @@ public class Trip {
         }
         return dist;
     }
-
+    
+    /**
+     * Helper method to plan user defined trip.
+     * @return ArrayList of Long.
+     */
     private ArrayList<Long> makeUserDefTrip() {
     
         ArrayList<Long> dist = new ArrayList<>();
@@ -155,7 +144,11 @@ public class Trip {
     
         return dist;
     }
-
+    
+    /**
+     * Helper method to plan normal trip.
+     * @return ArrayList of Long.
+     */
     private ArrayList<Long> makeNormalTrip() {
     
         ArrayList<Long> dist = new ArrayList<>();
