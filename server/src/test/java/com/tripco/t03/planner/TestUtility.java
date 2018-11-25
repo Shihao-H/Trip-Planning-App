@@ -12,9 +12,9 @@ public class TestUtility {
     @Before
     public void setup(){
         grid = new long[][]{{0L, 5L, 8L, 4L},
-                {5L, 0L, 4L, 8L},
-                {8L, 4L, 0L, 5L},
-                {4L, 8L, 5L, 0L}};
+                            {5L, 0L, 4L, 8L},
+                            {8L, 4L, 0L, 5L},
+                            {4L, 8L, 5L, 0L}};
         arr = new int[]{0, 1, 2, 3};
     }
 
@@ -63,5 +63,13 @@ public class TestUtility {
         int g=Uti.getMin(arr,arr2,arr3,k);
         int z=2;
         Assert.assertEquals(g,z);
+    }
+
+    @Test
+    public void testStartNear(){
+        Uti = new Utility();
+        int[] arr3 = Uti.StartNear(0,grid,4);
+        int[] arr4 = new int[]{0,3,2,1};
+        Assert.assertArrayEquals(arr3, arr4);
     }
 }
