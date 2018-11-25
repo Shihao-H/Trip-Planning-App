@@ -1,5 +1,5 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 const dev_port = 31403;
 const server_port = 8088;
@@ -41,4 +41,4 @@ module.exports = {
         options: { name: 'images/[name]-[hash:8].[ext]' }}
     ]
   }
-}
+};
