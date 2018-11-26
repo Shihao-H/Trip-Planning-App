@@ -24,9 +24,8 @@ class Trip extends Component {
                       updateOptions={this.props.updateOptions} updateOtherTeams={this.props.updateOtherTeams}
                       updateSearch={this.props.updateSearch} updateSelectAll={this.props.updateSelectAll}
                       updateSelected={this.props.updateSelected} updateTrip={this.props.updateTrip}/></Col>
-                <Col xs={"6"}><Add config={this.props.config} search={this.props.search} trip={this.props.trip}
-                                   updateOptions={this.props.updateOptions} updateTrip={this.props.updateTrip}
-                                   updateSearch={this.props.updateSearch}/></Col></Row>
+                <Col xs={"6"}><Add trip={this.props.trip} updateTrip={this.props.updateTrip}/>
+                </Col></Row>
                 <Row><Col><SearchBox config={this.props.config} search={this.props.search} trip={this.props.trip}
                                      updateOptions={this.props.updateOptions} updateSearch={this.props.updateSearch}
                                      updateTrip={this.props.updateTrip}/></Col></Row>

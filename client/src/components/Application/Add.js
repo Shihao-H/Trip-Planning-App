@@ -12,7 +12,7 @@ export class Add extends Component {
                 latitude: 0.00,
                 longitude: 0.00
             }
-            };
+        };
         this.addPlace = this.addPlace.bind(this);
         this.updatePlaces = this.updatePlaces.bind(this);
     }
@@ -32,7 +32,7 @@ export class Add extends Component {
 
     updatePlaces(field,value) {
         let place = this.state.place;
-        if(field==='latitude'|field==='longitude'){
+        if(field === 'latitude' || field === 'longitude'){
             value=parseFloat(value);
             place[field] = value;
         }
