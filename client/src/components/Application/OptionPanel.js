@@ -28,7 +28,6 @@ class OptionPanel extends Component {
             </Col>
             <Col xs={"4"}>
                 <MapOption config={this.props.config} options={this.props.options}
-                           trip={this.props.trip}
                            updateOptions={this.props.updateOptions}/>
             </Col>
         </Row>
