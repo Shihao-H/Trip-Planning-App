@@ -24,13 +24,10 @@ class OptionPanel extends Component {
             </Col>
             <Col xs={"4"}>
                 <Optimization config={this.props.config} options={this.props.options}
-                              search={this.props.search} trip={this.props.trip}
-                              updateOptions={this.props.updateOptions}
-                              updateSearch={this.props.updateSearch}/>
+                              trip={this.props.trip} updateOptions={this.props.updateOptions}/>
             </Col>
             <Col xs={"4"}>
                 <MapOption config={this.props.config} options={this.props.options}
-                           trip={this.props.trip}
                            updateOptions={this.props.updateOptions}/>
             </Col>
         </Row>
