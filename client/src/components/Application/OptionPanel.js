@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Card, CardBody} from 'reactstrap';
+import {Row, Col, Card, CardBody, Button} from 'reactstrap';
 import Attributes from "./Attributes"
 import InterOperate from "./InterOperate"
 import Optimization from "./Optimization";
@@ -12,7 +12,38 @@ import MapOption from "./MapOption";
 class OptionPanel extends Component {
     constructor(props) {
         super(props);
+        this.state = {ifDisplayUserDefinedInputFields: false, collapse: false,};
     }
+
+    generateOptionsButtons(type,optionName){
+        const buttons = this.props.config.type.map((optionValue) =>
+            <Button key={'options_button_' + type}
+                    className='btn-outline-dark options-button'
+                    active={this.props.options[optionName] === optionValue}
+                    value={optionValue}
+                    onClick={this.clickButton(optionName)}>
+                {optionValue.charAt(0).toUpperCase() + optionValue.slice(1)}
+            </Button>
+        );
+        return buttons;
+    }
+
+    clickButton(event,optionName) {
+        this.props.updateOptions(optionName, event.target.value);
+        if (event.target.value === 'user defined') {
+            this.setState({ifDisplayUserDefinedInputFields: true});
+        } else {
+            this.setState({ifDisplayUserDefinedInputFields: false});
+        }
+    }
+
+
+
+
+
+
+
+
 
     render2()
     {
