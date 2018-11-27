@@ -75,20 +75,32 @@ public class Search {
         StringBuilder query = new StringBuilder();
         if ((this.filters != null) && (this.filters.length != 0)) {
             for (Filter filter : this.filters) {
-                int valueSize = filter.values.length;
-                if (valueSize != 0) {
-                    query.append("AND ");
-                    if (filter.name.equalsIgnoreCase("continents")) {
-                        query.append(filter.name).append(".name IN (");
-                    } else {
-                        query.append(filter.name).append(" IN (");
-                    }
-                    for (int j = 0; j < valueSize - 1; j++)
-                        query.append("\"").append(filter.values[j]).append("\", ");
-                    query.append("\"").append(filter.values[valueSize - 1]).append("\")\n");
+                if(filter.values.length != 0) {
+                    query.append(build(filter));
                 }
             }
         }
+        return query.toString();
+    }
+    
+    /**
+     * Helper method to build query.
+     * @param filter Filter Object.
+     * @return String query.
+     */
+    private String build(Filter filter){
+        StringBuilder query = new StringBuilder();
+        int valueSize = filter.values.length;
+        query.append("AND ");
+        if (filter.name.equalsIgnoreCase("continents")) {
+            query.append(filter.name).append(".name IN (");
+        } else {
+            query.append(filter.name).append(" IN (");
+        }
+        for (int j = 0; j < valueSize - 1; j++) {
+            query.append("\"").append(filter.values[j]).append("\", ");
+        }
+        query.append("\"").append(filter.values[valueSize - 1]).append("\")\n");
         return query.toString();
     }
     
