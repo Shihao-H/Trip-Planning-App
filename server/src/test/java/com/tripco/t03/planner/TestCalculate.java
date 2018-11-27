@@ -27,6 +27,14 @@ public class TestCalculate {
         dist.setDistance();
         assertEquals(97, dist.distance, 1);
     }
+    
+    @Test
+    public void testPlacesMiles(){
+        Place origin = new Place("orig", "origin",40.582778, 105.055);
+        Place destination = new Place("dest", "destination", 40.618056, 103.2125);
+        
+        assertEquals(97, Calculate.calcDistance(origin, destination, "miles"), 1);
+    }
 
     @Test
     public void testMiles2(){
