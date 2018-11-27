@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import {Row, Col, Card, CardBody, Button, ButtonGroup, Collapse} from 'reactstrap';
+import {Row, Col, Card, CardBody, Button, ButtonGroup, Collapse, FormGroup, Label, Input, Form} from 'reactstrap';
 import Attributes from "./Attributes"
 import InterOperate from "./InterOperate"
-import Optimization from "./Optimization";
-import Options from "./Options";
-import MapOption from "./MapOption";
 
 /* Renders the Options.
  */
@@ -15,22 +12,16 @@ class OptionPanel extends Component {
     }
 
     generateOptionsButtons(type,optionName){
-        const buttons = this.props.config.type.map((optionValue) =>
+        const buttons = this.props.config[type].map((optionValue) =>
             <Button key={'options_button_' + type}
                     className='btn-outline-dark options-button'
                     active={this.props.options[optionName] === optionValue}
                     value={optionValue}
-                    onClick={this.clickButton(optionName)}>
+                    onClick={(event) => this.clickButton(event, optionName)}>
                 {optionValue.charAt(0).toUpperCase() + optionValue.slice(1)}
             </Button>
         );
         return buttons;
-    }
-
-    generateButtonGroups(buttons){
-        <ButtonGroup vertical>
-            {buttons}
-            </ButtonGroup>
     }
 
     clickButton(event,optionName) {
@@ -42,13 +33,35 @@ class OptionPanel extends Component {
         }
     }
 
+    renderUserDefinedForm()
+    {
+        return(
+            <FormGroup>
+                <br/>
+                <Label>Unit Name:</Label>
+                <Input type="text" placeholder="Enter unit name" onChange={event => {
+                    this.props.updateOptions('unitName', event.target.value)
+                }}/>
+                <Label>Unit Radius: </Label>
+                <Input type="text" placeholder="Enter unit radius"
+                       onChange={event => {
+                           this.props.updateOptions('unitRadius', event.target.value)
+                       }}/>
+            </FormGroup>
+        )
+    }
+
     render(){
         <div>
             <Card>
                 <CardBody>
                     <ButtonGroup vertical> {this.generateOptionsButtons("units","units")} </ButtonGroup>
+                    {this.state.ifDisplayUserDefinedInputFields && (
+                        <Form>
+                            {this.renderUserDefinedForm()}
+                        </Form>)}
                     <ButtonGroup vertical> {this.generateOptionsButtons("optimization","optimization")} </ButtonGroup>
-                    <ButtonGroup vertical> {this.generateOptionsButtons("map","mapForOption")} </ButtonGroup>
+                    <ButtonGroup vertical> {this.generateOptionsButtons("maps","mapForOption")} </ButtonGroup>
                     <Attributes config={this.props.config} display={this.props.display}
                                 updateAttributes={this.props.updateAttributes}/>
                     <InterOperate host={this.props.host} otherTeams={this.props.otherTeams}
