@@ -11,9 +11,9 @@ public class TestSearch {
     private String match;
     private int limit;
     private Filter[] filter;
-
+    
     @Before
-    public void setup(){
+    public void setup() {
         match = "poo";
         limit = 13;
         String name1 = "Type";
@@ -23,38 +23,38 @@ public class TestSearch {
         filter = new Filter[]{new Filter(name1, values1),
                               new Filter(name2, values2)};
     }
-
+    
     @Test
-    public void testDefaultSearch(){
+    public void testDefaultSearch() {
         search = new Search();
-
+        
         assertNull(search.match);
     }
-
+    
     @Test
-    public void testFalseDefault(){
+    public void testFalseDefault() {
         search = new Search();
-
+        
         assertNotEquals(match, search.match);
     }
-
+    
     @Test
-    public void testSearch(){
+    public void testSearch() {
         search = new Search(match);
-
+        
         assertEquals(match, search.match);
     }
-
-    @Test
-   public void testSearchMatchLimit(){
-        search = new Search(match, limit);
     
+    @Test
+    public void testSearchMatchLimit() {
+        search = new Search(match, limit);
+        
         Assert.assertTrue((search.match != null)
-                          && (search.limit>0));
+                          && (search.limit > 0));
     }
     
     @Test
-    public void testSearchMatchFilter(){
+    public void testSearchMatchFilter() {
         search = new Search(match, filter);
         
         Assert.assertTrue((search.match.equals("poo"))
@@ -62,12 +62,19 @@ public class TestSearch {
     }
     
     @Test
-    public void testSearchAll(){
+    public void testSearchAll() {
         search = new Search(match, limit, filter);
         
         Assert.assertTrue((search.match != null)
                           && (search.limit > 0)
-                          && (search.filters !=null));
+                          && (search.filters != null));
     }
-
+    
+    @Test
+    public void testGetQuery() {
+        search = new Search(match, limit, filter);
+        String expected = "AND Type IN (\"green\", \"brown\", \"yellow\")\n"
+                          + "AND continents.name IN (\"Large\", \"Small\", \"Massive\")\n";
+        assertEquals(expected, search.getQuery());
+    }
 }
