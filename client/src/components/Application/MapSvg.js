@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Card, Container, CardBody,  Button, Collapse} from 'reactstrap';
-import {Map, Polyline, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import {renderToStaticMarkup} from 'react-dom/server';
+import {Card, CardBody,  Button, Collapse} from 'reactstrap';
+import {Map, Polyline, GoogleApiWrapper} from 'google-maps-react';
 
 export class MapSvg extends Component {
     constructor(props) {
@@ -32,7 +31,7 @@ export class MapSvg extends Component {
         coordinates.push({lat: this.props.trip.places[0].latitude,
                           lng: this.props.trip.places[0].longitude});}
 
-        let map = (
+        return (
             <div style={{width: "10", height: "512"}}>
                 <Map
                     style={{width: "95%", height: "515", display:'flex', flexFlow: 'row nowrap'}}
@@ -46,7 +45,6 @@ export class MapSvg extends Component {
                 </Map>
             </div>
         );
-        return map;
     }
 
 
