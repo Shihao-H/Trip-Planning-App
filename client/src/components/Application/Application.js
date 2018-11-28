@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardBody, Container} from 'reactstrap';
+import {Container} from 'reactstrap';
 import {get} from '../../api/api';
 import DistanceCal from "./DistanceCal";
 import Info from './Info';

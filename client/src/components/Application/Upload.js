@@ -41,6 +41,7 @@ class Upload extends Component {
     handleSubmit(event) {
         event.preventDefault();
         let obj=this.props.trip;
+        obj.options.map = obj.options.mapForOption;
         if(this.props.otherTeams === null || this.props.host === null){
             request(obj,'plan').then((Fi)=>
             {
