@@ -20,10 +20,10 @@ public class ThreeOpt {
 
 
     /**
-     * Reverses array.
+     * reverses array.
      * @param arr Integer array.
      */
-    public void ReverseArray(int[] arr)
+    public void reverseArray(int[] arr)
     {
         for(int i = 0; i < arr.length / 2; i++)
         {
@@ -34,12 +34,12 @@ public class ThreeOpt {
     }
 
     /**
-     * Section array.
+     * section array.
      * @param i Integer.
      * @param j Integer.
      * @param arr Integer array.
      */
-    public int[] Section(int i, int j, int[] arr)
+    public int[] section(int i, int j, int[] arr)
     {
         int[] section = new int[j-i+1];
         int cout=0;
@@ -53,16 +53,16 @@ public class ThreeOpt {
 
 
     /**
-     * Replace part of original array.
-     * @param i Integer.
-     * @param j Integer.
+     * replace part of original array.
+     * @param i1 Integer.
+     * @param j1 Integer.
      * @param temp Integer array.
      * @param bestpath Integer array.
      */
-    public void Replace(int i, int j, int[] temp, int[] bestpath)
+    public void replace(int i1, int j1, int[] temp, int[] bestpath)
     {
         int index=0;
-        for(int k = i; k <= j; k++)
+        for(int k = i1; k <= j1; k++)
         {
             bestpath[k]=temp[index];
             index++;
@@ -73,20 +73,20 @@ public class ThreeOpt {
 
 
     /**
-     * Combine two arrays.
+     * combine two arrays.
      * @param a Integer array,
      * @param b Integer array.
      */
-    public int[] Combine(int[] a,int[] b)
+    public int[] combine(int[] a1,int[] b1)
     {
-        int[] newPath = new int[a.length+b.length];
-        for(int i=0;i<a.length;i++){
-            newPath[i]=a[i];
+        int[] newPath = new int[a1.length+b1.length];
+        for(int i=0;i<a1.length;i++){
+            newPath[i]=a1[i];
         }
         int cout=0;
-        for(int j=a.length;j<newPath.length;j++)
+        for(int j=a1.length;j<newPath.length;j++)
         {
-            newPath[j]=b[cout];
+            newPath[j]=b1[cout];
             cout++;
         }
         return newPath;
