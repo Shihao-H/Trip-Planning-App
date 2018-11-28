@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Card, CardBody, Button, ButtonGroup, FormGroup, Label, Input, Form} from 'reactstrap';
-import Attributes from "./Attributes"
+import {Row, Col, Card, CardBody, Button, ButtonGroup, FormGroup, Input, Form} from 'reactstrap';
 import InterOperate from "./InterOperate"
 
 /* Renders the Options.
@@ -9,10 +8,15 @@ import InterOperate from "./InterOperate"
 class OptionPanel extends Component {
     constructor(props) {
         super(props);
-        this.state = {ifDisplayUserDefinedInputFields: false, collapse: false,};
+        this.state = {ifDisplayUserDefinedInputFields: false};
+        this.generateOptionsButtons = this.generateOptionsButtons.bind(this);
+        this.clickButton = this.clickButton.bind(this);
+        this.generateUserDefinedForm = this.generateUserDefinedForm.bind(this);
+        this.renderUserDefinedForm = this.renderUserDefinedForm.bind(this);
+        this.renderGenericOptions = this.renderGenericOptions.bind(this);
     }
 
-    generateOptionsButtons(type,optionName){
+    generateOptionsButtons(type, optionName) {
         let optionValues = [];
         this.props.config[type].map((optionObject) =>
             {optionValues.push((optionName === "optimization") ? optionObject.label : optionObject)});
@@ -28,22 +32,23 @@ class OptionPanel extends Component {
                 </Button>));
     }
 
-    clickButton(event,optionName) {
+    clickButton(event, optionName) {
         this.props.updateOptions(optionName, event.target.value);
         let value;
         (event.target.value === 'user defined') ? value = true : value = false;
         this.setState({ifDisplayUserDefinedInputFields: value});
     }
 
-    generateUserDefinedForm(placeHolder, forWhat){
-        return(
+    generateUserDefinedForm(placeHolder, forWhat) {
+        return (
             <Input type="text" placeholder={placeHolder}
-                   onChange={event => {this.props.updateOptions(forWhat, event.target.value)}}/>)
+                   onChange={event => {
+                       this.props.updateOptions(forWhat, event.target.value)
+                   }}/>)
     }
 
-    renderUserDefinedForm()
-    {
-        return(
+    renderUserDefinedForm() {
+        return (
             <FormGroup>
                 {this.generateUserDefinedForm("Enter unit name", "unitName")}
                 {this.generateUserDefinedForm("Enter unit radius", "unitRadius")}
@@ -51,30 +56,27 @@ class OptionPanel extends Component {
         )
     }
 
-    renderGenericOptions(){
-        return(
-            <Row>
-                <Col><ButtonGroup vertical>{this.generateOptionsButtons("units", "units")}</ButtonGroup>
-                {this.state.ifDisplayUserDefinedInputFields && (
-                    <Form>{this.renderUserDefinedForm()}</Form>)}<br/></Col>
-                <Col><ButtonGroup vertical>{this.generateOptionsButtons("optimization", "optimization")}
-                </ButtonGroup></Col>
-                <Col><ButtonGroup vertical>{this.generateOptionsButtons("maps", "mapForOption")}</ButtonGroup></Col>
-            </Row>
+    renderGenericOptions(suppose, actual) {
+        return (
+            <Col xs="6"><Card><CardBody>
+                <p>{"Select the " + suppose + " you wish to use."}</p>
+                <ButtonGroup vertical>{this.generateOptionsButtons(suppose, actual)}</ButtonGroup>
+                {(suppose === "units") && this.state.ifDisplayUserDefinedInputFields && (
+                    <Form>{this.renderUserDefinedForm()}</Form>)}<br/>
+            </CardBody></Card></Col>
         )
     }
 
     render() {
         return (
-            <div><Card><CardBody>
-                        {this.renderGenericOptions()}
-                        <Attributes config={this.props.config} display={this.props.display}
-                                    updateAttributes={this.props.updateAttributes}/>
-                        <InterOperate host={this.props.host} otherTeams={this.props.otherTeams}
-                                      updateHost={this.props.updateHost}
-                                      updateInterOperate={this.props.updateInterOperate}
-                                      updateOtherTeams={this.props.updateOtherTeams}/>
-                    </CardBody></Card></div>);
+            <div><Card><CardBody><Row>
+                {this.renderGenericOptions("units", "units")}
+                {this.renderGenericOptions("optimization", "optimization")}
+                {this.renderGenericOptions("maps", "mapForOption")}
+                <Col><InterOperate updateHost={this.props.updateHost}
+                                   updateInterOperate={this.props.updateInterOperate}
+                                   updateOtherTeams={this.props.updateOtherTeams}/></Col>
+            </Row></CardBody></Card></div>);
     }
 }
 

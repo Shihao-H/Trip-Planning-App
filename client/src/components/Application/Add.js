@@ -25,7 +25,7 @@ export class Add extends Component {
             latitude:this.state.place.latitude,
             longitude:this.state.place.longitude
         };
-        let temp=this.props.trip.places;
+        let temp=this.props.places;
         temp.push(copy);
         this.props.updateTrip('places',temp);
     }
