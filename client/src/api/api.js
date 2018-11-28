@@ -4,7 +4,9 @@ function get_port() {
     process.env.dev
 }
 
-export async function request(body, type, port=get_port(), host=location.hostname){
+export async function request(body, type, port, host){
+  if(!port) port=get_port();
+  if(!host) host=location.hostname;
   return fetch('http://' + host + ":" + port + '/' + type, {
     method:"POST",
     body: JSON.stringify(body)
