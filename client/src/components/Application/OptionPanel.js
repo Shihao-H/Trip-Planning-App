@@ -40,13 +40,10 @@ class OptionPanel extends Component {
             <FormGroup>
                 <br/><Label>Unit Name:</Label>
                 <Input type="text" placeholder="Enter unit name" onChange={event => {
-                    this.props.updateOptions('unitName', event.target.value)
-                }}/>
+                    this.props.updateOptions('unitName', event.target.value)}}/>
                 <Label>Unit Radius: </Label>
                 <Input type="text" placeholder="Enter unit radius"
-                       onChange={event => {
-                           this.props.updateOptions('unitRadius', event.target.value)
-                       }}/>
+                       onChange={event => {this.props.updateOptions('unitRadius', event.target.value)}}/>
             </FormGroup>
         )
     }
