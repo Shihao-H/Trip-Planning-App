@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Button, Input, Col, Card, CardBody, ButtonGroup, Collapse, Row, FormGroup} from 'reactstrap';
 import {request} from "../../api/api";
 
@@ -7,22 +7,22 @@ export class DistanceCal extends Component {
         super(props);
         this.state = {
             distances: {
-                type          : "distance",
-                version       : 5,
-                unitName      :"",
-                unitRadius    :0.0,
-                origin        : {latitude:"", longitude:"",},
-                destination   : {latitude:"", longitude:"",},
-                units         : "miles",
-                distance      : 0
+                type: "distance",
+                version: 5,
+                unitName: "",
+                unitRadius: 0.0,
+                origin: {latitude: "", longitude: "",},
+                destination: {latitude: "", longitude: "",},
+                units: "miles",
+                distance: 0
             },
             collapse: false,
             ifDisplayUserDefinedInputFields: false,
         };
         this.updateLoc = this.updateLoc.bind(this);
         this.updateDistance = this.updateDistance.bind(this);
-        this.Calculate= this.Calculate.bind(this);
-        this.clickUnit= this.clickUnit.bind(this);
+        this.Calculate = this.Calculate.bind(this);
+        this.clickUnit = this.clickUnit.bind(this);
         this.dropdown = this.dropdown.bind(this);
         this.Display = this.Display.bind(this);
         this.unitButtGroup = this.unitButtGroup.bind(this);
@@ -30,54 +30,48 @@ export class DistanceCal extends Component {
         this.displayUserOptions = this.displayUserOptions.bind(this);
     }
 
-    updateLoc(field,value,origin) {
-        if(origin===false){
+    updateLoc(field, value, origin) {
+        if (origin === false) {
             let distances = this.state.distances.origin;
             distances[field] = value;
             this.setState(distances);
         }
-        else
-        {
+        else {
             let distances = this.state.distances.destination;
             distances[field] = value;
             this.setState(distances);
         }
     }
 
-    dropdown()
-    {
+    dropdown() {
         this.setState({collapse: !this.state.collapse})
     }
 
-    clickUnit(event){
+    clickUnit(event) {
         this.updateDistance('units', event.target.value);
-        if(event.target.value === 'user defined'){
+        if (event.target.value === 'user defined') {
             this.setState({ifDisplayUserDefinedInputFields: true});
         } else {
             this.setState({ifDisplayUserDefinedInputFields: false});
         }
     }
 
-    Display()
-    {
-        if(this.state.distances.unitName!=="")
+    Display() {
+        if (this.state.distances.unitName !== "")
             return this.state.distances.unitName;
         else
             return this.state.distances.units;
     }
 
-    updateDistance(field,value)
-    {
+    updateDistance(field, value) {
         let obj = this.state.distances;
         obj[field] = value;
         this.setState(obj);
     }
 
-    Calculate()
-    {
-        request(this.state.distances,'distance').then((response)=>
-        {
-            this.updateDistance('distance',response.distance);
+    Calculate() {
+        request(this.state.distances, 'distance').then((response) => {
+            this.updateDistance('distance', response.distance);
         });
     }
 
@@ -97,59 +91,55 @@ export class DistanceCal extends Component {
 
     inputGroup() {
         return <Col md={6}>
-            <Input type="text" placeholder="Origin ex.lat"
-                   onChange={(e) => this.updateLoc('latitude', e.target.value,false)}/>
-            <Input type="text" placeholder="Origin ex.lon"
-                   onChange={(e) => this.updateLoc('longitude', e.target.value, false)}/>
-            <Input type="text" placeholder="Des ex.lat"
-                   onChange={(e) => this.updateLoc('latitude', e.target.value,true)}/>
-            <Input type="text" placeholder="Des ex.lat"
-                   onChange={(e) => this.updateLoc('longitude', e.target.value,true)}/>
+            {this.generateSomeInputForm("Origin ex.latitude", 'latitude', false)}
+            {this.generateSomeInputForm("Origin ex.longitude", 'longitude', false)}
+            {this.generateSomeInputForm("Destination ex.latitude", 'latitude', true)}
+            {this.generateSomeInputForm("Destination ex.longitude", 'longitude', true)}
             <Button type={"button"} onClick={this.Calculate}>Calculate</Button>
             <p>{"Final distance " + this.state.distances.distance + " "}{this.Display()}</p>
         </Col>
     }
 
+    generateUserDefinedForm(placeHolder, forWhat) {
+        return (
+            <Input type="text" placeholder={placeHolder}
+                   onChange={event => {
+                       this.updateDistance(forWhat, event.target.value)
+                   }}/>)
+    }
+
+    generateSomeInputForm(placeHolder, forWhat, boolean) {
+        return (
+            <Input type="text" placeholder={placeHolder}
+                   onChange={(e) => this.updateLoc(forWhat, e.target.value, boolean)}/>)
+    }
+
     displayUserOptions() {
-        return <form>
+        return (
             <FormGroup>
-                <label>
-                    Unit Name:
-                </label>
-                <Input type="text" placeholder="Enter unit name" onChange={event =>
-                {this.updateDistance('unitName', event.target.value)}}
-                />
+                {this.generateUserDefinedForm("Enter unit name", "unitName")}
+                {this.generateUserDefinedForm("Enter unit radius", "unitRadius")}
             </FormGroup>
-            <FormGroup>
-                <label>Unit Radius: </label>
-                <Input type="text" placeholder="Enter unit radius"
-                       onChange={event => {this.updateDistance('unitRadius', event.target.value)}}
-                />
-            </FormGroup>
-        </form>
+        )
     }
 
     render() {
         return (
-            <div>
-                <Card>
-                    <CardBody>
-                        <Button onClick={this.dropdown}>Calculate Your Own</Button>
-                        <Collapse isOpen = {this.state.collapse}>
-                            <Row>
-                                {this.inputGroup()}
-                                <Col md={6}>
-                                    <ButtonGroup size="lg" vertical>
-                                        {this.unitButtGroup()}
-                                    </ButtonGroup>
-                                    <p>{' '}</p>
-                                    {this.state.ifDisplayUserDefinedInputFields && (this.displayUserOptions()) }
-                                </Col>
-                            </Row>
-                        </Collapse>
-                    </CardBody>
-                </Card>
-            </div>
+            <div><Card><CardBody>
+                <Button onClick={this.dropdown}>Calculate Your Own</Button>
+                <Collapse isOpen={this.state.collapse}>
+                    <Row>
+                        {this.inputGroup()}
+                        <Col md={6}>
+                            <ButtonGroup size="lg" vertical>
+                                {this.unitButtGroup()}
+                            </ButtonGroup>
+                            <p>{' '}</p>
+                            {this.state.ifDisplayUserDefinedInputFields && (this.displayUserOptions())}
+                        </Col>
+                    </Row>
+                </Collapse>
+            </CardBody></Card></div>
         )
     }
 }
