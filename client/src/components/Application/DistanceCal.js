@@ -19,6 +19,7 @@ export class DistanceCal extends Component {
             collapse: false,
             ifDisplayUserDefinedInputFields: false,
         };
+
         this.updateLoc = this.updateLoc.bind(this);
         this.updateDistance = this.updateDistance.bind(this);
         this.Calculate = this.Calculate.bind(this);
@@ -63,10 +64,8 @@ export class DistanceCal extends Component {
             return this.state.distances.units;
     }
 
-    updateDistance(field, value) {
-        let obj = this.state.distances;
-        obj[field] = value;
-        this.setState(obj);
+    updateDistance(field, value){
+        this.setState(this.state.distance[field], value);
     }
 
     Calculate() {
@@ -131,9 +130,7 @@ export class DistanceCal extends Component {
                     <Row>
                         {this.inputGroup()}
                         <Col md={6}>
-                            <ButtonGroup size="lg" vertical>
-                                {this.unitButtGroup()}
-                            </ButtonGroup>
+                            <ButtonGroup size="lg" vertical>{this.unitButtGroup()}</ButtonGroup>
                             <p>{' '}</p>
                             {this.state.ifDisplayUserDefinedInputFields && (this.displayUserOptions())}
                         </Col>
