@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
 import {Container} from 'reactstrap';
 import {get} from '../../api/api';
-import DistanceCal from "./DistanceCal";
-import Info from './Info';
-import Trip from "./Trip";
 import HomePage from "./HomePage";
-import OptionPanel from "./OptionPanel";
-import MapSvg from "./MapSvg";
-import Itinerary from "./Itinerary";
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -179,33 +173,6 @@ class Application extends Component {
     updateHost(event) {
         this.setState({host: event.target.value});
 
-    }
-
-    renderDefault() {
-        if (!this.state.config) {
-            return <div/>
-        }
-        return (
-            <Container id="Application">
-                <Info/>
-                <Trip config={this.state.config} display={this.state.display}
-                      host={this.state.host} otherTeams={this.state.otherTeams}
-                      search={this.state.search} selectAll={this.state.selectAll}
-                      selected={this.state.selected} trip={this.state.trip}
-                      attributes={this.state.attributes}
-                      clearConfig={this.state.clearConfig} LoadFile={this.LoadFile}
-                      updateAttributes={this.updateAttributes}
-                      checkAttributes={this.checkAttributes}
-                      options={this.state.trip.options}
-                      updateInterOperate={this.updateInterOperate}
-                      updateHost={this.updateHost} updateOtherTeams={this.updateOtherTeams}
-                      updateTrip={this.updateTrip}
-                      updateOptions={this.updateOptions}
-                      updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
-                      updateSelected={this.updateSelected} updateMap={this.updateMap} map={this.state.trip.map}/>
-
-            </Container>
-        )
     }
 
     render() {
