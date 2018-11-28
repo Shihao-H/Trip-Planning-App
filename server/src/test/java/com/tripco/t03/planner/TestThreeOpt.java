@@ -29,9 +29,9 @@ public class TestThreeOpt {
     @Test
     public void testReverse(){
         opt = new ThreeOpt(arr, grid);
-        int [] arr3=opt.ReverseArray(opt.index);
+        opt.ReverseArray(opt.index);
         int[] arr2 = new int[]{3, 2, 1, 0};
-        Assert.assertArrayEquals(arr2, arr3);
+        Assert.assertArrayEquals(arr2, opt.index);
     }
 
     @Test
