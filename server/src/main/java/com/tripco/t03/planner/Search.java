@@ -73,14 +73,25 @@ public class Search {
      */
     public String getQuery() {
         StringBuilder query = new StringBuilder();
-        if ((this.filters != null) && (this.filters.length != 0)) {
-            for (Filter filter : this.filters) {
-               if(filter.values.length != 0){
-                   query.append(buildQuery(filter));
-               }
+        int index = 0;
+        while (hasFilter(index)) {
+            if(this.filters[index].values.length != 0){
+                query.append(buildQuery(this.filters[index]));
             }
+            index+=1;
         }
         return query.toString();
+    }
+    
+    /**
+     * Helper method.
+     * @param index int.
+     * @return true if there is another filter.
+     */
+    private boolean hasFilter(int index){
+         return ((this.filters != null)
+                 && (this.filters.length != 0)
+                 && (index != this.filters.length));
     }
     
     /**
