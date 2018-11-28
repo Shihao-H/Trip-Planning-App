@@ -40,8 +40,8 @@ public class Utility {
     public boolean unvisitedCityLeft(boolean[] visit) {
         boolean flag = false;
         for (int i = 0; i < visit.length; i++) {
-            if (!visit[i])
-                return true;
+            if (!visit[i]){
+                return true;}
         }
         return flag;
     }
@@ -52,48 +52,49 @@ public class Utility {
      * @param numbers long array.
      * @param visit boolean array.
      * @param total long array.
-     * @param k integer.
+     * @param k1 integer.
      */
-    public int getMin(long[] numbers, boolean[] visit, long[] total, int k) {
+    public int getMin(long[] numbers, boolean[] visit, long[] total, int k1) {
         long minValue = -1;
-        int i, index = -1;
+        int i1; 
+        int index = -1;
 
-        for (i = 0; i < numbers.length; i++) {
-            if (!visit[i]) {
-                minValue = numbers[i];
-                index = i;
+        for (i1 = 0; i1 < numbers.length; i1++) {
+            if (!visit[i1]) {
+                minValue = numbers[i1];
+                index = i1;
                 break;
             }
         }
 
-        while (i < numbers.length) {
-            if (numbers[i] < minValue) {
-                if (!visit[i]) {
-                    minValue = numbers[i];
-                    index = i;
+        while (i1 < numbers.length) {
+            if (numbers[i1] < minValue) {
+                if (!visit[i1]) {
+                    minValue = numbers[i1];
+                    index = i1;
                 }
             }
-            i++;
+            i1++;
         }
 
         visit[index] = true;
-        total[k] += minValue;
+        total[k1] += minValue;
         return index;
     }
 
     /**
-     * Find the array of nearest neighbor for each starting point
+     * Find the array of nearest neighbor for each starting point.
      * @param head int.
      * @param disGrid double long.
-     * @param n int.
+     * @param n1 int.
      */
-    public int[] StartNear(int head, long[][] disGrid, int n) {
+    public int[] StartNear(int head, long[][] disGrid, int n1) {
         int count = 0;
-        int[] arr = new int[n];
+        int[] arr = new int[n1];
         arr[0] = head;
         count++;
-        long total[] = new long[n];
-        boolean[] visit = new boolean[n];
+        long[] total = new long[n1];
+        boolean[] visit = new boolean[n1];
         visit[head] = true;
         while (unvisitedCityLeft(visit)) {
             int index = getMin(disGrid[head], visit, total, head);
