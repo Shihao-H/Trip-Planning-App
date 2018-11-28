@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, DownloadButton, Col, Row} from "reactstrap";
+import {Button} from "reactstrap";
 
 class SaveTrip extends Component {
     constructor(props) {
@@ -26,7 +26,11 @@ class SaveTrip extends Component {
     SaveMap() {
         let ele = document.createElement('a');
         ele.setAttribute('href', 'data:text/plain;charset=ytf-8,' + this.props.map);
-        ele.setAttribute('download', 'download.svg');
+        if (this.props.trip.options.mapForOption === "svg") {
+            ele.setAttribute('download', 'download.svg');
+        } else {
+            ele.setAttribute('download', 'download.kml');
+        }
         document.body.appendChild(ele);
         ele.click();
         document.body.removeChild(ele);

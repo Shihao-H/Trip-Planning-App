@@ -22,7 +22,10 @@ class OptionPanel extends Component {
                     className='btn-outline-dark options-button'
                     active={this.props.options[optionName] === optionValue}
                     onClick={(event) => this.clickButton(event, optionName)}>
-                {optionValue.charAt(0).toUpperCase() + optionValue.slice(1)}</Button>));
+                {(optionValue === "svg") ? optionValue = "Static" :
+                    (optionValue === "kml" ? optionValue = "Interactive" :
+                        optionValue.charAt(0).toUpperCase() + optionValue.slice(1))}
+                </Button>));
     }
 
     clickButton(event,optionName) {
