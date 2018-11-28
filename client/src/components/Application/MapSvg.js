@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Card, Container, CardBody,  Button, Collapse} from 'reactstrap';
-import {Map, Polyline, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Card, CardBody,  Button, Collapse} from 'reactstrap';
+import {Map, Polyline, GoogleApiWrapper} from 'google-maps-react';
 import {renderToStaticMarkup} from 'react-dom/server';
 
 export class MapSvg extends Component {
@@ -24,13 +24,13 @@ export class MapSvg extends Component {
 
     kml() {
         const coordinates = [];
-        for (let i = 0; i < this.props.trip.places.length; i++) {
-            coordinates.push({lat: this.props.trip.places[i].latitude,
-                              lng: this.props.trip.places[i].longitude});
+        for (let i = 0; i < this.props.places.length; i++) {
+            coordinates.push({lat: this.props.places[i].latitude,
+                              lng: this.props.places[i].longitude});
         }
-        if (this.props.trip.places.length > 0) {
-        coordinates.push({lat: this.props.trip.places[0].latitude,
-                          lng: this.props.trip.places[0].longitude});}
+        if (this.props.places.length > 0) {
+        coordinates.push({lat: this.props.places[0].latitude,
+                          lng: this.props.places[0].longitude});}
 
         let map = (
             <div style={{width: "10", height: "512"}}>
@@ -57,7 +57,7 @@ export class MapSvg extends Component {
                 <Collapse isOpen={this.state.collapse}>
                     <Card>
                         <CardBody>
-                            {this.props.options.mapForOption === "svg" ? this.svg() : this.kml()}
+                            {this.props.mapForOption === "svg" ? this.svg() : this.kml()}
                         </CardBody>
                     </Card>
                 </Collapse>

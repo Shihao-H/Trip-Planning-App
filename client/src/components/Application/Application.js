@@ -6,6 +6,8 @@ import Info from './Info';
 import Trip from "./Trip";
 import HomePage from "./HomePage";
 import OptionPanel from "./OptionPanel";
+import MapSvg from "./MapSvg";
+import Itinerary from "./Itinerary";
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -201,10 +203,7 @@ class Application extends Component {
                       updateOptions={this.updateOptions}
                       updateSearch={this.updateSearch} updateSelectAll={this.updateSelectAll}
                       updateSelected={this.updateSelected} updateMap={this.updateMap} map={this.state.trip.map}/>
-                <DistanceCal config={this.state.config} options={this.state.trip.options}
-                             search={this.state.search} trip={this.state.trip}
-                             updateOptions={this.updateOptions} updateSearch={this.updateSearch}
-                             updateTrip={this.updateTrip}/>
+
             </Container>
         )
     }
@@ -216,9 +215,16 @@ class Application extends Component {
         return (
             <Container id="Application">
                 <HomePage config={this.state.config} display={this.state.display} options={this.state.trip.options}
-                          updateAttributes={this.state.updateAttributes} updateOptions={this.state.updateOptions}
-                          updateHost={this.state.updateHost} updateOtherTeams={this.state.updateOtherTeams}
-                          updateInterOperate={this.state.updateInterOperate}/>
+                          updateAttributes={this.updateAttributes} updateOptions={this.updateOptions}
+                          updateHost={this.updateHost} updateOtherTeams={this.updateOtherTeams}
+                          updateInterOperate={this.updateInterOperate}
+                          map={this.state.trip.map} mapForOption={this.state.trip.options.mapForOption}
+                          places={this.state.trip.places} selected={this.state.selected}
+                          updateSelected={this.updateSelected} attributes={this.state.attributes}
+                          selectAll={this.state.selectAll} updateSelectAll={this.updateSelectAll}
+                          distances={this.state.trip.distances} title={this.state.trip.title}
+                          updateTrip={this.updateTrip}
+                />
             </Container>
         )
     }

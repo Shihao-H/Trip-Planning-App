@@ -50,7 +50,7 @@ export default class Developer extends Component {
     teamImage() {
         return (
             <CardBody>
-                <CardImg width="50%" src={Team} alt="Team image"/>
+                <CardImg top width="10%" src={Team} alt="Team image"/>
             </CardBody>
         )
     }

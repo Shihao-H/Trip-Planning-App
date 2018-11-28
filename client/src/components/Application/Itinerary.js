@@ -139,7 +139,7 @@ class Itinerary extends Component {
         let i = 0;
         return <tr key={"row_leg"}>
             <th scope={"row"} key={"header_leg"}>Leg Distances</th>
-            {this.props.trip.distances.map((distance) => <td
+            {this.props.distances.map((distance) => <td
                 key={"distance_" + i++}>{distance}</td>)}
         </tr>;
     }
@@ -147,9 +147,9 @@ class Itinerary extends Component {
     tableTotal(){
         let i = 0;
         let totalDistance = [];
-        for(let i = 0; i < this.props.trip.distances.length; i ++){
-            if(i === 0) totalDistance[0] = this.props.trip.distances[0];
-            else totalDistance[i] = totalDistance[i-1] + this.props.trip.distances[i];
+        for(let i = 0; i < this.props.distances.length; i ++){
+            if(i === 0) totalDistance[0] = this.props.distances[0];
+            else totalDistance[i] = totalDistance[i-1] + this.props.distances[i];
         }
         return <tr key={"row_total"}>
             <th scope={"row"} key={"header_total"}>Total Distances</th>
@@ -176,7 +176,7 @@ class Itinerary extends Component {
                 <Collapse isOpen={this.state.collapse}>
                     <Card>
                         <CardBody>
-                            <p>{this.props.trip.title}</p>
+                            <p>{this.props.title}</p>
                             <Table className="Table" responsive hover>
                                 <tbody className="Body">{this.createTable()}</tbody>
                             </Table>

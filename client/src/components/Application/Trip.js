@@ -35,7 +35,8 @@ class Trip extends Component {
                                        checkAttributes={this.props.checkAttributes} updateHost={this.props.updateHost}
                                        updateOtherTeams={this.props.updateOtherTeams} updateInterOperate={this.props.updateInterOperate}/>
                 </Col></Row>
-                <Row><Col><MapSvg map={this.props.map} options={this.props.options} trip={this.props.trip}/></Col>
+                <Row><Col><MapSvg map={this.props.map} mapForOption={this.props.options.mapForOption}
+                                        places={this.props.trip.places}/></Col>
                     <Col><Itinerary config={this.props.config} attributes={this.props.attributes} selectAll={this.props.selectAll}
                                     updateAttributes={this.props.updateAttributes} selected={this.props.selected} trip={this.props.trip}
                                     places={this.props.trip.places} updateOptions={this.props.updateOptions} updateSelectAll={this.props.updateSelectAll}
