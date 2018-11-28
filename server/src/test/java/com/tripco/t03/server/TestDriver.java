@@ -120,8 +120,7 @@ public class TestDriver {
         testDriver.setIsTravis("true");
         testDriver.setDburlUserName();
         
-        assertTrue(testDriver.dburl.equalsIgnoreCase("jdbc:mysql://127.0.0.1/cs314")
-                  && testDriver.username.equalsIgnoreCase("travis"));
+        assertTrue(testDriver.username.equalsIgnoreCase("travis"));
     }
     
     @Test
@@ -130,8 +129,7 @@ public class TestDriver {
         testDriver.setIsDevelopment("development");
         testDriver.setDburlUserName();
         
-        assertTrue(testDriver.dburl.equalsIgnoreCase("jdbc:mysql://127.0.0.1:8098/cs314")
-                  && testDriver.username.equalsIgnoreCase("cs314-db"));
+        assertTrue(testDriver.username.equalsIgnoreCase("cs314-db"));
     }
     
     @Test
