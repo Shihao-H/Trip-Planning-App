@@ -35,15 +35,15 @@ public class ThreeOpt {
 
     /**
      * section array.
-     * @param i Integer.
-     * @param j Integer.
+     * @param i1 Integer.
+     * @param j1 Integer.
      * @param arr Integer array.
      */
-    public int[] section(int i, int j, int[] arr)
+    public int[] section(int i1, int j1, int[] arr)
     {
-        int[] section = new int[j-i+1];
+        int[] section = new int[j1-i1+1];
         int cout=0;
-        for(int k = i; k <= j; k++)
+        for(int k = i1; k <= j1; k++)
         {
             section[cout]=arr[k];
             cout++;
@@ -74,8 +74,8 @@ public class ThreeOpt {
 
     /**
      * combine two arrays.
-     * @param a Integer array,
-     * @param b Integer array.
+     * @param a1 Integer array,
+     * @param b1 Integer array.
      */
     public int[] combine(int[] a1,int[] b1)
     {
