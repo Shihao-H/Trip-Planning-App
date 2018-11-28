@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Row, Col, Card, CardBody, Button, ButtonGroup, Collapse, FormGroup, Label, Input, Form} from 'reactstrap';
+import {Row, Col, Card, CardBody, Button, ButtonGroup, FormGroup, Label, Input, Form} from 'reactstrap';
 import Attributes from "./Attributes"
 import InterOperate from "./InterOperate"
 
 /* Renders the Options.
+ * Options for units, optimizations, maps, attributes and inter operate.
  */
 class OptionPanel extends Component {
     constructor(props) {
@@ -50,28 +51,30 @@ class OptionPanel extends Component {
         )
     }
 
+    renderGenericOptions(){
+        return(
+            <Row>
+                <Col><ButtonGroup vertical>{this.generateOptionsButtons("units", "units")}</ButtonGroup>
+                {this.state.ifDisplayUserDefinedInputFields && (
+                    <Form>{this.renderUserDefinedForm()}</Form>)}<br/></Col>
+                <Col><ButtonGroup vertical>{this.generateOptionsButtons("optimization", "optimization")}
+                </ButtonGroup></Col>
+                <Col><ButtonGroup vertical>{this.generateOptionsButtons("maps", "mapForOption")}</ButtonGroup></Col>
+            </Row>
+        )
+    }
+
     render() {
         return (
-            <div>
-                <Card>
-                    <CardBody>
-                        <ButtonGroup>{this.generateOptionsButtons("units", "units")}</ButtonGroup>
-                        {this.state.ifDisplayUserDefinedInputFields && (
-                            <Form>
-                                {this.renderUserDefinedForm()}
-                            </Form>)}<br/>
-                        <ButtonGroup>{this.generateOptionsButtons("optimization", "optimization")}</ButtonGroup>
-                        <ButtonGroup>{this.generateOptionsButtons("maps", "mapForOption")}</ButtonGroup>
+            <div><Card><CardBody>
+                        {this.renderGenericOptions()}
                         <Attributes config={this.props.config} display={this.props.display}
                                     updateAttributes={this.props.updateAttributes}/>
                         <InterOperate host={this.props.host} otherTeams={this.props.otherTeams}
                                       updateHost={this.props.updateHost}
                                       updateInterOperate={this.props.updateInterOperate}
                                       updateOtherTeams={this.props.updateOtherTeams}/>
-                    </CardBody>
-                </Card>
-            </div>
-        );
+                    </CardBody></Card></div>);
     }
 }
 
