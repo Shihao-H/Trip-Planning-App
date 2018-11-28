@@ -10,18 +10,18 @@ class OptionPanel extends Component {
         super(props);
         this.state = {ifDisplayUserDefinedInputFields: false, collapse: false,};
     }
-//{let optionValue = ((optionName == "optimization") ? optionObject.label : optionObject);
-    generateOptionsButtons(type,optionName){
-        return this.props.config[type].map((optionValue) =>
 
-            <Button key={'options_button_' + optionValue}
+    generateOptionsButtons(type,optionName){
+        let optionValues = [];
+        this.props.config[type].map((optionObject) =>
+            {optionValues.push((optionName === "optimization") ? optionObject.label : optionObject)});
+        return(
+        optionValues.map((optionValue) =>
+            <Button key={'options_button_' + optionValue} value={optionValue}
                     className='btn-outline-dark options-button'
                     active={this.props.options[optionName] === optionValue}
-                    value={optionValue}
                     onClick={(event) => this.clickButton(event, optionName)}>
-                {optionValue.charAt(0).toUpperCase() + optionValue.slice(1)}
-                </Button>
-        );
+                {optionValue.charAt(0).toUpperCase() + optionValue.slice(1)}</Button>));
     }
 
     clickButton(event,optionName) {
@@ -55,13 +55,13 @@ class OptionPanel extends Component {
             <div>
                 <Card>
                     <CardBody>
-                        <ButtonGroup vertical>{this.generateOptionsButtons("units", "units")}</ButtonGroup><br/>
+                        <ButtonGroup>{this.generateOptionsButtons("units", "units")}</ButtonGroup>
                         {this.state.ifDisplayUserDefinedInputFields && (
                             <Form>
                                 {this.renderUserDefinedForm()}
                             </Form>)}<br/>
-
-                        <ButtonGroup vertical>{this.generateOptionsButtons("maps", "mapForOption")}</ButtonGroup><br/>
+                        <ButtonGroup>{this.generateOptionsButtons("optimization", "optimization")}</ButtonGroup>
+                        <ButtonGroup>{this.generateOptionsButtons("maps", "mapForOption")}</ButtonGroup>
                         <Attributes config={this.props.config} display={this.props.display}
                                     updateAttributes={this.props.updateAttributes}/>
                         <InterOperate host={this.props.host} otherTeams={this.props.otherTeams}
