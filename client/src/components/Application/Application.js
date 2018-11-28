@@ -3,7 +3,9 @@ import {Container} from 'reactstrap';
 import {get} from '../../api/api';
 import DistanceCal from "./DistanceCal";
 import Info from './Info';
-import Trip from "./Trip"
+import Trip from "./Trip";
+import HomePage from "./HomePage";
+import OptionPanel from "./OptionPanel";
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -11,8 +13,12 @@ import Trip from "./Trip"
 class Application extends Component {
     constructor(props) {
         super(props);
-        this.state = {config: null, trip: {version: 4, type: "trip", title: "", options: {
-                    units: "miles", unitName: "", unitRadius: 0.00, optimization: "none", mapForOption: "svg"},
+        this.state = {
+            config: null,
+            trip: {
+                version: 4, type: "trip", title: "", options: {
+                    units: "miles", unitName: "", unitRadius: 0.00, optimization: "none", mapForOption: "svg"
+                },
                 places: [], distances: [], map: '<svg width="1920" height="960" xmlns="http://www.w3.org/2000/svg" ' +
                     'xmlns:svg="http://www.w3.org/2000/svg">\n<g>\n<g id="s4">\n<svg id="s1" height="960" ' +
                     'width="1920"\nxmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg">\n<title>Layer 1</title>\n' +
@@ -21,17 +27,30 @@ class Application extends Component {
                     'xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg">\n<title>Layer 2</title>\n' +
                     '<polygon points="4,4 956,4 956,476 4,476"\nfill="none" stroke-width="8" stroke="brown" id="s8"/>\n' +
                     '<polyline points="0,0 960,480 480,0 0,480 960,0 480,480 0,0"\nfill="none" stroke-width="4" stroke="blue" id="s7"/>\n' +
-                    '</svg>\n</g>\n</g>\n</svg>'},
+                    '</svg>\n</g>\n</g>\n</svg>'
+            },
             search: {version: 3, type: "search", match: "", found: 0, places: [], filters: []},
-            selected: new Map(), selectAll: false, otherTeams: null, host: null, attributes: ["id", "name", "latitude", "longitude"],
-            display: [true, true, true, true, false, false, false, false, false, false]};
-        this.updateMap = this.updateMap.bind(this);this.updateTrip = this.updateTrip.bind(this);
-        this.clearConfig = this.clearConfig.bind(this);this.updateSearch = this.updateSearch.bind(this);
-        this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);this.updateOptions = this.updateOptions.bind(this);
-        this.updateUpload = this.updateUpload.bind(this);this.updateSelected = this.updateSelected.bind(this);
-        this.updateSelectAll = this.updateSelectAll.bind(this);this.updateInterOperate = this.updateInterOperate.bind(this);
-        this.updateAttributes = this.updateAttributes.bind(this);this.checkAttributes = this.checkAttributes.bind(this);
-        this.updateHost = this.updateHost.bind(this);this.updateOtherTeams = this.updateOtherTeams.bind(this);
+            selected: new Map(),
+            selectAll: false,
+            otherTeams: null,
+            host: null,
+            attributes: ["id", "name", "latitude", "longitude"],
+            display: [true, true, true, true, false, false, false, false, false, false]
+        };
+        this.updateMap = this.updateMap.bind(this);
+        this.updateTrip = this.updateTrip.bind(this);
+        this.clearConfig = this.clearConfig.bind(this);
+        this.updateSearch = this.updateSearch.bind(this);
+        this.updateBasedOnResponse = this.updateBasedOnResponse.bind(this);
+        this.updateOptions = this.updateOptions.bind(this);
+        this.updateUpload = this.updateUpload.bind(this);
+        this.updateSelected = this.updateSelected.bind(this);
+        this.updateSelectAll = this.updateSelectAll.bind(this);
+        this.updateInterOperate = this.updateInterOperate.bind(this);
+        this.updateAttributes = this.updateAttributes.bind(this);
+        this.checkAttributes = this.checkAttributes.bind(this);
+        this.updateHost = this.updateHost.bind(this);
+        this.updateOtherTeams = this.updateOtherTeams.bind(this);
         this.updateConfig = this.updateConfig.bind(this);
     }
 
@@ -160,8 +179,10 @@ class Application extends Component {
 
     }
 
-    render() {
-        if (!this.state.config) {return <div/>}
+    renderDefault() {
+        if (!this.state.config) {
+            return <div/>
+        }
         return (
             <Container id="Application">
                 <Info/>
@@ -187,6 +208,21 @@ class Application extends Component {
             </Container>
         )
     }
+
+    render() {
+        if (!this.state.config) {
+            return <div/>
+        }
+        return (
+            <Container id="Application">
+                <HomePage config={this.state.config} display={this.state.display} options={this.state.trip.options}
+                          updateAttributes={this.state.updateAttributes} updateOptions={this.state.updateOptions}
+                          updateHost={this.state.updateHost} updateOtherTeams={this.state.updateOtherTeams}
+                          updateInterOperate={this.state.updateInterOperate}/>
+            </Container>
+        )
+    }
+
 }
 
 export default Application;
