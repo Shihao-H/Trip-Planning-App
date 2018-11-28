@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import {TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col} from 'reactstrap';
 import classnames from 'classnames';
 import Info from "./Info";
 import OptionPanel from "./OptionPanel";
+import DistanceCal from "./DistanceCal";
+import Developer from "./Developer"
 
 class HomePage extends Component {
     constructor(props) {
@@ -23,15 +25,28 @@ class HomePage extends Component {
         }
     }
 
-    generateNavItem(index, tab){
-        return(
+    generateNavItem(index, tab) {
+        return (
             <NavItem>
                 <NavLink
-                    className={classnames({ active: this.state.activeTab === index })}
-                    onClick={() => { this.toggle(index); }}>
+                    className={classnames({active: this.state.activeTab === index})}
+                    onClick={() => {
+                        this.toggle(index);
+                    }}>
                     {tab}
                 </NavLink>
             </NavItem>
+        )
+    }
+
+    generateNavContentForOptions() {
+        return (
+            <TabPane tabId="2">
+                <OptionPanel config={this.props.config} display={this.props.display} options={this.props.options}
+                             updateAttributes={this.props.updateAttributes} updateOptions={this.props.updateOptions}
+                             updateHost={this.props.updateHost} updateOtherTeams={this.props.updateOtherTeams}
+                             updateInterOperate={this.props.updateInterOperate}/>
+            </TabPane>
         )
     }
 
@@ -46,13 +61,14 @@ class HomePage extends Component {
                 </Nav>
                 <TabContent activeTab={this.state.activeTab}>
                     <TabPane tabId="1">
-                       <Info/>
+                        <Info/>
                     </TabPane>
-                    <TabPane tabId="2">
-                        <OptionPanel config={this.props.config} display={this.props.display} options={this.props.options}
-                                     updateAttributes={this.props.updateAttributes} updateOptions={this.props.updateOptions}
-                                     updateHost={this.props.updateHost} updateOtherTeams={this.props.updateOtherTeams}
-                                     updateInterOperate={this.props.updateInterOperate}/>
+                    {this.generateNavContentForOptions()}
+                    <TabPane tabId="3">
+                        <DistanceCal config={this.props.config}/>
+                    </TabPane>
+                    <TabPane tabId="4">
+                        <Developer/>
                     </TabPane>
                 </TabContent>
             </div>
