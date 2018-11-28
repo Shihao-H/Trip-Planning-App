@@ -27,23 +27,22 @@ class OptionPanel extends Component {
 
     clickButton(event,optionName) {
         this.props.updateOptions(optionName, event.target.value);
-        if (event.target.value === 'user defined') {
-            this.setState({ifDisplayUserDefinedInputFields: true});
-        } else {
-            this.setState({ifDisplayUserDefinedInputFields: false});
-        }
+        let value = (event.target.value === 'user defined') ? true : false;
+        this.setState({ifDisplayUserDefinedInputFields: value});
+    }
+
+    generateUserDefinedForm(placeHolder, forWhat){
+        return(
+            <Input type="text" placeholder=placeHolder
+                   onChange={event => {this.props.updateOptions(forWhat, event.target.value)}}/>)
     }
 
     renderUserDefinedForm()
     {
         return(
             <FormGroup>
-                <br/><Label>Unit Name:</Label>
-                <Input type="text" placeholder="Enter unit name" onChange={event => {
-                    this.props.updateOptions('unitName', event.target.value)}}/>
-                <Label>Unit Radius: </Label>
-                <Input type="text" placeholder="Enter unit radius"
-                       onChange={event => {this.props.updateOptions('unitRadius', event.target.value)}}/>
+                {this.generateUserDefinedForm("Enter unit name", "unitName")}
+                {this.generateUserDefinedForm("Enter unit radius", "unitRadius")}
             </FormGroup>
         )
     }
