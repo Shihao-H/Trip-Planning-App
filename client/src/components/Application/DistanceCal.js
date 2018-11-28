@@ -64,8 +64,10 @@ export class DistanceCal extends Component {
             return this.state.distances.units;
     }
 
-    updateDistance(field, value){
-        this.setState(this.state.distance[field], value);
+    updateDistance(field, value) {
+        let obj = this.state.distances;
+        obj[field] = value;
+        this.setState(obj);
     }
 
     Calculate() {
