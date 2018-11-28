@@ -89,7 +89,9 @@ public class Search {
      * @return true if there is another filter.
      */
     private boolean hasFilter(int index){
-         return ((this.filters != null) && (this.filters.length != 0) && (index != this.filters.length));
+         return ((this.filters != null)
+                 && (this.filters.length != 0)
+                 && (index != this.filters.length));
     }
     
     /**
