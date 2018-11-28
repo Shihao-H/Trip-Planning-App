@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {TabContent, TabPane, Nav, NavItem, NavLink, Card, CardBody, Row, Col} from 'reactstrap';
+import {TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, CardBody} from 'reactstrap';
 import classnames from 'classnames';
 import Info from "./Info";
 import OptionPanel from "./OptionPanel";
@@ -8,6 +8,11 @@ import Developer from "./Developer"
 import MapSvg from "./MapSvg";
 import Itinerary from "./Itinerary";
 import Attributes from "./Attributes";
+import Plan from "./Plan";
+import Add from "./Add";
+import SearchBox from "./SearchBox";
+import Upload from "./Upload";
+import SaveTrip from "./SaveTrip";
 
 class HomePage extends Component {
     constructor(props) {
@@ -16,6 +21,8 @@ class HomePage extends Component {
         this.toggle = this.toggle.bind(this);
         this.generateNavItem = this.generateNavItem.bind(this);
         this.generateNavContentForPlan = this.generateNavContentForPlan.bind(this);
+        this.createYourOwn = this.createYourOwn.bind(this);
+        this.uploadTheFile = this.uploadTheFile.bind(this);
         this.state = {
             activeTab: '1'
         };
@@ -54,9 +61,35 @@ class HomePage extends Component {
         )
     }
 
+    createYourOwn() {
+        return (
+            <Row>
+                <Col xs="6">
+                    <Add places={this.props.places} updateTrip={this.props.updateTrip}/>
+                </Col>
+                <Col xs="6">
+                    <SearchBox config={this.props.config} search={this.props.search} trip={this.props.trip}
+                               updateSearch={this.props.updateSearch} updateTrip={this.props.updateTrip}/>
+                </Col>
+            </Row>
+        )
+    }
+
+    uploadTheFile() {
+        return (
+            <Plan updateTrip={this.props.updateTrip} updateOptions={this.props.updateOptions}
+                  updateSelectAll={this.props.updateSelectAll} trip={this.props.trip}
+                  updateSelected={this.props.updateSelected} otherTeams={this.props.otherTeams}
+                  host={this.props.host} title={this.props.title} map={this.props.map}
+                  updateSearch={this.props.updateSearch}/>
+        )
+    }
+
     generateNavContentForPlan() {
         return (
             <TabPane tabId="2">
+                {this.createYourOwn()}
+                {this.uploadTheFile()}
                 <MapSvg map={this.props.map} mapForOption={this.props.mapForOption}
                         places={this.props.places}/>
                 <Itinerary selected={this.props.selected} updateSelected={this.props.updateSelected}

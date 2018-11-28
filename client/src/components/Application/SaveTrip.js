@@ -9,7 +9,7 @@ class SaveTrip extends Component {
     }
 
     SaveTFFI() {
-        let title = this.props.trip.title;
+        let title = this.props.title;
         let TFFI = JSON.stringify(this.props.trip);
         if (!title.endsWith(".json")) {
             title += ".json";

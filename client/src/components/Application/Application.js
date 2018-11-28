@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Container} from 'reactstrap';
+import {Container, Card, CardBody} from 'reactstrap';
 import {get} from '../../api/api';
 import HomePage from "./HomePage";
+import Plan from "./Plan";
 
 /* Renders the application.
  * Holds the destinations and options state shared with the trip.
@@ -181,6 +182,8 @@ class Application extends Component {
         }
         return (
             <Container id="Application">
+                <Card>
+                    <CardBody>
                 <HomePage config={this.state.config} display={this.state.display} options={this.state.trip.options}
                           updateAttributes={this.updateAttributes} updateOptions={this.updateOptions}
                           updateHost={this.updateHost} updateOtherTeams={this.updateOtherTeams}
@@ -190,8 +193,11 @@ class Application extends Component {
                           updateSelected={this.updateSelected} attributes={this.state.attributes}
                           selectAll={this.state.selectAll} updateSelectAll={this.updateSelectAll}
                           distances={this.state.trip.distances} title={this.state.trip.title}
-                          updateTrip={this.updateTrip}
-                />
+                          updateTrip={this.updateTrip} updateSearch={this.updateSearch} search={this.state.search}
+                          otherTeams={this.state.otherTeams} trip={this.state.trip}
+                          host={this.state.host}/>
+                    </CardBody>
+                </Card>
             </Container>
         )
     }
