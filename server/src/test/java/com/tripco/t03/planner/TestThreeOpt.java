@@ -42,4 +42,13 @@ public class TestThreeOpt {
         Assert.assertArrayEquals(arr4, arr5);
     }
 
+    @Test
+    public void testReplace(){
+        opt = new ThreeOpt(arr, grid);
+        int [] arr4=new int[]{1,2,3,4};
+        int [] arr5=new int[]{1,1};
+        int [] arr6=new int[]{1,1,3,4};
+        opt.Replace(0,1,arr5,arr4);
+        Assert.assertArrayEquals(arr4, arr6);
+    }
 }
