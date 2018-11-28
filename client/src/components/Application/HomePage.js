@@ -11,8 +11,6 @@ import Attributes from "./Attributes";
 import Plan from "./Plan";
 import Add from "./Add";
 import SearchBox from "./SearchBox";
-import Upload from "./Upload";
-import SaveTrip from "./SaveTrip";
 
 class HomePage extends Component {
     constructor(props) {
