@@ -18,18 +18,17 @@ class OptionPanel extends Component {
 
     generateOptionsButtons(type, optionName) {
         let optionValues = [];
-        this.props.config[type].map((optionObject) => {
-            optionValues.push((optionName === "optimization") ? optionObject.label : optionObject)
-        });
-        return (
-            optionValues.map((optionValue) =>
-                <Button key={'options_button_' + optionValue} value={optionValue}
-                        className='btn-outline-dark options-button'
-                        active={this.props.options[optionName] === optionValue}
-                        onClick={(event) => this.clickButton(event, optionName)}>
-                    {(optionValue === "svg") ? optionValue = "Static" :
-                        (optionValue === "kml" ? optionValue = "Interactive" :
-                            optionValue.charAt(0).toUpperCase() + optionValue.slice(1))}
+        this.props.config[type].map((optionObject) =>
+            {optionValues.push((optionName === "optimization") ? optionObject.label : optionObject)});
+        return(
+        optionValues.map((optionValue) =>
+            <Button key={'options_button_' + optionValue} value={optionValue}
+                    className='btn-outline-dark options-button'
+                    active={this.props.options[optionName] === optionValue}
+                    onClick={(event) => this.clickButton(event, optionName)}>
+                {(optionValue === "svg") ? optionValue = "Static" :
+                    (optionValue === "kml" ? optionValue = "Interactive" :
+                        optionValue.charAt(0).toUpperCase() + optionValue.slice(1))}
                 </Button>));
     }
 

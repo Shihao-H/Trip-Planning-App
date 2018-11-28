@@ -44,7 +44,6 @@ class Upload extends Component {
             this.props.updateTrip('places', Fi.places);
             this.props.updateTrip('map', Fi.map);
         });
-
     }
 
     render() {
