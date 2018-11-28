@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestDriver {
     private Driver testDriver;
@@ -77,6 +78,76 @@ public class TestDriver {
             String expected = "com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: "
                               + "Unknown column \'continents\' in \'where clause\'";
             assertEquals(except, expected);
+    }
+    */
+ 
+     @Test
+    public void testSetLimit2(){
+        testDriver = new Driver();
+        testDriver.setLimit(0);
+        
+        assertEquals(testDriver.limitQuery, "");
+    }
+ 
+    @Test
+    public void testSetPassword(){
+        testDriver = new Driver();
+        testDriver.setPassword();
+        
+        assertEquals(testDriver.password, "eiK5liet1uej");
+    }
+    
+    @Test
+    public void testSetPassword2(){
+        testDriver = new Driver();
+        testDriver.setIsTravis("true");
+        testDriver.setPassword();
+    
+        assertEquals(testDriver.password, null);
+    }
+ 
+    @Test
+    public void testSetDburlUserName3(){
+        testDriver = new Driver();
+        testDriver.setDburlUserName();
+        
+        assertTrue(testDriver.dburl.equalsIgnoreCase("jdbc:mysql://faure.cs.colostate.edu/cs314"));
+    }
+    
+    @Test
+    public void testSetDburlUserName2(){
+        testDriver = new Driver();
+        testDriver.setIsTravis("true");
+        testDriver.setDburlUserName();
+        
+        assertTrue(testDriver.dburl.equalsIgnoreCase("jdbc:mysql://127.0.0.1/cs314")
+                  && testDriver.username.equalsIgnoreCase("travis"));
+    }
+    
+    @Test
+    public void testsetDburlUserName1(){
+        testDriver = new Driver();
+        testDriver.setIsDevelopment("development");
+        testDriver.setDburlUserName();
+        
+        assertTrue(testDriver.dburl.equalsIgnoreCase("jdbc:mysql://127.0.0.1:8098/cs314")
+                  && testDriver.username.equalsIgnoreCase("cs314-db"));
+    }
+    
+    @Test
+    public void testIsDevelopment(){
+        testDriver = new Driver();
+        testDriver.setIsDevelopment("development");
+        
+        assertTrue(testDriver.isDevelopment.equalsIgnoreCase("development"));
+    }
+    
+    @Test
+    public void testSetTravis(){
+        testDriver = new Driver();
+        testDriver.setIsTravis("true");
+        
+        assertTrue(testDriver.isTravis.equalsIgnoreCase("true"));
     }
     
     @Test

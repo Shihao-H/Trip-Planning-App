@@ -37,6 +37,22 @@ public class Driver {
     
     /**
      * Setter.
+     * @param boo String.
+     */
+    public void setIsTravis(String boo){
+        this.isTravis = boo;
+    }
+    
+    /**
+     * Setter.
+     * @param dev String.
+     */
+    public void setIsDevelopment(String dev) {
+        this.isDevelopment = dev;
+    }
+    
+    /**
+     * Setter.
      */
     void setDburlUserName(){
         if(this.isTravis != null && this.isTravis.equals("true")) {
