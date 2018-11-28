@@ -18,20 +18,17 @@ class Upload extends Component {
             let obj = JSON.parse(event.target.result);
             this.props.updateTrip('title', obj.title);
             this.props.updateOptions('units', obj.options.units);
-            if (obj.options.optimization)
-                this.props.updateOptions('optimization', obj.options.optimization);
-            else
-                this.props.updateOptions('optimization', 'none');
-            if (obj.options.map)
-                this.props.updateOptions('mapForOption', obj.options.map);
-            else
-                this.props.updateOptions('mapForOption', 'svg');
+            this.props.updateOptions('optimization', (obj.options.optimization ?
+                obj.options.optimization : 'none'));
+            this.props.updateOptions('mapForOption', (obj.options.map ? obj.options.map : 'svg'));
             if (obj.options.units === "user defined") {
                 this.props.updateOptions('unitRadius', obj.options.unitRadius);
                 this.props.updateOptions('unitName', obj.options.unitName);
             }
             this.props.updateTrip('places', obj.places);
-            get('map').then(map => {this.props.updateTrip("map", map.map);}
+            get('map').then(map => {
+                    this.props.updateTrip("map", map.map);
+                }
             );
         };
         this.props.updateSelected(new Map());
@@ -40,22 +37,14 @@ class Upload extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        let obj=this.props.trip;
-        if(this.props.otherTeams === null || this.props.host === null){
-            request(obj,'plan').then((Fi)=>
-            {
-                this.props.updateTrip('distances',Fi.distances);
-                this.props.updateTrip('places',Fi.places);
-                this.props.updateTrip('map', Fi.map);
-            });
-        } else {
-            request(obj,'plan', this.props.otherTeams, this.props.host).then((Fi)=>
-            {
-                this.props.updateTrip('distances',Fi.distances);
-                this.props.updateTrip('places',Fi.places);
-                this.props.updateTrip('map', Fi.map);
-            });
-        }
+        let obj = this.props.trip;
+        obj.options.map = obj.options.mapForOption;
+        request(obj, 'plan', this.props.otherTeams, this.props.host).then((Fi) => {
+            this.props.updateTrip('distances', Fi.distances);
+            this.props.updateTrip('places', Fi.places);
+            this.props.updateTrip('map', Fi.map);
+        });
+
     }
 
     render() {
