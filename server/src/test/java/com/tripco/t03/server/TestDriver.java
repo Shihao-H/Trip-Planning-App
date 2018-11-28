@@ -79,7 +79,6 @@ public class TestDriver {
                               + "Unknown column \'continents\' in \'where clause\'";
             assertEquals(except, expected);
     }
-    */
  
      @Test
     public void testSetLimit2(){
