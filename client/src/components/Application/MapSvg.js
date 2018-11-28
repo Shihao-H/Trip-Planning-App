@@ -6,7 +6,7 @@ export class MapSvg extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            collapse: true,
+            collapse: false,
         };
         this.dropdown = this.dropdown.bind(this);
         this.svg = this.svg.bind(this);
