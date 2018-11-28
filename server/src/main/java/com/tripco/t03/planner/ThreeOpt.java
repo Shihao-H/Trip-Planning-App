@@ -6,6 +6,10 @@ public class ThreeOpt {
     public int len;
     public Utility tool;
 
+     /**
+     * Create a ThreeOpt object. 
+     * Declares and initializes ThreeOpt objects
+     */
     public ThreeOpt(int[] arr,long[][] arr2)
     {
         this.index=arr;
