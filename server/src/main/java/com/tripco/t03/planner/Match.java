@@ -30,7 +30,7 @@ public class Match {
         search = gson.fromJson(requestBody, Search.class);
 
         // search the places.
-        search.match();
+        search.findMatch();
     }
     
     /**

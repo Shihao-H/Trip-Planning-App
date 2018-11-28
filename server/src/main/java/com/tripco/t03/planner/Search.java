@@ -71,29 +71,49 @@ public class Search {
     /**
      * The top level method that does searching.
      */
-    public void match() throws SQLException, ClassNotFoundException {
-        String query = "";
+    public String getQuery() {
+        StringBuilder query = new StringBuilder();
         if ((this.filters != null) && (this.filters.length != 0)) {
-            int filterSize = this.filters.length;
-            for (int i = 0; i < filterSize; i++) {
-                int valueSize = this.filters[i].values.length;
-                if (valueSize != 0) {
-                    query += "AND ";
-                    if (this.filters[i].name.equalsIgnoreCase("continents")) {
-                        query += this.filters[i].name + ".name IN (";
-                    } else {
-                        query += this.filters[i].name + " IN (";
-                    }
-                    for (int j = 0; j < valueSize - 1; j++) {
-                        query += "\"" + this.filters[i].values[j] + "\", ";
-                    }
-                    query += "\"" + this.filters[i].values[valueSize - 1] + "\")\n";
-                }
+            for (Filter filter : this.filters) {
+               if(filter.values.length != 0){
+                   query.append(buildQuery(filter));
+               }
             }
         }
+        return query.toString();
+    }
+    
+    /**
+     * Helper method to build query.
+     * @param filter Filter Object.
+     * @return String.
+     */
+    private String buildQuery(Filter filter){
+        StringBuilder query = new StringBuilder();
+        int valueSize = filter.values.length;
+        query.append("AND ");
+        if (filter.name.equalsIgnoreCase("continents")) {
+            query.append(filter.name).append(".name IN (");
+        } else {
+            query.append(filter.name).append(" IN (");
+        }
+        for (int j = 0; j < valueSize - 1; j++) {
+            query.append("\"").append(filter.values[j]).append("\", ");
+        }
+        query.append("\"").append(filter.values[valueSize - 1]).append("\")\n");
+        return query.toString();
+    }
+    
+    /**
+     * Helper method that accesses database.
+     * @throws SQLException DB Errors.
+     * @throws ClassNotFoundException find failure.
+     */
+    void findMatch() throws SQLException, ClassNotFoundException {
+        
         Driver driver = new Driver();
-        driver.find(this.match, this.limit, query);
+        driver.find(this.match, this.limit, getQuery());
         this.found = driver.found;
-        this.places = (ArrayList<Place>) driver.places.clone();
+        this.places.addAll(driver.places);
     }
 }
