@@ -27,13 +27,14 @@ class OptionPanel extends Component {
 
     clickButton(event,optionName) {
         this.props.updateOptions(optionName, event.target.value);
-        let value = (event.target.value === 'user defined') ? true : false;
+        let value;
+        (event.target.value === 'user defined') ? value = true : value = false;
         this.setState({ifDisplayUserDefinedInputFields: value});
     }
 
     generateUserDefinedForm(placeHolder, forWhat){
         return(
-            <Input type="text" placeholder=placeHolder
+            <Input type="text" placeholder={placeHolder}
                    onChange={event => {this.props.updateOptions(forWhat, event.target.value)}}/>)
     }
 
