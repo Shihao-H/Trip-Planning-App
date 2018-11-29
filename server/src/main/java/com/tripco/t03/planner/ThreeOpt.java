@@ -112,6 +112,20 @@ public class ThreeOpt {
         threeAlg(this.index,disGrid);
     }
 
+    /**
+     * Combine two arrays.
+     * @param head Integer,
+     * @param disGrid double long array.
+     */
+    public long Opt3DisEach(int head,long [][] disGrid)
+    {
+        int[] arr=tool.StartNear(head,disGrid,len);
+        threeAlg(arr,disGrid);
+        return tool.findDis(arr,disGrid);
 
+    }
+
+
+    }
 
 }
