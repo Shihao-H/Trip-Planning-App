@@ -87,7 +87,7 @@ public class TestDriver {
         
         assertEquals(testDriver.limitQuery, "");
     }
- 
+    
     @Test
     public void testSetPassword(){
         testDriver = new Driver();
@@ -102,13 +102,15 @@ public class TestDriver {
         testDriver = new Driver();
         testDriver.setIsTravis("true");
         testDriver.setPassword();
-    
+        
         assertEquals(testDriver.password, null);
     }
- 
+    
     @Test
     public void testSetDburlUserName3(){
         testDriver = new Driver();
+        testDriver.setIsTravis(null);
+        testDriver.setIsDevelopment(null);
         testDriver.setDburlUserName();
         
         assertTrue(testDriver.dburl.equalsIgnoreCase("jdbc:mysql://faure.cs.colostate.edu/cs314"));
@@ -120,18 +122,17 @@ public class TestDriver {
         testDriver.setIsTravis("true");
         testDriver.setDburlUserName();
         
-        assertTrue(testDriver.dburl.equalsIgnoreCase("jdbc:mysql://127.0.0.1/cs314")
-                  && testDriver.username.equalsIgnoreCase("travis"));
+        assertTrue(testDriver.username.equalsIgnoreCase("travis"));
     }
     
     @Test
     public void testsetDburlUserName1(){
         testDriver = new Driver();
         testDriver.setIsDevelopment("development");
+        testDriver.setIsTravis(null);
         testDriver.setDburlUserName();
         
-        assertTrue(testDriver.dburl.equalsIgnoreCase("jdbc:mysql://127.0.0.1:8098/cs314")
-                  && testDriver.username.equalsIgnoreCase("cs314-db"));
+        assertTrue(testDriver.username.equalsIgnoreCase("cs314-db"));
     }
     
     @Test
@@ -174,7 +175,7 @@ public class TestDriver {
         testDriver = new Driver();
         testDriver.setLimit(limit);
         testDriver.setSearch(match, filterQuery);
-
+        
         assertEquals(expected, testDriver.search);
     }
     
