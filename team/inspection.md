@@ -2,14 +2,14 @@
  
 Inspection | Details
 ----- | -----
-Subject | *DistanceCal.js, method diplayUserOptions(), lines 115-119*
-Meeting | *date, time, location*
-Checklist | *reference, URL, etc.*
+Subject | *Application.js, lines 41-129*
+Meeting | *Date: 11/30/18 Time: 10:00 Place: Stadium 1205*
+Checklist | *http://www.cs.toronto.edu/~sme/CSC444F/handouts/java_checklist.pdf*
 
 ### Roles
 Name | Preparation Time
 ---- | ----
- | |
+ | Josh | 20 minutes
  | |
  | |
  | |
