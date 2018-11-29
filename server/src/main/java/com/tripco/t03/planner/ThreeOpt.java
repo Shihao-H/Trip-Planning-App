@@ -21,10 +21,10 @@ public class ThreeOpt {
 
 
     /**
-     * Reverses array.
+     * reverses array.
      * @param arr Integer array.
      */
-    public void ReverseArray(int[] arr)
+    public void reverseArray(int[] arr)
     {
         for(int i = 0; i < arr.length / 2; i++)
         {
@@ -35,16 +35,16 @@ public class ThreeOpt {
     }
 
     /**
-     * Section array.
-     * @param i Integer.
-     * @param j Integer.
+     * section array.
+     * @param i1 Integer.
+     * @param j1 Integer.
      * @param arr Integer array.
      */
-    public int[] Section(int i, int j, int[] arr)
+    public int[] section(int i1, int j1, int[] arr)
     {
-        int[] section = new int[j-i+1];
+        int[] section = new int[j1-i1+1];
         int cout=0;
-        for(int k = i; k <= j; k++)
+        for(int k = i1; k <= j1; k++)
         {
             section[cout]=arr[k];
             cout++;
@@ -55,15 +55,15 @@ public class ThreeOpt {
 
     /**
      * Replace part of original array.
-     * @param i Integer.
-     * @param j Integer.
+     * @param i1 Integer.
+     * @param j1 Integer.
      * @param temp Integer array.
      * @param bestpath Integer array.
      */
-    public void Replace(int i, int j, int[] temp, int[] bestpath)
+    public void replace(int i1, int j1, int[] temp, int[] bestpath)
     {
         int index=0;
-        for(int k = i; k <= j; k++)
+        for(int k = i1; k <= j1; k++)
         {
             bestpath[k]=temp[index];
             index++;
@@ -72,19 +72,19 @@ public class ThreeOpt {
 
     /**
      * Combine two arrays.
-     * @param a Integer array,
-     * @param b Integer array.
+     * @param a1 Integer array,
+     * @param b1 Integer array.
      */
-    public int[] Combine(int[] a,int[] b)
+    public int[] combine(int[] a1,int[] b1)
     {
-        int[] newPath = new int[a.length+b.length];
-        for(int i=0;i<a.length;i++){
-            newPath[i]=a[i];
+        int[] newPath = new int[a1.length+b1.length];
+        for(int i=0;i<a1.length;i++){
+            newPath[i]=a1[i];
         }
         int cout=0;
-        for(int j=a.length;j<newPath.length;j++)
+        for(int j=a1.length;j<newPath.length;j++)
         {
-            newPath[j]=b[cout];
+            newPath[j]=b1[cout];
             cout++;
         }
         return newPath;
@@ -92,111 +92,20 @@ public class ThreeOpt {
 
     /**
      * Combine two arrays.
-     * @param disGrid double long array.
+     * @param i1 int,
+     * @param j1 int,
+     * @param k1 int,
+     * @param arr double int array.
      */
-    public void threeOpt(long[][] disGrid)
+    public void opt3Case1(int i1, int j1, int k1, int[] arr)
     {
-        int shortestStart = 0;
-        long pathDis=Long.MAX_VALUE;
-        for(int i=0;i<len;i++)
-        {
-            long temp=Opt3DisEach(i,disGrid);
-
-            if(pathDis>temp)
-            {
-                shortestStart=i;
-                pathDis = temp;
-            }
-        }
-        this.index=tool.StartNear(shortestStart,disGrid,len);
-        threeAlg(this.index,disGrid);
+        int[] temp = section(i1 + 1, j1, arr);
+        int[] temp2 = section(j1 + 1, k1, arr);
+        reverseArray(temp2);
+        int []temp3 = combine(temp2, temp);
+        replace(i1 + 1, k1, temp3, arr);
     }
 
-    /**
-     * Combine two arrays.
-     * @param head Integer,
-     * @param disGrid double long array.
-     */
-    public long Opt3DisEach(int head,long [][] disGrid)
-    {
-        int[] arr=tool.StartNear(head,disGrid,len);
-        threeAlg(arr,disGrid);
-        return tool.findDis(arr,disGrid);
 
-    }
-
-    public void threeAlg(int[] arr,long [][] disGrid)
-    {
-        int n=arr.length;
-        if (n > 6) {
-            boolean improvement = true;
-            while (improvement) {
-                improvement = false;
-                for(int i=0;i<n-2;i++){
-                    for (int j = i+1; j < n-1; j++) {
-                        for (int k = j + 1; k < n ; k++) {
-                            int o1, o2, d1, d2, p1, p2;
-                            o1 = arr[i];o2 = arr[i + 1];d1 = arr[j];d2 = arr[j + 1];p1 = arr[k];p2 = arr[(k+1)%n];
-                            long delta3 = -disGrid[o1][o2] - disGrid[d1][d2] - disGrid[p1][p2] + disGrid[o1][d1] + disGrid[o2][p1] + disGrid[d2][p2];
-                            if (delta3 < 0) {
-                                tool.opt2Reverse(arr, i + 1, j);
-                                tool.opt2Reverse(arr, j + 1, k);
-                                improvement = true;
-                                continue;
-                            }
-                            long delta4 = -disGrid[o1][o2] - disGrid[d1][d2] - disGrid[p1][p2] + disGrid[o1][p1] + disGrid[d2][o2] + disGrid[d1][p2];
-                            if (delta4 < 0) {
-                                int[] temp = Section(i + 1, j, arr);
-                                int[] temp2 = Section(j + 1, k, arr);
-                                ReverseArray(temp2);
-                                int []temp3= Combine(temp2, temp);
-                                Replace(i + 1, k, temp3, arr);
-                                improvement = true;
-                                continue;
-                            }
-                            long delta5 = -disGrid[o1][o2] - disGrid[d1][d2] - disGrid[p1][p2] + disGrid[o1][d2] + disGrid[p1][d1] + disGrid[o2][p2];
-                            if (delta5 < 0) {
-                                int[] temp = Section(i + 1, j, arr);
-                                ReverseArray(temp);
-                                int[] temp2 = Section(j + 1, k, arr);
-                                int[]temp3 = Combine(temp2, temp);
-                                Replace(i + 1, k, temp3, arr);
-                                improvement = true;
-                                continue;
-                            }
-
-                            long delta6 = -disGrid[o1][o2] - disGrid[d1][d2] - disGrid[p1][p2] + disGrid[o1][d2] + disGrid[p1][o2] + disGrid[d1][p2];
-                            if (delta6 < 0) {
-                                int[] temp = Section(i + 1, j, arr);
-                                int[] temp2 = Section(j + 1, k, arr);
-                                int []temp3 = Combine(temp2, temp);
-                                Replace(i + 1, k, temp3, arr);
-                                improvement = true;
-                                continue;
-                            }
-                            long delta0 = -disGrid[o1][o2] - disGrid[p1][p2] + disGrid[o1][p1] + disGrid[o2][p2];
-                            if (delta0 < 0) {
-                                tool.opt2Reverse(arr, i + 1, k);
-                                improvement = true;
-                                continue;
-                            }
-                            long delta1 = -disGrid[o1][o2] - disGrid[d1][d2] + disGrid[o1][d1] + disGrid[o2][d2];
-                            if (delta1 < 0) {
-                                tool.opt2Reverse(arr, i + 1, j);
-                                improvement = true;
-                                continue;
-                            }
-                            long delta2 = -disGrid[d1][d2] - disGrid[p1][p2] + disGrid[d1][p1] + disGrid[d2][p2];
-                            if (delta2 < 0) {
-                                tool.opt2Reverse(arr, j + 1, k);
-                                improvement = true;
-                                continue;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
 
 }
