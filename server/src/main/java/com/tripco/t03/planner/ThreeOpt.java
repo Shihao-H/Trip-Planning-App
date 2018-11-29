@@ -90,6 +90,40 @@ public class ThreeOpt {
         return newPath;
     }
 
+    /**
+     * Combine two arrays.
+     * @param disGrid double long array.
+     */
+    public void threeOpt(long[][] disGrid)
+    {
+        int shortestStart = 0;
+        long pathDis=Long.MAX_VALUE;
+        for(int i=0;i<len;i++)
+        {
+            long temp=Opt3DisEach(i,disGrid);
+
+            if(pathDis>temp)
+            {
+                shortestStart=i;
+                pathDis = temp;
+            }
+        }
+        this.index=tool.StartNear(shortestStart,disGrid,len);
+        threeAlg(this.index,disGrid);
+    }
+
+    /**
+     * Combine two arrays.
+     * @param head Integer,
+     * @param disGrid double long array.
+     */
+    public long Opt3DisEach(int head,long [][] disGrid)
+    {
+        int[] arr=tool.StartNear(head,disGrid,len);
+        threeAlg(arr,disGrid);
+        return tool.findDis(arr,disGrid);
+
+    }
 
     public void threeAlg(int[] arr,long [][] disGrid)
     {
