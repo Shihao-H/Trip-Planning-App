@@ -6,6 +6,11 @@ public class ThreeOpt {
     public int len;
     public Utility tool;
 
+
+    /**
+     * Create a ThreeOpt object.
+     * Declares and initializes ThreeOpt objects
+     */
     public ThreeOpt(int[] arr,long[][] arr2)
     {
         this.index=arr;
@@ -65,9 +70,6 @@ public class ThreeOpt {
         }
     }
 
-
-
-
     /**
      * Combine two arrays.
      * @param a Integer array,
@@ -87,6 +89,29 @@ public class ThreeOpt {
         }
         return newPath;
     }
+
+    /**
+     * Combine two arrays.
+     * @param disGrid double long array.
+     */
+    public void threeOpt(long[][] disGrid)
+    {
+        int shortestStart = 0;
+        long pathDis=Long.MAX_VALUE;
+        for(int i=0;i<len;i++)
+        {
+            long temp=Opt3DisEach(i,disGrid);
+
+            if(pathDis>temp)
+            {
+                shortestStart=i;
+                pathDis = temp;
+            }
+        }
+        this.index=tool.StartNear(shortestStart,disGrid,len);
+        threeAlg(this.index,disGrid);
+    }
+
 
 
 }
