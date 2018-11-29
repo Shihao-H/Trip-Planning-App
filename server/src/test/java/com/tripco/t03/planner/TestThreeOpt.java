@@ -61,4 +61,13 @@ public class TestThreeOpt {
         int [] arr7=opt.combine(arr4,arr5);
         Assert.assertArrayEquals(arr6, arr7);
     }
+
+    @Test
+    public void testopt3Case1(){
+        opt = new ThreeOpt(arr, grid);
+        int [] arr6=new int[]{1,2,3,4,5,6};
+        int [] arr7=new int[]{1,5,4,2,3,6};
+        opt.opt3Case1(0,2,4, arr6);
+        Assert.assertArrayEquals(arr6, arr7);
+    }
 }
