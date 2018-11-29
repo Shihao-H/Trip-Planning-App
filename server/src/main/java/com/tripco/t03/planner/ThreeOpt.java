@@ -6,8 +6,9 @@ public class ThreeOpt {
     public int len;
     public Utility tool;
 
-     /**
-     * Create a ThreeOpt object. 
+
+    /**
+     * Create a ThreeOpt object.
      * Declares and initializes ThreeOpt objects
      */
     public ThreeOpt(int[] arr,long[][] arr2)
@@ -53,7 +54,7 @@ public class ThreeOpt {
 
 
     /**
-     * replace part of original array.
+     * Replace part of original array.
      * @param i1 Integer.
      * @param j1 Integer.
      * @param temp Integer array.
@@ -69,11 +70,8 @@ public class ThreeOpt {
         }
     }
 
-
-
-
     /**
-     * combine two arrays.
+     * Combine two arrays.
      * @param a1 Integer array,
      * @param b1 Integer array.
      */
@@ -91,6 +89,23 @@ public class ThreeOpt {
         }
         return newPath;
     }
+
+    /**
+     * Combine two arrays.
+     * @param i1 int,
+     * @param j1 int,
+     * @param k1 int,
+     * @param arr double int array.
+     */
+    public void opt3Case1(int i1, int j1, int k1, int[] arr)
+    {
+        int[] temp = section(i1 + 1, j1, arr);
+        int[] temp2 = section(j1 + 1, k1, arr);
+        reverseArray(temp2);
+        int []temp3 = combine(temp2, temp);
+        replace(i1 + 1, k1, temp3, arr);
+    }
+
 
 
 }
