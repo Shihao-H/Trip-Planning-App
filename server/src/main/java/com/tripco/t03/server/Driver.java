@@ -37,8 +37,25 @@ public class Driver {
     
     /**
      * Setter.
+     * @param boo String.
+     */
+    public void setIsTravis(String boo){
+        this.isTravis = boo;
+    }
+    
+    /**
+     * Setter.
+     * @param dev String.
+     */
+    public void setIsDevelopment(String dev) {
+        this.isDevelopment = dev;
+    }
+    
+    /**
+     * Setter.
      */
     void setDburlUserName(){
+System.out.printf("isTravis: %s; isDevelopment: %s/n", this.isTravis, this.isDevelopment);        
         if(this.isTravis != null && this.isTravis.equals("true")) {
             this.dburl = "jdbc:mysql://127.0.0.1/cs314";
             this.username = "travis";
