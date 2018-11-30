@@ -123,4 +123,19 @@ public class ThreeOpt {
         replace(i1 + 1, k1, temp3, arr);
     }
 
+    /**
+     * 3opt case3 of 7 cases
+     * @param i1 int,
+     * @param j1 int,
+     * @param k1 int,
+     * @param arr double int array.
+     */
+    public void opt3Case3(int i1, int j1, int k1, int[] arr)
+    {
+        int[] temp = section(i1 + 1, j1, arr);
+        int[] temp2 = section(j1 + 1, k1, arr);
+        int []temp3 = combine(temp2, temp);
+        replace(i1 + 1, k1, temp3, arr);
+    }
+
 }
