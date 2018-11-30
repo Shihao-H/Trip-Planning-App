@@ -1,4 +1,4 @@
-package com.tripco.t03.planner;
+/*package com.tripco.t03.planner;
 
 import com.tripco.t03.server.Optimization;
 import org.junit.Test;
@@ -40,4 +40,4 @@ public class TestOptimization {
         assertNull(opt3.label);
         assertNull(opt3.description);
     }
-}
+}*/
