@@ -11,5 +11,4 @@ test('default constructor', () => {
     cal.updateLoc('latitude', 12 ,false)
     cal.updateDistance('miles', 120)
     cal.Display()
-    cal.dropdown()
 });
