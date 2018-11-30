@@ -1,4 +1,5 @@
-// package com.tripco.t03.planner;
+
+/*package com.tripco.t03.planner;
 
 // import org.junit.Assert;
 // import org.junit.Before;
@@ -84,6 +85,7 @@
 //         Integer[] result = new Integer[trip.length];
 //         opt.twoOpt(result);
         
-//         Assert.assertEquals(Arrays.toString(result), Arrays.toString(expected));
-//     }
-// }
+        Assert.assertEquals(Arrays.toString(result), Arrays.toString(expected));
+    }
+}*/
+
