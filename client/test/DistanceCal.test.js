@@ -7,9 +7,8 @@ test('default test', () => {
 });
 
 test('default constructor', () => {
-    let cal = new DistanceCal()
-    cal.updateLoc('latitude', 12 ,false)
-    cal.updateDistance('miles', 120)
+    let cal = new DistanceCal();
+    cal.updateLoc('latitude', 12 ,false);
+    cal.updateDistance('miles', 120);
     cal.Display()
-    cal.dropdown()
 });

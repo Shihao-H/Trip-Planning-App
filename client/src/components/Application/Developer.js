@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card, CardBody, Row, Col, CardImg, CardTitle, CardText} from 'reactstrap'
+import {Alert, CardBody, Row, Col, CardImg, CardTitle, CardText} from 'reactstrap'
 import Team from '../../../../server/src/main/resources/Team.jpg';
 
 export default class Developer extends Component {
@@ -35,16 +35,26 @@ export default class Developer extends Component {
     }
 
     render() {
+        const csu = {
+            color: '#086421',
+            fontFamily: 'Open Sans'
+        };
+
         return (
-            <div><Card><CardBody>
-                {this.teamImage()}
-                <Row>
-                    {this.forEachTeamMember("Josh Keahey", "Josh")}
-                    {this.forEachTeamMember("Lacey Willmann", "Lacey")}
-                    {this.forEachTeamMember("Minjie Shen", "Minjie")}
-                    {this.forEachTeamMember("Shihao Huang", "Shihao")}
-                </Row>
-            </CardBody></Card></div>
+            <div className={'text-center'}>
+                <Alert color={'success'}>
+                    <CardBody>
+                        <h1 style={csu}>Team WOPR</h1>
+                        {this.teamImage()}
+                        <Row>
+                            {this.forEachTeamMember("Josh Keahey", "Josh")}
+                            {this.forEachTeamMember("Minjie Shen", "Minjie")}
+                            {this.forEachTeamMember("Shihao Huang", "Shihao")}
+                            {this.forEachTeamMember("Lacey Willmann", "Lacey")}
+                        </Row>
+                    </CardBody>
+                </Alert>
+            </div>
         )
     }
 }

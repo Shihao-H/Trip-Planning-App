@@ -24,7 +24,6 @@ export class DistanceCal extends Component {
         this.updateDistance = this.updateDistance.bind(this);
         this.Calculate = this.Calculate.bind(this);
         this.clickUnit = this.clickUnit.bind(this);
-        this.dropdown = this.dropdown.bind(this);
         this.Display = this.Display.bind(this);
         this.unitButtGroup = this.unitButtGroup.bind(this);
         this.inputGroup = this.inputGroup.bind(this);
@@ -42,10 +41,6 @@ export class DistanceCal extends Component {
             distances[field] = value;
             this.setState(distances);
         }
-    }
-
-    dropdown() {
-        this.setState({collapse: !this.state.collapse})
     }
 
     clickUnit(event) {
@@ -95,9 +90,10 @@ export class DistanceCal extends Component {
             {this.generateSomeInputForm("Origin ex.latitude", 'latitude', false)}
             {this.generateSomeInputForm("Origin ex.longitude", 'longitude', false)}
             {this.generateSomeInputForm("Destination ex.latitude", 'latitude', true)}
-            {this.generateSomeInputForm("Destination ex.longitude", 'longitude', true)}
-            <Button type={"button"} onClick={this.Calculate}>Calculate</Button>
-            <p>{"Final distance " + this.state.distances.distance + " "}{this.Display()}</p>
+            {this.generateSomeInputForm("Destination ex.longitude", 'longitude', true)}<br/>
+            <Button type={"button"} onClick={this.Calculate}
+                    color={'secondary'}>Calculate</Button><br/><br/>
+            <p><b>{"Final distance is " + this.state.distances.distance + " "}{this.Display()}</b></p>
         </Col>
     }
 
@@ -126,19 +122,20 @@ export class DistanceCal extends Component {
 
     render() {
         return (
-            <div><Card><CardBody>
-                <Button onClick={this.dropdown}>Calculate Your Own</Button>
-                <Collapse isOpen={this.state.collapse}>
-                    <Row>
-                        {this.inputGroup()}
-                        <Col md={6}>
-                            <ButtonGroup size="lg" vertical>{this.unitButtGroup()}</ButtonGroup>
-                            <p>{' '}</p>
-                            {this.state.ifDisplayUserDefinedInputFields && (this.displayUserOptions())}
-                        </Col>
-                    </Row>
-                </Collapse>
-            </CardBody></Card></div>
+            <div>
+                <Card>
+                    <CardBody>
+                        <Row>
+                            {this.inputGroup()}
+                            <Col md={6}>
+                                <ButtonGroup size="lg" vertical>{this.unitButtGroup()}</ButtonGroup>
+                                <p>{' '}</p>
+                                {this.state.ifDisplayUserDefinedInputFields && (this.displayUserOptions())}
+                            </Col>
+                        </Row>
+                    </CardBody>
+                </Card>
+            </div>
         )
     }
 }
