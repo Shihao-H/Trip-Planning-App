@@ -171,8 +171,8 @@ class Application extends Component {
                           selectAll={this.state.selectAll} updateSelectAll={this.updateSelectAll}
                           distances={this.state.trip.distances} title={this.state.trip.title}
                           updateTrip={this.updateTrip} updateSearch={this.updateSearch} search={this.state.search}
-                          otherTeams={this.state.otherTeams} trip={this.state.trip}
-                          host={this.state.host}/>
+                          otherTeams={this.state.otherTeams} trip={this.state.trip} units={this.state.trip.options.units}
+                          unitName={this.state.trip.options.unitName} host={this.state.host}/>
                     </CardBody>
                 </Card>
             </Container>
