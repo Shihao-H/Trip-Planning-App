@@ -42,6 +42,14 @@ class Application extends Component {
         let config = this.state.config;
         config[option] = value;
         this.setState(config);
+        let newDisplay = [];
+        let newAttributes = [];
+        config.attributes.map((attribute) =>{
+            newDisplay.push(true);
+            newAttributes.push(attribute);}
+        );
+        this.setState({display: newDisplay});
+        this.setState({attributes: newAttributes});
     }
 
     updateInterOperate() {
