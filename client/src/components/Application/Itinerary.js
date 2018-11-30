@@ -21,6 +21,7 @@ class Itinerary extends Component {
         this.tableDistance = this.tableDistance.bind(this);
         this.tableTotal = this.tableTotal.bind(this);
         this.createTable = this.createTable.bind(this);
+        this.getUnit = this.getUnit.bind(this);
     }
 
     dropdown() {
@@ -135,12 +136,14 @@ class Itinerary extends Component {
        );
     }
 
+    getUnit(){
+        return (this.props.units === "user defined") ? this.props.unitName : this.props.units;
+    }
+
     tableDistance() {
         let i = 0;
-        let unit;
-        (this.props.units === "user defined") ? unit = this.props.unitName : unit = this.props.units;
         return <tr key={"row_leg"}>
-            <th scope={"row"} key={"header_leg"}>{"Leg Distances (" + unit + ")"}</th>
+            <th scope={"row"} key={"header_leg"}>{"Leg Distances (" + this.getUnit() + ")"}</th>
             {this.props.distances.map((distance) => <td
                 key={"distance_" + i++}>{distance}</td>)}
         </tr>;
@@ -149,14 +152,12 @@ class Itinerary extends Component {
     tableTotal(){
         let i = 0;
         let totalDistance = [];
-        let unit;
-        (this.props.units === "user defined") ? unit = this.props.unitName : unit = this.props.units;
         for(let i = 0; i < this.props.distances.length; i ++){
             if(i === 0) totalDistance[0] = this.props.distances[0];
             else totalDistance[i] = totalDistance[i-1] + this.props.distances[i];
         }
         return <tr key={"row_total"}>
-            <th scope={"row"} key={"header_total"}>{"Total Distances (" + unit + ")"}</th>
+            <th scope={"row"} key={"header_total"}>{"Total Distances (" + this.getUnit() + ")"}</th>
             {totalDistance.map((total) => <td
                 key={"total_" + i++}>{total}</td>)}
         </tr>;
