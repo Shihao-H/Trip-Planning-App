@@ -1,4 +1,4 @@
-package com.tripco.t03.planner;
+/*package com.tripco.t03.planner;
 
 import static org.junit.Assert.*;
 
@@ -96,4 +96,4 @@ public class TestOptimize {
         Assert.assertNotEquals(trip, optTrip);
     }
 
-}
+}*/
