@@ -79,4 +79,13 @@ public class TestThreeOpt {
         opt.opt3Case2(0,2,4, arr6);
         Assert.assertArrayEquals(arr6, arr7);
     }
+
+    @Test
+    public void testopt3Case3(){
+        opt = new ThreeOpt(arr, grid);
+        int [] arr6=new int[]{1,2,3,4,5,6};
+        int [] arr7=new int[]{1,4,5,2,3,6};
+        opt.opt3Case3(0,2,4, arr6);
+        Assert.assertArrayEquals(arr6, arr7);
+    }
 }
