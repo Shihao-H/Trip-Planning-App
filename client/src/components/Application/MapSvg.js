@@ -40,8 +40,8 @@ export class MapSvg extends Component {
                         lat: 40.5853, lng: -105.0844
                     }}>
                     <Polyline
-                        path={coordinates} strokeColor="#ff1e19"
-                        strokeOpacity={0.8} strokeWeight={2}/>
+                        path={coordinates} strokeColor="#203060"
+                        strokeOpacity={0.8} strokeWeight={1.25}/>
                 </Map>
             </div>
         );

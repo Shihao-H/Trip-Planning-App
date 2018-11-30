@@ -94,7 +94,7 @@ public class LineDistance {
         this.lines += "<polyline points=\""
                       + x1 + "," + y1 + " "
                       + x2 + "," + y2 + "\" "
-                      + "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\" />";
+                      + "fill=\"none\" stroke-width=\"1.25\" stroke=\"#203060\" />";
     }
     
     /**

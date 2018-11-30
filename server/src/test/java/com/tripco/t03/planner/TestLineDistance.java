@@ -94,9 +94,9 @@ public class TestLineDistance {
     @Test
     public void testCheckPositive() {
         String expected = "<polyline points=\"841,346 1211,110\" "
-                + "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\" />"
+                + "fill=\"none\" stroke-width=\"1.25\" stroke=\"#203060\" />"
                 + "<polyline points=\"-183,346 187,110\" fill=\"none\" "
-                + "stroke-width=\"4\" stroke=\"#203060\" />";
+                + "stroke-width=\"1.25\" stroke=\"#203060\" />";
         testLineDistance = new LineDistance(placesPositive);
         testLineDistance.check(testLineDistance.places[0][0], testLineDistance.places[1][0], 0, 1);
         assertEquals(expected, testLineDistance.lines);
@@ -105,9 +105,9 @@ public class TestLineDistance {
     @Test
     public void testCheckNegative() {
         String expected = "<polyline points=\"1211,110 841,346\" "
-                + "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\" />"
+                + "fill=\"none\" stroke-width=\"1.25\" stroke=\"#203060\" />"
                 + "<polyline points=\"187,110 -183,346\" fill=\"none\" "
-                + "stroke-width=\"4\" stroke=\"#203060\" />";
+                + "stroke-width=\"1.25\" stroke=\"#203060\" />";
         testLineDistance = new LineDistance(placesNegative);
         testLineDistance.check(testLineDistance.places[0][0], testLineDistance.places[1][0], 0, 1);
         assertEquals(expected, testLineDistance.lines);
@@ -116,7 +116,7 @@ public class TestLineDistance {
     @Test
     public void testCheckDefault() {
         String expected = "<polyline points=\"187,110 213,140\" "
-                + "fill=\"none\" stroke-width=\"4\" stroke=\"#203060\" />";
+                + "fill=\"none\" stroke-width=\"1.25\" stroke=\"#203060\" />";
         testLineDistance = new LineDistance(placesDefault);
         testLineDistance.check(testLineDistance.places[0][0], testLineDistance.places[1][0], 0, 1);
         assertEquals(expected, testLineDistance.lines);
