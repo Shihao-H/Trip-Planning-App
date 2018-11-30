@@ -90,8 +90,9 @@ public class ThreeOpt {
         return newPath;
     }
 
+
     /**
-     * Combine two arrays.
+     * 3opt case1 of 7 cases
      * @param i1 int,
      * @param j1 int,
      * @param k1 int,
@@ -106,6 +107,20 @@ public class ThreeOpt {
         replace(i1 + 1, k1, temp3, arr);
     }
 
-
+    /**
+     * 3opt case2 of 7 cases
+     * @param i1 int,
+     * @param j1 int,
+     * @param k1 int,
+     * @param arr double int array.
+     */
+    public void opt3Case2(int i1, int j1, int k1, int[] arr)
+    {
+        int[] temp = section(i1 + 1, j1, arr);
+        reverseArray(temp);
+        int[] temp2 = section(j1 + 1, k1, arr);
+        int[]temp3 = combine(temp2, temp);
+        replace(i1 + 1, k1, temp3, arr);
+    }
 
 }
