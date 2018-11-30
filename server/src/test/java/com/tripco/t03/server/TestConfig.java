@@ -13,7 +13,7 @@ public class TestConfig {
     @Before
     public void setUp(){
         this.config = new Config();
-        json = "{\"type\":\"config\",\"version\":4," +
+        json = "{\"type\":\"config\",\"version\":5," +
                 "\"units\":[\"miles\",\"kilometers\",\"nautical miles\",\"user defined\"]," +
                 "\"optimization\":[{\"label\":\"none\",\"description\":\"The trip is not optimized.\"}," +
                 "{\"label\":\"short\",\"description\":\"Nearest neighbor.\"}," +

@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class Config {
   private String type = "config";
-  private short version = 4;
+  private short version = 5;
   private ArrayList<String> units;
   private ArrayList<Optimization> optimization;
   private ArrayList<String> attributes;
