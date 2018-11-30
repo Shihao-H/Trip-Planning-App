@@ -79,6 +79,7 @@ class HomePage extends Component {
                   updateSelectAll={this.props.updateSelectAll} trip={this.props.trip}
                   updateSelected={this.props.updateSelected} otherTeams={this.props.otherTeams}
                   host={this.props.host} title={this.props.title} map={this.props.map}
+                  trip={this.props.trip} mapForOption={this.props.mapForOption}
                   updateSearch={this.props.updateSearch}/>
         )
     }
@@ -94,7 +95,9 @@ class HomePage extends Component {
                            selectAll={this.props.selectAll} updateSelectAll={this.props.updateSelectAll}
                            places={this.props.places} attributes={this.props.attributes}
                            distances={this.props.distances} title={this.props.title}
-                           updateTrip={this.props.updateTrip}/>
+                           updateTrip={this.props.updateTrip} units={this.props.units}
+                           unitName={this.props.unitName}
+                />
                 <Attributes config={this.props.config} display={this.props.display}
                             updateAttributes={this.props.updateAttributes}/>
             </TabPane>

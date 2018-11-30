@@ -42,6 +42,14 @@ class Application extends Component {
         let config = this.state.config;
         config[option] = value;
         this.setState(config);
+        let newDisplay = [];
+        let newAttributes = [];
+        config.attributes.map((attribute) =>{
+            newDisplay.push(true);
+            newAttributes.push(attribute);}
+        );
+        this.setState({display: newDisplay});
+        this.setState({attributes: newAttributes});
     }
 
     updateInterOperate() {
@@ -171,8 +179,8 @@ class Application extends Component {
                           selectAll={this.state.selectAll} updateSelectAll={this.updateSelectAll}
                           distances={this.state.trip.distances} title={this.state.trip.title}
                           updateTrip={this.updateTrip} updateSearch={this.updateSearch} search={this.state.search}
-                          otherTeams={this.state.otherTeams} trip={this.state.trip}
-                          host={this.state.host}/>
+                          otherTeams={this.state.otherTeams} trip={this.state.trip} units={this.state.trip.options.units}
+                          unitName={this.state.trip.options.unitName} host={this.state.host}/>
                     </CardBody>
                 </Card>
             </Container>

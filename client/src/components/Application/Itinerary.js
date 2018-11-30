@@ -21,6 +21,7 @@ class Itinerary extends Component {
         this.tableDistance = this.tableDistance.bind(this);
         this.tableTotal = this.tableTotal.bind(this);
         this.createTable = this.createTable.bind(this);
+        this.getUnit = this.getUnit.bind(this);
     }
 
     dropdown() {
@@ -107,7 +108,7 @@ class Itinerary extends Component {
     tableEach(){
         let i = 0;
        return this.props.places.map((place) =>
-           <th key={'check' + place.id + i++} className="checkPlace">
+           <td key={'check' + place.id + i++} className="checkPlace">
                <InputGroupAddon addonType="prepend">
                    <Input addon
                           type="checkbox"
@@ -118,7 +119,7 @@ class Itinerary extends Component {
                               this.toggle(event.target.value)
                           }}/>
                </InputGroupAddon>
-           </th>);
+           </td>);
     }
 
     tableRow(){
@@ -135,10 +136,14 @@ class Itinerary extends Component {
        );
     }
 
+    getUnit(){
+        return (this.props.units === "user defined") ? this.props.unitName : this.props.units;
+    }
+
     tableDistance() {
         let i = 0;
         return <tr key={"row_leg"}>
-            <th scope={"row"} key={"header_leg"}>Leg Distances</th>
+            <th scope={"row"} key={"header_leg"}>{"Leg Distances (" + this.getUnit() + ")"}</th>
             {this.props.distances.map((distance) => <td
                 key={"distance_" + i++}>{distance}</td>)}
         </tr>;
@@ -152,7 +157,7 @@ class Itinerary extends Component {
             else totalDistance[i] = totalDistance[i-1] + this.props.distances[i];
         }
         return <tr key={"row_total"}>
-            <th scope={"row"} key={"header_total"}>Total Distances</th>
+            <th scope={"row"} key={"header_total"}>{"Total Distances (" + this.getUnit() + ")"}</th>
             {totalDistance.map((total) => <td
                 key={"total_" + i++}>{total}</td>)}
         </tr>;
@@ -160,8 +165,11 @@ class Itinerary extends Component {
 
     createTable(){
         let table = [];
-        table.push(this.tableToggle());
-        table.push(this.tableEach());
+        const checkboxes = <tr key={"checkboxes"}>
+            {this.tableToggle()}
+            {this.tableEach()}
+            </tr>;
+        table.push(checkboxes);
         table.push(this.tableRow());
         table.push(this.tableDistance());
         table.push(this.tableTotal());

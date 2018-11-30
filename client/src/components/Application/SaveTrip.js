@@ -14,9 +14,8 @@ class SaveTrip extends Component {
         if (!title.endsWith(".json")) {
             title += ".json";
         }
-
         let ele = document.createElement('a');
-        ele.setAttribute('href', 'data:text/plain;charset=ytf-8,' + encodeURIComponent(TFFI));
+        ele.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(TFFI));
         ele.setAttribute('download', title);
         document.body.appendChild(ele);
         ele.click();
@@ -24,12 +23,13 @@ class SaveTrip extends Component {
     }
 
     SaveMap() {
+        let title = this.props.title;
         let ele = document.createElement('a');
         ele.setAttribute('href', 'data:text/plain;charset=ytf-8,' + this.props.map);
-        if (this.props.trip.options.mapForOption === "svg") {
-            ele.setAttribute('download', 'download.svg');
+        if (this.props.mapForOption === "svg") {
+            ele.setAttribute('download', title + '.svg');
         } else {
-            ele.setAttribute('download', 'download.kml');
+            ele.setAttribute('download', title + '.kml');
         }
         document.body.appendChild(ele);
         ele.click();
