@@ -17,13 +17,14 @@ class Plan extends Component {
             <div>
                 <Card>
                     <CardBody id="Plan">
-                         <Upload
+                        <Upload
                             updateTrip={this.props.updateTrip} updateOptions={this.props.updateOptions}
                             updateSelectAll={this.props.updateSelectAll} trip={this.props.trip}
                             updateSelected={this.props.updateSelected} otherTeams={this.props.otherTeams}
                             host={this.props.host}/><br/>
                         <SaveTrip
-                            title={this.props.title} map={this.props.map}/><br/>
+                            trip={this.props.trip} title={this.props.title} mapForOption={this.props.mapForOption}
+                            map={this.props.map}/><br/>
                         <Clear updateOptions={this.props.updateOptions}
                             updateSearch={this.props.updateSearch} updateTrip={this.props.updateTrip}/>
                     </CardBody>

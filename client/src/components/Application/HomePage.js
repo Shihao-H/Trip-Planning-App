@@ -79,6 +79,7 @@ class HomePage extends Component {
                   updateSelectAll={this.props.updateSelectAll} trip={this.props.trip}
                   updateSelected={this.props.updateSelected} otherTeams={this.props.otherTeams}
                   host={this.props.host} title={this.props.title} map={this.props.map}
+                  trip={this.props.trip} mapForOption={this.props.mapForOption}
                   updateSearch={this.props.updateSearch}/>
         )
     }
