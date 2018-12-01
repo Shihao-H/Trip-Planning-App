@@ -17,7 +17,18 @@ Name | Preparation Time
 ### Problems found
 file:line | problem | hi/med/low | who found | github# 
 --- | --- | :---: | :---: | ---
- | Application.js: Lines 119-123 | Similar blocks of code found in 2 locations | med | Josh |  |
- | Application.js: Lines 113-117 | Similar blocks of code found in 2 locations | med | Josh |  |
- | Optimize.java: Line 22 | Distance Grid doesn't work as expected, sorting the places messes up the places indices | med | Minjie |  |
- | ThreeOpt.java: Lines 144 | Method threeAlg has a Cognitive Complexity of 57 (exceeds 5 allowed).| med | Shihao |  |
+| ThreeOpt.java: Lines 175-179 | Method threeAlg has a Cognitive Complexity of 57| hi | Josh | #688 |
+| ThreeOpt.java: Lines 175 | 58 lines of code(exceed 25)| lo | Shihao | #688 |
+| ThreeOpt.java: Lines 184-188 | nested control flow | hi | Minjie | #688 |
+| ThreeOpt.java: Line 144-148 14-18 | similar blocks of code | med | Josh | #688 |
+| ThreeOpt.java: Line 200 167 207 194| identical blocks of code | med | Shihao | #688 |
+| ThreeOpt.java: Line 213 223 219| identical blocks of code | med | Shihao | #689 |
+| ThreeOpt.java: Line 66-70 47-51 | identical blocks of code | med | Minjie | #689 |
+| TwoOpt.java: Line 40-44 | two Alg  | med | Minjie | #689 |
+| TwoOpt.java: Line 51-54 | nested control | med | Shihao | #689 |
+| TwoOpt.java: Line 17-21 | similar blocks of code | lo | Minjie | #689 |
+| TwoOpt.java: Line 50 213 219 225| identical blocks of code | med | Josh | #690 |
+| TwoOpt.java: Line 9-13 | similar blocks of code | lo | Shihao | #690 |
+| Trip.java: Line 215-219 | cognitive complexity of 12 | lo | Minjie | #690 |
+| Trip.java: Line 166-170 | cognitive complexity of 7 | lo | Josh | #690 |
+| Trip.java: Line 31 | incorrext identation level | lo | Shihao | #690 |
