@@ -54,9 +54,7 @@ export class SearchBox extends Component {
 
     mapFilters() {
         return this.props.config.filters.map((filter) =>
-            <Col xs={"6"} key={filter.name}>
-                <Card>
-                    <CardBody>
+            <Col xs={"6"} key={filter.name} className={'text-left'}>
                         {filter.values.map((ConcreteValue) =>
                             <div key={ConcreteValue}>
                                 <Label check key={ConcreteValue}>
@@ -66,8 +64,6 @@ export class SearchBox extends Component {
                                 </Label>
                             </div>
                         )}
-                    </CardBody>
-                </Card>
             </Col>);
     }
 
