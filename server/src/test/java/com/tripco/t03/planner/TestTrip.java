@@ -1,5 +1,6 @@
-/*package com.tripco.t03.planner;
+package com.tripco.t03.planner;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,9 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-/*
-  This class contains tests for the Trip class.
- * /
+
 @RunWith(JUnit4.class)
 public class TestTrip {
 
@@ -145,5 +144,25 @@ public class TestTrip {
         
         assertEquals(1, trip.distances.size());
   }
-}*/
+
+    @Test
+    public void testfill(){
+        trip = new Trip(opt, places);
+        int[] arr=trip.fill();
+        int []arr2=new int[]{0,1,2,3};
+        Assert.assertArrayEquals(arr, arr2);
+    }
+
+    @Test
+    public void testupdatelist(){
+        trip = new Trip(opt, places);
+        ArrayList<Long> dist = new ArrayList<>();
+        dist.add(10L);
+        trip.setDistances(dist);
+
+        assertEquals(1, trip.distances.size());
+    }
+}
+
+
 
