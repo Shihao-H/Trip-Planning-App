@@ -1,5 +1,6 @@
-/*package com.tripco.t03.planner;
+package com.tripco.t03.planner;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,9 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
-/*
-  This class contains tests for the Trip class.
- * /
+
 @RunWith(JUnit4.class)
 public class TestTrip {
 
@@ -25,6 +24,7 @@ public class TestTrip {
   private Option userDefined;
   private Option withOptimize;
   private ArrayList<Place> places;
+  private ArrayList<Place> places2;
   private String title;
   private ArrayList<Long> distances;
 
@@ -145,5 +145,31 @@ public class TestTrip {
         
         assertEquals(1, trip.distances.size());
   }
-}*/
+
+    @Test
+    public void testfill(){
+        trip = new Trip(opt, places);
+        int[] arr=trip.fill();
+        int []arr2=new int[]{0,1,2,3};
+        Assert.assertArrayEquals(arr, arr2);
+    }
+
+    @Test
+    public void testupdatelist(){
+        trip = new Trip(opt, places);
+        int[] arr=new int[]{0,1,3,2};
+        trip.updateList(arr);
+        places2 = new ArrayList<>();
+        places2.add(new Place("P01", "one", 41.000155556, -109.05));
+        places2.add(new Place("P02", "two", 41.00055556, -102.05166667));
+        places2.add(new Place("P04", "four", 39.0, 116.0));
+        places2.add(new Place("P03", "three", 18.0, -104.0));
+        for(int i=0;i<4;i++)
+        {
+            assertTrue(places.get(i).equals(places.get(i)));
+        }
+    }
+}
+
+
 
