@@ -24,6 +24,7 @@ public class TestTrip {
   private Option userDefined;
   private Option withOptimize;
   private ArrayList<Place> places;
+  private ArrayList<Place> places2;
   private String title;
   private ArrayList<Long> distances;
 
@@ -156,11 +157,17 @@ public class TestTrip {
     @Test
     public void testupdatelist(){
         trip = new Trip(opt, places);
-        ArrayList<Long> dist = new ArrayList<>();
-        dist.add(10L);
-        trip.setDistances(dist);
-
-        assertEquals(1, trip.distances.size());
+        int[] arr=new int[]{0,1,3,2};
+        trip.updateList(arr);
+        places2 = new ArrayList<>();
+        places2.add(new Place("P01", "one", 41.000155556, -109.05));
+        places2.add(new Place("P02", "two", 41.00055556, -102.05166667));
+        places2.add(new Place("P04", "four", 39.0, 116.0));
+        places2.add(new Place("P03", "three", 18.0, -104.0));
+        for(int i=0;i<4;i++)
+        {
+            assertTrue(places.get(i).equals(places.get(i)));
+        }
     }
 }
 
