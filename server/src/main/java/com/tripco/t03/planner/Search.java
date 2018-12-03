@@ -125,6 +125,6 @@ public class Search {
         Driver driver = new Driver();
         driver.find(this.match, this.limit, getQuery());
         this.found = driver.found;
-        this.places.addAll(driver.places);
+        this.places = (ArrayList<Place>) driver.places.clone();
     }
 }
