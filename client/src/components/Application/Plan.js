@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {CardBody, Card} from 'reactstrap';
+import {CardBody, Card, CardTitle} from 'reactstrap';
 import Clear from "./Clear"
 import SaveTrip from "./SaveTrip"
 import Upload from "./Upload"
@@ -17,6 +17,7 @@ class Plan extends Component {
             <div>
                 <Card>
                     <CardBody id="Plan">
+                        <CardTitle>Submit your Trip!</CardTitle>
                         <Upload
                             updateTrip={this.props.updateTrip} updateOptions={this.props.updateOptions}
                             updateSelectAll={this.props.updateSelectAll} trip={this.props.trip}

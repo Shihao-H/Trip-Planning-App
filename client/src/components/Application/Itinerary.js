@@ -189,13 +189,13 @@ class Itinerary extends Component {
                                 <tbody className="Body">{this.createTable()}</tbody>
                             </Table>
                             <br/>
-                            <Button size='lg' key={'delete_button'} className='btn-outline-dark delete-button'
+                            <Button key={'delete_button'} className='btn-outline-dark delete-button'
                                     onClick={this.clickDeleteButton}>Delete selected location
                             </Button><br/><br/>
-                            <Button size='lg' key={'reverse_button'} className='btn-outline-dark reverse-button'
+                            <Button key={'reverse_button'} className='btn-outline-dark reverse-button'
                                     onClick={this.clickReverseButton}>Reverse trip
                             </Button><br/><br/>
-                            <Button size='lg' key={'changeStart_button'} className='btn-outline-dark changeStart-button'
+                            <Button key={'changeStart_button'} className='btn-outline-dark changeStart-button'
                                     onClick={this.clickChangeStartButton}>Change selected to<br/>the starting location!
                             </Button>
                         </CardBody>

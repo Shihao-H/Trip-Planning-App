@@ -130,7 +130,7 @@ export class SearchBox extends Component {
             <div className={'text-center'}>
                 <Card>
                     <CardBody>
-                        <Label>Search for a new location</Label>
+                        <Label>Search for a new location</Label><br/>
                         <Form>
                             <Input type="text" placeholder="" style={{width: "100%"}}
                                    onChange={event => {
