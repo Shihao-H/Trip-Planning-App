@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Input, Col, Card, CardBody, ButtonGroup, Collapse, Row, FormGroup} from 'reactstrap';
+import {Button, Input, Col, Card, CardBody, ButtonGroup, CardTitle, Row, FormGroup} from 'reactstrap';
 import {request} from "../../api/api";
 
 export class DistanceCal extends Component {
@@ -92,7 +92,7 @@ export class DistanceCal extends Component {
             {this.generateSomeInputForm("Destination ex.latitude", 'latitude', true)}
             {this.generateSomeInputForm("Destination ex.longitude", 'longitude', true)}<br/>
             <Button type={"button"} onClick={this.Calculate}
-                    color={'secondary'}>Calculate</Button><br/><br/>
+                    color={'dark'}>Calculate</Button><br/><br/>
             <p><b>{"Final distance is " + this.state.distances.distance + " "}{this.Display()}</b></p>
         </Col>
     }
@@ -125,10 +125,12 @@ export class DistanceCal extends Component {
             <div>
                 <Card>
                     <CardBody>
+                        <CardTitle>Calculate the distance between two locations</CardTitle>
+                        <br/>
                         <Row>
                             {this.inputGroup()}
                             <Col md={6}>
-                                <ButtonGroup size="lg" vertical>{this.unitButtGroup()}</ButtonGroup>
+                                <ButtonGroup vertical>{this.unitButtGroup()}</ButtonGroup>
                                 <p>{' '}</p>
                                 {this.state.ifDisplayUserDefinedInputFields && (this.displayUserOptions())}
                             </Col>

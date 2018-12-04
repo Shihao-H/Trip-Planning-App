@@ -50,17 +50,12 @@ class Upload extends Component {
         return (
             <Row>
                 <Col>
-                    <label><br/>
-                        Submit your trip!
-                        <br/>
-                        <input type="file" ref={this.fileInput}
-                               id="fileInput"
-                               onChange={(event) => this.LoadFile(event)}/>
-                        <small className="form-text text-muted">
-                            Upload a file that contains a Trip<br/>object in the TFFI format.
-                        </small>
-                    </label>
-                    <br/>
+                    <input type="file" ref={this.fileInput}
+                           id="fileInput"
+                           onChange={(event) => this.LoadFile(event)}/>
+                    <small className="form-text text-muted">
+                        Upload a file that contains a Trip<br/>object in the TFFI format.
+                    </small><br/>
                     <Button
                         size='lg'
                         type="button"

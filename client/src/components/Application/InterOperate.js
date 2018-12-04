@@ -21,7 +21,7 @@ class InterOperate extends Component {
                     <Input style={{width: "100%"}} type="text"
                            placeholder="31403" onChange={this.props.updateOtherTeams}/>
                     <br/>
-                    <Button size='lg' className="btn-save btn-dark btn-outline-dark"
+                    <Button className="btn-save btn-dark btn-outline-dark"
                             onClick={this.props.updateInterOperate}
                             type="button">{"Begin inter operate!"}</Button>
                 </CardBody>

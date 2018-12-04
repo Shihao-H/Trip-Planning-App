@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ButtonGroup, Button, Input, Card, CardBody, FormGroup} from 'reactstrap';
+import {ButtonGroup, Button, Input, Card, CardBody, FormGroup, Label} from 'reactstrap';
 
 export class Add extends Component {
     constructor(props) {
@@ -75,10 +75,12 @@ export class Add extends Component {
     }
 
     generateBasicButtons(bool) {
+        //const style = {backgroundColor: "034f03"};
         return (
             <Button key={'add_button_' + bool}
                     className='btn-outline-dark add-button'
                     active={this.state.advanced === bool}
+                    //style={style}
                     onClick={(event) => this.click(event, bool)}>
                 {bool ? "Advanced" : "Basic"}
             </Button>
@@ -90,7 +92,7 @@ export class Add extends Component {
             <div>
                 <Card>
                     <CardBody>
-                        <p>Create your own trip</p>
+                        <Label>Create your own trip</Label>
                         <Input type="text" placeholder="Trip Title"
                                onChange={(e) => this.props.updateTrip('title', e.target.value)}/><br/>
                         <ButtonGroup>
