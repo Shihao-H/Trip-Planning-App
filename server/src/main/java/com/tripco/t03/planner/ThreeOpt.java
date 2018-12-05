@@ -137,7 +137,7 @@ public class ThreeOpt {
         int []temp3 = combine(temp2, temp);
         replace(i1 + 1, k1, temp3, arr);
     }
-    
+
     /**
      * Calling function of 3-opt.
      * @param disGrid double long array.
@@ -165,7 +165,7 @@ public class ThreeOpt {
      * @param head Integer,
      * @param disGrid double long array.
      */
-    public long Opt3DisEach(int head,long [][] disGrid)
+    public long opt3DisEach(int head,long [][] disGrid)
     {
         int[] arr=tool.StartNear(head,disGrid,len);
         threeAlg(arr,disGrid);
@@ -173,62 +173,69 @@ public class ThreeOpt {
 
     }
 
-     /**
+    /**
      * 3-opt main algorithm.
      * @param arr Integer,
      * @param disGrid double long array.
      */
     public void threeAlg(int[] arr,long [][] disGrid)
     {
-        int n=arr.length;
-        if (n > 6) {
+        int n1=arr.length;
+        if (n1 > 6) {
             boolean improvement = true;
             while (improvement) {
                 improvement = false;
-                for(int i=0;i<n-2;i++){
-                    for (int j = i+1; j < n-1; j++) {
-                        for (int k = j + 1; k < n ; k++) {
+                for(int i=0;i<n1-2;i++){
+                    for (int j = i+1; j < n1-1; j++) {
+                        for (int k = j + 1; k < n1 ; k++) {
                             int o1, o2, d1, d2, p1, p2;
-                            o1 = arr[i];o2 = arr[i + 1];d1 = arr[j];d2 = arr[j + 1];p1 = arr[k];p2 = arr[(k+1)%n];
-                            long delta3 = -disGrid[o1][o2] - disGrid[d1][d2] - disGrid[p1][p2] + disGrid[o1][d1] + disGrid[o2][p1] + disGrid[d2][p2];
+                            o1 = arr[i];
+                            o2 = arr[i + 1];
+                            d1 = arr[j];
+                            d2 = arr[j + 1];
+                            p1 = arr[k];
+                            p2 = arr[(k+1)%n1];
+                            long three = disGrid[o1][o2] + disGrid[d1][d2] + disGrid[p1][p2];
+                            long two = disGrid[o1][o2] + disGrid[p1][p2];
+                            long delta3 = disGrid[o1][d1] + disGrid[o2][p1] + disGrid[d2][p2] - three;
                             if (delta3 < 0) {
                                 tool.opt2Reverse(arr, i + 1, j);
                                 tool.opt2Reverse(arr, j + 1, k);
                                 improvement = true;
                                 continue;
                             }
-                            long delta4 = -disGrid[o1][o2] - disGrid[d1][d2] - disGrid[p1][p2] + disGrid[o1][p1] + disGrid[d2][o2] + disGrid[d1][p2];
+                            long delta4 = disGrid[o1][p1] + disGrid[d2][o2] + disGrid[d1][p2]- three;
                             if (delta4 < 0) {
                                 opt3Case1(i,j,k,arr);
                                 improvement = true;
                                 continue;
                             }
-                            long delta5 = -disGrid[o1][o2] - disGrid[d1][d2] - disGrid[p1][p2] + disGrid[o1][d2] + disGrid[p1][d1] + disGrid[o2][p2];
+                            long delta5 = disGrid[o1][d2] + disGrid[p1][d1] + disGrid[o2][p2]- three;
                             if (delta5 < 0) {
                                 opt3Case2(i,j,k,arr);
                                 improvement = true;
                                 continue;
                             }
 
-                            long delta6 = -disGrid[o1][o2] - disGrid[d1][d2] - disGrid[p1][p2] + disGrid[o1][d2] + disGrid[p1][o2] + disGrid[d1][p2];
+                            long delta6 = disGrid[o1][d2] + disGrid[p1][o2] + disGrid[d1][p2]- three;
                             if (delta6 < 0) {
                                 opt3Case3(i,j,k,arr);
                                 improvement = true;
                                 continue;
                             }
-                            long delta0 = -disGrid[o1][o2] - disGrid[p1][p2] + disGrid[o1][p1] + disGrid[o2][p2];
+                            long delta0 = disGrid[o1][p1] + disGrid[o2][p2] - two;
                             if (delta0 < 0) {
                                 tool.opt2Reverse(arr, i + 1, k);
                                 improvement = true;
                                 continue;
                             }
-                            long delta1 = -disGrid[o1][o2] - disGrid[d1][d2] + disGrid[o1][d1] + disGrid[o2][d2];
+                            long delta1 = two + disGrid[o1][d1] + disGrid[o2][d2]- two;
                             if (delta1 < 0) {
                                 tool.opt2Reverse(arr, i + 1, j);
                                 improvement = true;
                                 continue;
                             }
-                            long delta2 = -disGrid[d1][d2] - disGrid[p1][p2] + disGrid[d1][p1] + disGrid[d2][p2];
+                            long delta2 = two + disGrid[d1][p1] + disGrid[d2][p2]- two;
                             if (delta2 < 0) {
                                 tool.opt2Reverse(arr, j + 1, k);
                                 improvement = true;
