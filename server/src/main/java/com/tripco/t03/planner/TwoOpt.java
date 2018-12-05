@@ -59,13 +59,13 @@ class TwoOpt {
      */
     public void twoAlg(int[] arr, long[][] disGrid) {
         int n1 = arr.length;
-        int o1;int o2;int d1;int d2;
         if (n1 > 4) {
             boolean improvement = true;
             while (improvement) {
                 improvement = false;
                 for (int i = 0; i <= n1 - 3; i++) {
                     for (int j = i + 2; j <= n1 - 1; j++) {
+                        int o1, o2, d1, d2;
                         o1 = arr[i];
                         o2 = arr[i + 1];
                         d1 = arr[j];
