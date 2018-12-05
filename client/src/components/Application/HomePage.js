@@ -62,10 +62,10 @@ class HomePage extends Component {
     createYourOwn() {
         return (
             <Row>
-                <Col xs="6">
+                <Col>
                     <Add places={this.props.places} updateTrip={this.props.updateTrip}/>
                 </Col>
-                <Col xs="6">
+                <Col>
                     <SearchBox config={this.props.config} search={this.props.search} trip={this.props.trip}
                                updateSearch={this.props.updateSearch} updateTrip={this.props.updateTrip}/>
                 </Col>

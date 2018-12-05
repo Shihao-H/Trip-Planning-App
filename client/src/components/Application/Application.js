@@ -167,8 +167,6 @@ class Application extends Component {
         }
         return (
             <Container id="Application">
-                <Card>
-                    <CardBody>
                 <HomePage config={this.state.config} display={this.state.display} options={this.state.trip.options}
                           updateAttributes={this.updateAttributes} updateOptions={this.updateOptions}
                           updateHost={this.updateHost} updateOtherTeams={this.updateOtherTeams}
@@ -181,8 +179,6 @@ class Application extends Component {
                           updateTrip={this.updateTrip} updateSearch={this.updateSearch} search={this.state.search}
                           otherTeams={this.state.otherTeams} trip={this.state.trip} units={this.state.trip.options.units}
                           unitName={this.state.trip.options.unitName} host={this.state.host}/>
-                    </CardBody>
-                </Card>
             </Container>
         )
     }
