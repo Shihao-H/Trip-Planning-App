@@ -92,7 +92,7 @@ public class ThreeOpt {
 
 
     /**
-     * 3opt case1 of 7 cases
+     * 3opt case1 of 7 cases.
      * @param i1 int,
      * @param j1 int,
      * @param k1 int,
@@ -108,7 +108,7 @@ public class ThreeOpt {
     }
 
     /**
-     * 3opt case2 of 7 cases
+     * 3opt case2 of 7 cases.
      * @param i1 int,
      * @param j1 int,
      * @param k1 int,
@@ -124,7 +124,7 @@ public class ThreeOpt {
     }
 
     /**
-     * 3opt case3 of 7 cases
+     * 3opt case3 of 7 cases.
      * @param i1 int,
      * @param j1 int,
      * @param k1 int,
@@ -161,7 +161,7 @@ public class ThreeOpt {
     }
 
     /**
-     * Combine two arrays.
+     * Calling function of 3-opt for each starting point.
      * @param head Integer,
      * @param disGrid double long array.
      */
@@ -173,6 +173,11 @@ public class ThreeOpt {
 
     }
 
+     /**
+     * 3-opt main algorithm.
+     * @param arr Integer,
+     * @param disGrid double long array.
+     */
     public void threeAlg(int[] arr,long [][] disGrid)
     {
         int n=arr.length;
