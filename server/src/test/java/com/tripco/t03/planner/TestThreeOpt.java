@@ -9,6 +9,10 @@ public class TestThreeOpt {
     private ThreeOpt opt;
     private int[] arr;
     private long[][] grid;
+    private long[][] distanceGrid;
+    private int[] trip;
+    public int len;
+    public Utility tool;
 
 
     @Before
@@ -18,6 +22,18 @@ public class TestThreeOpt {
                 {8L, 4L, 0L, 5L},
                 {4L, 8L, 5L, 0L}};
         arr = new int[]{0, 1, 2, 3};
+
+        distanceGrid = new long[][]{{0L, 5L, 8L, 4L, 3L, 7L, 2L, 3L},
+                                    {5L, 0L, 4L, 8L, 1L, 1L, 5L, 5L},
+                                    {8L, 4L, 0L, 5L, 2L, 2L, 6L, 7L},
+                                    {4L, 8L, 5L, 0L, 2L, 3L, 7L, 8L},
+                                    {3L, 1L, 2L, 2L, 0L, 4L, 8L, 1L},
+                                    {7L, 1L, 2L, 3L, 4L, 0L, 9L, 2L},
+                                    {2L, 5L, 6L, 7L, 8L, 9L, 0L, 4L},
+                                    {3L, 5L, 7L, 8L, 1L, 2L, 4L, 0L}};
+        trip = new int[]{0, 1, 2, 3, 4, 5, 6, 7};
+        this.len=trip.length;
+        this.tool=new Utility();
     }
 
     @Test
@@ -87,5 +103,20 @@ public class TestThreeOpt {
         int [] arr7=new int[]{1,4,5,2,3,6};
         opt.opt3Case3(0,2,4, arr6);
         Assert.assertArrayEquals(arr6, arr7);
+    }
+
+    @Test
+    public void testthreeOpt(){
+        opt = new ThreeOpt(trip, distanceGrid);
+        int[] result = new int[]{0,6,7,4,1,5,2,3};
+        opt.threeOpt(distanceGrid);
+        Assert.assertArrayEquals(opt.index,result);
+    }
+
+    @Test
+    public void testopt3DisEach() {
+        opt = new ThreeOpt(trip, distanceGrid);
+        long distance = opt.opt3DisEach(0,distanceGrid);
+        Assert.assertEquals(distance, 20);
     }
 }
