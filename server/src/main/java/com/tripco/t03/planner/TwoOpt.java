@@ -8,7 +8,7 @@ class TwoOpt {
 
 
     /**
-     * TwoOpt constructor
+     * TwoOpt constructor.
      * @param arr int array.
      * @param arr2 double long.
      */
@@ -21,7 +21,7 @@ class TwoOpt {
     }
 
     /**
-     * Calling function of twoOpt
+     * Calling function of twoOpt.
      * @param disGrid long array.
      */
     public void twoOpt(long[][] disGrid)
