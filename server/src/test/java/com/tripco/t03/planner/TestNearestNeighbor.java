@@ -25,3 +25,28 @@ public class TestNearestNeighbor {
         this.len=trip.length;
         this.tool=new Utility();
     }
+    
+    @Test
+    public void testNearestNeighborConstructor(){
+        NearestNeighbor nn = new NearestNeighbor(trip, distanceGrid);
+        Assert.assertNotNull(nn);
+    }
+
+    @Test
+    public void testnear(){
+        opt = new NearestNeighbor(trip, distanceGrid);
+        int[] result = new int[]{4,5,0,6,3,2,1};
+        opt.near(distanceGrid);
+        Assert.assertArrayEquals(opt.index,result);
+    }
+
+    @Test
+    public void testopt2DisEach() {
+        opt = new NearestNeighbor(trip, distanceGrid);
+        long distance = opt.nearDisEach(0,distanceGrid);
+        Assert.assertEquals(distance, 234);
+    }
+
+
+}
+    
