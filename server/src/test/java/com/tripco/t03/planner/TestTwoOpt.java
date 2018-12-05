@@ -1,91 +1,51 @@
 
-/*package com.tripco.t03.planner;
+package com.tripco.t03.planner;
 
-// import org.junit.Assert;
-// import org.junit.Before;
-// import org.junit.Test;
-// import java.util.Arrays;
+ import org.junit.Assert;
+ import org.junit.Before;
+ import org.junit.Test;
 
-// public class TestTwoOpt {
-    
-//     private TwoOpt opt;
-//     private Integer[] trip;
-//     private Integer[] expected;
-//     private Long[][] distanceGrid;
-//     private Long[] expectedLeg;
-    
-//     @Before
-//     public void setup(){
-//         trip = new Integer[]{0, 2, 1, 3};
-//         distanceGrid = new Long[][]{{0L, 5L, 8L, 4L},
-//                                        {5L, 0L, 4L, 8L},
-//                                        {8L, 4L, 0L, 5L},
-//                                        {4L, 8L, 5L, 0L}};
-//         expected = new Integer[]{0, 1, 2, 3};
-//         expectedLeg = new Long[]{5L, 4L, 5L, 4L};
-//     }
-    
-//     @Test
-//     public void testConstructor(){
-//         opt = new TwoOpt(trip, distanceGrid);
-    
-//         Assert.assertNotNull(opt);
-//     }
-    
-//     @Test
-//     public void testTwoOpt(){
-//         opt = new TwoOpt(trip, distanceGrid);
-//         Integer[] result = new Integer[trip.length];
-//         opt.twoOpt(result);
-    
-//         Assert.assertEquals(Arrays.toString(result), Arrays.toString(expected));
-//     }
-    
-//     @Test
-//     public void testTwoOptReverse(){
-//         Integer[] reverseExpected = new Integer[]{3, 2, 1, 0};
-//         opt = new TwoOpt(trip, distanceGrid);
-//         opt.opt2Reverse2(0, 3, expected);
-        
-//         Assert.assertEquals(Arrays.toString(expected), Arrays.toString(reverseExpected));
-//     }
-    
-//     @Test
-//     public void testGetTotalDistance() {
-//         opt = new TwoOpt(trip, distanceGrid);
-//         Integer[] result = new Integer[trip.length];
-//         opt.twoOpt(result);
-    
-//         long distance = opt.getTotalDistance();
-//         Assert.assertEquals(distance, 18);
-//     }
-    
-//     @Test
-//     public void testGetSortedArray(){
-//         opt = new TwoOpt(trip, distanceGrid);
-//         Integer[] result = new Integer[trip.length];
-//         opt.getSortedIndices(result);
-        
-//         Assert.assertEquals(Arrays.toString(result), Arrays.toString(trip));
-//     }
-    
-//     @Test
-//     public void testTwoOptLegDistances(){
-//         opt = new TwoOpt(trip, distanceGrid);
-//         Long[] result = new Long[trip.length];
-//         opt.twoOpt(expected);
-//         opt.getTwoOptLegDistances(result);
-        
-//         Assert.assertEquals(Arrays.toString(result), Arrays.toString(expectedLeg));
-//     }
-    
-//     @Test
-//     public void testTwoOptNoChange(){
-//         opt = new TwoOpt(expected, distanceGrid);
-//         Integer[] result = new Integer[trip.length];
-//         opt.twoOpt(result);
-        
-        Assert.assertEquals(Arrays.toString(result), Arrays.toString(expected));
-    }
-}*/
+ public class TestTwoOpt {
 
+     private TwoOpt opt;
+     private int[] trip;
+     private int[] expected;
+     private long[][] distanceGrid;
+     public int len;
+     public Utility tool;
+
+     @Before
+     public void setup(){
+         trip = new int[]{0, 1, 2, 3, 4};
+         distanceGrid = new long[][]{{0L, 5L, 8L, 4L, 3L},
+                                     {5L, 0L, 4L, 8L, 1L},
+                                     {8L, 4L, 0L, 5L, 2L},
+                                     {4L, 8L, 5L, 0L, 2L},
+                                     {3L, 1L, 2L, 2L, 0L}};
+         expected = new int[]{0, 1, 2, 3, 4};
+         this.len=trip.length;
+         this.tool=new Utility();
+     }
+
+     @Test
+     public void testConstructor(){
+         opt = new TwoOpt(trip, distanceGrid);
+         Assert.assertNotNull(opt);
+     }
+
+     @Test
+     public void testtwoOpt(){
+         opt = new TwoOpt(trip, distanceGrid);
+         int[] result = new int[]{0,4,1,2,3};
+         opt.twoOpt(distanceGrid);
+         Assert.assertArrayEquals(opt.index,result);
+     }
+
+     @Test
+     public void testopt2DisEach() {
+         opt = new TwoOpt(trip, distanceGrid);
+         long distance = opt.opt2DisEach(0,distanceGrid);
+         Assert.assertEquals(distance, 17);
+     }
+
+}
