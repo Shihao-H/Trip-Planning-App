@@ -88,4 +88,12 @@ public class TestThreeOpt {
         opt.opt3Case3(0,2,4, arr6);
         Assert.assertArrayEquals(arr6, arr7);
     }
+    
+    @Test
+    public void testthreeAlg(){
+        opt = new ThreeOpt(trip, distanceGrid);
+        int[] result = new int[]{0,6,7,4,1,5,2,3};
+        opt.threeAlg(opt.index,distanceGrid);
+        Assert.assertArrayEquals(opt.index,result);
+    }
 }
