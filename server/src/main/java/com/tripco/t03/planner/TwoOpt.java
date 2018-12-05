@@ -29,7 +29,7 @@ class TwoOpt {
         int shortestStart = 0;
         long pathDis = Long.MAX_VALUE;
         for (int i = 0; i < len; i++) {
-            long temp = Opt2DisEach(i, disGrid);
+            long temp = opt2DisEach(i, disGrid);
 
             if (pathDis > temp) {
                 shortestStart = i;
@@ -41,42 +41,35 @@ class TwoOpt {
     }
 
     /**
-     * Find the index of the minimum value of an array.
-     * Add up the distance.
-     * @param numbers long array.
-     * @param visit boolean array.
-     * @param total long array.
-     * @param k1 integer.
+     * Each staring point of TwoOpt algorithm.
+     * @param head Integer,
+     * @param disGrid double long array.
      */
-    public long Opt2DisEach(int head, long[][] disGrid)
+    public long opt2DisEach(int head, long[][] disGrid)
     {
         int[] loc = tool.StartNear(head, disGrid,len);
         twoAlg(loc, disGrid);
         return tool.findDis(loc, disGrid);
     }
 
-
     /**
-     * Find the index of the minimum value of an array.
-     * Add up the distance.
-     * @param numbers long array.
-     * @param visit boolean array.
-     * @param total long array.
-     * @param k1 integer.
+     * Main two-opt algorithm.
+     * @param arr int array.
+     * @param disGrid double long.
      */
     public void twoAlg(int[] arr, long[][] disGrid) {
-        int n = arr.length;
-        if (n > 4) {
+        int n1 = arr.length;
+        int o1;int o2;int d1;int d2;
+        if (n1 > 4) {
             boolean improvement = true;
             while (improvement) {
                 improvement = false;
-                for (int i = 0; i <= n - 3; i++) {
-                    for (int j = i + 2; j <= n - 1; j++) {
-                        int o1, o2, d1, d2;
+                for (int i = 0; i <= n1 - 3; i++) {
+                    for (int j = i + 2; j <= n1 - 1; j++) {
                         o1 = arr[i];
                         o2 = arr[i + 1];
                         d1 = arr[j];
-                        d2 = arr[(j + 1)%n];
+                        d2 = arr[(j + 1)%n1];
                         long delta = -disGrid[o1][o2] - disGrid[d1][d2] + disGrid[o1][d1] + disGrid[o2][d2];
                         if (delta < 0) {
                             tool.opt2Reverse(arr, i + 1, j);
