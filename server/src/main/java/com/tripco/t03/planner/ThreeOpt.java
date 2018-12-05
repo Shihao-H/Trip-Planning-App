@@ -137,8 +137,9 @@ public class ThreeOpt {
         int []temp3 = combine(temp2, temp);
         replace(i1 + 1, k1, temp3, arr);
     }
+    
     /**
-     * Combine two arrays.
+     * Calling function of 3-opt.
      * @param disGrid double long array.
      */
     public void threeOpt(long[][] disGrid)
@@ -147,7 +148,7 @@ public class ThreeOpt {
         long pathDis=Long.MAX_VALUE;
         for(int i=0;i<len;i++)
         {
-            long temp=Opt3DisEach(i,disGrid);
+            long temp=opt3DisEach(i,disGrid);
 
             if(pathDis>temp)
             {
