@@ -114,9 +114,9 @@ public class TestThreeOpt {
     }
 
     @Test
-    public void testOpt3DisEach() {
+    public void testopt3DisEach() {
         opt = new ThreeOpt(trip, distanceGrid);
-        long distance = opt.Opt3DisEach(0,distanceGrid);
+        long distance = opt.opt3DisEach(0,distanceGrid);
         Assert.assertEquals(distance, 20);
     }
 }
