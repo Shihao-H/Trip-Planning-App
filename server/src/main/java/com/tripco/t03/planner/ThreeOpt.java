@@ -197,27 +197,27 @@ public class ThreeOpt {
                             p2 = arr[(k+1)%n1];
                             long three = disGrid[o1][o2] + disGrid[d1][d2] + disGrid[p1][p2];
                             long two = disGrid[o1][o2] + disGrid[p1][p2];
-                            long delta3 = disGrid[o1][d1] + disGrid[o2][p1] + disGrid[d2][p2] - three;
+                            long delta3=disGrid[o1][d1]+disGrid[o2][p1]+disGrid[d2][p2]-three;
                             if (delta3 < 0) {
                                 tool.opt2Reverse(arr, i + 1, j);
                                 tool.opt2Reverse(arr, j + 1, k);
                                 improvement = true;
                                 continue;
                             }
-                            long delta4 = disGrid[o1][p1] + disGrid[d2][o2] + disGrid[d1][p2]- three;
+                            long delta4=disGrid[o1][p1]+disGrid[d2][o2]+disGrid[d1][p2]-three;
                             if (delta4 < 0) {
                                 opt3Case1(i,j,k,arr);
                                 improvement = true;
                                 continue;
                             }
-                            long delta5 = disGrid[o1][d2] + disGrid[p1][d1] + disGrid[o2][p2]- three;
+                            long delta5=disGrid[o1][d2]+disGrid[p1][d1]+disGrid[o2][p2]-three;
                             if (delta5 < 0) {
                                 opt3Case2(i,j,k,arr);
                                 improvement = true;
                                 continue;
                             }
 
-                            long delta6 = disGrid[o1][d2] + disGrid[p1][o2] + disGrid[d1][p2]- three;
+                            long delta6=disGrid[o1][d2]+disGrid[p1][o2]+disGrid[d1][p2]-three;
                             if (delta6 < 0) {
                                 opt3Case3(i,j,k,arr);
                                 improvement = true;
