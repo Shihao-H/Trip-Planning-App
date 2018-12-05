@@ -58,7 +58,7 @@ class OptionPanel extends Component {
 
     renderGenericOptions(suppose, actual) {
         return (
-            <Col xs="6"><Card><CardBody>
+            <Col><Card><CardBody>
                 <p>{"Select the " + suppose + " you wish to use."}</p>
                 <ButtonGroup vertical>{this.generateOptionsButtons(suppose, actual)}</ButtonGroup>
                 {(suppose === "units") && this.state.ifDisplayUserDefinedInputFields && (
