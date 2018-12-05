@@ -90,10 +90,10 @@ public class TestThreeOpt {
     }
     
     @Test
-    public void testthreeAlg(){
+    public void testthreeOpt(){
         opt = new ThreeOpt(trip, distanceGrid);
         int[] result = new int[]{0,6,7,4,1,5,2,3};
-        opt.threeAlg(opt.index,distanceGrid);
+        opt.threeOpt(distanceGrid);
         Assert.assertArrayEquals(opt.index,result);
     }
     
