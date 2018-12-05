@@ -147,7 +147,7 @@ public class ThreeOpt {
         long pathDis=Long.MAX_VALUE;
         for(int i=0;i<len;i++)
         {
-            long temp=Opt3DisEach(i,disGrid);
+            long temp=opt3DisEach(i,disGrid);
 
             if(pathDis>temp)
             {
@@ -164,7 +164,7 @@ public class ThreeOpt {
      * @param head Integer,
      * @param disGrid double long array.
      */
-    public long Opt3DisEach(int head,long [][] disGrid)
+    public long opt3DisEach(int head,long [][] disGrid)
     {
         int[] arr=tool.StartNear(head,disGrid,len);
         threeAlg(arr,disGrid);
