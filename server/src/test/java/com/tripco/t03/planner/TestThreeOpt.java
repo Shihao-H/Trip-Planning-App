@@ -96,4 +96,11 @@ public class TestThreeOpt {
         opt.threeAlg(opt.index,distanceGrid);
         Assert.assertArrayEquals(opt.index,result);
     }
+    
+    @Test
+    public void testOpt3DisEach() {
+        opt = new ThreeOpt(trip, distanceGrid);
+        long distance = opt.Opt3DisEach(0,distanceGrid);
+        Assert.assertEquals(distance, 20);
+    }
 }
