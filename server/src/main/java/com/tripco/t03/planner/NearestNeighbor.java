@@ -6,6 +6,11 @@ class NearestNeighbor {
     public int len;
     public Utility tool;
 
+    /**
+     * NearestNeighbor Constructor.
+     * @param arr int array.
+     * @param arr2 double long.
+     */
     public NearestNeighbor(int[] arr,long[][] arr2)
     {
         this.index=arr;
@@ -14,6 +19,10 @@ class NearestNeighbor {
         this.tool=new Utility();
     }
 
+    /**
+     * NearestNeighbor calling function.
+     * @param disGrid double long.
+     */
     public void near(long[][] disGrid)
     {
         int shortestStart = 0;
@@ -28,6 +37,11 @@ class NearestNeighbor {
         this.index = tool.StartNear(shortestStart, disGrid,len);
     }
 
+    /**
+     * Get nearest neighbor distance for each point.
+     * @param head int.
+     * @param disGrid double long.
+     */
     public long nearDisEach(int head, long[][] disGrid)
     {
         int[] loc = tool.StartNear(head, disGrid,len);

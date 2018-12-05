@@ -1,73 +1,52 @@
-/*package com.tripco.t03.planner;
+package com.tripco.t03.planner;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.Arrays;
 
 public class TestNearestNeighbor {
-    private Long[][] distanceGrid = {{0L, 115L, 32L, 99L, 666L, 202L, 13L},
-                                        {1500L, 0L, 55L, 600L, 22L, 8L, 19L},
-                                        {101L, 22L, 0L, 66L, 9L, 12L, 88L},
-                                        {22L, 150L, 66L, 0L, 902L, 33L, 12L},
-                                        {2520L, 999L, 666L, 333L, 0L, 1L, 3L},
-                                        {33L, 66L, 99L, 88L, 77L, 0L, 66L},
-                                        {55L, 44L, 33L, 22L, 11L, 13L, 0L}};
-    private Integer[] sortedPlaces;
+
+    private NearestNeighbor opt;
+    private int[] trip;
+    public long[][] distanceGrid;
+    public int len;
+    public Utility tool;
 
     @Before
     public void setup(){
-        sortedPlaces = new Integer[7];
-        for(int i = 0; i < sortedPlaces.length; i++){
-            sortedPlaces[i] = i;
-        }
+        distanceGrid = new long[][]{{0L, 115L, 32L, 99L, 666L, 202L, 13L},
+                                    {1500L, 0L, 55L, 600L, 22L, 8L, 19L},
+                                    {101L, 22L, 0L, 66L, 9L, 12L, 88L},
+                                    {22L, 150L, 66L, 0L, 902L, 33L, 12L},
+                                    {2520L, 999L, 666L, 333L, 0L, 1L, 3L},
+                                    {33L, 66L, 99L, 88L, 77L, 0L, 66L},
+                                    {55L, 44L, 33L, 22L, 11L, 13L, 0L}};
+        trip = new int[]{0,1,2,3,4,5,6};
+        this.len=trip.length;
+        this.tool=new Utility();
     }
-
+    
     @Test
     public void testNearestNeighborConstructor(){
-        NearestNeighbor nn = new NearestNeighbor(sortedPlaces, distanceGrid);
-
+        NearestNeighbor nn = new NearestNeighbor(trip, distanceGrid);
         Assert.assertNotNull(nn);
     }
 
     @Test
-    public void testNearestNeighborMethod(){
-        NearestNeighbor nn = new NearestNeighbor(sortedPlaces, distanceGrid);
-        nn.nearestNeighbor();
-        Integer[] temp = new Integer[7];
-        nn.getOptimalTrip(temp);
-    
-        Assert.assertNotNull(temp[0]);
+    public void testnear(){
+        opt = new NearestNeighbor(trip, distanceGrid);
+        int[] result = new int[]{4,5,0,6,3,2,1};
+        opt.near(distanceGrid);
+        Assert.assertArrayEquals(opt.index,result);
     }
 
     @Test
-    public void testGetTotalDistance() {
-        NearestNeighbor nn = new NearestNeighbor(sortedPlaces, distanceGrid);
-        nn.nearestNeighbor();
-        long distance = nn.getTotalDistance();
-
-        Assert.assertEquals(179, distance);
+    public void testopt2DisEach() {
+        opt = new NearestNeighbor(trip, distanceGrid);
+        long distance = opt.nearDisEach(0,distanceGrid);
+        Assert.assertEquals(distance, 234);
     }
 
-    @Test
-    public void testGetOptimalTrip(){
-        Integer[] trip = new Integer[7];
-        Integer[] expected = {4, 5, 0, 6, 3, 2, 1};
-        NearestNeighbor nn = new NearestNeighbor(sortedPlaces, distanceGrid);
-        nn.nearestNeighbor();
-        nn.getOptimalTrip(trip);
 
-        Assert.assertEquals(Arrays.toString(trip), Arrays.toString(expected));
-    }
+}
     
-     @Test
-    public void testGetLegDistance() {
-         NearestNeighbor nn = new NearestNeighbor(sortedPlaces, distanceGrid);
-         nn.nearestNeighbor();
-         Long[] legDistances = new Long[7];
-         nn.getLegDistances(legDistances);
-         Integer[] expected = {1, 33, 13, 22, 66, 22, 22};
-    
-         Assert.assertEquals(Arrays.toString(legDistances), Arrays.toString(expected));
-     }
-}*/
