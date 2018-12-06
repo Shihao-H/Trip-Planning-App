@@ -47,18 +47,23 @@ class Itinerary extends Component {
         this.props.updateSelected(newSelected);
     }
 
+
+    clickDeleteButtonHelper(){
+        let temp = this.props.places;
+        let i = temp.length;
+        while (i--) {
+            if (this.props.selected[temp[i].id] === true) {
+                temp.splice(i, 1);
+            }
+        }
+        return temp;
+    }
+
     clickDeleteButton() {
         if (this.props.selectAll === true) {
             this.clear();
         } else {
-            let temp = this.props.places;
-            let i = temp.length;
-            while (i--) {
-                if (this.props.selected[temp[i].id] === true) {
-                    temp.splice(i, 1);
-                }
-            }
-            this.props.updateTrip('places', temp);
+            this.props.updateTrip('places', this.clickDeleteButtonHelper());
         }
     }
 
