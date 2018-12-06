@@ -12,6 +12,7 @@ class Itinerary extends Component {
         this.toggle = this.toggle.bind(this);
         this.toggleSelectAll = this.toggleSelectAll.bind(this);
         this.clickDeleteButton = this.clickDeleteButton.bind(this);
+        this.clickDeleteButtonHelper = this.clickDeleteButtonHelper.bind(this);
         this.clickReverseButton = this.clickReverseButton.bind(this);
         this.clickChangeStartButton = this.clickChangeStartButton.bind(this);
         this.clear = this.clear.bind(this);
