@@ -8,7 +8,8 @@ export default class Developer extends Component {
         this.teamImage = this.teamImage.bind(this);
         this.forEachTeamMember = this.forEachTeamMember.bind(this);
         this.state = {
-            Josh: "Josh's bio (picture above)",
+            Josh: "Proud WOPR member! Glad to have been in this group of lovely, hardworking people. " +
+            "I hope you enjoy your time here on our website!",
             Lacey: "Lacey's bio (picture above)",
             Minjie: "Minjie's bio (picture above)",
             Shihao: "Shihao's bio (picture above) "
