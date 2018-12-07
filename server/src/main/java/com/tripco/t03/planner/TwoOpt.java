@@ -60,7 +60,7 @@ class TwoOpt {
      * @param j1 int.
      * @param improvement boolean.
      */
-    public boolean Case1(int[] arr, int i1, int j1,boolean improvement)
+    public boolean case0(int[] arr, int i1, int j1,boolean improvement)
     {
         int o1 = arr[i1];
         int o2 = arr[i1 + 1];
@@ -86,7 +86,7 @@ class TwoOpt {
                 improvement = false;
                 for (int i = 0; i <= n1 - 3; i++) {
                     for (int j = i + 2; j <= n1 - 1; j++) {
-                        improvement=Case1(arr,i,j,improvement);
+                        improvement=case0(arr,i,j,improvement);
                     }
                 }
             }
