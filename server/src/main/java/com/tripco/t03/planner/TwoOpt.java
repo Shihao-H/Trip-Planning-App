@@ -37,7 +37,7 @@ class TwoOpt {
             }
         }
         this.index = tool.StartNear(shortestStart, disGrid,len);
-        twoAlg(this.index, disGrid);
+        twoAlg(this.index);
     }
 
     /**
@@ -48,16 +48,38 @@ class TwoOpt {
     public long opt2DisEach(int head, long[][] disGrid)
     {
         int[] loc = tool.StartNear(head, disGrid,len);
-        twoAlg(loc, disGrid);
+        twoAlg(loc);
         return tool.findDis(loc, disGrid);
+    }
+
+
+    /**
+     * Case.
+     * @param arr int array.
+     * @param i int.
+     * @param j int.
+     * @param n1 int.
+     */
+    public boolean Case(int[] arr, int i, int j,int n1,boolean improvement)
+    {
+        int o1, o2, d1, d2;
+        o1 = arr[i];
+        o2 = arr[i + 1];
+        d1 = arr[j];
+        d2 = arr[(j + 1)%n1];
+        long delta =-disGrid[o1][o2]-disGrid[d1][d2]+disGrid[o1][d1]+disGrid[o2][d2];
+        if (delta < 0) {
+            tool.opt2Reverse(arr, i + 1, j);
+            improvement = true;
+        }
+        return improvement;
     }
 
     /**
      * Main two-opt algorithm.
      * @param arr int array.
-     * @param disGrid double long.
      */
-    public void twoAlg(int[] arr, long[][] disGrid) {
+    public void twoAlg(int[] arr) {
         int n1 = arr.length;
         if (n1 > 4) {
             boolean improvement = true;
@@ -65,16 +87,7 @@ class TwoOpt {
                 improvement = false;
                 for (int i = 0; i <= n1 - 3; i++) {
                     for (int j = i + 2; j <= n1 - 1; j++) {
-                        int o1, o2, d1, d2;
-                        o1 = arr[i];
-                        o2 = arr[i + 1];
-                        d1 = arr[j];
-                        d2 = arr[(j + 1)%n1];
-                        long delta = -disGrid[o1][o2] - disGrid[d1][d2] + disGrid[o1][d1] + disGrid[o2][d2];
-                        if (delta < 0) {
-                            tool.opt2Reverse(arr, i + 1, j);
-                            improvement = true;
-                        }
+                        improvement=Case(arr,i,j,n1,improvement);
                     }
                 }
             }
