@@ -56,9 +56,9 @@ class TwoOpt {
     /**
      * Case.
      * @param arr int array.
-     * @param i int.
-     * @param j int.
-     * @param n1 int.
+     * @param i1 int.
+     * @param j1 int.
+     * @param improvement boolean.
      */
     public boolean Case(int[] arr, int i1, int j1,boolean improvement)
     {
