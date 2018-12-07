@@ -12,7 +12,7 @@ export default class Developer extends Component {
             "I hope you enjoy your time here on our website!",
             Lacey: "Lacey's bio (picture above)",
             Minjie: "LOVE WOPR!",
-            Shihao: "Shihao's bio (picture above) "
+            Shihao: "Bazinga!"
         };
     }
 
