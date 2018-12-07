@@ -1,9 +1,9 @@
 package com.tripco.t03.planner;
 
 import java.sql.SQLException;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import spark.Request;
 
 /**
@@ -17,8 +17,10 @@ public class Match {
 
     private Search search;
 
-    /** Handles places searching request, creating a new search object from the search request.
+    /**
+     * Handles places searching request, creating a new search object from the search request.
      * Does the conversion from Json to a Java class before searching the places.
+     *
      * @param request should be {a single string}.
      */
     public Match(Request request) throws SQLException, ClassNotFoundException {
@@ -32,21 +34,23 @@ public class Match {
         // search the places.
         search.findMatch();
     }
-    
+
     /**
      * Constructor.
+     *
      * @param search Search object.
      */
-    public Match(Search search){
-        
+    public Match(Search search) {
+
         this.search = search;
     }
-    
-    /** Handles the response for a Search object.
+
+    /**
+     * Handles the response for a Search object.
      * Does the conversion from a Java class to a Json string.*
      */
     public String getMatch() {
-        
+
         Gson gson = new Gson();
         return gson.toJson(search);
     }

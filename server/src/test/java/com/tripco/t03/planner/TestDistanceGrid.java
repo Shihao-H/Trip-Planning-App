@@ -64,23 +64,23 @@ public class TestDistanceGrid {
 
         Assert.assertNotNull(distGrid.distanceGrid[0][1]);
     }
-    
+
     @Test
     public void testKiloBuildGrid() throws Exception {
         distGrid = new DistanceGrid(origTrip, "kilometers", locations);
         distGrid.buildGrid();
-    
+
         Assert.assertNotNull(distGrid.distanceGrid[0][1]);
     }
-    
+
     @Test
     public void testNautMilesBuildGrid() throws Exception {
         distGrid = new DistanceGrid(origTrip, "nautical miles", locations);
         distGrid.buildGrid();
-    
+
         Assert.assertNotNull(distGrid.distanceGrid[0][1]);
     }
-    
+
     @Test
     public void testInvalidBuildGrid() throws Exception {
         String message = null;

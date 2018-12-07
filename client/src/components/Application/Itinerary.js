@@ -12,6 +12,7 @@ class Itinerary extends Component {
         this.toggle = this.toggle.bind(this);
         this.toggleSelectAll = this.toggleSelectAll.bind(this);
         this.clickDeleteButton = this.clickDeleteButton.bind(this);
+        this.clickDeleteButtonHelper = this.clickDeleteButtonHelper.bind(this);
         this.clickReverseButton = this.clickReverseButton.bind(this);
         this.clickChangeStartButton = this.clickChangeStartButton.bind(this);
         this.clear = this.clear.bind(this);
@@ -47,18 +48,23 @@ class Itinerary extends Component {
         this.props.updateSelected(newSelected);
     }
 
+
+    clickDeleteButtonHelper(){
+        let temp = this.props.places;
+        let i = temp.length;
+        while (i--) {
+            if (this.props.selected[temp[i].id] === true) {
+                temp.splice(i, 1);
+            }
+        }
+        return temp;
+    }
+
     clickDeleteButton() {
         if (this.props.selectAll === true) {
             this.clear();
         } else {
-            let temp = this.props.places;
-            let i = temp.length;
-            while (i--) {
-                if (this.props.selected[temp[i].id] === true) {
-                    temp.splice(i, 1);
-                }
-            }
-            this.props.updateTrip('places', temp);
+            this.props.updateTrip('places', this.clickDeleteButtonHelper());
         }
     }
 

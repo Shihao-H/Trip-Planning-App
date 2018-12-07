@@ -26,11 +26,11 @@ public class MyServer {
    */
   private static int getPort(String[] args) {
 
-    if (args.length > 0)
-      return Integer.parseInt(args[0]);
-    else
-      return 8088; // some default
-
+    if (args.length > 0){
+      return Integer.parseInt(args[0]);}
+    else{
+      return 8088;
+    }
   }
 
   /** Obtain the name from the command line arguments.  Defaults if not specified.
@@ -46,8 +46,9 @@ public class MyServer {
       }
       return name;
     }
-    else
+    else{
       return "Unknown";
+    }
   }
 
 }

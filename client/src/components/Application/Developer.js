@@ -11,7 +11,7 @@ export default class Developer extends Component {
             Josh: "Proud WOPR member! Glad to have been in this group of lovely, hardworking people. " +
             "I hope you enjoy your time here on our website!",
             Lacey: "Lacey's bio (picture above)",
-            Minjie: "Minjie's bio (picture above)",
+            Minjie: "LOVE WOPR!",
             Shihao: "Shihao's bio (picture above) "
         };
     }

@@ -24,20 +24,25 @@ export class SearchBox extends Component {
         this.addPlaces = this.addPlaces.bind(this);
         this.createTable = this.createTable.bind(this);
         this.getTempValues = this.getTempValues.bind(this);
+        this.getTempValuesHelper = this.getTempValuesHelper.bind(this);
         this.mapFilters = this.mapFilters.bind(this);
         this.check = this.check.bind(this);
+    }
+
+    getTempValuesHelper(filter){
+        let values = [];
+        for (let valueName in filter.values) {
+            if (filter.values[valueName]) {
+                values.push(valueName);
+            }
+        }
+        return values;
     }
 
     getTempValues() {
         let filters = [];
         for (let filterName in this.state.temp) {
-            let filter = this.state.temp[filterName];
-            let values = [];
-            for (let valueName in filter.values) {
-                if (filter.values[valueName]) {
-                    values.push(valueName);
-                }
-            }
+            let values = this.getTempValuesHelper(this.state.temp[filterName]);
             if (values.length > 0) {
                 filters.push({'name': filterName, 'values': values});
             }

@@ -7,7 +7,14 @@ class Upload extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.LoadFile = this.LoadFile.bind(this);
+        this.loadFileHelper = this.loadFileHelper.bind(this);
         this.fileInput = React.createRef();
+    }
+
+    loadFileHelper(obj){
+        this.props.updateOptions('optimization', (obj.options.optimization ?
+            obj.options.optimization : 'none'));
+        this.props.updateOptions('mapForOption', (obj.options.map ? obj.options.map : 'svg'));
     }
 
     LoadFile(event) {
@@ -18,9 +25,7 @@ class Upload extends Component {
             let obj = JSON.parse(event.target.result);
             this.props.updateTrip('title', obj.title);
             this.props.updateOptions('units', obj.options.units);
-            this.props.updateOptions('optimization', (obj.options.optimization ?
-                obj.options.optimization : 'none'));
-            this.props.updateOptions('mapForOption', (obj.options.map ? obj.options.map : 'svg'));
+            this.loadFileHelper(obj);
             if (obj.options.units === "user defined") {
                 this.props.updateOptions('unitRadius', obj.options.unitRadius);
                 this.props.updateOptions('unitName', obj.options.unitName);
