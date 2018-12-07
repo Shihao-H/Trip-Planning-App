@@ -7,14 +7,15 @@ test('default test', () => {
 });
 
 test('default constructor', () => {
-    let app = new Application({})
+    let app = new Application({});
 
-    app.state.trip.places = {
+    app.state.trip.places = [
+        {
         "id": "bl",
         "name": "Obama",
         "latitude": -55.9467,
         "longitude": -67.2751
-    },
+        },
         {
             "id": "tl",
             "name": "Bush",
@@ -38,15 +39,15 @@ test('default constructor', () => {
             "name":"LOL",
             "latitude": 0,
             "longitude": 0
-        }
+        }];
 
-    app.updateSelected(new Map())
-    app.updateSelectAll(true)
+    app.updateSelected(new Map());
+    app.updateSelectAll(true);
 
-    app.updateTrip('map', '')
-    app.updateBasedOnResponse({'trip':{'stuff':'things'} })
-    app.updateBasedOnResponse({'stuff':'things'})
-    app.updateBasedOnResponse({'config':{'stuff':'things'} })
+    app.updateTrip('map', '');
+    app.updateBasedOnResponse({'trip':{'stuff':'things'} });
+    app.updateBasedOnResponse({'stuff':'things'});
+    app.updateBasedOnResponse({'config':{'stuff':'things'} });
     app.updateSearch({
         version: 4,
         type: "search",
@@ -58,13 +59,9 @@ test('default constructor', () => {
         limit: 0,
         found: 0,
         places: []
-    })
+    });
 
-    app.updateOptions('units', 'miles')
-    app.updateOptions('units', 'user defined')
+    app.updateOptions('units', 'miles');
+    app.updateOptions('units', 'user defined');
     app.updateOptions('nothing', 'hi')
-
-
-
-
 });
