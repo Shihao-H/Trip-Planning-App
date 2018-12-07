@@ -54,7 +54,7 @@ class Navigation extends Component {
   collapsable(){
     let toggler = this.getToggler();
     const navItems = [
-      this.renderNavItem("", false, 0, "TripCo", "TripCo" )
+      this.renderNavItem("", false, 0, "CS 314 t03 WOPR", "CS 314 t03 WOPR" )
     ]
     return(
       <div>
