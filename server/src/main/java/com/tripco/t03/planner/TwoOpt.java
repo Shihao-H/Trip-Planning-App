@@ -54,19 +54,18 @@ class TwoOpt {
 
 
     /**
-     * Case.
+     * case0.
      * @param arr int array.
-     * @param i int.
-     * @param j int.
+     * @param i1 int.
+     * @param j1 int.
      * @param n1 int.
      */
-    public boolean Case(int[] arr, int i, int j,int n1,boolean improvement)
+    public boolean case0(int[] arr, int i1, int j1,boolean improvement)
     {
-        int o1, o2, d1, d2;
-        o1 = arr[i];
-        o2 = arr[i + 1];
-        d1 = arr[j];
-        d2 = arr[(j + 1)%n1];
+        int o1 = arr[i];
+        int o2 = arr[i + 1];
+        int d1 = arr[j];
+        int d2 = arr[(j + 1)%(arr.length)];
         long delta =-disGrid[o1][o2]-disGrid[d1][d2]+disGrid[o1][d1]+disGrid[o2][d2];
         if (delta < 0) {
             tool.opt2Reverse(arr, i + 1, j);
@@ -85,7 +84,7 @@ class TwoOpt {
     {
         for (int i = 0; i <= n1 - 3; i++) {
             for (int j = i + 2; j <= n1 - 1; j++) {
-                improvement=Case(arr,i,j,n1,improvement);
+                improvement=case0(arr,i,j,improvement);
             }
         }
         return improvement;
