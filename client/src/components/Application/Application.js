@@ -13,7 +13,7 @@ class Application extends Component {
             config: null,
             trip: {version: 4, type: "trip", title: "", options: {units: "miles", unitName: "", unitRadius: 0.00,
                     optimization: "none", mapForOption: "svg"}, places: [], distances: [], map: ''},
-            search: {version: 3, type: "search", match: "", found: 0, places: [], filters: []},
+            search: {version: 3, type: "search", match: "", found: 0, limit: 20, places: [], filters: []},
             selected: new Map(), selectAll: false, otherTeams: null,
             host: null, attributes: ["id", "name", "latitude", "longitude"],
             display: [true, true, true, true, false, false, false, false, false, false]

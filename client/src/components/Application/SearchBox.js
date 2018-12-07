@@ -79,11 +79,7 @@ export class SearchBox extends Component {
         if (obj.match !== "") {
             request(obj, 'search').then((Fi) => {
                 let response = [];
-                if (Fi.places.length > 20) {
-                    response = Fi.places.slice(0, 20);
-                } else {
-                    response = Fi.places;
-                }
+                response = Fi.places;
                 this.props.updateSearch('places', response);
                 this.props.updateSearch('found', Fi.found);
                 this.setState({returnNumber: response.length});
