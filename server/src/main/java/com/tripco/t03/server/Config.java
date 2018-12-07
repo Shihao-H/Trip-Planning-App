@@ -19,7 +19,8 @@ public class Config {
      * Constructor.
      */
     public Config() {
-        units = new ArrayList<>(Arrays.asList("miles", "kilometers", "nautical miles", "user defined"));
+        units = new ArrayList<>(Arrays.asList("miles", "kilometers", "nautical miles", 
+                                              "user defined"));
         optimization = new ArrayList<>(
                 Arrays.asList(new Optimization("none", "The trip is not optimized."),
                         new Optimization("short", "Nearest neighbor."),
@@ -27,16 +28,14 @@ public class Config {
                         new Optimization("shortest", "3-opt.")));
         attributes = new ArrayList<>(Arrays.asList("name", "id", "latitude", "longitude", "type",
                 "elevation", "continent", "country", "region", "municipality"));
-
         String[] stringContinents = {"Africa", "Antarctica", "Asia", "Europe", "North America",
                 "Oceania", "South America"};
         Filter continents = new Filter("continents", stringContinents);
-        String[] stringType = {"heliport", "small_airport", "seaplane_base", "closed", "balloonport",
-                "medium_airport", "large_airport"};
+        String[] stringType = {"heliport", "small_airport", "seaplane_base", "closed", 
+                               "balloonport", "medium_airport", "large_airport"};
         Filter type = new Filter("type", stringType);
         filters = new ArrayList<>(Arrays.asList(continents, type));
         maps = new ArrayList<>(Arrays.asList("svg", "kml"));
-
     }
 
     /**
