@@ -54,22 +54,39 @@ class TwoOpt {
 
 
     /**
-     * Case1.
+     * Case.
      * @param arr int array.
-     * @param i1 int.
-     * @param j1 int.
-     * @param improvement boolean.
+     * @param i int.
+     * @param j int.
+     * @param n1 int.
      */
-    public boolean case0(int[] arr, int i1, int j1,boolean improvement)
+    public boolean Case(int[] arr, int i, int j,int n1,boolean improvement)
     {
-        int o1 = arr[i1];
-        int o2 = arr[i1 + 1];
-        int d1 = arr[j1];
-        int d2 = arr[(j1 + 1)%(arr.length)];
+        int o1, o2, d1, d2;
+        o1 = arr[i];
+        o2 = arr[i + 1];
+        d1 = arr[j];
+        d2 = arr[(j + 1)%n1];
         long delta =-disGrid[o1][o2]-disGrid[d1][d2]+disGrid[o1][d1]+disGrid[o2][d2];
         if (delta < 0) {
-            tool.opt2Reverse(arr, i1 + 1, j1);
+            tool.opt2Reverse(arr, i + 1, j);
             improvement = true;
+        }
+        return improvement;
+    }
+
+    /**
+     * For loops.
+     * @param arr int array.
+     * @param n1 int.
+     * @param improvement boolean.
+     */
+    public boolean loop(int[] arr, int n1, boolean improvement)
+    {
+        for (int i = 0; i <= n1 - 3; i++) {
+            for (int j = i + 2; j <= n1 - 1; j++) {
+                improvement=Case(arr,i,j,n1,improvement);
+            }
         }
         return improvement;
     }
@@ -84,11 +101,7 @@ class TwoOpt {
             boolean improvement = true;
             while (improvement) {
                 improvement = false;
-                for (int i = 0; i <= n1 - 3; i++) {
-                    for (int j = i + 2; j <= n1 - 1; j++) {
-                        improvement=case0(arr,i,j,improvement);
-                    }
-                }
+                improvement=loop(arr, n1,improvement);
             }
         }
     }
