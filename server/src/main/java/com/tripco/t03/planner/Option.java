@@ -113,9 +113,9 @@ public class Option {
      */
     boolean equals(Option option) {
         if ((this.unitName != null) && (this.unitRadius != 0.0)) {
-            return this.unitName.equalsIgnoreCase(option.unitName) &&
-                    this.unitRadius.equals(option.unitRadius) &&
-                    this.units.equalsIgnoreCase(option.units);
+            return this.unitName.equalsIgnoreCase(option.unitName) 
+                   && this.unitRadius.equals(option.unitRadius) 
+                   && this.units.equalsIgnoreCase(option.units);
         } else {
             return this.units.equalsIgnoreCase(option.units);
         }
