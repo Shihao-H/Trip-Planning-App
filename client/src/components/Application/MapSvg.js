@@ -65,5 +65,5 @@ export class MapSvg extends Component {
 
 
 export default GoogleApiWrapper({
-    apiKey: ("AIzaSyCrmZDM84mTRUSC8H_x2mKGteziwEmiMrA")
+    apiKey: ("Intentionally hidden")
 })(MapSvg)
